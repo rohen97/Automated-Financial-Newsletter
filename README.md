@@ -1,2 +1,3 @@
-# weekly-financial-newsletter
-Weekly financial newsletter automation and production pipeline
+# Wolf Research
+
+Financial newsletter automation and production pipeline.
