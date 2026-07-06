@@ -1,0 +1,40 @@
+fx:
+  - symbol: USDSGD=X
+    label: USD/SGD
+  - symbol: AUDUSD=X
+    label: AUD/USD
+  - symbol: EURUSD=X
+    label: EUR/USD
+  - symbol: DX-Y.NYB
+    label: DXY
+commodities:
+  - symbol: BZ=F
+    label: Brent
+  - symbol: CL=F
+    label: WTI
+  - symbol: GC=F
+    label: Gold
+  - symbol: HG=F
+    label: Copper
+  - symbol: NG=F
+    label: Natural Gas / LNG proxy
+sectors:
+  - symbol: XLF
+    label: Financials
+  - symbol: XLK
+    label: Technology
+  - symbol: XLE
+    label: Energy
+  - symbol: XLV
+    label: Health Care
+  - symbol: XLI
+    label: Industrials
+  - symbol: XLY
+    label: Consumer Discretionary
+  - symbol: XLP
+    label: Consumer Staples
+benchmarks:
+  - symbol: SPY
+    label: S&P 500
+  - symbol: EWS
+    label: Singapore equities proxy

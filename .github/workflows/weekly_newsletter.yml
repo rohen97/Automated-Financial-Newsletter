@@ -1,0 +1,37 @@
+name: Weekly Newsletter
+
+on:
+  schedule:
+    - cron: "0 1 * * 1"
+  workflow_dispatch:
+
+jobs:
+  build-newsletter:
+    runs-on: ubuntu-latest
+    env:
+      SEND_MODE: ${{ secrets.SEND_MODE || 'dry_run' }}
+      TIMEZONE: Asia/Singapore
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+      SENDGRID_FROM_EMAIL: ${{ secrets.SENDGRID_FROM_EMAIL }}
+      NEWSLETTER_TO: ${{ secrets.NEWSLETTER_TO }}
+      FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+      ALPHA_VANTAGE_API_KEY: ${{ secrets.ALPHA_VANTAGE_API_KEY }}
+      MARKETAUX_API_KEY: ${{ secrets.MARKETAUX_API_KEY }}
+      CRUNCHBASE_API_KEY: ${{ secrets.CRUNCHBASE_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run tests
+        run: pytest
+      - name: Generate newsletter
+        run: python -m src.main
+      - name: Upload outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: newsletter-output
+          path: output/

@@ -1,0 +1,18 @@
+title: Wolf Research Weekly
+timezone: Asia/Singapore
+send_mode: dry_run
+lookback_days: 7
+recipients: []
+required_sections:
+  - executive_snapshot
+  - macro_news
+  - fx_markets
+  - commodities
+  - private_markets
+  - sector_scoreboard
+  - story_of_the_week
+  - week_in_headlines
+  - watchlist
+style:
+  tone: institutional, concise, analytical, investment-focused
+  max_bullets_per_section: 5

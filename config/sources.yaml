@@ -1,0 +1,29 @@
+live_fetch: false
+source_quality:
+  Reuters: 0.95
+  Bloomberg: 0.95
+  Financial Times: 0.92
+  CNBC: 0.80
+  Federal Reserve: 0.95
+  FRED: 0.95
+  IMF: 0.90
+  World Bank: 0.88
+  PitchBook: 0.85
+  Preqin: 0.85
+  Crunchbase: 0.75
+  Sample Data: 0.55
+rss_feeds:
+  macro:
+    - name: Federal Reserve
+      url: https://www.federalreserve.gov/feeds/press_all.xml
+    - name: IMF
+      url: https://www.imf.org/en/News/RSS
+  markets:
+    - name: CNBC
+      url: https://www.cnbc.com/id/100003114/device/rss/rss.html
+  private_markets:
+    - name: Crunchbase News
+      url: https://news.crunchbase.com/feed/
+fallback_sources:
+  - name: Sample Data
+    url: https://example.com/wolf-research/sample-data
