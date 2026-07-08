@@ -1,0 +1,17 @@
+stock_name,ticker,currency,average_cost_price,current_price,ytd_share_price_performance_pct,shares_bought,market_cap_usd_millions,current_investment_value_usd,ytd_performance_usd,ytd_performance_pct,industry_sector,region,country,pricing_mode
+Softtech Engineers Ltd,,INR,317.35,433.25,36.52,3241000,63,15046159,3602304,31.48,Software & Services,APAC,India,manual
+Meta Wolf AG,,EUR,2.86,3.80,32.91,29256085,144,127069520,28932017,29.48,Capital Goods,EU,Germany,manual
+ING Groep NV,,USD,25.52,32.20,26.18,38900,94035,1252580,264520,26.77,Banks,EU,Netherlands,manual
+SATS Ltd,,SGD,3.70,4.38,18.35,285900,5002,968178,138269,16.66,Transportation,APAC,Singapore,manual
+Singapore Airlines Ltd,,SGD,6.58,7.39,12.26,385000,18003,2199745,220135,11.12,Transportation,APAC,Singapore,manual
+Sembcorp Industries Ltd,,SGD,5.70,6.37,11.81,182700,8767,899798,83407,10.22,Utilities,APAC,Singapore,manual
+Allianz SE,,EUR,367.00,406.60,10.79,2300,176797,1068899,90233,9.22,Insurance,EU,Germany,manual
+Sindcon (Singapore) IoT Technology Pte Ltd,,SGD,1.36,1.36,0.00,100000,,105149,-654,-0.62,Invalid / Private Security,APAC,Singapore,manual
+SAA Software,,EUR,1.00,1.00,0.00,3000000,,3428963,-53739,-1.54,Invalid / Private Security,EU,Unknown,manual
+RWE AG,,EUR,56.12,55.60,-0.93,30000,47272,1906504,-33367,-1.72,Utilities,EU,Germany,manual
+CapitaLand Ascendas REIT,,SGD,2.55,2.52,-1.08,856632,9732,1669022,-42609,-2.49,Equity Real Estate Investment Trust,APAC,Singapore,manual
+Ping An Insurance Group Co of,,HKD,59.30,53.90,-9.11,264000,131502,1815069,-182785,-9.15,Insurance,APAC,Hong Kong,manual
+Sanofi SA,,EUR,78.93,72.49,-8.16,22400,100595,1855956,-191976,-9.37,"Pharmaceuticals, Biotechnology",EU,France,manual
+CapitaLand Investment Ltd/Sing,,SGD,2.84,2.53,-10.98,745200,9768,1457674,-203512,-12.25,Real Estate Management & Development,APAC,Singapore,manual
+Alibaba Group Holding Ltd,,HKD,116.85,101.40,-13.22,162800,248246,812266,-124416,-13.28,Consumer Discretionary Distribution,APAC,China,manual
+Bayerische Motoren Werke AG,,EUR,71.66,61.02,-14.85,144000,42946,10043296,-1881090,-15.78,Automobiles & Components,EU,Germany,manual

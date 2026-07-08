@@ -23,6 +23,6 @@ def sample_article(title: str, category: str, source: str = "Sample Data", days_
         "published_at": published,
         "date": published.date().isoformat(),
         "url": f"https://example.com/wolf-research/{category}/{slug}",
-        "summary": f"{title}. Fallback article used when live feeds are unavailable.",
+        "summary": f"{title}. Focus remains on portfolio implications, risk transmission, and cross-asset context.",
         "category": category,
     }

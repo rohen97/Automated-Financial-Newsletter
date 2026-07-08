@@ -1,0 +1,8 @@
+holding,asset_class,region,sector,currency,weight
+Global Equity ETF,equity,United States,Technology,USD,0.22
+Singapore Banks Basket,equity,Singapore,Financials,SGD,0.16
+Investment Grade Bonds,fixed income,United States,Financials,USD,0.18
+Private Credit Fund,private credit,Global,Financials,USD,0.12
+Gold Allocation,commodity,Global,Commodities,USD,0.07
+Cash SGD,cash,Singapore,Cash,SGD,0.15
+Europe Equity Fund,equity,Europe,Industrials,EUR,0.10

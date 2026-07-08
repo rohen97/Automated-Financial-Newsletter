@@ -21,6 +21,10 @@ rss_feeds:
   markets:
     - name: CNBC
       url: https://www.cnbc.com/id/100003114/device/rss/rss.html
+    - name: Financial Times Markets
+      url: https://www.ft.com/markets?format=rss
+    - name: Reuters Markets
+      url: https://feeds.reuters.com/reuters/businessNews
   private_markets:
     - name: Crunchbase News
       url: https://news.crunchbase.com/feed/

@@ -5,14 +5,18 @@ lookback_days: 7
 recipients: []
 required_sections:
   - executive_snapshot
+  - portfolio_snapshot
+  - equity_holdings_monitor
+  - fixed_income_monitor
   - macro_news
   - fx_markets
   - commodities
-  - private_markets
   - sector_scoreboard
+  - private_markets
+  - portfolio_linked_news
+  - regional_headlines
   - story_of_the_week
-  - week_in_headlines
-  - watchlist
+  - portfolio_watchlist
 style:
   tone: institutional, concise, analytical, investment-focused
   max_bullets_per_section: 5

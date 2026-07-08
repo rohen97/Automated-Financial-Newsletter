@@ -1,0 +1,4 @@
+equity_holdings_path: data/portfolio/equity_holdings.csv
+fixed_income_holdings_path: data/portfolio/fixed_income_holdings.csv
+base_currency: SGD
+manual_pricing_label: Manual pricing required

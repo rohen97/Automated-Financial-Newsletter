@@ -8,3 +8,4 @@ def test_dry_run_output_generation():
     rendered = save_outputs(newsletter)
     assert "html" in rendered
     assert Path("output/latest/newsletter.json").exists()
+    assert Path("output/latest/source_audit.json").exists()

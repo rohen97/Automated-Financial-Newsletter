@@ -1,0 +1,86 @@
+enabled: true
+base_currency: SGD
+input_path: examples/current_portfolio.csv
+risk_flags:
+  high_weight_threshold: 0.20
+  medium_weight_threshold: 0.10
+  watchlist_weight_threshold: 0.05
+asset_class_map:
+  equities:
+    - equity
+    - equities
+    - stock
+    - etf
+  fixed_income:
+    - bond
+    - fixed income
+    - credit
+  cash:
+    - cash
+    - money market
+  alternatives:
+    - private equity
+    - private credit
+    - hedge fund
+    - alternatives
+  commodities:
+    - commodity
+    - commodities
+region_keywords:
+  Singapore:
+    - singapore
+    - sgd
+    - asia
+  United States:
+    - united states
+    - us
+    - usd
+    - s&p
+    - nasdaq
+  Europe:
+    - europe
+    - eur
+    - euro
+  Australia:
+    - australia
+    - aud
+  China:
+    - china
+    - hong kong
+    - hkd
+sector_keywords:
+  Technology:
+    - technology
+    - semiconductors
+    - software
+    - ai
+  Financials:
+    - financials
+    - banks
+    - insurance
+  Energy:
+    - energy
+    - oil
+    - gas
+    - lng
+  Health Care:
+    - health care
+    - healthcare
+    - pharma
+  Industrials:
+    - industrials
+    - manufacturing
+currency_keywords:
+  USD:
+    - usd
+    - dollar
+    - dxy
+  SGD:
+    - sgd
+    - singapore dollar
+  AUD:
+    - aud
+    - australian dollar
+  EUR:
+    - eur
+    - euro
