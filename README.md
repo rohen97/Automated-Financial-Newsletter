@@ -16,7 +16,8 @@ Copy-Item .env.example .env
 - `SEND_MODE=dry_run` saves outputs without sending email.
 - `SEND_MODE=send` sends through SendGrid after safety checks pass.
 - `SENDGRID_API_KEY`, `SENDGRID_FROM_EMAIL`, and `NEWSLETTER_TO` are required for production email.
-- `FRED_API_KEY`, `ALPHA_VANTAGE_API_KEY`, `MARKETAUX_API_KEY`, and `CRUNCHBASE_API_KEY` are optional data integrations.
+- `FRED_API_KEY`, `ALPHA_VANTAGE_API_KEY`, `MARKETAUX_API_KEY`, `FT_API_KEY`, and `CRUNCHBASE_API_KEY` are optional data integrations.
+- `FT_API_ORG_NAME` and `FT_API_TRACKING_SOURCE` configure the campaign attribution required on FT article links.
 - `TIMEZONE=Asia/Singapore` keeps the newsletter aligned to Singapore time.
 
 ## Run Locally
@@ -52,6 +53,21 @@ Live mode still falls back gracefully when an API/feed is unavailable. Source UR
 output/latest/source_audit.json
 output/archive/YYYY-MM-DD/source_audit.json
 ```
+
+## Financial Times API
+
+Set `FT_API_KEY` in the local `.env` file or as a GitHub Actions secret. The integration sends the key only in the
+`X-Api-Key` header and requests title, lifecycle, location, and summary data from
+`POST https://api.ft.com/content/search/v1`. It does not retrieve or republish full article bodies.
+
+FT API access depends on the endpoints enabled by your FT licence. Configure the licensed organisation name through
+`FT_API_ORG_NAME`; links include the required `FTCamp` attribution using `FT_API_TRACKING_SOURCE=email`. If the Search
+API is unavailable for the key, the provider records the error without exposing the key and the existing FT RSS feed
+remains available as a fallback.
+
+The API contract and licence-specific requirements are documented in the
+[FT API reference](https://developer.ft.com/portal/docs-api-reference) and
+[FT datamining quick start](https://developer.ft.com/portal/docs-quick-start-guides-datamining-licence).
 
 ## Portfolio-Aware Mode
 

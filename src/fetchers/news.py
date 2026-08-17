@@ -7,6 +7,7 @@ from urllib.parse import quote_plus
 import requests
 
 from src.fetchers.base import sample_article
+from src.fetchers.financial_times import fetch_financial_times_articles
 from src.fetchers.gmail_digest import load_gmail_digest
 from src.fetchers.provider_audit import (
     record_error,
@@ -233,6 +234,10 @@ def fetch_news(sources_config: dict, lookback_days: int = 7) -> list[dict]:
     marketaux_queries = marketaux_queries[: int(sources_config.get("marketaux_max_queries", 12))]
 
     articles = load_gmail_digest(sources_config)
+    ft_articles: list[dict] = []
+    if os.getenv("FT_API_KEY"):
+        ft_articles = fetch_financial_times_articles(sources_config.get("ft_api") or {}, lookback_days)
+        articles.extend(ft_articles)
     if os.getenv("MARKETAUX_API_KEY"):
         articles.extend(
             fetch_marketaux_articles(
@@ -252,6 +257,8 @@ def fetch_news(sources_config: dict, lookback_days: int = 7) -> list[dict]:
     feeds = []
     for category, items in (sources_config.get("rss_feeds") or {}).items():
         for item in items:
+            if ft_articles and str(item.get("name", "")).lower().startswith("financial times"):
+                continue
             feeds.append({**item, "category": category})
     articles.extend(fetch_rss_articles(feeds, lookback_days))
     articles.extend(fetch_google_news_articles(sources_config.get("google_news_queries") or [], lookback_days))

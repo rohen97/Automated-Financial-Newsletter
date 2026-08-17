@@ -32,6 +32,9 @@ jobs:
       FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
       ALPHA_VANTAGE_API_KEY: ${{ secrets.ALPHA_VANTAGE_API_KEY }}
       MARKETAUX_API_KEY: ${{ secrets.MARKETAUX_API_KEY }}
+      FT_API_KEY: ${{ secrets.FT_API_KEY }}
+      FT_API_ORG_NAME: WolfResearch
+      FT_API_TRACKING_SOURCE: email
       CRUNCHBASE_API_KEY: ${{ secrets.CRUNCHBASE_API_KEY }}
     steps:
       - uses: actions/checkout@v4
