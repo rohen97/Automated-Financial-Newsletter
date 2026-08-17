@@ -10,6 +10,9 @@ _AUDIT: dict[str, Any] = {
     "fred_series_fetched": [],
     "alpha_vantage_symbols_fetched": [],
     "marketaux_queries_run": [],
+    "google_news_queries_run": [],
+    "rss_sources_fetched": [],
+    "gmail_messages_ingested": 0,
     "fallback_source_count": 0,
     "errors": [],
 }
@@ -20,6 +23,9 @@ def reset_provider_audit() -> None:
     _AUDIT["fred_series_fetched"] = []
     _AUDIT["alpha_vantage_symbols_fetched"] = []
     _AUDIT["marketaux_queries_run"] = []
+    _AUDIT["google_news_queries_run"] = []
+    _AUDIT["rss_sources_fetched"] = []
+    _AUDIT["gmail_messages_ingested"] = 0
     _AUDIT["fallback_source_count"] = 0
     _AUDIT["errors"] = []
 
@@ -44,6 +50,25 @@ def record_marketaux_query(query: str) -> None:
     if query not in _AUDIT["marketaux_queries_run"]:
         _AUDIT["marketaux_queries_run"].append(query)
     record_provider("marketaux")
+
+
+def record_google_news_query(query: str) -> None:
+    if query not in _AUDIT["google_news_queries_run"]:
+        _AUDIT["google_news_queries_run"].append(query)
+    record_provider("google_news")
+
+
+def record_rss_source(source: str) -> None:
+    if source not in _AUDIT["rss_sources_fetched"]:
+        _AUDIT["rss_sources_fetched"].append(source)
+    record_provider("rss")
+
+
+def record_gmail_messages(count: int) -> None:
+    if count <= 0:
+        return
+    _AUDIT["gmail_messages_ingested"] += count
+    record_provider("gmail_mcp")
 
 
 def record_openai_used() -> None:
@@ -78,15 +103,15 @@ def source_counts(payload: Any) -> dict[str, int]:
 
     def walk(value: Any) -> None:
         if isinstance(value, dict):
-            source = value.get("source")
-            if isinstance(source, dict):
-                name = str(source.get("name", ""))
-                url = str(source.get("url", ""))
-                if name == "Sample Data" or "example.com/wolf-research" in url:
+            if "name" in value and "url" in value and not isinstance(value.get("source"), (dict, str)):
+                name = str(value.get("name", ""))
+                url = str(value.get("url", ""))
+                if name == "Sample Data" or "Fallback source" in name or "example.com/wolf-research" in url:
                     counts["fallback_source_count"] += 1
                 elif url:
                     counts["real_source_url_count"] += 1
-            elif isinstance(source, str) and value.get("url"):
+            source = value.get("source")
+            if isinstance(source, str) and value.get("url"):
                 url = str(value.get("url", ""))
                 if "example.com/wolf-research" in url or source == "Fallback source":
                     counts["fallback_source_count"] += 1

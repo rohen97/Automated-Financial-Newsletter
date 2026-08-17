@@ -1,0 +1,1119 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weekly Market Brief</title>
+    <style>
+body {
+  margin: 0;
+  padding: 0;
+  background: #e9edf3;
+  color: #172033;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+a {
+  color: #0b1f3a;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.page {
+  width: 100%;
+  background: #e9edf3;
+}
+
+.container {
+  width: 720px;
+  max-width: 720px;
+  margin: 0 auto;
+  background: #ffffff;
+}
+
+.preheader {
+  display: none;
+  max-height: 0;
+  overflow: hidden;
+  color: #ffffff;
+  opacity: 0;
+}
+
+.masthead {
+  background: #071a33;
+  color: #ffffff;
+  padding: 26px 32px 22px;
+  border-bottom: 4px solid #d7b56d;
+}
+
+.brand {
+  color: #d7b56d;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 8px 0 0;
+  font-size: 30px;
+  line-height: 35px;
+  font-weight: bold;
+}
+
+.date {
+  margin-top: 10px;
+  color: #e3e9f2;
+  font-size: 13px;
+  line-height: 19px;
+}
+
+.distribution {
+  margin-top: 2px;
+  color: #aeb9c8;
+  font-size: 11px;
+  letter-spacing: .9px;
+  text-transform: uppercase;
+}
+
+.meta-bar {
+  width: 100%;
+  background: #102744;
+  margin-top: 18px;
+}
+
+.meta-cell {
+  padding: 9px 10px;
+  border-right: 1px solid #2c4360;
+  color: #cbd5e2;
+  font-size: 11px;
+  line-height: 15px;
+  text-transform: uppercase;
+}
+
+.meta-cell strong {
+  display: block;
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 16px;
+  text-transform: none;
+}
+
+.section {
+  padding: 19px 32px;
+  border-bottom: 1px solid #e2e7ef;
+}
+
+.section-tight {
+  padding: 16px 32px;
+  border-bottom: 1px solid #e2e7ef;
+}
+
+.kicker {
+  color: #7a6326;
+  font-size: 10px;
+  line-height: 13px;
+  font-weight: bold;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+
+.section-title {
+  margin: 3px 0 12px;
+  color: #071a33;
+  font-size: 18px;
+  line-height: 23px;
+  font-weight: bold;
+}
+
+.section-note {
+  margin: -4px 0 12px;
+  color: #5d6b80;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.subhead {
+  margin: 14px 0 7px;
+  color: #24344d;
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: bold;
+}
+
+.bullet {
+  padding: 0 0 7px 0;
+  color: #27364d;
+  font-size: 13px;
+  line-height: 19px;
+}
+
+.snapshot-grid {
+  width: 100%;
+}
+
+.snapshot-card {
+  width: 33.33%;
+  border: 1px solid #e1e6ee;
+  border-top: 3px solid #d7b56d;
+  background: #fbfcfe;
+  padding: 11px 10px;
+  vertical-align: top;
+}
+
+.snapshot-spacer {
+  height: 8px;
+  line-height: 8px;
+  font-size: 1px;
+}
+
+.snapshot-label {
+  color: #66748a;
+  font-size: 10px;
+  line-height: 13px;
+  font-weight: bold;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.snapshot-takeaway {
+  margin-top: 6px;
+  color: #071a33;
+  font-size: 13px;
+  line-height: 17px;
+  font-weight: bold;
+}
+
+.snapshot-implication {
+  margin-top: 5px;
+  color: #52627a;
+  font-size: 12px;
+  line-height: 17px;
+}
+
+.callout {
+  border-left: 3px solid #d7b56d;
+  background: #f8fafc;
+  padding: 11px 13px;
+  color: #34445c;
+  font-size: 13px;
+  line-height: 19px;
+}
+
+.feature-card {
+  border-left: 4px solid #d7b56d;
+  background: #0b203d;
+  color: #ffffff;
+  padding: 16px 18px;
+}
+
+.feature-label {
+  color: #d7b56d;
+  font-size: 10px;
+  line-height: 13px;
+  font-weight: bold;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+
+.feature-card h3 {
+  margin: 7px 0 8px;
+  font-size: 18px;
+  line-height: 23px;
+}
+
+.feature-card p,
+.feature-card li {
+  color: #e7edf7;
+  font-size: 13px;
+  line-height: 19px;
+}
+
+.feature-card ul {
+  margin: 9px 0 0 18px;
+  padding: 0;
+}
+
+.data-table {
+  width: 100%;
+  border: 1px solid #dce2ea;
+}
+
+.data-table th {
+  background: #071a33;
+  color: #ffffff;
+  padding: 8px 10px;
+  font-size: 11px;
+  line-height: 15px;
+  text-align: left;
+}
+
+.data-table td {
+  border-top: 1px solid #e6e9ee;
+  padding: 7px 10px;
+  font-size: 12px;
+  line-height: 16px;
+  vertical-align: top;
+}
+
+.number {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.driver {
+  color: #465873;
+}
+
+.positive {
+  color: #087443;
+}
+
+.negative {
+  color: #b42318;
+}
+
+.neutral {
+  color: #667085;
+}
+
+.heat-positive {
+  background: #eaf6ef;
+}
+
+.heat-negative {
+  background: #fdeeee;
+}
+
+.heat-neutral {
+  background: #f2f4f7;
+}
+
+.chart-card {
+  border: 1px solid #dce2ea;
+  border-top: 3px solid #d7b56d;
+  background: #fbfcfe;
+  padding: 14px;
+}
+
+.chart-card h3 {
+  margin: 8px 0 11px;
+  color: #071a33;
+  font-size: 17px;
+  line-height: 22px;
+}
+
+.chart-card p {
+  margin: 12px 0 0;
+  color: #27364d;
+  font-size: 13px;
+  line-height: 19px;
+}
+
+.chart-meta {
+  margin-bottom: 2px;
+}
+
+.chart-image {
+  display: block;
+  width: 100%;
+  max-width: 660px;
+  height: auto;
+  border: 1px solid #e2e7ef;
+  background: #ffffff;
+}
+
+.chart-relevance {
+  margin-top: 10px;
+  border-left: 3px solid #d7b56d;
+  background: #ffffff;
+  padding: 9px 11px;
+  color: #34445c;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.chart-source {
+  margin-top: 10px;
+}
+
+.headline {
+  padding: 0 0 8px;
+  color: #27364d;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.source,
+.source-tag {
+  color: #69778c;
+  font-size: 11px;
+  line-height: 15px;
+}
+
+.source-tag {
+  background: #f1f3f6;
+  border: 1px solid #e0e5ec;
+  padding: 2px 6px;
+}
+
+.region-chip {
+  display: inline-block;
+  margin: 7px 0 5px;
+  background: #eef2f7;
+  border: 1px solid #dce3ec;
+  color: #43536b;
+  padding: 3px 8px;
+  font-size: 10px;
+  line-height: 13px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.footer {
+  padding: 18px 32px;
+  background: #071a33;
+  color: #b7c2d4;
+  font-size: 11px;
+  line-height: 17px;
+}
+
+.footer strong {
+  color: #ffffff;
+}
+
+@media only screen and (max-width: 760px) {
+  .container {
+    width: 100% !important;
+  }
+
+  .masthead,
+  .section,
+  .section-tight,
+  .footer {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+
+  .title {
+    font-size: 24px !important;
+    line-height: 30px !important;
+  }
+
+  .snapshot-card {
+    display: block !important;
+    width: auto !important;
+    margin-bottom: 8px !important;
+  }
+
+  .meta-cell {
+    display: block !important;
+    width: auto !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid #2c4360 !important;
+  }
+
+  .data-table th,
+  .data-table td {
+    font-size: 11px !important;
+    padding: 7px !important;
+  }
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="preheader">Wolf Research weekly market brief for internal office distribution.</div>
+    <table role="presentation" class="page" width="100%">
+      <tr>
+        <td align="center">
+          <table role="presentation" class="container" width="720">
+            <tr>
+              <td class="masthead">
+                <div class="brand">Wolf Research</div>
+                <h1 class="title">Weekly Market Brief</h1>
+                <div class="date">Friday, 10 July 2026 | 9:00am SGT</div>
+                <div class="distribution">Internal Office Distribution</div>
+                <table role="presentation" class="meta-bar" width="100%">
+                  <tr>
+                    <td class="meta-cell">Coverage<strong>Portfolio / Macro / Markets</strong></td>
+                    <td class="meta-cell">Portfolio Lens<strong>Equities + markets</strong></td>
+                    <td class="meta-cell">Mode<strong>Source-backed market brief</strong></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="section">
+                <div class="kicker">At a Glance</div>
+                <h2 class="section-title">Executive Snapshot</h2>
+                <table role="presentation" class="snapshot-grid" width="100%">
+
+                  <tr>
+
+
+                    <td class="snapshot-card">
+                      <div class="snapshot-label">Macro</div>
+                      <div class="snapshot-takeaway">Policy path remains central.</div>
+                      <div class="snapshot-implication">Discount-rate sensitivity stays in focus.</div>
+                    </td>
+
+
+
+                    <td class="snapshot-card">
+                      <div class="snapshot-label">FX</div>
+                      <div class="snapshot-takeaway">1W: USD/SGD moved +0.04% as rates, USD direction, and regional data shaped short-term positioning. 1M: the +0.33% move reflects accumulated central-bank repricing and growth differentials. YTD: the +2.02% direction remains tied to policy-rate differentials, inflation data, and Singapore-dollar translation exposure.</div>
+                      <div class="snapshot-implication">Monitor translation and hedging risk.</div>
+                    </td>
+
+
+
+                    <td class="snapshot-card">
+                      <div class="snapshot-label">Commodities</div>
+                      <div class="snapshot-takeaway">1W: Brent moved +0.33% with near-term supply headlines, USD moves, and macro data affecting positioning. 1M: the +1.07% move reflects inventory, demand expectations, real-yield pressure, and China/global growth signals. YTD: the +2.67% direction remains linked to supply restraint, inflation sensitivity, and airline margins, utilities, and inflation sensitivity.</div>
+                      <div class="snapshot-implication">Watch inflation and margin channels.</div>
+                    </td>
+
+
+                  </tr>
+
+                  <tr><td colspan="3" class="snapshot-spacer">&nbsp;</td></tr>
+
+
+                  <tr>
+
+
+                    <td class="snapshot-card">
+                      <div class="snapshot-label">Private Markets</div>
+                      <div class="snapshot-takeaway">Exit timing remains selective.</div>
+                      <div class="snapshot-implication">Liquidity and valuations remain key.</div>
+                    </td>
+
+
+
+                    <td class="snapshot-card">
+                      <div class="snapshot-label">Watchlist</div>
+                      <div class="snapshot-takeaway">Inflation and Fed communication</div>
+                      <div class="snapshot-implication">Potential cross-asset catalyst.</div>
+                    </td>
+
+
+
+                    <td class="snapshot-card">
+                      <div class="snapshot-label">Portfolio</div>
+                      <div class="snapshot-takeaway">8 key holdings monitored.</div>
+                      <div class="snapshot-implication">Headlines ranked by exposure relevance.</div>
+                    </td>
+
+
+                  </tr>
+
+
+                </table>
+              </td>
+            </tr>
+
+
+
+            <tr>
+              <td class="section">
+                <div class="kicker">Portfolio Lens</div>
+                <h2 class="section-title">Portfolio Snapshot</h2>
+                <table role="presentation" class="snapshot-grid" width="100%">
+
+                  <tr>
+
+
+                    <td class="snapshot-card">
+                      <div class="snapshot-label">Total Equity Portfolio Value</div>
+                      <div class="snapshot-takeaway">USD 171.6m</div>
+                    </td>
+
+
+
+                    <td class="snapshot-card">
+                      <div class="snapshot-label">Total YTD Equity P&L</div>
+                      <div class="snapshot-takeaway">+USD 30.6m</div>
+                    </td>
+
+
+
+                    <td class="snapshot-card">
+                      <div class="snapshot-label">Best Contributor</div>
+                      <div class="snapshot-takeaway">Meta Wolf AG</div>
+                    </td>
+
+
+                  </tr>
+
+                  <tr><td colspan="3" class="snapshot-spacer">&nbsp;</td></tr>
+
+
+                  <tr>
+
+
+                    <td class="snapshot-card">
+                      <div class="snapshot-label">Worst Contributor</div>
+                      <div class="snapshot-takeaway">Bayerische Motoren Werke AG</div>
+                    </td>
+
+
+
+                    <td class="snapshot-card">
+                      <div class="snapshot-label">Largest Sector Exposure</div>
+                      <div class="snapshot-takeaway">Capital Goods</div>
+                    </td>
+
+
+
+                    <td class="snapshot-card">
+                      <div class="snapshot-label">Largest Currency Exposure</div>
+                      <div class="snapshot-takeaway">EUR</div>
+                    </td>
+
+
+                  </tr>
+
+
+                </table>
+                <table class="data-table" width="100%">
+                  <tr>
+                    <th>Holding</th>
+                    <th>Currency</th>
+                    <th>Sector</th>
+                    <th>Current Value</th>
+                    <th>YTD P&L</th>
+                    <th>YTD %</th>
+                  </tr>
+
+                  <tr>
+                    <td>Meta Wolf AG</td>
+                    <td>EUR</td>
+                    <td>Capital Goods</td>
+                    <td class="number ">USD 127.1m</td>
+                    <td class="number positive">+USD 28.9m</td>
+                    <td class="number positive">+29.48%</td>
+                  </tr>
+
+                  <tr>
+                    <td>Softtech Engineers Ltd</td>
+                    <td>INR</td>
+                    <td>Software & Services</td>
+                    <td class="number ">USD 15.0m</td>
+                    <td class="number positive">+USD 3.6m</td>
+                    <td class="number positive">+31.48%</td>
+                  </tr>
+
+                  <tr>
+                    <td>Bayerische Motoren Werke AG</td>
+                    <td>EUR</td>
+                    <td>Automobiles & Components</td>
+                    <td class="number ">USD 10.0m</td>
+                    <td class="number negative">-USD 1.9m</td>
+                    <td class="number negative">-15.78%</td>
+                  </tr>
+
+                  <tr>
+                    <td>SAA Software</td>
+                    <td>EUR</td>
+                    <td>Invalid / Private Security</td>
+                    <td class="number ">USD 3.4m</td>
+                    <td class="number negative">-USD 53.7k</td>
+                    <td class="number negative">-1.54%</td>
+                  </tr>
+
+                  <tr>
+                    <td>Singapore Airlines Ltd</td>
+                    <td>SGD</td>
+                    <td>Transportation</td>
+                    <td class="number ">USD 2.2m</td>
+                    <td class="number positive">+USD 220.1k</td>
+                    <td class="number positive">+11.12%</td>
+                  </tr>
+
+                  <tr>
+                    <td>RWE AG</td>
+                    <td>EUR</td>
+                    <td>Utilities</td>
+                    <td class="number ">USD 1.9m</td>
+                    <td class="number negative">-USD 33.4k</td>
+                    <td class="number negative">-1.72%</td>
+                  </tr>
+
+                  <tr>
+                    <td>Sanofi SA</td>
+                    <td>EUR</td>
+                    <td>Pharmaceuticals, Biotechnology</td>
+                    <td class="number ">USD 1.9m</td>
+                    <td class="number negative">-USD 192.0k</td>
+                    <td class="number negative">-9.37%</td>
+                  </tr>
+
+                  <tr>
+                    <td>Ping An Insurance Group Co of</td>
+                    <td>HKD</td>
+                    <td>Insurance</td>
+                    <td class="number ">USD 1.8m</td>
+                    <td class="number negative">-USD 182.8k</td>
+                    <td class="number negative">-9.15%</td>
+                  </tr>
+
+                </table>
+              </td>
+            </tr>
+
+
+
+
+            <tr>
+              <td class="section">
+                <div class="kicker">Equity Book</div>
+                <h2 class="section-title">Equity Holdings Monitor</h2>
+                <div class="callout">Equity exposure is concentrated in Capital Goods and EUR-denominated holdings. YTD contribution is led by Meta Wolf AG, while Bayerische Motoren Werke AG is the largest detractor.</div>
+                <h3 class="subhead">Top Equity Contributors</h3>
+                <table class="data-table" width="100%">
+                  <tr><th>Holding</th><th>Sector</th><th>Currency</th><th>Current Value</th><th>YTD P&L</th><th>YTD %</th></tr>
+
+                  <tr><td>Meta Wolf AG</td><td>Capital Goods</td><td>EUR</td><td class="number">USD 127.1m</td><td class="number positive">+USD 28.9m</td><td class="number positive">+29.48%</td></tr>
+
+                  <tr><td>Softtech Engineers Ltd</td><td>Software & Services</td><td>INR</td><td class="number">USD 15.0m</td><td class="number positive">+USD 3.6m</td><td class="number positive">+31.48%</td></tr>
+
+                  <tr><td>ING Groep NV</td><td>Banks</td><td>USD</td><td class="number">USD 1.3m</td><td class="number positive">+USD 264.5k</td><td class="number positive">+26.77%</td></tr>
+
+                  <tr><td>Singapore Airlines Ltd</td><td>Transportation</td><td>SGD</td><td class="number">USD 2.2m</td><td class="number positive">+USD 220.1k</td><td class="number positive">+11.12%</td></tr>
+
+                  <tr><td>SATS Ltd</td><td>Transportation</td><td>SGD</td><td class="number">USD 968.2k</td><td class="number positive">+USD 138.3k</td><td class="number positive">+16.66%</td></tr>
+
+
+                </table>
+                <h3 class="subhead">Top Equity Detractors</h3>
+                <table class="data-table" width="100%">
+                  <tr><th>Holding</th><th>Sector</th><th>Currency</th><th>Current Value</th><th>YTD P&L</th><th>YTD %</th></tr>
+
+                  <tr><td>Bayerische Motoren Werke AG</td><td>Automobiles & Components</td><td>EUR</td><td class="number">USD 10.0m</td><td class="number negative">-USD 1.9m</td><td class="number negative">-15.78%</td></tr>
+
+                  <tr><td>CapitaLand Investment Ltd/Sing</td><td>Real Estate Management & Development</td><td>SGD</td><td class="number">USD 1.5m</td><td class="number negative">-USD 203.5k</td><td class="number negative">-12.25%</td></tr>
+
+                  <tr><td>Sanofi SA</td><td>Pharmaceuticals, Biotechnology</td><td>EUR</td><td class="number">USD 1.9m</td><td class="number negative">-USD 192.0k</td><td class="number negative">-9.37%</td></tr>
+
+                  <tr><td>Ping An Insurance Group Co of</td><td>Insurance</td><td>HKD</td><td class="number">USD 1.8m</td><td class="number negative">-USD 182.8k</td><td class="number negative">-9.15%</td></tr>
+
+                  <tr><td>Alibaba Group Holding Ltd</td><td>Consumer Discretionary Distribution</td><td>HKD</td><td class="number">USD 812.3k</td><td class="number negative">-USD 124.4k</td><td class="number negative">-13.28%</td></tr>
+
+
+                </table>
+                <h3 class="subhead">Sector Exposure</h3>
+                <table class="data-table" width="100%">
+                  <tr><th>Sector</th><th>Current Value</th><th>Weight</th><th>YTD P&L</th></tr>
+
+                  <tr><td>Capital Goods</td><td class="number">USD 127.1m</td><td class="number">74%</td><td class="number positive">+USD 28.9m</td></tr>
+
+                  <tr><td>Software & Services</td><td class="number">USD 15.0m</td><td class="number">9%</td><td class="number positive">+USD 3.6m</td></tr>
+
+                  <tr><td>Automobiles & Components</td><td class="number">USD 10.0m</td><td class="number">6%</td><td class="number negative">-USD 1.9m</td></tr>
+
+                  <tr><td>Invalid / Private Security</td><td class="number">USD 3.5m</td><td class="number">2%</td><td class="number negative">-USD 54.4k</td></tr>
+
+                  <tr><td>Transportation</td><td class="number">USD 3.2m</td><td class="number">2%</td><td class="number positive">+USD 358.4k</td></tr>
+
+                  <tr><td>Insurance</td><td class="number">USD 2.9m</td><td class="number">2%</td><td class="number negative">-USD 92.6k</td></tr>
+
+                  <tr><td>Utilities</td><td class="number">USD 2.8m</td><td class="number">2%</td><td class="number positive">+USD 50.0k</td></tr>
+
+                  <tr><td>Pharmaceuticals, Biotechnology</td><td class="number">USD 1.9m</td><td class="number">1%</td><td class="number negative">-USD 192.0k</td></tr>
+
+                </table>
+                <h3 class="subhead">Currency Exposure</h3>
+                <table class="data-table" width="100%">
+                  <tr><th>Currency</th><th>Current Value</th><th>Weight</th><th>YTD P&L</th></tr>
+
+                  <tr><td>EUR</td><td class="number">USD 145.4m</td><td class="number">85%</td><td class="number positive">+USD 26.9m</td></tr>
+
+                  <tr><td>INR</td><td class="number">USD 15.0m</td><td class="number">9%</td><td class="number positive">+USD 3.6m</td></tr>
+
+                  <tr><td>SGD</td><td class="number">USD 7.3m</td><td class="number">4%</td><td class="number positive">+USD 195.0k</td></tr>
+
+                  <tr><td>HKD</td><td class="number">USD 2.6m</td><td class="number">2%</td><td class="number negative">-USD 307.2k</td></tr>
+
+                  <tr><td>USD</td><td class="number">USD 1.3m</td><td class="number">1%</td><td class="number positive">+USD 264.5k</td></tr>
+
+                </table>
+              </td>
+            </tr>
+
+
+
+
+            <tr>
+              <td class="section-tight">
+                <div class="kicker">Chart Focus</div>
+                <h2 class="section-title">Chart of the Week</h2>
+                <div class="chart-card">
+                  <div class="chart-meta">
+                    <span class="source-tag">FRED</span>
+                    <span class="source">2026-07-10</span>
+                  </div>
+                  <h3>Chart of the Week: US 10Y Yield Remains the Key Discount-Rate Anchor</h3>
+
+                  <img class="chart-image" src="chart_of_the_week.png" alt="Chart of the Week: US 10Y Yield Remains the Key Discount-Rate Anchor">
+
+                  <p>The selected FRED chart highlights Rates, discount rates, equity multiples, REITs, growth equities, FX. Latest readings: DGS10: 4.56. Selection score: 0.74.</p>
+
+                  <div class="chart-relevance"><strong>Why selected:</strong> US 10Y yield moved meaningfully over recent windows. Selected because market move score was the largest contributor to the chart score.</div>
+
+
+                  <div class="chart-relevance"><strong>Portfolio relevance:</strong> Rates remain central for equity multiples, REITs, utilities, growth exposure, and FX translation risk.</div>
+
+
+                  <div class="source">FRED series: DGS10</div>
+
+
+                  <div class="source chart-source">Source: <a href="https://fred.stlouisfed.org/series/DGS10">FRED</a></div>
+
+                  <div class="source">Generated internally from FRED observations.</div>
+                </div>
+              </td>
+            </tr>
+
+
+
+
+
+              <tr>
+                <td class="section-tight">
+                  <div class="kicker">FX</div>
+                  <h2 class="section-title">FX Markets</h2>
+                  <table class="data-table" width="100%">
+
+                    <tr><th>Asset</th><th>Last</th><th>1W</th><th>1M</th><th>YTD</th><th>Comment</th></tr>
+
+                    <tr><td>USD/SGD</td><td class="number">1.2918</td><td class="number positive">+0.04%</td><td class="number positive">+0.33%</td><td class="number positive">+2.02%</td><td class="driver">1W: USD/SGD moved +0.04% as rates, USD direction, and regional data shaped short-term positioning. 1M: the +0.33% move reflects accumulated central-bank repricing and growth differentials. YTD: the +2.02% direction remains tied to policy-rate differentials, inflation data, and Singapore-dollar translation exposure.</td></tr>
+
+                    <tr><td>AUD/USD</td><td class="number">0.66</td><td class="number positive">+0.00%</td><td class="number positive">+0.01%</td><td class="number positive">+0.02%</td><td class="driver">1W: AUD/USD moved +0.00% as rates, USD direction, and regional data shaped short-term positioning. 1M: the +0.01% move reflects accumulated central-bank repricing and growth differentials. YTD: the +0.02% direction remains tied to policy-rate differentials, inflation data, and commodity beta and China/APAC growth sensitivity.</td></tr>
+
+                    <tr><td>EUR/USD</td><td class="number">1.08</td><td class="number positive">+0.00%</td><td class="number positive">+0.01%</td><td class="number positive">+0.04%</td><td class="driver">1W: EUR/USD moved +0.00% as rates, USD direction, and regional data shaped short-term positioning. 1M: the +0.01% move reflects accumulated central-bank repricing and growth differentials. YTD: the +0.04% direction remains tied to policy-rate differentials, inflation data, and European holdings and ECB/Fed rate differentials.</td></tr>
+
+                    <tr><td>USD/CNH</td><td class="number">7.25</td><td class="number positive">+0.03%</td><td class="number positive">+0.09%</td><td class="number positive">+0.24%</td><td class="driver">1W: USD/CNH moved +0.03% as rates, USD direction, and regional data shaped short-term positioning. 1M: the +0.09% move reflects accumulated central-bank repricing and growth differentials. YTD: the +0.24% direction remains tied to policy-rate differentials, inflation data, and China growth and APAC risk transmission.</td></tr>
+
+                    <tr><td>USD/JPY</td><td class="number">162.37</td><td class="number positive">+0.62%</td><td class="number positive">+1.15%</td><td class="number positive">+4.72%</td><td class="driver">1W: USD/JPY moved +0.62% as rates, USD direction, and regional data shaped short-term positioning. 1M: the +1.15% move reflects accumulated central-bank repricing and growth differentials. YTD: the +4.72% direction remains tied to policy-rate differentials, inflation data, and BoJ/Fed rate differentials and global funding conditions.</td></tr>
+
+                    <tr><td>DXY</td><td class="number">104.2</td><td class="number positive">+0.42%</td><td class="number positive">+1.35%</td><td class="number positive">+3.39%</td><td class="driver">1W: DXY moved +0.42% as rates, USD direction, and regional data shaped short-term positioning. 1M: the +1.35% move reflects accumulated central-bank repricing and growth differentials. YTD: the +3.39% direction remains tied to policy-rate differentials, inflation data, and broad USD translation risk across non-USD holdings.</td></tr>
+
+
+                  </table>
+                </td>
+              </tr>
+
+
+
+
+              <tr>
+                <td class="section-tight">
+                  <div class="kicker">Commodities</div>
+                  <h2 class="section-title">Commodities</h2>
+                  <table class="data-table" width="100%">
+
+                    <tr><th>Asset</th><th>Last</th><th>1W</th><th>1M</th><th>YTD</th><th>Comment</th></tr>
+
+                    <tr><td>Brent</td><td class="number">82.0</td><td class="number positive">+0.33%</td><td class="number positive">+1.07%</td><td class="number positive">+2.67%</td><td class="driver">1W: Brent moved +0.33% with near-term supply headlines, USD moves, and macro data affecting positioning. 1M: the +1.07% move reflects inventory, demand expectations, real-yield pressure, and China/global growth signals. YTD: the +2.67% direction remains linked to supply restraint, inflation sensitivity, and airline margins, utilities, and inflation sensitivity.</td></tr>
+
+                    <tr><td>WTI</td><td class="number">109.01</td><td class="number positive">+4.84%</td><td class="number negative">-18.83%</td><td class="number positive">+43.02%</td><td class="driver">1W: WTI moved +4.84% with near-term supply headlines, USD moves, and macro data affecting positioning. 1M: the -18.83% move reflects inventory, demand expectations, real-yield pressure, and China/global growth signals. YTD: the +43.02% direction remains linked to supply restraint, inflation sensitivity, and inflation sensitivity and energy-sector risk appetite.</td></tr>
+
+                    <tr><td>Gold</td><td class="number">2350.0</td><td class="number positive">+9.40%</td><td class="number positive">+30.55%</td><td class="number positive">+76.38%</td><td class="driver">1W: Gold moved +9.40% with near-term supply headlines, USD moves, and macro data affecting positioning. 1M: the +30.55% move reflects inventory, demand expectations, real-yield pressure, and China/global growth signals. YTD: the +76.38% direction remains linked to supply restraint, inflation sensitivity, and real yields, USD direction, and defensive hedging demand.</td></tr>
+
+                    <tr><td>Copper</td><td class="number">4.5</td><td class="number positive">+0.02%</td><td class="number positive">+0.06%</td><td class="number positive">+0.15%</td><td class="driver">1W: Copper moved +0.02% with near-term supply headlines, USD moves, and macro data affecting positioning. 1M: the +0.06% move reflects inventory, demand expectations, real-yield pressure, and China/global growth signals. YTD: the +0.15% direction remains linked to supply restraint, inflation sensitivity, and China growth and industrial-cycle exposure.</td></tr>
+
+                    <tr><td>Natural Gas / LNG proxy</td><td class="number">2.7</td><td class="number positive">+0.01%</td><td class="number positive">+0.04%</td><td class="number positive">+0.09%</td><td class="driver">1W: Natural Gas / LNG proxy moved +0.01% with near-term supply headlines, USD moves, and macro data affecting positioning. 1M: the +0.04% move reflects inventory, demand expectations, real-yield pressure, and China/global growth signals. YTD: the +0.09% direction remains linked to supply restraint, inflation sensitivity, and utilities, power prices, and LNG-linked inflation pressure.</td></tr>
+
+
+                  </table>
+                </td>
+              </tr>
+
+
+
+
+              <tr>
+                <td class="section-tight">
+                  <div class="kicker">Sector Heatmap</div>
+                  <h2 class="section-title">Sector Scoreboard</h2>
+                  <table class="data-table" width="100%">
+
+
+                    <tr><th colspan="5">US Markets</th></tr>
+                    <tr><th>Sector</th><th>1W</th><th>1M</th><th>YTD</th><th>Comment</th></tr>
+
+                    <tr><td>Technology</td><td class="number heat-negative negative">-1.40%</td><td class="number heat-negative negative">-2.25%</td><td class="number heat-positive positive">+2.00%</td><td>1W: US Technology moved -1.40% as US rates, earnings expectations, and domestic growth data affected short-term positioning. 1M: the -2.25% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +2.00% direction remains tied to US rates, earnings expectations, and domestic growth data and duration sensitivity across growth, REIT, and utility exposure.</td></tr>
+
+                    <tr><td>Financials</td><td class="number heat-negative negative">-1.05%</td><td class="number heat-negative negative">-1.50%</td><td class="number heat-positive positive">+2.95%</td><td>1W: US Financials moved -1.05% as US rates, earnings expectations, and domestic growth data affected short-term positioning. 1M: the -1.50% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +2.95% direction remains tied to US rates, earnings expectations, and domestic growth data and portfolio sector allocation and regional equity beta.</td></tr>
+
+                    <tr><td>Industrials</td><td class="number heat-negative negative">-0.70%</td><td class="number heat-negative negative">-0.75%</td><td class="number heat-positive positive">+3.90%</td><td>1W: US Industrials moved -0.70% as US rates, earnings expectations, and domestic growth data affected short-term positioning. 1M: the -0.75% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +3.90% direction remains tied to US rates, earnings expectations, and domestic growth data and portfolio sector allocation and regional equity beta.</td></tr>
+
+                    <tr><td>Consumer Discretionary</td><td class="number heat-negative negative">-0.35%</td><td class="number heat-neutral neutral">+0.00%</td><td class="number heat-positive positive">+4.85%</td><td>1W: US Consumer Discretionary moved -0.35% as US rates, earnings expectations, and domestic growth data affected short-term positioning. 1M: the +0.00% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +4.85% direction remains tied to US rates, earnings expectations, and domestic growth data and portfolio sector allocation and regional equity beta.</td></tr>
+
+                    <tr><td>Consumer Staples</td><td class="number heat-neutral neutral">+0.00%</td><td class="number heat-positive positive">+0.75%</td><td class="number heat-positive positive">+5.80%</td><td>1W: US Consumer Staples moved +0.00% as US rates, earnings expectations, and domestic growth data affected short-term positioning. 1M: the +0.75% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +5.80% direction remains tied to US rates, earnings expectations, and domestic growth data and portfolio sector allocation and regional equity beta.</td></tr>
+
+                    <tr><td>Health Care</td><td class="number heat-positive positive">+0.35%</td><td class="number heat-positive positive">+1.50%</td><td class="number heat-positive positive">+6.75%</td><td>1W: US Health Care moved +0.35% as US rates, earnings expectations, and domestic growth data affected short-term positioning. 1M: the +1.50% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +6.75% direction remains tied to US rates, earnings expectations, and domestic growth data and portfolio sector allocation and regional equity beta.</td></tr>
+
+                    <tr><td>Energy</td><td class="number heat-positive positive">+0.70%</td><td class="number heat-positive positive">+2.25%</td><td class="number heat-positive positive">+7.70%</td><td>1W: US Energy moved +0.70% as US rates, earnings expectations, and domestic growth data affected short-term positioning. 1M: the +2.25% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +7.70% direction remains tied to US rates, earnings expectations, and domestic growth data and portfolio sector allocation and regional equity beta.</td></tr>
+
+                    <tr><td>Utilities</td><td class="number heat-positive positive">+1.05%</td><td class="number heat-positive positive">+3.00%</td><td class="number heat-positive positive">+8.65%</td><td>1W: US Utilities moved +1.05% as US rates, earnings expectations, and domestic growth data affected short-term positioning. 1M: the +3.00% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +8.65% direction remains tied to US rates, earnings expectations, and domestic growth data and duration sensitivity across growth, REIT, and utility exposure.</td></tr>
+
+                    <tr><td>Real Estate</td><td class="number heat-positive positive">+1.40%</td><td class="number heat-positive positive">+3.75%</td><td class="number heat-positive positive">+9.60%</td><td>1W: US Real Estate moved +1.40% as US rates, earnings expectations, and domestic growth data affected short-term positioning. 1M: the +3.75% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +9.60% direction remains tied to US rates, earnings expectations, and domestic growth data and duration sensitivity across growth, REIT, and utility exposure.</td></tr>
+
+                    <tr><td>Materials</td><td class="number heat-positive positive">+1.75%</td><td class="number heat-positive positive">+4.50%</td><td class="number heat-positive positive">+10.55%</td><td>1W: US Materials moved +1.75% as US rates, earnings expectations, and domestic growth data affected short-term positioning. 1M: the +4.50% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +10.55% direction remains tied to US rates, earnings expectations, and domestic growth data and portfolio sector allocation and regional equity beta.</td></tr>
+
+
+                    <tr><th colspan="5">European Markets</th></tr>
+                    <tr><th>Sector</th><th>1W</th><th>1M</th><th>YTD</th><th>Comment</th></tr>
+
+                    <tr><td>Technology</td><td class="number heat-negative negative">-1.40%</td><td class="number heat-negative negative">-2.25%</td><td class="number heat-positive positive">+2.00%</td><td>1W: Europe Technology moved -1.40% as European growth, ECB expectations, and currency-sensitive earnings affected short-term positioning. 1M: the -2.25% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +2.00% direction remains tied to European growth, ECB expectations, and currency-sensitive earnings and duration sensitivity across growth, REIT, and utility exposure.</td></tr>
+
+                    <tr><td>Financials</td><td class="number heat-negative negative">-1.05%</td><td class="number heat-negative negative">-1.50%</td><td class="number heat-positive positive">+2.95%</td><td>1W: Europe Financials moved -1.05% as European growth, ECB expectations, and currency-sensitive earnings affected short-term positioning. 1M: the -1.50% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +2.95% direction remains tied to European growth, ECB expectations, and currency-sensitive earnings and portfolio relevance for ING, Allianz, Sanofi, and RWE.</td></tr>
+
+                    <tr><td>Industrials</td><td class="number heat-negative negative">-0.70%</td><td class="number heat-negative negative">-0.75%</td><td class="number heat-positive positive">+3.90%</td><td>1W: Europe Industrials moved -0.70% as European growth, ECB expectations, and currency-sensitive earnings affected short-term positioning. 1M: the -0.75% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +3.90% direction remains tied to European growth, ECB expectations, and currency-sensitive earnings and portfolio relevance for BMW and European cyclicals.</td></tr>
+
+                    <tr><td>Consumer Discretionary</td><td class="number heat-negative negative">-0.35%</td><td class="number heat-neutral neutral">+0.00%</td><td class="number heat-positive positive">+4.85%</td><td>1W: Europe Consumer Discretionary moved -0.35% as European growth, ECB expectations, and currency-sensitive earnings affected short-term positioning. 1M: the +0.00% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +4.85% direction remains tied to European growth, ECB expectations, and currency-sensitive earnings and portfolio relevance for BMW and European cyclicals.</td></tr>
+
+                    <tr><td>Consumer Staples</td><td class="number heat-neutral neutral">+0.00%</td><td class="number heat-positive positive">+0.75%</td><td class="number heat-positive positive">+5.80%</td><td>1W: Europe Consumer Staples moved +0.00% as European growth, ECB expectations, and currency-sensitive earnings affected short-term positioning. 1M: the +0.75% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +5.80% direction remains tied to European growth, ECB expectations, and currency-sensitive earnings and portfolio sector allocation and regional equity beta.</td></tr>
+
+                    <tr><td>Health Care</td><td class="number heat-positive positive">+0.35%</td><td class="number heat-positive positive">+1.50%</td><td class="number heat-positive positive">+6.75%</td><td>1W: Europe Health Care moved +0.35% as European growth, ECB expectations, and currency-sensitive earnings affected short-term positioning. 1M: the +1.50% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +6.75% direction remains tied to European growth, ECB expectations, and currency-sensitive earnings and portfolio relevance for ING, Allianz, Sanofi, and RWE.</td></tr>
+
+                    <tr><td>Energy</td><td class="number heat-positive positive">+0.70%</td><td class="number heat-positive positive">+2.25%</td><td class="number heat-positive positive">+7.70%</td><td>1W: Europe Energy moved +0.70% as European growth, ECB expectations, and currency-sensitive earnings affected short-term positioning. 1M: the +2.25% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +7.70% direction remains tied to European growth, ECB expectations, and currency-sensitive earnings and portfolio sector allocation and regional equity beta.</td></tr>
+
+                    <tr><td>Utilities</td><td class="number heat-positive positive">+1.05%</td><td class="number heat-positive positive">+3.00%</td><td class="number heat-positive positive">+8.65%</td><td>1W: Europe Utilities moved +1.05% as European growth, ECB expectations, and currency-sensitive earnings affected short-term positioning. 1M: the +3.00% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +8.65% direction remains tied to European growth, ECB expectations, and currency-sensitive earnings and portfolio relevance for ING, Allianz, Sanofi, and RWE.</td></tr>
+
+                    <tr><td>Real Estate</td><td class="number heat-positive positive">+1.40%</td><td class="number heat-positive positive">+3.75%</td><td class="number heat-positive positive">+9.60%</td><td>1W: Europe Real Estate moved +1.40% as European growth, ECB expectations, and currency-sensitive earnings affected short-term positioning. 1M: the +3.75% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +9.60% direction remains tied to European growth, ECB expectations, and currency-sensitive earnings and duration sensitivity across growth, REIT, and utility exposure.</td></tr>
+
+                    <tr><td>Materials</td><td class="number heat-positive positive">+1.75%</td><td class="number heat-positive positive">+4.50%</td><td class="number heat-positive positive">+10.55%</td><td>1W: Europe Materials moved +1.75% as European growth, ECB expectations, and currency-sensitive earnings affected short-term positioning. 1M: the +4.50% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +10.55% direction remains tied to European growth, ECB expectations, and currency-sensitive earnings and portfolio sector allocation and regional equity beta.</td></tr>
+
+
+                    <tr><th colspan="5">Asian / APAC Markets</th></tr>
+                    <tr><th>Sector</th><th>1W</th><th>1M</th><th>YTD</th><th>Comment</th></tr>
+
+                    <tr><td>Technology</td><td class="number heat-negative negative">-1.40%</td><td class="number heat-negative negative">-2.25%</td><td class="number heat-positive positive">+2.00%</td><td>1W: Asia_APAC Technology moved -1.40% as China/APAC growth, regional FX, and policy expectations affected short-term positioning. 1M: the -2.25% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +2.00% direction remains tied to China/APAC growth, regional FX, and policy expectations and duration sensitivity across growth, REIT, and utility exposure.</td></tr>
+
+                    <tr><td>Financials</td><td class="number heat-negative negative">-1.05%</td><td class="number heat-negative negative">-1.50%</td><td class="number heat-positive positive">+2.95%</td><td>1W: Asia_APAC Financials moved -1.05% as China/APAC growth, regional FX, and policy expectations affected short-term positioning. 1M: the -1.50% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +2.95% direction remains tied to China/APAC growth, regional FX, and policy expectations and portfolio relevance for Alibaba, Ping An, SATS, and Singapore Airlines.</td></tr>
+
+                    <tr><td>Industrials</td><td class="number heat-negative negative">-0.70%</td><td class="number heat-negative negative">-0.75%</td><td class="number heat-positive positive">+3.90%</td><td>1W: Asia_APAC Industrials moved -0.70% as China/APAC growth, regional FX, and policy expectations affected short-term positioning. 1M: the -0.75% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +3.90% direction remains tied to China/APAC growth, regional FX, and policy expectations and portfolio relevance for Alibaba, Ping An, SATS, and Singapore Airlines.</td></tr>
+
+                    <tr><td>Consumer Discretionary</td><td class="number heat-negative negative">-0.35%</td><td class="number heat-neutral neutral">+0.00%</td><td class="number heat-positive positive">+4.85%</td><td>1W: Asia_APAC Consumer Discretionary moved -0.35% as China/APAC growth, regional FX, and policy expectations affected short-term positioning. 1M: the +0.00% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +4.85% direction remains tied to China/APAC growth, regional FX, and policy expectations and portfolio relevance for Alibaba, Ping An, SATS, and Singapore Airlines.</td></tr>
+
+                    <tr><td>Consumer Staples</td><td class="number heat-neutral neutral">+0.00%</td><td class="number heat-positive positive">+0.75%</td><td class="number heat-positive positive">+5.80%</td><td>1W: Asia_APAC Consumer Staples moved +0.00% as China/APAC growth, regional FX, and policy expectations affected short-term positioning. 1M: the +0.75% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +5.80% direction remains tied to China/APAC growth, regional FX, and policy expectations and portfolio sector allocation and regional equity beta.</td></tr>
+
+                    <tr><td>Health Care</td><td class="number heat-positive positive">+0.35%</td><td class="number heat-positive positive">+1.50%</td><td class="number heat-positive positive">+6.75%</td><td>1W: Asia_APAC Health Care moved +0.35% as China/APAC growth, regional FX, and policy expectations affected short-term positioning. 1M: the +1.50% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +6.75% direction remains tied to China/APAC growth, regional FX, and policy expectations and portfolio sector allocation and regional equity beta.</td></tr>
+
+                    <tr><td>Energy</td><td class="number heat-positive positive">+0.70%</td><td class="number heat-positive positive">+2.25%</td><td class="number heat-positive positive">+7.70%</td><td>1W: Asia_APAC Energy moved +0.70% as China/APAC growth, regional FX, and policy expectations affected short-term positioning. 1M: the +2.25% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +7.70% direction remains tied to China/APAC growth, regional FX, and policy expectations and portfolio sector allocation and regional equity beta.</td></tr>
+
+                    <tr><td>Utilities</td><td class="number heat-positive positive">+1.05%</td><td class="number heat-positive positive">+3.00%</td><td class="number heat-positive positive">+8.65%</td><td>1W: Asia_APAC Utilities moved +1.05% as China/APAC growth, regional FX, and policy expectations affected short-term positioning. 1M: the +3.00% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +8.65% direction remains tied to China/APAC growth, regional FX, and policy expectations and duration sensitivity across growth, REIT, and utility exposure.</td></tr>
+
+                    <tr><td>Real Estate</td><td class="number heat-positive positive">+1.40%</td><td class="number heat-positive positive">+3.75%</td><td class="number heat-positive positive">+9.60%</td><td>1W: Asia_APAC Real Estate moved +1.40% as China/APAC growth, regional FX, and policy expectations affected short-term positioning. 1M: the +3.75% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +9.60% direction remains tied to China/APAC growth, regional FX, and policy expectations and duration sensitivity across growth, REIT, and utility exposure.</td></tr>
+
+                    <tr><td>Materials</td><td class="number heat-positive positive">+1.75%</td><td class="number heat-positive positive">+4.50%</td><td class="number heat-positive positive">+10.55%</td><td>1W: Asia_APAC Materials moved +1.75% as China/APAC growth, regional FX, and policy expectations affected short-term positioning. 1M: the +4.50% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the +10.55% direction remains tied to China/APAC growth, regional FX, and policy expectations and portfolio sector allocation and regional equity beta.</td></tr>
+
+
+
+                  </table>
+                </td>
+              </tr>
+
+
+
+
+
+
+              <tr>
+                <td class="section-tight">
+                  <div class="kicker">Macro Pulse</div>
+                  <h2 class="section-title">Macro News</h2>
+
+                  <table class="data-table" width="100%">
+
+                    <tr><th>Theme</th><th>What changed</th><th>Why it matters</th><th>Portfolio relevance</th><th>Source</th></tr>
+
+                    <tr>
+                      <td>Rates and yields</td>
+                      <td>US policy rate: 3.62%. Policy rates remain central to discount-rate sensitivity. Latest FRED observation: 2026-07-08.</td>
+                      <td>Discount-rate sensitivity remains the main transmission channel for equities and FX. Latest data: 3.62%.</td>
+                      <td>Rates affect equity duration, valuation multiples, REITs, utilities, and FX translation risk.</td>
+                      <td><a href="https://fred.stlouisfed.org/series/DFF">FRED</a></td>
+                    </tr>
+
+                    <tr>
+                      <td>Inflation</td>
+                      <td>US CPI: 333.98. Inflation surprises drive cross-asset repricing. Latest FRED observation: 2026-05-01.</td>
+                      <td>Inflation data changes rate-cut timing, real yields, and margin expectations. Latest data: 333.98.</td>
+                      <td>Inflation affects policy rates, real yields, airlines, utilities, and margin pressure.</td>
+                      <td><a href="https://fred.stlouisfed.org/series/CPIAUCSL">FRED</a></td>
+                    </tr>
+
+                    <tr>
+                      <td>Labour market</td>
+                      <td>US unemployment rate: 4.20%. Labour market momentum informs Fed reaction-function risk. Latest FRED observation: 2026-06-01.</td>
+                      <td>Labour data affects recession risk, consumption, and central-bank reaction functions. Latest data: 4.20%.</td>
+                      <td>Labour cooling changes Fed reaction-function risk and demand sensitivity.</td>
+                      <td><a href="https://fred.stlouisfed.org/series/UNRATE">FRED</a></td>
+                    </tr>
+
+                    <tr>
+                      <td>Credit conditions</td>
+                      <td>US 10Y yield: 4.56%. Long-end yields drive duration, equity multiple, and credit repricing. Latest FRED observation: 2026-07-08.</td>
+                      <td>Credit conditions influence risk appetite, funding costs, and private-market liquidity. Latest data: 4.56%.</td>
+                      <td>Credit conditions affect private-market exits, refinancing risk, and risk appetite.</td>
+                      <td><a href="https://fred.stlouisfed.org/series/DGS10">FRED</a></td>
+                    </tr>
+
+
+                  </table>
+
+                </td>
+              </tr>
+
+
+
+
+              <tr>
+                <td class="section-tight">
+                  <div class="kicker">Private Markets</div>
+                  <h2 class="section-title">Private Markets</h2>
+
+                  <table class="data-table" width="100%">
+
+                    <tr><th>Theme</th><th>Summary</th><th>Why it matters</th><th>Portfolio / office relevance</th><th>Source</th></tr>
+
+                    <tr>
+                      <td>Credit conditions</td>
+                      <td>Long-end yields drive duration, equity multiple, and credit repricing. Latest FRED observation: 2026-07-08.</td>
+                      <td>Credit conditions help frame private-market funding and exit windows.</td>
+                      <td>Use as context for private-market liquidity and transaction risk.</td>
+                      <td><a href="https://fred.stlouisfed.org/series/DGS10">FRED</a></td>
+                    </tr>
+
+
+                  </table>
+
+                </td>
+              </tr>
+
+
+
+
+
+            <tr>
+              <td class="section-tight">
+                <div class="kicker">Portfolio-Linked News</div>
+                <h2 class="section-title">Portfolio-Linked News</h2>
+
+                <div class="section-note">No material portfolio-linked news captured from configured sources this week.</div>
+
+              </td>
+            </tr>
+
+
+
+
+            <tr>
+              <td class="section-tight">
+                <div class="kicker">Regional Monitor</div>
+                <h2 class="section-title">Regional Headlines</h2>
+
+                <div class="region-chip">US</div>
+
+                <div class="section-note">No material update captured from configured sources.</div>
+
+
+                <div class="region-chip">EU</div>
+
+                <div class="section-note">No material update captured from configured sources.</div>
+
+
+                <div class="region-chip">UK</div>
+
+                <div class="section-note">No material update captured from configured sources.</div>
+
+
+                <div class="region-chip">APAC</div>
+
+                <div class="section-note">No material update captured from configured sources.</div>
+
+
+                <div class="region-chip">EMEA</div>
+
+                <div class="section-note">No material update captured from configured sources.</div>
+
+
+                <div class="region-chip">Global</div>
+
+                <div class="section-note">No material update captured from configured sources.</div>
+
+
+              </td>
+            </tr>
+
+
+
+
+            <tr>
+              <td class="section">
+                <div class="feature-card">
+                  <div class="feature-label">Story of the Week</div>
+                  <h3>Macro and Market Themes: Key Indicators and Portfolio Risks</h3>
+                  <p>Recent macroeconomic indicators signal critical shifts in market dynamics. The US policy rate at 3.62% and the 10Y yield at 4.56% are pivotal for duration and equity valuations. CPI continues to prompt inflation-related repricing, while the unemployment rate reflects labor market health, thereby influencing Fed policy. Financial conditions remain tight, shaping credit flows and risk appetite. In private markets, credit fundraising and selective equity exits reveal underlying valuation gaps. Technology and financial sectors are at the forefront of performance, as central bank policies remain a pressing macro risk.</p>
+                  <ul>
+
+                    <li>Monitor whether the theme affects rates, FX, commodities, and sector leadership.</li>
+
+                    <li>Treat this as analytical context, not an investment recommendation.</li>
+
+                  </ul>
+                </div>
+              </td>
+            </tr>
+
+
+
+
+            <tr>
+              <td class="section-tight">
+                <div class="kicker">Forward Watchlist</div>
+                <h2 class="section-title">What to Watch This Week</h2>
+                <table class="data-table" width="100%">
+                  <tr><th>Period</th><th>Region</th><th>Event / Theme</th><th>Portfolio Relevance</th><th>Asset Classes Affected</th></tr>
+
+                  <tr><td>This week</td><td>US</td><td>Inflation and Fed communication</td><td>Impacts USD, duration, and growth-style equity valuation</td><td>FX, rates, equities</td></tr>
+
+                  <tr><td>This week</td><td>EU</td><td>ECB / European growth data</td><td>Relevant for Allianz, BMW, RWE, Sanofi, ING, and Meta Wolf AG</td><td>Equities, credit</td></tr>
+
+                  <tr><td>This week</td><td>APAC</td><td>China activity and Singapore macro</td><td>Relevant for Alibaba, SATS, SIA, Sembcorp, CapitaLand, Ping An, and SGD exposure</td><td>Equities, FX</td></tr>
+
+                  <tr><td>This week</td><td>Global</td><td>Oil and LNG supply headlines</td><td>Relevant for inflation, airlines, utilities, and commodities exposure</td><td>Commodities, rates</td></tr>
+
+                  <tr><td>This week</td><td>EMEA</td><td>Credit spread and geopolitical risk</td><td>Relevant for risk sentiment, oil prices, and funding conditions</td><td>Credit, FX</td></tr>
+
+                </table>
+              </td>
+            </tr>
+
+
+            <tr>
+              <td class="footer">
+                <strong>Generated timestamp:</strong> 2026-07-10T13:03:30.215544+08:00<br>
+                Internal distribution only. Analytical context, not investment advice.<br>
+                Source/audit note: manual/private pricing and source limitations are retained in audit logs. Portfolio relevance is a ranking overlay, not a recommendation engine.
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

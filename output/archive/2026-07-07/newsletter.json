@@ -1,0 +1,1674 @@
+{
+  "title": "Wolf Research Weekly",
+  "generated_at": "2026-07-07T17:51:00.763342+08:00",
+  "timezone": "Asia/Singapore",
+  "sections": {
+    "executive_snapshot": {
+      "title": "Executive Snapshot",
+      "bullets": [
+        "Cross-asset focus remains on rates, USD direction, commodity supply signals, and sector leadership.",
+        "Portfolio relevance is weighted toward current equity holdings and issuer-level fixed income exposure.",
+        "Manual/private pricing issues are retained in audit logs rather than repeated in the newsletter body."
+      ],
+      "sources": [
+        {
+          "name": "Sample Data",
+          "url": "https://example.com/wolf-research/private_markets/private-credit-fundraising-remains-resilient"
+        },
+        {
+          "name": "Sample Data",
+          "url": "https://example.com/wolf-research/private_markets/private-equity-exits-remain-selective-as-valuation-gaps-persist"
+        },
+        {
+          "name": "Sample Data",
+          "url": "https://example.com/wolf-research/fx/usd-strength-keeps-asian-fx-volatility-in-focus"
+        },
+        {
+          "name": "Sample Data",
+          "url": "https://example.com/wolf-research/sectors/technology-and-financials-lead-the-sector-performance-split"
+        },
+        {
+          "name": "Sample Data",
+          "url": "https://example.com/wolf-research/commodities/oil-markets-balance-supply-discipline-against-softer-demand-signals"
+        }
+      ]
+    },
+    "portfolio_snapshot": {
+      "title": "Portfolio Snapshot",
+      "kpis": [
+        {
+          "label": "Total Equity Portfolio Value",
+          "value": "USD 171.6m"
+        },
+        {
+          "label": "Total YTD Equity P&L",
+          "value": "+USD 30.6m"
+        },
+        {
+          "label": "Best Contributor",
+          "value": "Meta Wolf AG"
+        },
+        {
+          "label": "Worst Contributor",
+          "value": "Bayerische Motoren Werke AG"
+        },
+        {
+          "label": "Largest Sector Exposure",
+          "value": "Capital Goods"
+        },
+        {
+          "label": "Largest Currency Exposure",
+          "value": "EUR"
+        }
+      ],
+      "top_holdings": [
+        {
+          "holding": "Meta Wolf AG",
+          "stock_name": "Meta Wolf AG",
+          "ticker": "",
+          "currency": "EUR",
+          "sector": "Capital Goods",
+          "industry_sector": "Capital Goods",
+          "region": "EU",
+          "country": "Germany",
+          "average_cost_price": 2.86,
+          "current_price": 3.8,
+          "ytd_share_price_performance_pct": 32.91,
+          "shares_bought": 29256085.0,
+          "market_cap_usd_millions": 144.0,
+          "current_value": 127069520.0,
+          "current_investment_value_usd": 127069520.0,
+          "ytd_pnl": 28932017.0,
+          "ytd_performance_usd": 28932017.0,
+          "ytd_pct": 29.48,
+          "ytd_performance_pct": 29.48,
+          "pricing_status": "manual",
+          "pricing_mode": "manual",
+          "is_manual_pricing": false,
+          "has_usable_pricing": true,
+          "current_value_display": "USD 127.1m",
+          "ytd_pnl_display": "+USD 28.9m",
+          "ytd_pct_display": "+29.48%"
+        },
+        {
+          "holding": "Softtech Engineers Ltd",
+          "stock_name": "Softtech Engineers Ltd",
+          "ticker": "",
+          "currency": "INR",
+          "sector": "Software & Services",
+          "industry_sector": "Software & Services",
+          "region": "APAC",
+          "country": "India",
+          "average_cost_price": 317.35,
+          "current_price": 433.25,
+          "ytd_share_price_performance_pct": 36.52,
+          "shares_bought": 3241000.0,
+          "market_cap_usd_millions": 63.0,
+          "current_value": 15046159.0,
+          "current_investment_value_usd": 15046159.0,
+          "ytd_pnl": 3602304.0,
+          "ytd_performance_usd": 3602304.0,
+          "ytd_pct": 31.48,
+          "ytd_performance_pct": 31.48,
+          "pricing_status": "manual",
+          "pricing_mode": "manual",
+          "is_manual_pricing": false,
+          "has_usable_pricing": true,
+          "current_value_display": "USD 15.0m",
+          "ytd_pnl_display": "+USD 3.6m",
+          "ytd_pct_display": "+31.48%"
+        },
+        {
+          "holding": "Bayerische Motoren Werke AG",
+          "stock_name": "Bayerische Motoren Werke AG",
+          "ticker": "",
+          "currency": "EUR",
+          "sector": "Automobiles & Components",
+          "industry_sector": "Automobiles & Components",
+          "region": "EU",
+          "country": "Germany",
+          "average_cost_price": 71.66,
+          "current_price": 61.02,
+          "ytd_share_price_performance_pct": -14.85,
+          "shares_bought": 144000.0,
+          "market_cap_usd_millions": 42946.0,
+          "current_value": 10043296.0,
+          "current_investment_value_usd": 10043296.0,
+          "ytd_pnl": -1881090.0,
+          "ytd_performance_usd": -1881090.0,
+          "ytd_pct": -15.78,
+          "ytd_performance_pct": -15.78,
+          "pricing_status": "manual",
+          "pricing_mode": "manual",
+          "is_manual_pricing": false,
+          "has_usable_pricing": true,
+          "current_value_display": "USD 10.0m",
+          "ytd_pnl_display": "-USD 1.9m",
+          "ytd_pct_display": "-15.78%"
+        },
+        {
+          "holding": "SAA Software",
+          "stock_name": "SAA Software",
+          "ticker": "",
+          "currency": "EUR",
+          "sector": "Invalid / Private Security",
+          "industry_sector": "Invalid / Private Security",
+          "region": "EU",
+          "country": "Unknown",
+          "average_cost_price": 1.0,
+          "current_price": 1.0,
+          "ytd_share_price_performance_pct": 0.0,
+          "shares_bought": 3000000.0,
+          "market_cap_usd_millions": null,
+          "current_value": 3428963.0,
+          "current_investment_value_usd": 3428963.0,
+          "ytd_pnl": -53739.0,
+          "ytd_performance_usd": -53739.0,
+          "ytd_pct": -1.54,
+          "ytd_performance_pct": -1.54,
+          "pricing_status": "manual",
+          "pricing_mode": "manual",
+          "is_manual_pricing": false,
+          "has_usable_pricing": true,
+          "current_value_display": "USD 3.4m",
+          "ytd_pnl_display": "-USD 53.7k",
+          "ytd_pct_display": "-1.54%"
+        },
+        {
+          "holding": "Singapore Airlines Ltd",
+          "stock_name": "Singapore Airlines Ltd",
+          "ticker": "",
+          "currency": "SGD",
+          "sector": "Transportation",
+          "industry_sector": "Transportation",
+          "region": "APAC",
+          "country": "Singapore",
+          "average_cost_price": 6.58,
+          "current_price": 7.39,
+          "ytd_share_price_performance_pct": 12.26,
+          "shares_bought": 385000.0,
+          "market_cap_usd_millions": 18003.0,
+          "current_value": 2199745.0,
+          "current_investment_value_usd": 2199745.0,
+          "ytd_pnl": 220135.0,
+          "ytd_performance_usd": 220135.0,
+          "ytd_pct": 11.12,
+          "ytd_performance_pct": 11.12,
+          "pricing_status": "manual",
+          "pricing_mode": "manual",
+          "is_manual_pricing": false,
+          "has_usable_pricing": true,
+          "current_value_display": "USD 2.2m",
+          "ytd_pnl_display": "+USD 220.1k",
+          "ytd_pct_display": "+11.12%"
+        },
+        {
+          "holding": "RWE AG",
+          "stock_name": "RWE AG",
+          "ticker": "",
+          "currency": "EUR",
+          "sector": "Utilities",
+          "industry_sector": "Utilities",
+          "region": "EU",
+          "country": "Germany",
+          "average_cost_price": 56.12,
+          "current_price": 55.6,
+          "ytd_share_price_performance_pct": -0.93,
+          "shares_bought": 30000.0,
+          "market_cap_usd_millions": 47272.0,
+          "current_value": 1906504.0,
+          "current_investment_value_usd": 1906504.0,
+          "ytd_pnl": -33367.0,
+          "ytd_performance_usd": -33367.0,
+          "ytd_pct": -1.72,
+          "ytd_performance_pct": -1.72,
+          "pricing_status": "manual",
+          "pricing_mode": "manual",
+          "is_manual_pricing": false,
+          "has_usable_pricing": true,
+          "current_value_display": "USD 1.9m",
+          "ytd_pnl_display": "-USD 33.4k",
+          "ytd_pct_display": "-1.72%"
+        },
+        {
+          "holding": "Sanofi SA",
+          "stock_name": "Sanofi SA",
+          "ticker": "",
+          "currency": "EUR",
+          "sector": "Pharmaceuticals, Biotechnology",
+          "industry_sector": "Pharmaceuticals, Biotechnology",
+          "region": "EU",
+          "country": "France",
+          "average_cost_price": 78.93,
+          "current_price": 72.49,
+          "ytd_share_price_performance_pct": -8.16,
+          "shares_bought": 22400.0,
+          "market_cap_usd_millions": 100595.0,
+          "current_value": 1855956.0,
+          "current_investment_value_usd": 1855956.0,
+          "ytd_pnl": -191976.0,
+          "ytd_performance_usd": -191976.0,
+          "ytd_pct": -9.37,
+          "ytd_performance_pct": -9.37,
+          "pricing_status": "manual",
+          "pricing_mode": "manual",
+          "is_manual_pricing": false,
+          "has_usable_pricing": true,
+          "current_value_display": "USD 1.9m",
+          "ytd_pnl_display": "-USD 192.0k",
+          "ytd_pct_display": "-9.37%"
+        },
+        {
+          "holding": "Ping An Insurance Group Co of",
+          "stock_name": "Ping An Insurance Group Co of",
+          "ticker": "",
+          "currency": "HKD",
+          "sector": "Insurance",
+          "industry_sector": "Insurance",
+          "region": "APAC",
+          "country": "Hong Kong",
+          "average_cost_price": 59.3,
+          "current_price": 53.9,
+          "ytd_share_price_performance_pct": -9.11,
+          "shares_bought": 264000.0,
+          "market_cap_usd_millions": 131502.0,
+          "current_value": 1815069.0,
+          "current_investment_value_usd": 1815069.0,
+          "ytd_pnl": -182785.0,
+          "ytd_performance_usd": -182785.0,
+          "ytd_pct": -9.15,
+          "ytd_performance_pct": -9.15,
+          "pricing_status": "manual",
+          "pricing_mode": "manual",
+          "is_manual_pricing": false,
+          "has_usable_pricing": true,
+          "current_value_display": "USD 1.8m",
+          "ytd_pnl_display": "-USD 182.8k",
+          "ytd_pct_display": "-9.15%"
+        }
+      ],
+      "manual_pricing_count": 16,
+      "missing_pricing_count": 0,
+      "invalid_or_manual_holdings": []
+    },
+    "equity_holdings_monitor": {
+      "title": "Equity Holdings Monitor",
+      "rows": [],
+      "items": [],
+      "regions": [],
+      "kpis": [
+        {
+          "label": "Total Equity Portfolio Value",
+          "value": "USD 171.6m"
+        },
+        {
+          "label": "Total YTD Equity P&L",
+          "value": "+USD 30.6m"
+        },
+        {
+          "label": "Best Contributor",
+          "value": "Meta Wolf AG"
+        },
+        {
+          "label": "Worst Contributor",
+          "value": "Bayerische Motoren Werke AG"
+        },
+        {
+          "label": "Largest Sector Exposure",
+          "value": "Capital Goods"
+        },
+        {
+          "label": "Largest Currency Exposure",
+          "value": "EUR"
+        }
+      ],
+      "top_holdings": [
+        {
+          "holding": "Meta Wolf AG",
+          "stock_name": "Meta Wolf AG",
+          "ticker": "",
+          "currency": "EUR",
+          "sector": "Capital Goods",
+          "industry_sector": "Capital Goods",
+          "region": "EU",
+          "country": "Germany",
+          "average_cost_price": 2.86,
+          "current_price": 3.8,
+          "ytd_share_price_performance_pct": 32.91,
+          "shares_bought": 29256085.0,
+          "market_cap_usd_millions": 144.0,
+          "current_value": 127069520.0,
+          "current_investment_value_usd": 127069520.0,
+          "ytd_pnl": 28932017.0,
+          "ytd_performance_usd": 28932017.0,
+          "ytd_pct": 29.48,
+          "ytd_performance_pct": 29.48,
+          "pricing_status": "manual",
+          "pricing_mode": "manual",
+          "is_manual_pricing": false,
+          "has_usable_pricing": true,
+          "current_value_display": "USD 127.1m",
+          "ytd_pnl_display": "+USD 28.9m",
+          "ytd_pct_display": "+29.48%"
+        },
+        {
+          "holding": "Softtech Engineers Ltd",
+          "stock_name": "Softtech Engineers Ltd",
+          "ticker": "",
+          "currency": "INR",
+          "sector": "Software & Services",
+          "industry_sector": "Software & Services",
+          "region": "APAC",
+          "country": "India",
+          "average_cost_price": 317.35,
+          "current_price": 433.25,
+          "ytd_share_price_performance_pct": 36.52,
+          "shares_bought": 3241000.0,
+          "market_cap_usd_millions": 63.0,
+          "current_value": 15046159.0,
+          "current_investment_value_usd": 15046159.0,
+          "ytd_pnl": 3602304.0,
+          "ytd_performance_usd": 3602304.0,
+          "ytd_pct": 31.48,
+          "ytd_performance_pct": 31.48,
+          "pricing_status": "manual",
+          "pricing_mode": "manual",
+          "is_manual_pricing": false,
+          "has_usable_pricing": true,
+          "current_value_display": "USD 15.0m",
+          "ytd_pnl_display": "+USD 3.6m",
+          "ytd_pct_display": "+31.48%"
+        },
+        {
+          "holding": "Bayerische Motoren Werke AG",
+          "stock_name": "Bayerische Motoren Werke AG",
+          "ticker": "",
+          "currency": "EUR",
+          "sector": "Automobiles & Components",
+          "industry_sector": "Automobiles & Components",
+          "region": "EU",
+          "country": "Germany",
+          "average_cost_price": 71.66,
+          "current_price": 61.02,
+          "ytd_share_price_performance_pct": -14.85,
+          "shares_bought": 144000.0,
+          "market_cap_usd_millions": 42946.0,
+          "current_value": 10043296.0,
+          "current_investment_value_usd": 10043296.0,
+          "ytd_pnl": -1881090.0,
+          "ytd_performance_usd": -1881090.0,
+          "ytd_pct": -15.78,
+          "ytd_performance_pct": -15.78,
+          "pricing_status": "manual",
+          "pricing_mode": "manual",
+          "is_manual_pricing": false,
+          "has_usable_pricing": true,
+          "current_value_display": "USD 10.0m",
+          "ytd_pnl_display": "-USD 1.9m",
+          "ytd_pct_display": "-15.78%"
+        },
+        {
+          "holding": "SAA Software",
+          "stock_name": "SAA Software",
+          "ticker": "",
+          "currency": "EUR",
+          "sector": "Invalid / Private Security",
+          "industry_sector": "Invalid / Private Security",
+          "region": "EU",
+          "country": "Unknown",
+          "average_cost_price": 1.0,
+          "current_price": 1.0,
+          "ytd_share_price_performance_pct": 0.0,
+          "shares_bought": 3000000.0,
+          "market_cap_usd_millions": null,
+          "current_value": 3428963.0,
+          "current_investment_value_usd": 3428963.0,
+          "ytd_pnl": -53739.0,
+          "ytd_performance_usd": -53739.0,
+          "ytd_pct": -1.54,
+          "ytd_performance_pct": -1.54,
+          "pricing_status": "manual",
+          "pricing_mode": "manual",
+          "is_manual_pricing": false,
+          "has_usable_pricing": true,
+          "current_value_display": "USD 3.4m",
+          "ytd_pnl_display": "-USD 53.7k",
+          "ytd_pct_display": "-1.54%"
+        },
+        {
+          "holding": "Singapore Airlines Ltd",
+          "stock_name": "Singapore Airlines Ltd",
+          "ticker": "",
+          "currency": "SGD",
+          "sector": "Transportation",
+          "industry_sector": "Transportation",
+          "region": "APAC",
+          "country": "Singapore",
+          "average_cost_price": 6.58,
+          "current_price": 7.39,
+          "ytd_share_price_performance_pct": 12.26,
+          "shares_bought": 385000.0,
+          "market_cap_usd_millions": 18003.0,
+          "current_value": 2199745.0,
+          "current_investment_value_usd": 2199745.0,
+          "ytd_pnl": 220135.0,
+          "ytd_performance_usd": 220135.0,
+          "ytd_pct": 11.12,
+          "ytd_performance_pct": 11.12,
+          "pricing_status": "manual",
+          "pricing_mode": "manual",
+          "is_manual_pricing": false,
+          "has_usable_pricing": true,
+          "current_value_display": "USD 2.2m",
+          "ytd_pnl_display": "+USD 220.1k",
+          "ytd_pct_display": "+11.12%"
+        },
+        {
+          "holding": "RWE AG",
+          "stock_name": "RWE AG",
+          "ticker": "",
+          "currency": "EUR",
+          "sector": "Utilities",
+          "industry_sector": "Utilities",
+          "region": "EU",
+          "country": "Germany",
+          "average_cost_price": 56.12,
+          "current_price": 55.6,
+          "ytd_share_price_performance_pct": -0.93,
+          "shares_bought": 30000.0,
+          "market_cap_usd_millions": 47272.0,
+          "current_value": 1906504.0,
+          "current_investment_value_usd": 1906504.0,
+          "ytd_pnl": -33367.0,
+          "ytd_performance_usd": -33367.0,
+          "ytd_pct": -1.72,
+          "ytd_performance_pct": -1.72,
+          "pricing_status": "manual",
+          "pricing_mode": "manual",
+          "is_manual_pricing": false,
+          "has_usable_pricing": true,
+          "current_value_display": "USD 1.9m",
+          "ytd_pnl_display": "-USD 33.4k",
+          "ytd_pct_display": "-1.72%"
+        },
+        {
+          "holding": "Sanofi SA",
+          "stock_name": "Sanofi SA",
+          "ticker": "",
+          "currency": "EUR",
+          "sector": "Pharmaceuticals, Biotechnology",
+          "industry_sector": "Pharmaceuticals, Biotechnology",
+          "region": "EU",
+          "country": "France",
+          "average_cost_price": 78.93,
+          "current_price": 72.49,
+          "ytd_share_price_performance_pct": -8.16,
+          "shares_bought": 22400.0,
+          "market_cap_usd_millions": 100595.0,
+          "current_value": 1855956.0,
+          "current_investment_value_usd": 1855956.0,
+          "ytd_pnl": -191976.0,
+          "ytd_performance_usd": -191976.0,
+          "ytd_pct": -9.37,
+          "ytd_performance_pct": -9.37,
+          "pricing_status": "manual",
+          "pricing_mode": "manual",
+          "is_manual_pricing": false,
+          "has_usable_pricing": true,
+          "current_value_display": "USD 1.9m",
+          "ytd_pnl_display": "-USD 192.0k",
+          "ytd_pct_display": "-9.37%"
+        },
+        {
+          "holding": "Ping An Insurance Group Co of",
+          "stock_name": "Ping An Insurance Group Co of",
+          "ticker": "",
+          "currency": "HKD",
+          "sector": "Insurance",
+          "industry_sector": "Insurance",
+          "region": "APAC",
+          "country": "Hong Kong",
+          "average_cost_price": 59.3,
+          "current_price": 53.9,
+          "ytd_share_price_performance_pct": -9.11,
+          "shares_bought": 264000.0,
+          "market_cap_usd_millions": 131502.0,
+          "current_value": 1815069.0,
+          "current_investment_value_usd": 1815069.0,
+          "ytd_pnl": -182785.0,
+          "ytd_performance_usd": -182785.0,
+          "ytd_pct": -9.15,
+          "ytd_performance_pct": -9.15,
+          "pricing_status": "manual",
+          "pricing_mode": "manual",
+          "is_manual_pricing": false,
+          "has_usable_pricing": true,
+          "current_value_display": "USD 1.8m",
+          "ytd_pnl_display": "-USD 182.8k",
+          "ytd_pct_display": "-9.15%"
+        }
+      ],
+      "top_contributors": [
+        {
+          "holding": "Meta Wolf AG",
+          "stock_name": "Meta Wolf AG",
+          "ticker": "",
+          "currency": "EUR",
+          "sector": "Capital Goods",
+          "industry_sector": "Capital Goods",
+          "region": "EU",
+          "country": "Germany",
+          "average_cost_price": 2.86,
+          "current_price": 3.8,
+          "ytd_share_price_performance_pct": 32.91,
+          "shares_bought": 29256085.0,
+          "market_cap_usd_millions": 144.0,
+          "current_value": 127069520.0,
+          "current_investment_value_usd": 127069520.0,
+          "ytd_pnl": 28932017.0,
+          "ytd_performance_usd": 28932017.0,
+          "ytd_pct": 29.48,
+          "ytd_performance_pct": 29.48,
+          "pricing_status": "manual",
+          "pricing_mode": "manual",
+          "is_manual_pricing": false,
+          "has_usable_pricing": true,
+          "current_value_display": "USD 127.1m",
+          "ytd_pnl_display": "+USD 28.9m",
+          "ytd_pct_display": "+29.48%"
+        },
+        {
+          "holding": "Softtech Engineers Ltd",
+          "stock_name": "Softtech Engineers Ltd",
+          "ticker": "",
+          "currency": "INR",
+          "sector": "Software & Services",
+          "industry_sector": "Software & Services",
+          "region": "APAC",
+          "country": "India",
+          "average_cost_price": 317.35,
+          "current_price": 433.25,
+          "ytd_share_price_performance_pct": 36.52,
+          "shares_bought": 3241000.0,
+          "market_cap_usd_millions": 63.0,
+          "current_value": 15046159.0,
+          "current_investment_value_usd": 15046159.0,
+          "ytd_pnl": 3602304.0,
+          "ytd_performance_usd": 3602304.0,
+          "ytd_pct": 31.48,
+          "ytd_performance_pct": 31.48,
+          "pricing_status": "manual",
+          "pricing_mode": "manual",
+          "is_manual_pricing": false,
+          "has_usable_pricing": true,
+          "current_value_display": "USD 15.0m",
+          "ytd_pnl_display": "+USD 3.6m",
+          "ytd_pct_display": "+31.48%"
+        },
+        {
+          "holding": "ING Groep NV",
+          "stock_name": "ING Groep NV",
+          "ticker": "",
+          "currency": "USD",
+          "sector": "Banks",
+          "industry_sector": "Banks",
+          "region": "EU",
+          "country": "Netherlands",
+          "average_cost_price": 25.52,
+          "current_price": 32.2,
+          "ytd_share_price_performance_pct": 26.18,
+          "shares_bought": 38900.0,
+          "market_cap_usd_millions": 94035.0,
+          "current_value": 1252580.0,
+          "current_investment_value_usd": 1252580.0,
+          "ytd_pnl": 264520.0,
+          "ytd_performance_usd": 264520.0,
+          "ytd_pct": 26.77,
+          "ytd_performance_pct": 26.77,
+          "pricing_status": "manual",
+          "pricing_mode": "manual",
+          "is_manual_pricing": false,
+          "has_usable_pricing": true,
+          "current_value_display": "USD 1.3m",
+          "ytd_pnl_display": "+USD 264.5k",
+          "ytd_pct_display": "+26.77%"
+        },
+        {
+          "holding": "Singapore Airlines Ltd",
+          "stock_name": "Singapore Airlines Ltd",
+          "ticker": "",
+          "currency": "SGD",
+          "sector": "Transportation",
+          "industry_sector": "Transportation",
+          "region": "APAC",
+          "country": "Singapore",
+          "average_cost_price": 6.58,
+          "current_price": 7.39,
+          "ytd_share_price_performance_pct": 12.26,
+          "shares_bought": 385000.0,
+          "market_cap_usd_millions": 18003.0,
+          "current_value": 2199745.0,
+          "current_investment_value_usd": 2199745.0,
+          "ytd_pnl": 220135.0,
+          "ytd_performance_usd": 220135.0,
+          "ytd_pct": 11.12,
+          "ytd_performance_pct": 11.12,
+          "pricing_status": "manual",
+          "pricing_mode": "manual",
+          "is_manual_pricing": false,
+          "has_usable_pricing": true,
+          "current_value_display": "USD 2.2m",
+          "ytd_pnl_display": "+USD 220.1k",
+          "ytd_pct_display": "+11.12%"
+        },
+        {
+          "holding": "SATS Ltd",
+          "stock_name": "SATS Ltd",
+          "ticker": "",
+          "currency": "SGD",
+          "sector": "Transportation",
+          "industry_sector": "Transportation",
+          "region": "APAC",
+          "country": "Singapore",
+          "average_cost_price": 3.7,
+          "current_price": 4.38,
+          "ytd_share_price_performance_pct": 18.35,
+          "shares_bought": 285900.0,
+          "market_cap_usd_millions": 5002.0,
+          "current_value": 968178.0,
+          "current_investment_value_usd": 968178.0,
+          "ytd_pnl": 138269.0,
+          "ytd_performance_usd": 138269.0,
+          "ytd_pct": 16.66,
+          "ytd_performance_pct": 16.66,
+          "pricing_status": "manual",
+          "pricing_mode": "manual",
+          "is_manual_pricing": false,
+          "has_usable_pricing": true,
+          "current_value_display": "USD 968.2k",
+          "ytd_pnl_display": "+USD 138.3k",
+          "ytd_pct_display": "+16.66%"
+        }
+      ],
+      "top_detractors": [
+        {
+          "holding": "Bayerische Motoren Werke AG",
+          "stock_name": "Bayerische Motoren Werke AG",
+          "ticker": "",
+          "currency": "EUR",
+          "sector": "Automobiles & Components",
+          "industry_sector": "Automobiles & Components",
+          "region": "EU",
+          "country": "Germany",
+          "average_cost_price": 71.66,
+          "current_price": 61.02,
+          "ytd_share_price_performance_pct": -14.85,
+          "shares_bought": 144000.0,
+          "market_cap_usd_millions": 42946.0,
+          "current_value": 10043296.0,
+          "current_investment_value_usd": 10043296.0,
+          "ytd_pnl": -1881090.0,
+          "ytd_performance_usd": -1881090.0,
+          "ytd_pct": -15.78,
+          "ytd_performance_pct": -15.78,
+          "pricing_status": "manual",
+          "pricing_mode": "manual",
+          "is_manual_pricing": false,
+          "has_usable_pricing": true,
+          "current_value_display": "USD 10.0m",
+          "ytd_pnl_display": "-USD 1.9m",
+          "ytd_pct_display": "-15.78%"
+        },
+        {
+          "holding": "CapitaLand Investment Ltd/Sing",
+          "stock_name": "CapitaLand Investment Ltd/Sing",
+          "ticker": "",
+          "currency": "SGD",
+          "sector": "Real Estate Management & Development",
+          "industry_sector": "Real Estate Management & Development",
+          "region": "APAC",
+          "country": "Singapore",
+          "average_cost_price": 2.84,
+          "current_price": 2.53,
+          "ytd_share_price_performance_pct": -10.98,
+          "shares_bought": 745200.0,
+          "market_cap_usd_millions": 9768.0,
+          "current_value": 1457674.0,
+          "current_investment_value_usd": 1457674.0,
+          "ytd_pnl": -203512.0,
+          "ytd_performance_usd": -203512.0,
+          "ytd_pct": -12.25,
+          "ytd_performance_pct": -12.25,
+          "pricing_status": "manual",
+          "pricing_mode": "manual",
+          "is_manual_pricing": false,
+          "has_usable_pricing": true,
+          "current_value_display": "USD 1.5m",
+          "ytd_pnl_display": "-USD 203.5k",
+          "ytd_pct_display": "-12.25%"
+        },
+        {
+          "holding": "Sanofi SA",
+          "stock_name": "Sanofi SA",
+          "ticker": "",
+          "currency": "EUR",
+          "sector": "Pharmaceuticals, Biotechnology",
+          "industry_sector": "Pharmaceuticals, Biotechnology",
+          "region": "EU",
+          "country": "France",
+          "average_cost_price": 78.93,
+          "current_price": 72.49,
+          "ytd_share_price_performance_pct": -8.16,
+          "shares_bought": 22400.0,
+          "market_cap_usd_millions": 100595.0,
+          "current_value": 1855956.0,
+          "current_investment_value_usd": 1855956.0,
+          "ytd_pnl": -191976.0,
+          "ytd_performance_usd": -191976.0,
+          "ytd_pct": -9.37,
+          "ytd_performance_pct": -9.37,
+          "pricing_status": "manual",
+          "pricing_mode": "manual",
+          "is_manual_pricing": false,
+          "has_usable_pricing": true,
+          "current_value_display": "USD 1.9m",
+          "ytd_pnl_display": "-USD 192.0k",
+          "ytd_pct_display": "-9.37%"
+        },
+        {
+          "holding": "Ping An Insurance Group Co of",
+          "stock_name": "Ping An Insurance Group Co of",
+          "ticker": "",
+          "currency": "HKD",
+          "sector": "Insurance",
+          "industry_sector": "Insurance",
+          "region": "APAC",
+          "country": "Hong Kong",
+          "average_cost_price": 59.3,
+          "current_price": 53.9,
+          "ytd_share_price_performance_pct": -9.11,
+          "shares_bought": 264000.0,
+          "market_cap_usd_millions": 131502.0,
+          "current_value": 1815069.0,
+          "current_investment_value_usd": 1815069.0,
+          "ytd_pnl": -182785.0,
+          "ytd_performance_usd": -182785.0,
+          "ytd_pct": -9.15,
+          "ytd_performance_pct": -9.15,
+          "pricing_status": "manual",
+          "pricing_mode": "manual",
+          "is_manual_pricing": false,
+          "has_usable_pricing": true,
+          "current_value_display": "USD 1.8m",
+          "ytd_pnl_display": "-USD 182.8k",
+          "ytd_pct_display": "-9.15%"
+        },
+        {
+          "holding": "Alibaba Group Holding Ltd",
+          "stock_name": "Alibaba Group Holding Ltd",
+          "ticker": "",
+          "currency": "HKD",
+          "sector": "Consumer Discretionary Distribution",
+          "industry_sector": "Consumer Discretionary Distribution",
+          "region": "APAC",
+          "country": "China",
+          "average_cost_price": 116.85,
+          "current_price": 101.4,
+          "ytd_share_price_performance_pct": -13.22,
+          "shares_bought": 162800.0,
+          "market_cap_usd_millions": 248246.0,
+          "current_value": 812266.0,
+          "current_investment_value_usd": 812266.0,
+          "ytd_pnl": -124416.0,
+          "ytd_performance_usd": -124416.0,
+          "ytd_pct": -13.28,
+          "ytd_performance_pct": -13.28,
+          "pricing_status": "manual",
+          "pricing_mode": "manual",
+          "is_manual_pricing": false,
+          "has_usable_pricing": true,
+          "current_value_display": "USD 812.3k",
+          "ytd_pnl_display": "-USD 124.4k",
+          "ytd_pct_display": "-13.28%"
+        }
+      ],
+      "sector_exposure": [
+        {
+          "name": "Capital Goods",
+          "current_value": 127069520.0,
+          "current_value_display": "USD 127.1m",
+          "weight": 0.7405036415818765,
+          "weight_display": "74%",
+          "ytd_pnl": 28932017.0,
+          "ytd_pnl_display": "+USD 28.9m"
+        },
+        {
+          "name": "Software & Services",
+          "current_value": 15046159.0,
+          "current_value_display": "USD 15.0m",
+          "weight": 0.08768220365765075,
+          "weight_display": "9%",
+          "ytd_pnl": 3602304.0,
+          "ytd_pnl_display": "+USD 3.6m"
+        },
+        {
+          "name": "Automobiles & Components",
+          "current_value": 10043296.0,
+          "current_value_display": "USD 10.0m",
+          "weight": 0.05852778275612196,
+          "weight_display": "6%",
+          "ytd_pnl": -1881090.0,
+          "ytd_pnl_display": "-USD 1.9m"
+        },
+        {
+          "name": "Invalid / Private Security",
+          "current_value": 3534112.0,
+          "current_value_display": "USD 3.5m",
+          "weight": 0.020595204937881317,
+          "weight_display": "2%",
+          "ytd_pnl": -54393.0,
+          "ytd_pnl_display": "-USD 54.4k"
+        },
+        {
+          "name": "Transportation",
+          "current_value": 3167923.0,
+          "current_value_display": "USD 3.2m",
+          "weight": 0.018461221209861996,
+          "weight_display": "2%",
+          "ytd_pnl": 358404.0,
+          "ytd_pnl_display": "+USD 358.4k"
+        },
+        {
+          "name": "Insurance",
+          "current_value": 2883968.0,
+          "current_value_display": "USD 2.9m",
+          "weight": 0.016806460008707055,
+          "weight_display": "2%",
+          "ytd_pnl": -92552.0,
+          "ytd_pnl_display": "-USD 92.6k"
+        },
+        {
+          "name": "Utilities",
+          "current_value": 2806302.0,
+          "current_value_display": "USD 2.8m",
+          "weight": 0.016353857718031068,
+          "weight_display": "2%",
+          "ytd_pnl": 50040.0,
+          "ytd_pnl_display": "+USD 50.0k"
+        },
+        {
+          "name": "Pharmaceuticals, Biotechnology",
+          "current_value": 1855956.0,
+          "current_value_display": "USD 1.9m",
+          "weight": 0.010815671426284866,
+          "weight_display": "1%",
+          "ytd_pnl": -191976.0,
+          "ytd_pnl_display": "-USD 192.0k"
+        }
+      ],
+      "currency_exposure": [
+        {
+          "name": "EUR",
+          "current_value": 145373138.0,
+          "current_value_display": "USD 145.4m",
+          "weight": 0.8471688417268333,
+          "weight_display": "85%",
+          "ytd_pnl": 26862078.0,
+          "ytd_pnl_display": "+USD 26.9m"
+        },
+        {
+          "name": "INR",
+          "current_value": 15046159.0,
+          "current_value_display": "USD 15.0m",
+          "weight": 0.08768220365765075,
+          "weight_display": "9%",
+          "ytd_pnl": 3602304.0,
+          "ytd_pnl_display": "+USD 3.6m"
+        },
+        {
+          "name": "SGD",
+          "current_value": 7299566.0,
+          "current_value_display": "USD 7.3m",
+          "weight": 0.04253856632941757,
+          "weight_display": "4%",
+          "ytd_pnl": 195036.0,
+          "ytd_pnl_display": "+USD 195.0k"
+        },
+        {
+          "name": "HKD",
+          "current_value": 2627335.0,
+          "current_value_display": "USD 2.6m",
+          "weight": 0.015310919055612389,
+          "weight_display": "2%",
+          "ytd_pnl": -307201.0,
+          "ytd_pnl_display": "-USD 307.2k"
+        },
+        {
+          "name": "USD",
+          "current_value": 1252580.0,
+          "current_value_display": "USD 1.3m",
+          "weight": 0.007299469230486012,
+          "weight_display": "1%",
+          "ytd_pnl": 264520.0,
+          "ytd_pnl_display": "+USD 264.5k"
+        }
+      ],
+      "region_exposure": [],
+      "maturity_exposure": [],
+      "flags": [],
+      "note": null,
+      "empty_message": null,
+      "interpretation": "Equity exposure is concentrated in Capital Goods and EUR-denominated holdings. YTD contribution is led by Meta Wolf AG, while Bayerische Motoren Werke AG is the largest detractor.",
+      "mode": null,
+      "issuer_count": null,
+      "position_count": null,
+      "holdings_count": 16,
+      "usable_equity_pricing_count": 16,
+      "manual_pricing_count": 16,
+      "missing_pricing_count": 0,
+      "total_equity_portfolio_value_usd": 171598778.0,
+      "total_ytd_equity_pnl_usd": 30616737.0,
+      "best_contributor": "Meta Wolf AG",
+      "worst_contributor": "Bayerische Motoren Werke AG",
+      "largest_sector_exposure": "Capital Goods",
+      "largest_currency_exposure": "EUR",
+      "total_market_value_usd": null,
+      "total_market_value_display": null,
+      "total_gain_loss_usd": null,
+      "total_gain_loss_display": null,
+      "invalid_or_manual_holdings": [],
+      "missing_bond_fields": []
+    },
+    "fixed_income_monitor": {
+      "title": "Fixed Income Monitor",
+      "rows": [
+        {
+          "issuer": "SINGAPORE GOVERNMENT",
+          "count": 10,
+          "type": "Sovereign",
+          "region": "APAC",
+          "market_value_usd": 40317374.050000004,
+          "market_value_display": "USD 40.3m",
+          "gain_loss_usd": -170045.86,
+          "gain_loss_display": "-USD 170.0k",
+          "notes": "19% of bond market value"
+        },
+        {
+          "issuer": "JOHNSON & JOHNSON",
+          "count": 3,
+          "type": "Unknown",
+          "region": "Global",
+          "market_value_usd": 23600460.0,
+          "market_value_display": "USD 23.6m",
+          "gain_loss_usd": -99540.0,
+          "gain_loss_display": "-USD 99.5k",
+          "notes": "11% of bond market value"
+        },
+        {
+          "issuer": "ALPHABET INC",
+          "count": 5,
+          "type": "Corporate",
+          "region": "US",
+          "market_value_usd": 13941200.0,
+          "market_value_display": "USD 13.9m",
+          "gain_loss_usd": -58800.0,
+          "gain_loss_display": "-USD 58.8k",
+          "notes": "6% of bond market value"
+        },
+        {
+          "issuer": "MICROSOFT CORP",
+          "count": 6,
+          "type": "Corporate",
+          "region": "US",
+          "market_value_usd": 13094770.0,
+          "market_value_display": "USD 13.1m",
+          "gain_loss_usd": -55230.0,
+          "gain_loss_display": "-USD 55.2k",
+          "notes": "6% of bond market value"
+        },
+        {
+          "issuer": "KFW",
+          "count": 17,
+          "type": "Government Agency",
+          "region": "EU",
+          "market_value_usd": 12283939.790000001,
+          "market_value_display": "USD 12.3m",
+          "gain_loss_usd": -51810.22,
+          "gain_loss_display": "-USD 51.8k",
+          "notes": "6% of bond market value"
+        },
+        {
+          "issuer": "APPLE INC",
+          "count": 4,
+          "type": "Corporate",
+          "region": "US",
+          "market_value_usd": 12248340.0,
+          "market_value_display": "USD 12.2m",
+          "gain_loss_usd": -51660.0,
+          "gain_loss_display": "-USD 51.7k",
+          "notes": "6% of bond market value"
+        },
+        {
+          "issuer": "AMAZON.COM INC",
+          "count": 4,
+          "type": "Corporate",
+          "region": "US",
+          "market_value_usd": 11252540.0,
+          "market_value_display": "USD 11.3m",
+          "gain_loss_usd": -47460.0,
+          "gain_loss_display": "-USD 47.5k",
+          "notes": "5% of bond market value"
+        },
+        {
+          "issuer": "LANDWIRTSCH. RENTENBANK",
+          "count": 4,
+          "type": "Financial",
+          "region": "Global",
+          "market_value_usd": 9324671.2,
+          "market_value_display": "USD 9.3m",
+          "gain_loss_usd": -39328.8,
+          "gain_loss_display": "-USD 39.3k",
+          "notes": "4% of bond market value"
+        },
+        {
+          "issuer": "SIEMENS FINANCIERINGSMAT",
+          "count": 7,
+          "type": "Corporate",
+          "region": "EU",
+          "market_value_usd": 9229074.4,
+          "market_value_display": "USD 9.2m",
+          "gain_loss_usd": -38925.6,
+          "gain_loss_display": "-USD 38.9k",
+          "notes": "4% of bond market value"
+        },
+        {
+          "issuer": "HOUSING &DEVELOPMENT BRD",
+          "count": 7,
+          "type": "Unknown",
+          "region": "Global",
+          "market_value_usd": 8807193.41,
+          "market_value_display": "USD 8.8m",
+          "gain_loss_usd": -37147.350000000006,
+          "gain_loss_display": "-USD 37.1k",
+          "notes": "4% of bond market value"
+        }
+      ],
+      "items": [],
+      "regions": [],
+      "kpis": [],
+      "top_holdings": [],
+      "top_contributors": [],
+      "top_detractors": [],
+      "sector_exposure": [],
+      "currency_exposure": [
+        {
+          "name": "USD",
+          "count": 70,
+          "market_value_usd": 120648140.60000001,
+          "market_value_display": "USD 120.6m",
+          "weight": 0.5567944963219079,
+          "weight_display": "56%",
+          "gain_loss_usd": -508859.39999999997,
+          "gain_loss_display": "-USD 508.9k"
+        },
+        {
+          "name": "SGD",
+          "count": 39,
+          "market_value_usd": 79264741.17,
+          "market_value_display": "USD 79.3m",
+          "weight": 0.3658089666061256,
+          "weight_display": "37%",
+          "gain_loss_usd": -334317.36,
+          "gain_loss_display": "-USD 334.3k"
+        },
+        {
+          "name": "AUD",
+          "count": 42,
+          "market_value_usd": 16770547.030000007,
+          "market_value_display": "USD 16.8m",
+          "weight": 0.07739653707196646,
+          "weight_display": "8%",
+          "gain_loss_usd": -70733.23,
+          "gain_loss_display": "-USD 70.7k"
+        }
+      ],
+      "region_exposure": [
+        {
+          "name": "Global",
+          "count": 48,
+          "market_value_usd": 63959292.220000006,
+          "market_value_display": "USD 64.0m",
+          "weight": 0.29517389758048723,
+          "weight_display": "30%",
+          "gain_loss_usd": -269763.32999999996,
+          "gain_loss_display": "-USD 269.8k"
+        },
+        {
+          "name": "APAC",
+          "count": 32,
+          "market_value_usd": 61719326.220000006,
+          "market_value_display": "USD 61.7m",
+          "weight": 0.2848363927126485,
+          "weight_display": "28%",
+          "gain_loss_usd": -260314.19000000003,
+          "gain_loss_display": "-USD 260.3k"
+        },
+        {
+          "name": "US",
+          "count": 24,
+          "market_value_usd": 52777400.0,
+          "market_value_display": "USD 52.8m",
+          "weight": 0.24356915659071385,
+          "weight_display": "24%",
+          "gain_loss_usd": -222600.0,
+          "gain_loss_display": "-USD 222.6k"
+        },
+        {
+          "name": "EU",
+          "count": 47,
+          "market_value_usd": 38227410.36,
+          "market_value_display": "USD 38.2m",
+          "weight": 0.17642055311615043,
+          "weight_display": "18%",
+          "gain_loss_usd": -161232.47,
+          "gain_loss_display": "-USD 161.2k"
+        }
+      ],
+      "maturity_exposure": [
+        {
+          "name": "0-1Y",
+          "count": 88,
+          "market_value_usd": 139255869.31,
+          "market_value_display": "USD 139.3m",
+          "weight": 0.6426696775161977,
+          "weight_display": "64%",
+          "gain_loss_usd": -587342.0699999998,
+          "gain_loss_display": "-USD 587.3k"
+        },
+        {
+          "name": "1-3Y",
+          "count": 53,
+          "market_value_usd": 51236453.760000005,
+          "market_value_display": "USD 51.2m",
+          "weight": 0.23645764719410792,
+          "weight_display": "24%",
+          "gain_loss_usd": -216100.98,
+          "gain_loss_display": "-USD 216.1k"
+        },
+        {
+          "name": "3-5Y",
+          "count": 10,
+          "market_value_usd": 26191105.73,
+          "market_value_display": "USD 26.2m",
+          "weight": 0.12087267528969432,
+          "weight_display": "12%",
+          "gain_loss_usd": -110466.94,
+          "gain_loss_display": "-USD 110.5k"
+        }
+      ],
+      "flags": [],
+      "note": "Fixed income analytics now use position-level coupon, maturity, currency, market value, accrued interest, and gain/loss fields. Yield, duration, and rating are still required for full bond risk analytics.",
+      "empty_message": null,
+      "interpretation": null,
+      "mode": "position-level",
+      "issuer_count": 38,
+      "position_count": 151,
+      "holdings_count": null,
+      "usable_equity_pricing_count": null,
+      "manual_pricing_count": null,
+      "missing_pricing_count": null,
+      "total_equity_portfolio_value_usd": null,
+      "total_ytd_equity_pnl_usd": null,
+      "best_contributor": null,
+      "worst_contributor": null,
+      "largest_sector_exposure": null,
+      "largest_currency_exposure": null,
+      "total_market_value_usd": 216683428.8,
+      "total_market_value_display": "USD 216.7m",
+      "total_gain_loss_usd": -913909.99,
+      "total_gain_loss_display": "-USD 913.9k",
+      "invalid_or_manual_holdings": [],
+      "missing_bond_fields": [
+        "yield",
+        "duration",
+        "rating"
+      ]
+    },
+    "fx_markets": {
+      "title": "FX Markets",
+      "rows": [
+        {
+          "label": "USD/SGD",
+          "last": 1.35,
+          "one_week_change": 0.0054,
+          "one_month_change": 0.0175,
+          "driver": "USD rates / regional risk sentiment",
+          "source": {
+            "name": "Sample Data",
+            "url": "https://example.com/wolf-research/sample-data"
+          }
+        },
+        {
+          "label": "AUD/USD",
+          "last": 0.66,
+          "one_week_change": 0.0026,
+          "one_month_change": 0.0086,
+          "driver": "China growth / commodities beta",
+          "source": {
+            "name": "Sample Data",
+            "url": "https://example.com/wolf-research/sample-data"
+          }
+        },
+        {
+          "label": "EUR/USD",
+          "last": 1.08,
+          "one_week_change": 0.0043,
+          "one_month_change": 0.014,
+          "driver": "ECB repricing",
+          "source": {
+            "name": "Sample Data",
+            "url": "https://example.com/wolf-research/sample-data"
+          }
+        },
+        {
+          "label": "DXY",
+          "last": 104.2,
+          "one_week_change": 0.4168,
+          "one_month_change": 1.3546,
+          "driver": "Broad USD momentum",
+          "source": {
+            "name": "Sample Data",
+            "url": "https://example.com/wolf-research/sample-data"
+          }
+        }
+      ]
+    },
+    "commodities": {
+      "title": "Commodities",
+      "rows": [
+        {
+          "label": "Brent",
+          "last": 82.0,
+          "one_week_change": 0.328,
+          "one_month_change": 1.066,
+          "driver": "OPEC supply discipline / demand balance",
+          "source": {
+            "name": "Sample Data",
+            "url": "https://example.com/wolf-research/sample-data"
+          }
+        },
+        {
+          "label": "WTI",
+          "last": 78.0,
+          "one_week_change": 0.312,
+          "one_month_change": 1.014,
+          "driver": "US inventory cycle / refinery demand",
+          "source": {
+            "name": "Sample Data",
+            "url": "https://example.com/wolf-research/sample-data"
+          }
+        },
+        {
+          "label": "Gold",
+          "last": 2350.0,
+          "one_week_change": 9.4,
+          "one_month_change": 30.55,
+          "driver": "Real yields / safe-haven demand",
+          "source": {
+            "name": "Sample Data",
+            "url": "https://example.com/wolf-research/sample-data"
+          }
+        },
+        {
+          "label": "Copper",
+          "last": 4.5,
+          "one_week_change": 0.018,
+          "one_month_change": 0.0585,
+          "driver": "China growth expectations",
+          "source": {
+            "name": "Sample Data",
+            "url": "https://example.com/wolf-research/sample-data"
+          }
+        },
+        {
+          "label": "Natural Gas / LNG proxy",
+          "last": 2.7,
+          "one_week_change": 0.0108,
+          "one_month_change": 0.0351,
+          "driver": "Weather demand / LNG flow signals",
+          "source": {
+            "name": "Sample Data",
+            "url": "https://example.com/wolf-research/sample-data"
+          }
+        }
+      ]
+    },
+    "sector_scoreboard": {
+      "title": "Sector Scoreboard",
+      "rows": [
+        {
+          "sector": "Financials",
+          "one_week": -1.35,
+          "one_month": -1.8,
+          "ytd": 4.0,
+          "comment": "Near-term underperformance",
+          "source": {
+            "name": "Sample Data",
+            "url": "https://example.com/wolf-research/sector-scoreboard"
+          }
+        },
+        {
+          "sector": "Technology",
+          "one_week": -0.9,
+          "one_month": -0.9,
+          "ytd": 5.1,
+          "comment": "Near-term underperformance",
+          "source": {
+            "name": "Sample Data",
+            "url": "https://example.com/wolf-research/sector-scoreboard"
+          }
+        },
+        {
+          "sector": "Energy",
+          "one_week": -0.45,
+          "one_month": 0.0,
+          "ytd": 6.2,
+          "comment": "Near-term underperformance",
+          "source": {
+            "name": "Sample Data",
+            "url": "https://example.com/wolf-research/sector-scoreboard"
+          }
+        },
+        {
+          "sector": "Health Care",
+          "one_week": 0.0,
+          "one_month": 0.9,
+          "ytd": 7.3,
+          "comment": "Leadership broadening",
+          "source": {
+            "name": "Sample Data",
+            "url": "https://example.com/wolf-research/sector-scoreboard"
+          }
+        },
+        {
+          "sector": "Industrials",
+          "one_week": 0.45,
+          "one_month": 1.8,
+          "ytd": 8.4,
+          "comment": "Leadership broadening",
+          "source": {
+            "name": "Sample Data",
+            "url": "https://example.com/wolf-research/sector-scoreboard"
+          }
+        },
+        {
+          "sector": "Consumer Discretionary",
+          "one_week": 0.9,
+          "one_month": 2.7,
+          "ytd": 9.5,
+          "comment": "Leadership broadening",
+          "source": {
+            "name": "Sample Data",
+            "url": "https://example.com/wolf-research/sector-scoreboard"
+          }
+        },
+        {
+          "sector": "Consumer Staples",
+          "one_week": 1.35,
+          "one_month": 3.6,
+          "ytd": 10.6,
+          "comment": "Leadership broadening",
+          "source": {
+            "name": "Sample Data",
+            "url": "https://example.com/wolf-research/sector-scoreboard"
+          }
+        }
+      ]
+    },
+    "macro_news": {
+      "title": "Macro News",
+      "bullets": [
+        "Rates remain central to discount-rate sensitivity.",
+        "Inflation surprises drive cross-asset repricing.",
+        "Growth momentum informs sector and credit risk appetite."
+      ],
+      "sources": [
+        {
+          "name": "Sample Data",
+          "url": "https://fred.stlouisfed.org/"
+        },
+        {
+          "name": "Sample Data",
+          "url": "https://fred.stlouisfed.org/"
+        },
+        {
+          "name": "Sample Data",
+          "url": "https://fred.stlouisfed.org/"
+        }
+      ]
+    },
+    "private_markets": {
+      "title": "Private Markets",
+      "bullets": [
+        "Private credit fundraising remains resilient",
+        "Exit markets show gradual reopening for high-quality assets"
+      ],
+      "sources": [
+        {
+          "name": "Sample Data",
+          "url": "https://example.com/wolf-research/private_markets/private-credit-fundraising-remains-resilient"
+        },
+        {
+          "name": "Sample Data",
+          "url": "https://example.com/wolf-research/private_markets/exit-markets-show-gradual-reopening-for-high-quality-assets"
+        }
+      ]
+    },
+    "portfolio_linked_news": {
+      "title": "Portfolio-Linked News",
+      "rows": [],
+      "items": [],
+      "regions": [],
+      "kpis": [],
+      "top_holdings": [],
+      "top_contributors": [],
+      "top_detractors": [],
+      "sector_exposure": [],
+      "currency_exposure": [],
+      "region_exposure": [],
+      "maturity_exposure": [],
+      "flags": [],
+      "note": null,
+      "empty_message": "No material portfolio-linked news captured from configured sources this week.",
+      "interpretation": null,
+      "mode": null,
+      "issuer_count": null,
+      "position_count": null,
+      "holdings_count": null,
+      "usable_equity_pricing_count": null,
+      "manual_pricing_count": null,
+      "missing_pricing_count": null,
+      "total_equity_portfolio_value_usd": null,
+      "total_ytd_equity_pnl_usd": null,
+      "best_contributor": null,
+      "worst_contributor": null,
+      "largest_sector_exposure": null,
+      "largest_currency_exposure": null,
+      "total_market_value_usd": null,
+      "total_market_value_display": null,
+      "total_gain_loss_usd": null,
+      "total_gain_loss_display": null,
+      "invalid_or_manual_holdings": [],
+      "missing_bond_fields": []
+    },
+    "regional_headlines": {
+      "title": "Regional Headlines",
+      "rows": [],
+      "items": [],
+      "regions": [
+        {
+          "region": "US",
+          "headlines": [
+            {
+              "headline": "Private credit fundraising remains resilient",
+              "source": "Fallback source",
+              "category": "private_markets",
+              "url": "https://example.com/wolf-research/private_markets/private-credit-fundraising-remains-resilient"
+            },
+            {
+              "headline": "Private equity exits remain selective as valuation gaps persist",
+              "source": "Fallback source",
+              "category": "private_markets",
+              "url": "https://example.com/wolf-research/private_markets/private-equity-exits-remain-selective-as-valuation-gaps-persist"
+            },
+            {
+              "headline": "USD strength keeps Asian FX volatility in focus",
+              "source": "Fallback source",
+              "category": "fx",
+              "url": "https://example.com/wolf-research/fx/usd-strength-keeps-asian-fx-volatility-in-focus"
+            }
+          ]
+        },
+        {
+          "region": "EU",
+          "headlines": []
+        },
+        {
+          "region": "UK",
+          "headlines": []
+        },
+        {
+          "region": "APAC",
+          "headlines": []
+        },
+        {
+          "region": "EMEA",
+          "headlines": []
+        },
+        {
+          "region": "Global",
+          "headlines": []
+        }
+      ],
+      "kpis": [],
+      "top_holdings": [],
+      "top_contributors": [],
+      "top_detractors": [],
+      "sector_exposure": [],
+      "currency_exposure": [],
+      "region_exposure": [],
+      "maturity_exposure": [],
+      "flags": [],
+      "note": null,
+      "empty_message": null,
+      "interpretation": null,
+      "mode": null,
+      "issuer_count": null,
+      "position_count": null,
+      "holdings_count": null,
+      "usable_equity_pricing_count": null,
+      "manual_pricing_count": null,
+      "missing_pricing_count": null,
+      "total_equity_portfolio_value_usd": null,
+      "total_ytd_equity_pnl_usd": null,
+      "best_contributor": null,
+      "worst_contributor": null,
+      "largest_sector_exposure": null,
+      "largest_currency_exposure": null,
+      "total_market_value_usd": null,
+      "total_market_value_display": null,
+      "total_gain_loss_usd": null,
+      "total_gain_loss_display": null,
+      "invalid_or_manual_holdings": [],
+      "missing_bond_fields": []
+    },
+    "story_of_the_week": {
+      "title": "Private credit fundraising remains resilient",
+      "narrative": "Private credit fundraising remains resilient. Focus remains on portfolio implications, risk transmission, and cross-asset context.",
+      "implications": [
+        "Monitor whether the theme affects rates, FX, commodities, and sector leadership.",
+        "Treat this as analytical context, not an investment recommendation."
+      ],
+      "sources": [
+        {
+          "name": "Sample Data",
+          "url": "https://example.com/wolf-research/private_markets/private-credit-fundraising-remains-resilient"
+        }
+      ]
+    },
+    "portfolio_watchlist": {
+      "title": "What to Watch This Week",
+      "rows": [
+        {
+          "period": "This week",
+          "region": "US",
+          "event": "Inflation and Fed communication",
+          "portfolio_relevance": "Impacts USD, duration, and US growth holdings",
+          "asset_classes": "FX, rates, equities"
+        },
+        {
+          "period": "This week",
+          "region": "EU",
+          "event": "ECB / European growth data",
+          "portfolio_relevance": "Relevant for Allianz, BMW, RWE, Sanofi, Roche, KFW, EIB",
+          "asset_classes": "Equities, credit"
+        },
+        {
+          "period": "This week",
+          "region": "APAC",
+          "event": "China activity and Singapore macro",
+          "portfolio_relevance": "Relevant for Alibaba, SATS, SIA, Sembcorp, SGD exposure",
+          "asset_classes": "Equities, FX"
+        },
+        {
+          "period": "This week",
+          "region": "Global",
+          "event": "Oil and LNG supply headlines",
+          "portfolio_relevance": "Relevant for inflation, airlines, utilities, and commodities",
+          "asset_classes": "Commodities, rates"
+        },
+        {
+          "period": "This week",
+          "region": "EMEA",
+          "event": "Credit spread and geopolitical risk",
+          "portfolio_relevance": "Relevant for bond issuer risk and risk sentiment",
+          "asset_classes": "Credit, FX"
+        }
+      ],
+      "items": [],
+      "regions": [],
+      "kpis": [],
+      "top_holdings": [],
+      "top_contributors": [],
+      "top_detractors": [],
+      "sector_exposure": [],
+      "currency_exposure": [],
+      "region_exposure": [],
+      "maturity_exposure": [],
+      "flags": [],
+      "note": null,
+      "empty_message": null,
+      "interpretation": null,
+      "mode": null,
+      "issuer_count": null,
+      "position_count": null,
+      "holdings_count": null,
+      "usable_equity_pricing_count": null,
+      "manual_pricing_count": null,
+      "missing_pricing_count": null,
+      "total_equity_portfolio_value_usd": null,
+      "total_ytd_equity_pnl_usd": null,
+      "best_contributor": null,
+      "worst_contributor": null,
+      "largest_sector_exposure": null,
+      "largest_currency_exposure": null,
+      "total_market_value_usd": null,
+      "total_market_value_display": null,
+      "total_gain_loss_usd": null,
+      "total_gain_loss_display": null,
+      "invalid_or_manual_holdings": [],
+      "missing_bond_fields": []
+    }
+  },
+  "warnings": []
+}

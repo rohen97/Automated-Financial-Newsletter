@@ -5,7 +5,8 @@ import os
 
 import requests
 
-from src.fetchers.provider_audit import record_alpha_symbol
+from src.fetchers.provider_audit import record_alpha_symbol, record_provider
+from src.markets.performance import calculate_return_table
 
 
 YAHOO_CHART_URL = "https://query1.finance.yahoo.com/v8/finance/chart/{symbol}"
@@ -77,31 +78,34 @@ def alpha_market_row(label: str, symbol: str, driver: str, source_url: str, *, f
         history = fetch_alpha_vantage_history(function, symbol, outputsize="compact")
     if not history:
         raise ValueError(f"No Alpha Vantage history returned for {label}")
-    last = history[-1]["close"]
-    week_ref = history[-6]["close"] if len(history) >= 6 else history[0]["close"]
-    month_ref = history[0]["close"]
+    perf = calculate_return_table(history)
     return {
         "label": label,
-        "last": round(last, 4),
-        "one_week_change": pct_change(last, week_ref),
-        "one_month_change": pct_change(last, month_ref),
+        "last": perf["latest"],
+        "one_week_change": perf["one_week"],
+        "one_month_change": perf["one_month"],
+        "ytd_change": perf["ytd"],
+        "latest_date": perf["latest_date"],
+        "is_stale": perf["is_stale"],
         "driver": driver,
         "source": {"name": "Alpha Vantage", "url": source_url},
     }
 
 
 def market_row(label: str, symbol: str, driver: str, source_url: str) -> dict:
-    history = fetch_yahoo_history(symbol)
+    history = fetch_yahoo_history(symbol, range_="1y")
     if not history:
         raise ValueError(f"No price history returned for {symbol}")
-    last = history[-1]["close"]
-    week_ref = history[-6]["close"] if len(history) >= 6 else history[0]["close"]
-    month_ref = history[0]["close"]
+    perf = calculate_return_table(history)
+    record_provider("yahoo_finance")
     return {
         "label": label,
-        "last": round(last, 4),
-        "one_week_change": pct_change(last, week_ref),
-        "one_month_change": pct_change(last, month_ref),
+        "last": perf["latest"],
+        "one_week_change": perf["one_week"],
+        "one_month_change": perf["one_month"],
+        "ytd_change": perf["ytd"],
+        "latest_date": perf["latest_date"],
+        "is_stale": perf["is_stale"],
         "driver": driver,
         "source": {"name": "Yahoo Finance", "url": source_url},
     }

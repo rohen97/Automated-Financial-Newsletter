@@ -10,7 +10,14 @@ from src.utils.env import live_fetch_enabled
 
 def fetch_private_markets_news(sources_config: dict, lookback_days: int = 7) -> list[dict]:
     marketaux_articles = fetch_marketaux_articles(
-        ["private equity exits fundraising", "private credit direct lending fundraising", "venture capital private markets"],
+        [
+            "private equity exits fundraising",
+            "private credit direct lending fundraising",
+            "venture capital private markets",
+            "private markets secondaries LP liquidity",
+            "IPO exits valuation gap private equity",
+            "Asia private equity private credit fundraising",
+        ],
         lookback_days,
         limit_per_query=3,
     )

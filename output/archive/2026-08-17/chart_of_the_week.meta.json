@@ -1,0 +1,16 @@
+{
+  "contract_version": 1,
+  "chart_id": "inflation_path",
+  "title": "Chart of the Week: Inflation Progress and the Rate-Cut Path",
+  "series": [
+    "CPIAUCSL"
+  ],
+  "transformation": {
+    "CPIAUCSL": "yoy_pct_change"
+  },
+  "latest_values": {
+    "CPIAUCSL": 3.303856050706311
+  },
+  "render_mode": "matplotlib",
+  "rendered_at": "2026-08-17T09:15:46.087663+00:00"
+}

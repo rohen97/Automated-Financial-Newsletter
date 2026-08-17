@@ -6,7 +6,7 @@ def test_portfolio_sections_are_present():
     sections = newsletter["sections"]
     assert "portfolio_snapshot" in sections
     assert "equity_holdings_monitor" in sections
-    assert "fixed_income_monitor" in sections
+    assert "chart_of_the_week" in sections
     assert "portfolio_linked_news" in sections
     assert "regional_headlines" in sections
     assert "portfolio_watchlist" in sections

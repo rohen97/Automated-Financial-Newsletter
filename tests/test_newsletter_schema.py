@@ -5,7 +5,7 @@ from src.llm.schemas import Newsletter, NewsletterSection
 
 def test_newsletter_schema_accepts_required_shape():
     newsletter = Newsletter(
-        title="Wolf Research Weekly",
+        title="Weekly Market Brief",
         generated_at=datetime.now(),
         timezone="Asia/Singapore",
         sections={
@@ -16,4 +16,4 @@ def test_newsletter_schema_accepts_required_shape():
             )
         },
     )
-    assert newsletter.title == "Wolf Research Weekly"
+    assert newsletter.title == "Weekly Market Brief"

@@ -1,0 +1,496 @@
+{
+  "title": "Weekly Market Brief",
+  "generated_at": "2026-08-17T17:15:51.416568+08:00",
+  "timezone": "Asia/Singapore",
+  "source_urls": [
+    "https://finance.yahoo.com/quote/AIA",
+    "https://finance.yahoo.com/quote/AUDUSD=X",
+    "https://finance.yahoo.com/quote/CL=F",
+    "https://finance.yahoo.com/quote/CQQQ",
+    "https://finance.yahoo.com/quote/DX-Y.NYB",
+    "https://finance.yahoo.com/quote/EPP",
+    "https://finance.yahoo.com/quote/EUFN",
+    "https://finance.yahoo.com/quote/EURUSD=X",
+    "https://finance.yahoo.com/quote/EWA",
+    "https://finance.yahoo.com/quote/EWS",
+    "https://finance.yahoo.com/quote/EXH1.DE",
+    "https://finance.yahoo.com/quote/EXH2.DE",
+    "https://finance.yahoo.com/quote/EXH3.DE",
+    "https://finance.yahoo.com/quote/EXH4.DE",
+    "https://finance.yahoo.com/quote/EXH9.DE",
+    "https://finance.yahoo.com/quote/EXV3.DE",
+    "https://finance.yahoo.com/quote/EXV4.DE",
+    "https://finance.yahoo.com/quote/EXV6.DE",
+    "https://finance.yahoo.com/quote/FLAX",
+    "https://finance.yahoo.com/quote/GC=F",
+    "https://finance.yahoo.com/quote/IPRP.AS",
+    "https://finance.yahoo.com/quote/KURE",
+    "https://finance.yahoo.com/quote/KWEB",
+    "https://finance.yahoo.com/quote/NG=F",
+    "https://finance.yahoo.com/quote/USDJPY=X",
+    "https://finance.yahoo.com/quote/VNQI",
+    "https://finance.yahoo.com/quote/XLB",
+    "https://finance.yahoo.com/quote/XLE",
+    "https://finance.yahoo.com/quote/XLF",
+    "https://finance.yahoo.com/quote/XLI",
+    "https://finance.yahoo.com/quote/XLK",
+    "https://finance.yahoo.com/quote/XLP",
+    "https://finance.yahoo.com/quote/XLRE",
+    "https://finance.yahoo.com/quote/XLU",
+    "https://finance.yahoo.com/quote/XLV",
+    "https://finance.yahoo.com/quote/XLY",
+    "https://fred.stlouisfed.org/series/CPIAUCSL",
+    "https://fred.stlouisfed.org/series/DFF",
+    "https://fred.stlouisfed.org/series/DGS10",
+    "https://fred.stlouisfed.org/series/UNRATE",
+    "https://news.crunchbase.com/public/ai-ipo-results-lp-liquidity-gershfeld-flint/",
+    "https://news.crunchbase.com/transportation/clearjet-raises-25m-logistics-ai-seriesb/",
+    "https://news.crunchbase.com/venture/carpenter-founder-ai-construction-startup-trunk-tools-buchner/",
+    "https://news.google.com/rss/articles/CBMimwFBVV95cUxNTEFQQlYzUWtlM3NyV29wc0lJbUR3dUg0XzYyck1wSzRzOE9IRWV5TnlxaFpob3VnRTZ4WUplcUtFSGFrX1VhRUhZMmMxWHIwaGZtNHYwR1dDeV9EZWJPcDNwNE9NblB1eWk3Y3JNdF9tM0E0U1EtLTkyZGpsdzlsd2NmZVByQ0w5QkhIeUxiMHFZWDU3WmVPLXkwaw?oc=5",
+    "https://www.alphavantage.co/query?function=FX_DAILY",
+    "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=BNO",
+    "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=CPER",
+    "https://www.bis.org/publ/bisbull132.htm",
+    "https://www.bls.gov/bls/",
+    "https://www.cnbc.com/2026/08/15/cash-money-market-funds-bonds.html",
+    "https://www.cnbc.com/2026/08/16/goldman-stock-market-outperformance.html",
+    "https://www.cnbc.com/2026/08/17/china-economy-sales-investment-july-.html",
+    "https://www.cnbc.com/2026/08/17/japan-gdp-misses-estimates-trade-exports-yen-nikkei.html",
+    "https://www.cnbc.com/2026/08/17/japanese-automakers-vulnerable-iran-war-yen-rally.html",
+    "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260811~47cd3ee040.en.html",
+    "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260813~389729d6a9.en.html",
+    "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20260630a.htm",
+    "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20260731b.htm",
+    "https://www.federalreserve.gov/newsevents/pressreleases/orders20260804c.htm",
+    "https://www.ft.com/content/63ac111b-c841-4134-9751-f7cc419ae5c5?syn-25a6b1a6=1",
+    "https://www.ft.com/content/c061415a-791d-42e5-9907-736563c7f938?syn-25a6b1a6=1"
+  ],
+  "warnings": [],
+  "api_keys_detected": {
+    "OPENAI_API_KEY": true,
+    "FRED_API_KEY": true,
+    "ALPHA_VANTAGE_API_KEY": true,
+    "MARKETAUX_API_KEY": true
+  },
+  "providers_used": [
+    "alpha_vantage",
+    "fred",
+    "google_news",
+    "marketaux",
+    "openai",
+    "rss",
+    "yahoo_finance"
+  ],
+  "fred_series_fetched": [
+    "DFF",
+    "DGS10",
+    "CPIAUCSL",
+    "UNRATE",
+    "NFCI",
+    "T10Y2Y",
+    "BAMLH0A0HYM2",
+    "STLFSI4",
+    "DFII10",
+    "FEDFUNDS"
+  ],
+  "alpha_vantage_symbols_fetched": [
+    "USD/SGD",
+    "USD/CNH",
+    "BNO",
+    "CPER"
+  ],
+  "marketaux_queries_run": [
+    "US markets Federal Reserve inflation",
+    "Europe markets ECB growth",
+    "UK markets Bank of England",
+    "Asia Pacific markets China Singapore",
+    "EMEA markets credit geopolitical risk",
+    "global markets macro rates",
+    "FX USD currency markets",
+    "commodities oil gold copper natural gas",
+    "private equity private credit fundraising",
+    "Alibaba BMW Allianz Singapore Airlines Sembcorp RWE Microsoft Alphabet Amazon Apple KFW",
+    "Singapore Airlines SATS oil travel demand",
+    "Alibaba China internet ecommerce regulation",
+    "private equity exits fundraising",
+    "private credit direct lending fundraising",
+    "venture capital private markets",
+    "private markets secondaries LP liquidity",
+    "IPO exits valuation gap private equity",
+    "Asia private equity private credit fundraising"
+  ],
+  "google_news_queries_run": [
+    "site:imf.org economy markets financial stability when:7d",
+    "site:bis.org central banks global markets financial stability when:7d",
+    "site:seekingalpha.com/market-news markets rates commodities equities when:7d",
+    "site:seekingalpha.com global macro economy central banks when:7d"
+  ],
+  "rss_sources_fetched": [
+    "Federal Reserve",
+    "U.S. Bureau of Labor Statistics",
+    "European Central Bank",
+    "Bank for International Settlements",
+    "CNBC",
+    "Financial Times Markets",
+    "Crunchbase News",
+    "IMF via Google News",
+    "BIS via Google News",
+    "Seeking Alpha Market News",
+    "Seeking Alpha Global Macro"
+  ],
+  "gmail_messages_ingested": 0,
+  "article_count_raw": 240,
+  "article_count_deduped": 214,
+  "macro_articles_count": 6,
+  "private_markets_articles_count": 3,
+  "real_source_url_count": 85,
+  "fallback_source_count": 0,
+  "portfolio_data_loaded": true,
+  "equity_holdings_count": 16,
+  "usable_equity_pricing_count": 16,
+  "chart_of_the_week_rendered": true,
+  "chart_of_the_week_enabled": true,
+  "chart_source_rotation_week_number": null,
+  "chart_source_selected": "FRED",
+  "fred_chart_selected": "inflation_path",
+  "fred_series_used": [
+    "CPIAUCSL"
+  ],
+  "fred_chart_scores": [
+    {
+      "chart_id": "inflation_path",
+      "selection_score": 0.8755,
+      "score_parts": {
+        "market_move_score": 0.3,
+        "news_relevance_score": 0.125,
+        "portfolio_relevance_score": 0.148,
+        "regime_relevance_score": 0.0525,
+        "freshness_score": 0.1,
+        "trigger_boost": 0.15
+      }
+    },
+    {
+      "chart_id": "us_10y_yield",
+      "selection_score": 0.8022,
+      "score_parts": {
+        "market_move_score": 0.1784,
+        "news_relevance_score": 0.25,
+        "portfolio_relevance_score": 0.142,
+        "regime_relevance_score": 0.1275,
+        "freshness_score": 0.015,
+        "trigger_boost": 0.0892
+      }
+    },
+    {
+      "chart_id": "real_rates",
+      "selection_score": 0.7665,
+      "score_parts": {
+        "market_move_score": 0.147,
+        "news_relevance_score": 0.25,
+        "portfolio_relevance_score": 0.142,
+        "regime_relevance_score": 0.1275,
+        "freshness_score": 0.1,
+        "trigger_boost": 0.0
+      }
+    },
+    {
+      "chart_id": "policy_vs_inflation",
+      "selection_score": 0.761,
+      "score_parts": {
+        "market_move_score": 0.3,
+        "news_relevance_score": 0.0625,
+        "portfolio_relevance_score": 0.106,
+        "regime_relevance_score": 0.1275,
+        "freshness_score": 0.015,
+        "trigger_boost": 0.15
+      }
+    },
+    {
+      "chart_id": "labour_market",
+      "selection_score": 0.6539,
+      "score_parts": {
+        "market_move_score": 0.2659,
+        "news_relevance_score": 0.0625,
+        "portfolio_relevance_score": 0.04,
+        "regime_relevance_score": 0.0525,
+        "freshness_score": 0.1,
+        "trigger_boost": 0.133
+      }
+    },
+    {
+      "chart_id": "yield_curve",
+      "selection_score": 0.5323,
+      "score_parts": {
+        "market_move_score": 0.2265,
+        "news_relevance_score": 0.0,
+        "portfolio_relevance_score": 0.04,
+        "regime_relevance_score": 0.0525,
+        "freshness_score": 0.1,
+        "trigger_boost": 0.1133
+      }
+    },
+    {
+      "chart_id": "high_yield_spreads",
+      "selection_score": 0.4315,
+      "score_parts": {
+        "market_move_score": 0.0155,
+        "news_relevance_score": 0.1875,
+        "portfolio_relevance_score": 0.076,
+        "regime_relevance_score": 0.0525,
+        "freshness_score": 0.1,
+        "trigger_boost": 0.0
+      }
+    },
+    {
+      "chart_id": "financial_stress",
+      "selection_score": 0.4311,
+      "score_parts": {
+        "market_move_score": 0.0776,
+        "news_relevance_score": 0.125,
+        "portfolio_relevance_score": 0.076,
+        "regime_relevance_score": 0.0525,
+        "freshness_score": 0.1,
+        "trigger_boost": 0.0
+      }
+    }
+  ],
+  "fred_chart_selection_reason": "Inflation data moved meaningfully over recent windows. Selected because market move score was the largest contributor to the chart score.",
+  "chart_selection_history_updated": true,
+  "chart_source_attempts": [],
+  "chart_extraction_method": "fred_intelligent_selector",
+  "chart_image_embedding_enabled": true,
+  "chart_image_embedding_compliance_approved": true,
+  "chart_image_embedded": true,
+  "chart_original_url": "https://fred.stlouisfed.org/series/CPIAUCSL",
+  "chart_local_image_path": "C:\\Users\\Rohen\\OneDrive\\Coding\\Two Quant\\wolf-research\\output\\latest\\chart_of_the_week.png",
+  "chart_fallback_mode": false,
+  "fixed_income_section_enabled": false,
+  "manual_pricing_count": 16,
+  "missing_pricing_count": 0,
+  "invalid_or_manual_holdings": [],
+  "total_equity_portfolio_value_usd": 171598778.0,
+  "total_ytd_equity_pnl_usd": 30616737.0,
+  "best_contributor": "Meta Wolf AG",
+  "worst_contributor": "Bayerische Motoren Werke AG",
+  "largest_sector_exposure": "Capital Goods",
+  "largest_currency_exposure": "EUR",
+  "portfolio_linked_articles_count": 8,
+  "regional_headline_counts": {
+    "US": 3,
+    "EU": 3,
+    "UK": 0,
+    "APAC": 3,
+    "EMEA": 0,
+    "Global": 3
+  },
+  "rss_sources_used": [
+    "Bank for International Settlements",
+    "CNBC",
+    "Crunchbase News",
+    "FRED",
+    "Federal Reserve",
+    "International Monetary Fund | IMF",
+    "U.S. Bureau of Labor Statistics"
+  ],
+  "openai_sections_generated": [
+    "executive_snapshot",
+    "story_of_the_week"
+  ],
+  "sections_using_deterministic_fallback": [],
+  "regional_coverage_status": "ok",
+  "portfolio_linked_coverage_status": "ok",
+  "portfolio_validation_status": "equity pricing usable",
+  "validation_status": "ok",
+  "send_blocked": true,
+  "send_block_reason": "SEND_MODE is dry_run",
+  "sector_scoreboard_regions": [
+    "US",
+    "Europe",
+    "Asia_APAC"
+  ],
+  "sector_scoreboard_rows_count": 30,
+  "sector_scoreboard_provider_used": "Yahoo Finance",
+  "sector_scoreboard_missing_proxies": [],
+  "sector_scoreboard_stale_prices": [],
+  "fx_provider_used": [
+    "Alpha Vantage",
+    "Yahoo Finance"
+  ],
+  "fx_rows_count": 6,
+  "commodities_provider_used": [
+    "Alpha Vantage",
+    "Yahoo Finance"
+  ],
+  "commodities_rows_count": 5,
+  "driver_explainer_used": true,
+  "driver_comments_generated_by_openai": 0,
+  "driver_comments_generated_deterministically": 41,
+  "driver_comment_confidence_summary": {
+    "count": 41,
+    "min": 0.58,
+    "max": 0.62,
+    "avg": 0.588
+  },
+  "market_driver_sources_used": [
+    "Alpha Vantage",
+    "Yahoo Finance"
+  ],
+  "errors": [
+    {
+      "provider": "rss",
+      "message": "IMF: 403 Client Error: Forbidden for url: https://www.imf.org/en/News/RSS"
+    },
+    {
+      "provider": "rss",
+      "message": "Reuters Markets: HTTPSConnectionPool(host='feeds.reuters.com', port=443): Max retries exceeded with url: /reuters/businessNews (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000019683C61450>: Failed to reso"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "AUD/USD: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "EUR/USD: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "USD/JPY: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "DXY: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "WTI: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "Gold: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "Natural Gas / LNG proxy: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "US Technology: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "US Financials: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "US Industrials: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "US Consumer Discretionary: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "US Consumer Staples: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "US Health Care: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "US Energy: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "US Utilities: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "US Real Estate: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "US Materials: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "Europe Technology: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "Europe Financials: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "Europe Industrials: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "Europe Consumer Discretionary: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "Europe Consumer Staples: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "Europe Health Care: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "Europe Energy: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "Europe Utilities: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "Europe Real Estate: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "Europe Materials: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "Asia_APAC Technology: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "Asia_APAC Financials: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "Asia_APAC Industrials: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "Asia_APAC Consumer Discretionary: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "Asia_APAC Consumer Staples: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "Asia_APAC Health Care: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "Asia_APAC Energy: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "Asia_APAC Utilities: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "Asia_APAC Real Estate: No Alpha Vantage daily time series returned"
+    },
+    {
+      "provider": "alpha_vantage",
+      "message": "Asia_APAC Materials: No Alpha Vantage daily time series returned"
+    }
+  ]
+}

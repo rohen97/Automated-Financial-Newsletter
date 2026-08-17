@@ -48,7 +48,15 @@ def newsletter_to_markdown(newsletter: Newsletter) -> str:
                     f"{holding['current_value_display']} | {holding['ytd_pnl_display']} | {holding['ytd_pct_display']} |"
                 )
         elif isinstance(section, dict) and "items" in section:
-            if section.get("items"):
+            if key in {"macro_news", "private_markets"}:
+                for item in section.get("items", []):
+                    lines.append(
+                        f"- **{item.get('theme', '')}**: {item.get('summary', '')} "
+                        f"{item.get('market_implication') or item.get('why_it_matters') or ''}"
+                    )
+                if not section.get("items"):
+                    lines.append(section.get("empty_message", "No material update captured."))
+            elif section.get("items"):
                 for item in section["items"]:
                     lines.append(f"- {item.get('name')}: {item.get('news_theme')} - {item.get('why_it_matters')}")
             else:
@@ -61,6 +69,10 @@ def newsletter_to_markdown(newsletter: Newsletter) -> str:
                         lines.append(f"- {item['headline']} ({item['source']}, {item['category']})")
                 else:
                     lines.append("- No material update captured from configured sources.")
+        elif key == "chart_of_the_week" and isinstance(section, dict):
+            lines.append(section.get("summary") or section.get("takeaway") or "")
+            if section.get("original_url"):
+                lines.append(f"Source: {section.get('source_name', 'Source')} - {section['original_url']}")
         elif isinstance(section, dict) and "top_holdings" in section:
             lines.append("| Holding | Asset Class | Region | Currency | Weight |")
             lines.append("|---|---|---|---|---:|")
@@ -73,16 +85,27 @@ def newsletter_to_markdown(newsletter: Newsletter) -> str:
                 lines.append(f"- {flag}")
         elif isinstance(section, dict) and "rows" in section:
             first = section["rows"][0] if section["rows"] else {}
-            if "sector" in first:
+            if key == "chart_of_the_week":
+                lines.append(section.get("summary") or section.get("takeaway") or "")
+                if section.get("original_url"):
+                    lines.append(f"Source: {section.get('source_name', 'Source')} - {section['original_url']}")
+            elif key == "sector_scoreboard" and section.get("regions"):
+                for block in section.get("regions", []):
+                    lines.append(f"### {block.get('label', block.get('region'))}")
+                    lines.append("| Sector | 1W | 1M | YTD | Comment |")
+                    lines.append("|---|---:|---:|---:|---|")
+                    for row in block.get("rows", []):
+                        lines.append(f"| {row['sector']} | {row['one_week']} | {row['one_month']} | {row['ytd']} | {row['comment']} |")
+            elif "sector" in first:
                 lines.append("| Sector | 1W | 1M | YTD | Comment |")
                 lines.append("|---|---:|---:|---:|---|")
                 for row in section["rows"]:
                     lines.append(f"| {row['sector']} | {row['one_week']} | {row['one_month']} | {row['ytd']} | {row['comment']} |")
             else:
-                lines.append("| Asset | Last | 1W | 1M | Driver |")
-                lines.append("|---|---:|---:|---:|---|")
+                lines.append("| Asset | Last | 1W | 1M | YTD | Comment |")
+                lines.append("|---|---:|---:|---:|---:|---|")
                 for row in section["rows"]:
-                    lines.append(f"| {row['label']} | {row['last']} | {row['one_week_change']} | {row['one_month_change']} | {row['driver']} |")
+                    lines.append(f"| {row['label']} | {row['last']} | {row['one_week_change']} | {row['one_month_change']} | {row.get('ytd_change', '')} | {row['driver']} |")
         elif isinstance(section, dict) and "narrative" in section:
             lines.append(section["narrative"])
             lines.extend(f"- {item}" for item in section.get("implications", []))
@@ -110,6 +133,10 @@ def format_change(value: float) -> str:
     return f"{value:+.2f}"
 
 
+def format_pct(value: float) -> str:
+    return f"{value:+.2f}%"
+
+
 def heat_class(value: float) -> str:
     if value > 0:
         return "heat-positive positive"
@@ -124,6 +151,69 @@ def display_header_date(generated_at: str, timezone: str) -> str:
     day = local.strftime("%A")
     month = local.strftime("%B")
     return f"{day}, {local.day} {month} {local.year} | 9:00am SGT"
+
+
+def issue_code(generated_at: str, timezone: str) -> str:
+    value = datetime.fromisoformat(generated_at).astimezone(ZoneInfo(timezone))
+    iso_year, iso_week, _ = value.isocalendar()
+    return f"WR {iso_year}.{iso_week:02d}"
+
+
+def story_tags(story: dict) -> list[str]:
+    text = " ".join(
+        [
+            str(story.get("title", "")),
+            str(story.get("narrative", "")),
+            " ".join(str(item) for item in story.get("implications", [])),
+        ]
+    ).lower()
+    mappings = [
+        ("RATES", ("rate", "yield", "fed", "ecb", "boj", "central bank")),
+        ("INFLATION", ("inflation", "cpi", "prices")),
+        ("FX", ("fx", "currency", "dollar", "usd", "euro", "yen")),
+        ("ENERGY", ("oil", "crude", "lng", "gas", "energy")),
+        ("GEOPOLITICS", ("war", "conflict", "geopolit", "sanction", "security")),
+        ("EQUITIES", ("equity", "stock", "sector", "earnings")),
+        ("CREDIT", ("credit", "spread", "refinancing", "debt")),
+        ("APAC", ("asia", "china", "singapore", "japan", "korea")),
+    ]
+    tags = [label for label, terms in mappings if any(term in text for term in terms)]
+    return (tags or ["CROSS-ASSET"])[:5]
+
+
+def unique_source_count(sections: dict) -> int:
+    urls = set()
+
+    def walk(value: object) -> None:
+        if isinstance(value, dict):
+            url = value.get("url") or value.get("original_url")
+            if url and "example.com/wolf-research" not in str(url):
+                urls.add(str(url))
+            for child in value.values():
+                walk(child)
+        elif isinstance(value, list):
+            for child in value:
+                walk(child)
+
+    walk(sections)
+    return len(urls)
+
+
+def estimated_read_minutes(sections: dict) -> int:
+    words = []
+
+    def walk(value: object) -> None:
+        if isinstance(value, str):
+            words.extend(value.split())
+        elif isinstance(value, dict):
+            for child in value.values():
+                walk(child)
+        elif isinstance(value, list):
+            for child in value:
+                walk(child)
+
+    walk(sections)
+    return max(5, min(18, round(len(words) / 220)))
 
 
 def executive_cards(sections: dict) -> list[dict[str, str]]:
@@ -200,15 +290,21 @@ def render_newsletter_html(newsletter: Newsletter | dict) -> str:
             )
             template = env.get_template(template_path.name)
             css = css_path.read_text(encoding="utf-8") if css_path.exists() else ""
-            return template.render(
+            rendered = template.render(
                 newsletter=newsletter.model_dump(mode="json"),
                 css=css,
                 change_class=change_class,
                 format_change=format_change,
+                format_pct=format_pct,
                 heat_class=heat_class,
                 display_header_date=display_header_date,
                 executive_cards=executive_cards,
+                issue_code=issue_code,
+                story_tags=story_tags,
+                unique_source_count=unique_source_count,
+                estimated_read_minutes=estimated_read_minutes,
             )
+            return _normalize_rendered_html(rendered)
         except Exception:
             return newsletter_to_basic_html(newsletter)
     return newsletter_to_basic_html(newsletter)
@@ -221,10 +317,12 @@ def newsletter_to_basic_html(newsletter: Newsletter) -> str:
     sections = data.get("sections", {})
     parts = [
         "<!doctype html>",
-        "<html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'>",
-        f"<title>{escape(data['title'])}</title><style>{css}</style></head><body>",
-        "<table role='presentation' class='page' width='100%'><tr><td align='center'>",
-        "<table role='presentation' class='container' width='720'>",
+        "<html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'>",
+        "<meta name='color-scheme' content='light dark'><meta name='supported-color-schemes' content='light dark'>",
+        f"<title>{escape(data['title'])}</title><style>{css}</style></head>",
+        "<body class='email-body' bgcolor='#d8d7d2' style='margin:0;padding:0;background-color:#d8d7d2;color:#191919'>",
+        "<table role='presentation' class='page' width='100%' bgcolor='#d8d7d2' cellpadding='0' cellspacing='0' border='0'><tr><td align='center'>",
+        "<table role='presentation' class='container' width='720' bgcolor='#f4f0e9' cellpadding='0' cellspacing='0' border='0'>",
         "<tr><td class='masthead'>",
         "<div class='brand'>Wolf Research</div>",
         f"<h1 class='title'>{escape(data['title'])}</h1>",
@@ -294,33 +392,10 @@ def newsletter_to_basic_html(newsletter: Newsletter) -> str:
         parts.append(_exposure_table("Currency Exposure", "Currency", equity.get("currency_exposure", [])))
         parts.append("</td></tr>")
 
-    fixed_income = sections.get("fixed_income_monitor")
-    if fixed_income:
-        parts.append("<tr><td class='section-tight'><div class='kicker'>Fixed Income</div><h2 class='section-title'>Fixed Income Monitor</h2>")
-        if fixed_income.get("mode") == "position-level":
-            parts.append("<table class='data-table' width='100%'><tr><th>Issuer</th><th>Count</th><th>Type</th><th>Region</th><th>Market Value</th><th>Gain/Loss</th></tr>")
-            for row in fixed_income.get("rows", []):
-                parts.append(
-                    "<tr>"
-                    f"<td>{escape(str(row.get('issuer', '')))}</td><td class='number'>{escape(str(row.get('count', '')))}</td>"
-                    f"<td>{escape(str(row.get('type', '')))}</td><td>{escape(str(row.get('region', '')))}</td>"
-                    f"<td class='number'>{escape(str(row.get('market_value_display', '')))}</td>"
-                    f"<td class='number {change_class(float(row.get('gain_loss_usd') or 0))}'>{escape(str(row.get('gain_loss_display', '')))}</td>"
-                    "</tr>"
-                )
-        else:
-            parts.append("<table class='data-table' width='100%'><tr><th>Issuer</th><th>Count</th><th>Type</th><th>Region</th><th>Notes</th></tr>")
-            for row in fixed_income.get("rows", []):
-                parts.append(
-                    "<tr>"
-                    f"<td>{escape(str(row.get('issuer', '')))}</td><td class='number'>{escape(str(row.get('count', '')))}</td>"
-                    f"<td>{escape(str(row.get('type', '')))}</td><td>{escape(str(row.get('region', '')))}</td>"
-                    f"<td>{escape(str(row.get('notes', '')))}</td>"
-                    "</tr>"
-                )
-        parts.append("</table>")
-        if fixed_income.get("note"):
-            parts.append(f"<div class='section-note'>{escape(fixed_income['note'])}</div>")
+    chart = sections.get("chart_of_the_week")
+    if chart:
+        parts.append("<tr><td class='section-tight'><div class='kicker'>Chart Focus</div><h2 class='section-title'>Chart of the Week</h2>")
+        parts.append(_chart_card(chart))
         parts.append("</td></tr>")
 
     for key in ("fx_markets", "commodities", "sector_scoreboard"):
@@ -332,8 +407,10 @@ def newsletter_to_basic_html(newsletter: Newsletter) -> str:
         section = sections.get(key)
         if section:
             parts.append(f"<tr><td class='section-tight'><div class='kicker'>{kicker}</div><h2 class='section-title'>{escape(section.get('title', section_title(key)))}</h2>")
-            for bullet in section.get("bullets", []):
-                parts.append(f"<div class='bullet'>• {escape(str(bullet))}</div>")
+            if section.get("items"):
+                parts.append(_insight_table(section, key))
+            else:
+                parts.append(f"<div class='section-note'>{escape(section.get('empty_message', 'No material update captured from configured sources.'))}</div>")
             parts.append("</td></tr>")
 
     linked = sections.get("portfolio_linked_news")
@@ -398,11 +475,15 @@ def newsletter_to_basic_html(newsletter: Newsletter) -> str:
         "<tr><td class='footer'>"
         f"<strong>Generated timestamp:</strong> {escape(data['generated_at'])}<br>"
         "Internal distribution only. Analytical context, not investment advice.<br>"
-        "Source/audit note: manual/private pricing and issuer-only fixed income limitations are retained in audit logs. "
+        "Source/audit note: manual/private pricing and source limitations are retained in audit logs. "
         "Portfolio relevance is a ranking overlay, not a recommendation engine."
         "</td></tr></table></td></tr></table></body></html>"
     )
     return "".join(parts)
+
+
+def _normalize_rendered_html(value: str) -> str:
+    return "\n".join(line.rstrip() for line in value.splitlines()).rstrip() + "\n"
 
 
 def _link(url: str | None, label: str | None) -> str:
@@ -410,6 +491,41 @@ def _link(url: str | None, label: str | None) -> str:
     if url:
         return f"<a href='{escape(str(url), quote=True)}'>{text}</a>"
     return text
+
+
+def _chart_card(chart: dict) -> str:
+    image_src = chart.get("image_src") or chart.get("preview_image_src") or "chart_of_the_week.png"
+    source = chart.get("source_name") or "Chart source"
+    source_url = chart.get("original_url")
+    published = chart.get("published_at") or chart.get("generated_at") or ""
+    html = [
+        "<div class='chart-card'>",
+        "<div class='chart-meta'>",
+        f"<span class='source-tag'>{escape(str(source))}</span>",
+    ]
+    if published:
+        html.append(f"<span class='source'>{escape(str(published))}</span>")
+    html.append("</div>")
+    html.append(f"<h3>{escape(str(chart.get('title', 'Chart of the Week')))}</h3>")
+    if chart.get("embedded_image"):
+        html.append(
+            f"<img class='chart-image' src='{escape(str(image_src), quote=True)}' "
+            f"alt='{escape(str(chart.get('title', 'Chart of the Week')), quote=True)}'>"
+        )
+    if chart.get("summary"):
+        html.append(f"<p>{escape(str(chart['summary']))}</p>")
+    if chart.get("market_signal_reason"):
+        html.append(f"<div class='chart-relevance'><strong>Why selected:</strong> {escape(str(chart['market_signal_reason']))}</div>")
+    if chart.get("portfolio_relevance"):
+        html.append(f"<div class='chart-relevance'><strong>Portfolio relevance:</strong> {escape(str(chart['portfolio_relevance']))}</div>")
+    if chart.get("series_used"):
+        html.append(f"<div class='source'>FRED series: {escape(', '.join(chart.get('series_used', [])))}</div>")
+    if source_url:
+        html.append(f"<div class='source chart-source'>Source: {_link(str(source_url), str(source))}</div>")
+    if chart.get("copyright_note"):
+        html.append(f"<div class='source'>{escape(str(chart['copyright_note']))}</div>")
+    html.append("</div>")
+    return "".join(html)
 
 
 def _simple_holdings_table(title: str, holdings: list[dict]) -> str:
@@ -456,30 +572,69 @@ def _market_table(section: dict, key: str) -> str:
     }
     html = [f"<tr><td class='section-tight'><div class='kicker'>{escape(kickers.get(key, 'Market Dashboard'))}</div><h2 class='section-title'>{title}</h2>"]
     if key == "sector_scoreboard":
-        html.append("<table class='data-table' width='100%'><tr><th>Sector</th><th>1W</th><th>1M</th><th>YTD</th><th>Comment</th></tr>")
-        for row in section.get("rows", []):
-            html.append(
-                "<tr>"
-                f"<td>{escape(str(row.get('sector', '')))}</td>"
-                f"<td class='number {heat_class(float(row.get('one_week', 0)))}'>{format_change(float(row.get('one_week', 0)))}</td>"
-                f"<td class='number {heat_class(float(row.get('one_month', 0)))}'>{format_change(float(row.get('one_month', 0)))}</td>"
-                f"<td class='number {heat_class(float(row.get('ytd', 0)))}'>{format_change(float(row.get('ytd', 0)))}</td>"
-                f"<td>{escape(str(row.get('comment', '')))}</td>"
-                "</tr>"
-            )
+        html.append("<table class='data-table' width='100%'>")
+        for block in section.get("regions", []):
+            html.append(f"<tr><th colspan='5'>{escape(str(block.get('label', block.get('region', ''))))}</th></tr>")
+            html.append("<tr><th>Sector</th><th>1W</th><th>1M</th><th>YTD</th><th>Comment</th></tr>")
+            for row in block.get("rows", []):
+                html.append(
+                    "<tr>"
+                    f"<td>{escape(str(row.get('sector', '')))}</td>"
+                    f"<td class='number {heat_class(float(row.get('one_week', 0)))}'>{format_pct(float(row.get('one_week', 0)))}</td>"
+                    f"<td class='number {heat_class(float(row.get('one_month', 0)))}'>{format_pct(float(row.get('one_month', 0)))}</td>"
+                    f"<td class='number {heat_class(float(row.get('ytd', 0)))}'>{format_pct(float(row.get('ytd', 0)))}</td>"
+                    f"<td>{escape(str(row.get('comment', '')))}</td>"
+                    "</tr>"
+                )
     else:
-        html.append("<table class='data-table' width='100%'><tr><th>Asset</th><th>Last</th><th>1W</th><th>1M</th><th>Driver</th></tr>")
+        html.append("<table class='data-table' width='100%'><tr><th>Asset</th><th>Last</th><th>1W</th><th>1M</th><th>YTD</th><th>Comment</th></tr>")
         for row in section.get("rows", []):
             html.append(
                 "<tr>"
                 f"<td>{escape(str(row.get('label', '')))}</td><td class='number'>{escape(str(row.get('last', '')))}</td>"
-                f"<td class='number {change_class(float(row.get('one_week_change', 0)))}'>{format_change(float(row.get('one_week_change', 0)))}</td>"
-                f"<td class='number {change_class(float(row.get('one_month_change', 0)))}'>{format_change(float(row.get('one_month_change', 0)))}</td>"
+                f"<td class='number {change_class(float(row.get('one_week_change', 0)))}'>{format_pct(float(row.get('one_week_change', 0)))}</td>"
+                f"<td class='number {change_class(float(row.get('one_month_change', 0)))}'>{format_pct(float(row.get('one_month_change', 0)))}</td>"
+                f"<td class='number {change_class(float(row.get('ytd_change', 0)))}'>{format_pct(float(row.get('ytd_change', 0)))}</td>"
                 f"<td class='driver'>{escape(str(row.get('driver', '')))}</td>"
                 "</tr>"
             )
     html.append("</table></td></tr>")
     return "".join(html)
+
+
+def _insight_table(section: dict, key: str) -> str:
+    if key == "macro_news":
+        html = ["<table class='data-table' width='100%'><tr><th>Theme</th><th>What changed</th><th>Why it matters</th><th>Portfolio relevance</th><th>Source</th></tr>"]
+        for item in section.get("items", []):
+            html.append(
+                "<tr>"
+                f"<td>{escape(str(item.get('theme', '')))}</td>"
+                f"<td>{escape(str(item.get('summary', '')))}</td>"
+                f"<td>{escape(str(item.get('market_implication', '')))}</td>"
+                f"<td>{escape(str(item.get('portfolio_relevance', '')))}</td>"
+                f"<td>{_source_links(item.get('sources', []))}</td>"
+                "</tr>"
+            )
+    else:
+        html = ["<table class='data-table' width='100%'><tr><th>Theme</th><th>Summary</th><th>Why it matters</th><th>Portfolio / office relevance</th><th>Source</th></tr>"]
+        for item in section.get("items", []):
+            html.append(
+                "<tr>"
+                f"<td>{escape(str(item.get('theme', '')))}</td>"
+                f"<td>{escape(str(item.get('summary', '')))}</td>"
+                f"<td>{escape(str(item.get('why_it_matters', '')))}</td>"
+                f"<td>{escape(str(item.get('portfolio_relevance', '')))}</td>"
+                f"<td>{_source_links(item.get('sources', []))}</td>"
+                "</tr>"
+            )
+    html.append("</table>")
+    return "".join(html)
+
+
+def _source_links(sources: list[dict]) -> str:
+    if not sources:
+        return ""
+    return ", ".join(_link(source.get("url"), source.get("name")) for source in sources if source)
 
 
 def newsletter_to_html(newsletter: Newsletter) -> str:
@@ -494,7 +649,7 @@ def section_title(key: str) -> str:
         "regional_headlines": "Regional Headlines",
         "portfolio_snapshot": "Portfolio Snapshot",
         "equity_holdings_monitor": "Equity Holdings Monitor",
-        "fixed_income_monitor": "Fixed Income Monitor",
+        "chart_of_the_week": "Chart of the Week",
         "portfolio_linked_news": "Portfolio-Linked News",
         "portfolio_watchlist": "What to Watch This Week",
     }

@@ -1,0 +1,18 @@
+{
+  "contract_version": 1,
+  "chart_id": "policy_vs_inflation",
+  "title": "Chart of the Week: Policy Rate Versus Inflation",
+  "series": [
+    "FEDFUNDS",
+    "CPIAUCSL"
+  ],
+  "transformation": {
+    "CPIAUCSL": "yoy_pct_change"
+  },
+  "latest_values": {
+    "FEDFUNDS": 3.63,
+    "CPIAUCSL": 3.303856050706311
+  },
+  "render_mode": "matplotlib",
+  "rendered_at": "2026-08-13T03:56:26.042576+00:00"
+}

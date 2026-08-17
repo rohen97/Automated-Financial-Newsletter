@@ -1,0 +1,9 @@
+interface:
+  display_name: "Build Wolf Market Brief"
+  short_description: "Build the Gmail-backed weekly market brief"
+  default_prompt: "Use $build-wolf-market-brief to collect this week's research, generate the newsletter, validate it, and prepare a reviewed Gmail draft."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "gmail"
+      description: "Read labeled newsletter emails and create reviewed drafts"

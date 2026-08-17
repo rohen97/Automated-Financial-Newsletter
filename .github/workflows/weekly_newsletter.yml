@@ -2,15 +2,29 @@ name: Weekly Newsletter
 
 on:
   schedule:
+    # GitHub cron is UTC. 01:00 UTC is 09:00 Asia/Singapore.
     - cron: "0 1 * * 1"
   workflow_dispatch:
+    inputs:
+      send:
+        description: Send the finalized V2 after validation
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: weekly-newsletter
+  cancel-in-progress: false
 
 jobs:
   build-newsletter:
     runs-on: ubuntu-latest
     env:
-      SEND_MODE: ${{ secrets.SEND_MODE || 'dry_run' }}
       TIMEZONE: Asia/Singapore
+      ALLOW_FALLBACK_IN_SEND: "false"
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
       SENDGRID_FROM_EMAIL: ${{ secrets.SENDGRID_FROM_EMAIL }}
@@ -27,10 +41,19 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
       - name: Run tests
-        run: pytest
-      - name: Generate newsletter
+        run: python -m pytest
+      - name: Generate newsletter data and standard outputs
+        env:
+          SEND_MODE: dry_run
         run: python -m src.main
+      - name: Build finalized V2
+        run: python scripts/preview_review_v2.py
+      - name: Deliver finalized V2
+        env:
+          SEND_MODE: ${{ (github.event_name == 'schedule' || inputs.send == true) && secrets.SEND_MODE || 'dry_run' }}
+        run: python scripts/send_review_v2.py
       - name: Upload outputs
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: newsletter-output
