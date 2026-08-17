@@ -1,4 +1,4 @@
-live_fetch: false
+live_fetch: true
 source_quality:
   Reuters: 0.95
   Bloomberg: 0.95
@@ -7,17 +7,58 @@ source_quality:
   Federal Reserve: 0.95
   FRED: 0.95
   IMF: 0.90
+  European Central Bank: 0.95
+  ECB Statistical Press Releases: 0.95
+  U.S. Bureau of Labor Statistics: 0.95
+  Bank for International Settlements: 0.93
+  Seeking Alpha: 0.78
+  Google News: 0.72
   World Bank: 0.88
   PitchBook: 0.85
   Preqin: 0.85
   Crunchbase: 0.75
   Sample Data: 0.55
+gmail_mcp:
+  enabled: true
+  digest_path: data/inbox/gmail_digest.json
+  max_age_hours: 192
+  max_messages: 60
+  label: Wolf Research Sources
+  search_query: 'label:"Wolf Research Sources" newer_than:8d -in:spam -in:trash'
+marketaux_max_queries: 12
+marketaux_fetch_budget_seconds: 80
+marketaux_queries:
+  - US markets Federal Reserve inflation
+  - Europe markets ECB growth
+  - UK markets Bank of England
+  - Asia Pacific markets China Singapore
+  - EMEA markets credit geopolitical risk
+  - global markets macro rates
+  - FX USD currency markets
+  - commodities oil gold copper natural gas
+  - private equity private credit fundraising
+  - Alibaba BMW Allianz Singapore Airlines Sembcorp RWE Microsoft Alphabet Amazon Apple KFW
+  - Singapore Airlines SATS oil travel demand
+  - Alibaba China internet ecommerce regulation
 rss_feeds:
   macro:
     - name: Federal Reserve
       url: https://www.federalreserve.gov/feeds/press_all.xml
     - name: IMF
       url: https://www.imf.org/en/News/RSS
+      region: Global
+    - name: U.S. Bureau of Labor Statistics
+      url: https://www.bls.gov/feed/bls_latest.rss
+      region: US
+    - name: European Central Bank
+      url: https://www.ecb.europa.eu/rss/press.html
+      region: EU
+    - name: ECB Statistical Press Releases
+      url: https://www.ecb.europa.eu/rss/statpress.html
+      region: EU
+    - name: Bank for International Settlements
+      url: https://www.bis.org/doclist/rss_all_categories.rss
+      region: Global
   markets:
     - name: CNBC
       url: https://www.cnbc.com/id/100003114/device/rss/rss.html
@@ -28,6 +69,56 @@ rss_feeds:
   private_markets:
     - name: Crunchbase News
       url: https://news.crunchbase.com/feed/
+google_news_queries:
+  - name: IMF via Google News
+    query: site:imf.org economy markets financial stability when:7d
+    category: macro
+    region: Global
+  - name: BIS via Google News
+    query: site:bis.org central banks global markets financial stability when:7d
+    category: macro
+    region: Global
+  - name: Seeking Alpha Market News
+    query: site:seekingalpha.com/market-news markets rates commodities equities when:7d
+    category: markets
+    region: US
+  - name: Seeking Alpha Global Macro
+    query: site:seekingalpha.com global macro economy central banks when:7d
+    category: macro
+    region: Global
+sections:
+  macro:
+    queries:
+      - US Federal Reserve inflation yields jobs
+      - ECB Europe growth inflation
+      - China Singapore APAC growth markets
+  private_markets:
+    queries:
+      - private equity exits fundraising
+      - private credit direct lending fundraising
+      - private markets secondaries LP liquidity
+  regional:
+    queries:
+      - US markets Federal Reserve inflation
+      - Europe markets ECB growth
+      - UK markets Bank of England
+      - Asia Pacific markets China Singapore
+      - EMEA markets credit geopolitical risk
+      - global markets macro rates
+  portfolio_linked:
+    queries:
+      - Alibaba BMW Allianz Singapore Airlines Sembcorp RWE Sanofi ING SATS
+      - Singapore Airlines SATS oil travel demand
+      - Alibaba China internet ecommerce regulation
+  central_banks:
+    queries:
+      - Federal Reserve ECB Bank of England central banks
+  commodities:
+    queries:
+      - commodities oil gold copper natural gas
+  credit:
+    queries:
+      - credit spreads refinancing high yield financial conditions
 fallback_sources:
   - name: Sample Data
     url: https://example.com/wolf-research/sample-data

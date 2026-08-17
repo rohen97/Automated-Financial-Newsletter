@@ -1,0 +1,1191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="supported-color-schemes" content="light dark">
+    <meta name="x-apple-disable-message-reformatting">
+    <title>Weekly Market Brief - Editorial V2</title>
+    <style>
+:root {
+  color-scheme: light dark;
+  supported-color-schemes: light dark;
+}
+
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  background: #e8e9e7;
+  color: #17202b;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a {
+  color: #153f72;
+  text-decoration: none;
+}
+
+a:hover { text-decoration: underline; }
+
+.preheader {
+  display: none;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.page {
+  width: 100%;
+  background: #e8e9e7;
+  table-layout: fixed;
+}
+
+.container {
+  width: 700px;
+  max-width: 700px;
+  margin: 0 auto;
+  background: #fcfbf8;
+  table-layout: fixed;
+}
+
+.top-rule {
+  height: 6px;
+  line-height: 6px;
+  font-size: 1px;
+  background: #15355b;
+}
+
+.masthead {
+  padding: 24px 32px 20px;
+  background: #fcfbf8;
+  border-bottom: 1px solid #d9ddd9;
+}
+
+.logo-cell { vertical-align: middle; }
+
+.brand-mark {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #15355b;
+  color: #15355b;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 36px;
+  text-align: center;
+}
+
+.brand {
+  color: #15355b;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 25px;
+  text-transform: uppercase;
+}
+
+.edition,
+.issue-cell {
+  font-family: "Courier New", Courier, monospace;
+  text-transform: uppercase;
+}
+
+.kicker,
+.signal-meta,
+.source-line,
+.feature-label,
+.feature-source-count,
+.feature-subhead,
+.feature-sources,
+.table-label,
+.metric-label,
+.watch-region,
+.headline-region,
+.headline-meta,
+.sector-region-label {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.edition {
+  margin-top: 2px;
+  color: #59636c;
+  font-size: 9px;
+  line-height: 13px;
+}
+
+.issue-cell {
+  color: #15355b;
+  font-size: 10px;
+  line-height: 14px;
+}
+
+.issue-cell span {
+  color: #b27421;
+  font-size: 8px;
+}
+
+.section {
+  border-bottom: 1px solid #dfe2de;
+}
+
+.intro-section { padding: 27px 32px 30px; }
+
+.kicker {
+  color: #8a5516;
+  font-size: 10px;
+  line-height: 14px;
+}
+
+.intro-section h1 {
+  margin: 7px 0 5px;
+  color: #17202b;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 31px;
+  font-weight: normal;
+  line-height: 37px;
+}
+
+.deck,
+.section-deck {
+  color: #4d5861;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.deck { margin: 0 0 17px; }
+
+.signal-index {
+  color: #a56b20;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 11px;
+  line-height: 15px;
+  vertical-align: top;
+}
+
+.signal-copy {
+  padding: 17px 0;
+  border-top: 1px solid #d9ddd9;
+  vertical-align: top;
+}
+
+.signal-inner { width: 100%; }
+
+.signal-meta {
+  color: #15355b;
+  font-size: 9px;
+  font-weight: bold;
+  line-height: 13px;
+}
+
+.signal-meta span { color: #7e878f; }
+
+.signal-copy h2 {
+  margin: 5px 0 5px;
+  color: #1c2530;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 19px;
+  line-height: 24px;
+}
+
+.signal-copy p {
+  margin: 0;
+  color: #35414c;
+  font-size: 13px;
+  line-height: 19px;
+}
+
+.source-line {
+  margin-top: 8px;
+  color: #4f5b64;
+  font-size: 9px;
+  line-height: 13px;
+}
+
+.source-line a { color: #244f7d; }
+
+.feature-section {
+  padding: 30px 32px 32px;
+  border-top: 3px solid #c4892f;
+  background: #111820;
+  color: #f2f3f2;
+}
+
+.feature-label {
+  color: #e2a13d;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 14px;
+}
+
+.feature-source-count {
+  color: #aeb6bc;
+  font-size: 9px;
+  font-weight: bold;
+  line-height: 13px;
+  text-align: right;
+}
+
+.feature-section h2 {
+  margin: 16px 0 8px;
+  color: #f4f4f1;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 29px;
+  font-weight: normal;
+  line-height: 36px;
+}
+
+.topic-tags { margin: 0 0 17px; }
+
+.topic-tags span {
+  display: inline-block;
+  margin: 0 5px 5px 0;
+  padding: 3px 6px;
+  border: 1px solid #48515a;
+  color: #b8c0c6;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 8px;
+  line-height: 11px;
+}
+
+.feature-block {
+  padding: 14px 0 0;
+  border-top: 1px solid #323b44;
+}
+
+.compact-feature { margin-top: 13px; }
+
+.feature-subhead {
+  color: #e2a13d;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 14px;
+}
+
+.feature-block p {
+  margin: 6px 0 0;
+  color: #d2d6d7;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.feature-sources {
+  margin-top: 18px;
+  padding-top: 11px;
+  border-top: 1px solid #323b44;
+  color: #aeb6bc;
+  font-size: 9px;
+  font-weight: bold;
+  line-height: 14px;
+}
+
+.feature-sources a { color: #dbad61; }
+
+.chart-section,
+.portfolio-section,
+.scan-section { background: #ffffff; }
+
+.chart-section,
+.markets-section,
+.portfolio-section,
+.outlook-section,
+.scan-section { padding: 28px 32px 30px; }
+
+.section-title {
+  margin: 5px 0 4px;
+  color: #17202b;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 26px;
+  font-weight: normal;
+  line-height: 32px;
+}
+
+.insight-title {
+  margin: 0 0 14px;
+  color: #5a656e;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 20px;
+}
+
+.chart-image {
+  display: block;
+  width: 100%;
+  max-width: 636px;
+  height: auto;
+  border: 1px solid #dde0dc;
+  background: #ffffff;
+}
+
+.body-copy {
+  margin: 13px 0 0;
+  color: #4f5a63;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.key-read {
+  margin-top: 14px;
+  padding: 11px 13px;
+  border-left: 3px solid #c4892f;
+  background: #f4f5f2;
+}
+
+.key-read strong {
+  display: block;
+  margin-bottom: 3px;
+  color: #15355b;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 9px;
+  font-weight: bold;
+  line-height: 13px;
+  text-transform: uppercase;
+}
+
+.key-read span {
+  color: #4d5861;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.section-deck { margin: 0 0 17px; }
+
+.table-label {
+  margin: 17px 0 6px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #15355b;
+  color: #15355b;
+  font-size: 9px;
+  line-height: 12px;
+}
+
+.second-label { margin-top: 20px; }
+
+.compact-table { table-layout: fixed; }
+
+.compact-table th {
+  padding: 8px 10px;
+  color: #3e4953;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 9px;
+  font-weight: bold;
+  line-height: 13px;
+  text-transform: uppercase;
+}
+
+.compact-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid #e2e4e1;
+  color: #202a34;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.compact-table th:not(:first-child),
+.compact-table td:not(:first-child) { border-left: 1px solid #e7e9e6; }
+
+.asset-cell { font-weight: bold; }
+
+.number {
+  font-family: "Courier New", Courier, monospace;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.positive { color: #167451 !important; }
+.negative { color: #a23b36 !important; }
+.neutral { color: #6f7880 !important; }
+
+.subsection-rule {
+  margin: 24px 0 18px;
+  border-top: 1px solid #dfe2de;
+}
+
+.subsection-title {
+  margin: 0 0 8px;
+  color: #17202b;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 19px;
+  font-weight: normal;
+  line-height: 24px;
+}
+
+.leadership-table td,
+.sector-metrics td {
+  padding: 11px 10px;
+  border-bottom: 1px solid #e2e4e1;
+  color: #35404a;
+  font-size: 11px;
+  line-height: 15px;
+}
+
+.leadership-table span {
+  display: block;
+  margin-bottom: 3px;
+  color: #5e6972;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 9px;
+  font-weight: bold;
+  line-height: 13px;
+  text-transform: uppercase;
+}
+
+.leadership-table strong {
+  display: block;
+  color: #25303a;
+  font-size: 11px;
+  line-height: 15px;
+}
+
+.leadership-table em {
+  display: block;
+  margin-top: 2px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 9px;
+  font-style: normal;
+  line-height: 12px;
+}
+
+.region-cell {
+  color: #15355b !important;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 9px !important;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.data-note {
+  padding: 8px 10px !important;
+  color: #58636c !important;
+  font-size: 10px !important;
+  font-style: italic;
+}
+
+.portfolio-deck { max-width: 590px; }
+
+.metric-grid { margin-top: 17px; }
+
+.metric-card {
+  width: 50%;
+  padding: 14px 15px;
+  border: 1px solid #dde0dc;
+  background: #ffffff;
+  vertical-align: top;
+}
+
+.metric-label {
+  margin-bottom: 6px;
+  color: #5f6971;
+  font-size: 9px;
+  font-weight: bold;
+  line-height: 13px;
+}
+
+.metric-card strong {
+  display: block;
+  color: #1f2a34;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.metric-card span {
+  display: block;
+  margin-top: 4px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 10px;
+  line-height: 13px;
+}
+
+.watch-region,
+.headline-region {
+  color: #15355b;
+  font-size: 9px;
+  font-weight: bold;
+  line-height: 13px;
+}
+
+.watch-copy h3 {
+  margin: 0 0 4px;
+  color: #26313b;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+.watch-copy p {
+  margin: 0;
+  color: #5c6770;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.headline-copy a,
+.headline-copy > span {
+  display: block;
+  color: #27323c;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 19px;
+}
+
+.headline-meta {
+  margin-top: 5px;
+  color: #5f6971;
+  font-size: 9px;
+  font-weight: bold;
+  line-height: 13px;
+}
+
+.footer {
+  padding: 24px 32px 27px;
+  background: #111820;
+  color: #c4c9cd;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 9px;
+  line-height: 15px;
+}
+
+.footer-brand {
+  color: #dca451;
+  font-size: 9px;
+}
+
+.footer-title {
+  margin: 4px 0 11px;
+  color: #ffffff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 19px;
+  line-height: 23px;
+  text-transform: none;
+}
+
+.footer p { margin: 6px 0; }
+.footer strong { color: #e1e4e5; }
+
+@media (prefers-color-scheme: dark) {
+  body, .page { background: #14181c !important; color: #17202b !important; }
+  .container, .masthead, .intro-section, .markets-section, .outlook-section {
+    background: #fcfbf8 !important;
+    color: #17202b !important;
+  }
+  .chart-section, .portfolio-section, .scan-section { background: #ffffff !important; color: #17202b !important; }
+  .top-rule { background: #15355b !important; }
+  .brand-mark { border-color: #15355b !important; color: #15355b !important; }
+  .brand, .signal-meta, .watch-region, .headline-region, .region-cell, .sector-region-label,
+  .table-label, .key-read strong, .source-line a { color: #15355b !important; }
+  .intro-section h1, .section-title, .subsection-title, .signal-copy h2, .metric-card strong,
+  .watch-copy h3, .headline-copy a, .headline-copy > span { color: #17202b !important; }
+  .deck, .section-deck, .insight-title, .signal-copy p, .body-copy, .watch-copy p,
+  .key-read span, .data-note { color: #4d5861 !important; }
+  .signal-copy, .watch-copy, .watch-region, .headline-copy, .headline-region,
+  .compact-table td, .leadership-table td, .sector-metrics td { border-color: #dfe2de !important; }
+  .compact-table th { color: #3e4953 !important; }
+  .compact-table td, .leadership-table td, .sector-metrics td { color: #202a34 !important; }
+  .compact-table th:not(:first-child), .compact-table td:not(:first-child) { border-left-color: #e7e9e6 !important; }
+  .leadership-table strong, .sector-metrics strong { color: #25303a !important; }
+  .key-read { background: #f4f5f2 !important; }
+  .metric-card { background: #ffffff !important; border-color: #dde0dc !important; }
+  .metric-label, .headline-meta, .source-line, .leadership-table span, .sector-metrics span { color: #5f6971 !important; }
+  .positive { color: #167451 !important; }
+  .negative { color: #a23b36 !important; }
+  .neutral { color: #59636c !important; }
+  .chart-image { background: #ffffff !important; border-color: #dde0dc !important; }
+  .feature-section, .footer { background: #0c1116 !important; }
+}
+
+[data-ogsb] body, [data-ogsb] .page { background: #14181c !important; }
+[data-ogsb] .container, [data-ogsb] .masthead, [data-ogsb] .intro-section,
+[data-ogsb] .markets-section, [data-ogsb] .outlook-section { background: #fcfbf8 !important; }
+[data-ogsb] .chart-section, [data-ogsb] .portfolio-section, [data-ogsb] .scan-section,
+[data-ogsb] .metric-card { background: #ffffff !important; }
+[data-ogsb] .key-read { background: #f4f5f2 !important; }
+[data-ogsb] .feature-section, [data-ogsb] .footer { background: #0c1116 !important; }
+[data-ogsc] .intro-section h1, [data-ogsc] .section-title, [data-ogsc] .subsection-title,
+[data-ogsc] .signal-copy h2, [data-ogsc] .metric-card strong, [data-ogsc] .watch-copy h3,
+[data-ogsc] .headline-copy a { color: #17202b !important; }
+[data-ogsc] .deck, [data-ogsc] .section-deck, [data-ogsc] .signal-copy p,
+[data-ogsc] .body-copy, [data-ogsc] .watch-copy p { color: #4d5861 !important; }
+[data-ogsc] .compact-table td, [data-ogsc] .leadership-table td, [data-ogsc] .sector-metrics td { color: #202a34 !important; border-color: #dfe2de !important; }
+[data-ogsc] .positive { color: #167451 !important; }
+[data-ogsc] .negative { color: #a23b36 !important; }
+
+@media only screen and (max-width: 720px) {
+  html, body { width: 100% !important; min-width: 0 !important; overflow-x: hidden !important; }
+  .page, .container { width: 100% !important; max-width: 100% !important; min-width: 0 !important; table-layout: fixed !important; }
+  .signal-list, .compact-table, .sector-metrics, .metric-grid, .watch-list, .headline-list {
+    width: 100% !important;
+    max-width: 100% !important;
+    table-layout: fixed !important;
+  }
+  .intro-section, .feature-section, .chart-section, .markets-section,
+  .portfolio-section, .outlook-section, .scan-section, .footer,
+  .signal-copy, .watch-copy, .headline-copy, h1, h2, h3, p, a {
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+  }
+  .masthead, .intro-section, .feature-section, .chart-section, .markets-section,
+  .portfolio-section, .outlook-section, .scan-section, .footer {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+  .issue-cell { display: none !important; }
+  .brand { font-size: 18px !important; line-height: 22px !important; }
+  .edition { font-size: 8px !important; line-height: 11px !important; }
+  .intro-section h1 { font-size: 27px !important; line-height: 33px !important; }
+  .feature-section h2 { font-size: 25px !important; line-height: 31px !important; }
+  .feature-source-count { display: none !important; }
+  .section-title { font-size: 23px !important; line-height: 29px !important; }
+  .signal-index { width: 31px !important; padding-right: 7px !important; }
+  .signal-copy { width: auto !important; }
+  .signal-inner {
+    width: calc(100vw - 80px) !important;
+    max-width: calc(100vw - 80px) !important;
+  }
+  .compact-table th, .compact-table td { padding-left: 5px !important; padding-right: 5px !important; font-size: 10px !important; }
+  .leadership-table td { display: block !important; width: auto !important; padding: 8px 7px !important; }
+  .leadership-table .region-cell { padding-top: 13px !important; }
+  .sector-metrics td { padding-left: 10px !important; padding-right: 10px !important; }
+  .metric-card { display: block !important; width: auto !important; }
+  .watch-region, .headline-region { width: 56px !important; }
+}
+
+@media print {
+  :root {
+    color-scheme: light !important;
+    supported-color-schemes: light !important;
+  }
+
+  @page { margin: 11mm 9mm; }
+
+  html, body, .page, .container, .masthead, .intro-section, .chart-section,
+  .markets-section, .portfolio-section, .outlook-section, .scan-section {
+    background: #ffffff !important;
+    color: #17202b !important;
+  }
+
+  body, .page, .container {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .container { box-shadow: none !important; }
+
+  .feature-section {
+    page-break-before: always;
+    break-before: page;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    background: #ffffff !important;
+    color: #17202b !important;
+    border-top: 3px solid #c4892f !important;
+    border-bottom: 1px solid #dfe2de !important;
+  }
+
+  .feature-section h2 { color: #17202b !important; }
+  .feature-block { border-top-color: #d9ddd9 !important; }
+  .feature-block p { color: #35414c !important; }
+  .feature-source-count, .feature-sources { color: #5f6971 !important; }
+  .feature-sources { border-top-color: #d9ddd9 !important; }
+  .feature-sources a { color: #15355b !important; }
+  .topic-tags span { border-color: #9aa1a6 !important; color: #4f5a63 !important; }
+
+  .chart-section, .chart-image, .key-read, .metric-grid, .sector-metrics,
+  .watch-list tr, .headline-list tr {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .intro-section, .chart-section, .markets-section, .portfolio-section,
+  .outlook-section, .scan-section {
+    padding-top: 20px !important;
+    padding-bottom: 22px !important;
+  }
+
+  .footer {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    background: #ffffff !important;
+    color: #3f4a53 !important;
+    border-top: 2px solid #15355b !important;
+  }
+
+  .footer-brand { color: #8a5516 !important; }
+  .footer-title, .footer strong { color: #17202b !important; }
+  a { color: #15355b !important; }
+  .positive { color: #167451 !important; }
+  .negative { color: #a23b36 !important; }
+}
+
+    </style>
+    <!--[if mso]>
+    <style>
+      body, table, td, div, p, a { font-family: Arial, Helvetica, sans-serif !important; }
+      .container, .masthead, .intro-section, .chart-section, .markets-section,
+      .portfolio-section, .outlook-section, .scan-section {
+        background-color: #ffffff !important;
+        color: #17202b !important;
+      }
+      .feature-section, .footer { background-color: #111820 !important; }
+      .number { mso-number-format: "\@"; }
+    </style>
+    <![endif]-->
+  </head>
+  <body class="email-body" bgcolor="#e8e9e7" style="margin:0;padding:0;background-color:#e8e9e7;color:#17202b;">
+    <div class="preheader">Wolf Research: three market signals, one feature, and the week ahead.</div>
+    <table role="presentation" class="page" width="100%" bgcolor="#e8e9e7" cellpadding="0" cellspacing="0" border="0" style="width:100%;background-color:#e8e9e7;table-layout:fixed;">
+      <tr>
+        <td align="center">
+          <table role="presentation" class="container" width="700" bgcolor="#fcfbf8" cellpadding="0" cellspacing="0" border="0" style="width:700px;max-width:700px;background-color:#fcfbf8;table-layout:fixed;">
+            <tr><td class="top-rule" bgcolor="#15355b" style="height:6px;line-height:6px;font-size:1px;background-color:#15355b;">&nbsp;</td></tr>
+            <tr>
+              <td class="masthead" bgcolor="#fcfbf8" style="padding:24px 32px 20px;background-color:#fcfbf8;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td class="logo-cell" width="48" style="width:48px;vertical-align:middle;">
+                      <div class="brand-mark">WR</div>
+                    </td>
+                    <td class="brand-cell" style="vertical-align:middle;">
+                      <div class="brand">Wolf Research</div>
+                      <div class="edition">Weekly Market Brief / Monday, 17 August 2026 | 9:00am SGT</div>
+                    </td>
+                    <td class="issue-cell" width="98" style="width:98px;text-align:right;vertical-align:middle;">
+                      <div>WR 2026.34</div>
+                      <span>V2 REVIEW</span>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="intro-section section" bgcolor="#fcfbf8" style="padding:27px 32px 30px;background-color:#fcfbf8;">
+                <div class="kicker" style="color:#8a5516;font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:bold;line-height:14px;text-transform:uppercase;">The essential brief</div>
+                <h1>Three things that matter</h1>
+                <p class="deck" style="color:#4d5861;">A shorter read focused on the signals most likely to move markets or change portfolio risk.</p>
+                <table role="presentation" class="signal-list" width="100%" cellpadding="0" cellspacing="0" border="0">
+
+                  <tr>
+                    <td class="signal-index" width="42" style="width:42px;padding:19px 12px 19px 0;vertical-align:top;">01</td>
+                    <td class="signal-copy" style="padding:17px 0;border-top:1px solid #d9ddd9;vertical-align:top;">
+                      <div class="signal-inner">
+                      <div class="signal-meta" style="color:#15355b;font-family:Arial,Helvetica,sans-serif;font-size:9px;font-weight:bold;line-height:13px;text-transform:uppercase;">Macro <span>&middot;</span> MARKET IMPACT / HIGH</div>
+                      <h2>Rates and yields</h2>
+                      <p style="color:#35414c;">The conflict in the Middle East has exacerbated fiscal pressures in Africa, raising energy and fertiliser prices while slowing growth. Despite a shift towards domestic currency debt that reduces exchange rate risk, the reliance on short maturities and higher...</p>
+                      <div class="source-line">SOURCE / <a href="https://www.bis.org/publ/bisbull132.htm">Bank for International Settlements</a></div>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="signal-index" width="42" style="width:42px;padding:19px 12px 19px 0;vertical-align:top;">02</td>
+                    <td class="signal-copy" style="padding:17px 0;border-top:1px solid #d9ddd9;vertical-align:top;">
+                      <div class="signal-inner">
+                      <div class="signal-meta" style="color:#15355b;font-family:Arial,Helvetica,sans-serif;font-size:9px;font-weight:bold;line-height:13px;text-transform:uppercase;">Equities <span>&middot;</span> MARKET IMPACT / HIGH</div>
+                      <h2>Consumer Discretionary / Asian / APAC Markets fell 7.25% over the week</h2>
+                      <p style="color:#35414c;">1W: Asia_APAC Consumer Discretionary moved -7.25% as China/APAC growth, regional FX, and policy expectations affected short-term positioning. 1M: the +0.75% move reflects accumulated performance versus regional macro and sector earnings expectations.</p>
+                      <div class="source-line">SOURCE / <a href="https://finance.yahoo.com/quote/KWEB">Yahoo Finance</a></div>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="signal-index" width="42" style="width:42px;padding:19px 12px 19px 0;vertical-align:top;">03</td>
+                    <td class="signal-copy" style="padding:17px 0;border-top:1px solid #d9ddd9;vertical-align:top;">
+                      <div class="signal-inner">
+                      <div class="signal-meta" style="color:#15355b;font-family:Arial,Helvetica,sans-serif;font-size:9px;font-weight:bold;line-height:13px;text-transform:uppercase;">Portfolio <span>&middot;</span> MARKET IMPACT / MEDIUM</div>
+                      <h2>Capital Goods and EUR dominate portfolio risk</h2>
+                      <p style="color:#35414c;">Equity exposure is concentrated in Capital Goods and EUR-denominated holdings. YTD contribution is led by Meta Wolf AG, while Bayerische Motoren Werke AG is the largest detractor.</p>
+
+                      </div>
+                    </td>
+                  </tr>
+
+                </table>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="feature-section" bgcolor="#111820" style="padding:30px 32px 32px;background-color:#111820;color:#f2f3f2;border-top:3px solid #c4892f;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td class="feature-label">Story of the Week / Macro Pulse</td>
+                    <td class="feature-source-count">61 VERIFIED SOURCES</td>
+                  </tr>
+                </table>
+                <h2>Africa's Public Debt Amid Global Headwinds: Balancing Resilience and Vulnerabilities</h2>
+                <div class="topic-tags"><span>RATES</span><span>INFLATION</span><span>FX</span><span>ENERGY</span><span>GEOPOLITICS</span></div>
+                <div class="feature-block">
+                  <div class="feature-subhead">The view</div>
+                  <p>The conflict in the Middle East has exacerbated fiscal pressures in Africa, raising energy and fertiliser prices while slowing growth. Despite a shift towards domestic currency debt that reduces exchange rate risk, the reliance on short maturities and higher rates has heightened debt service costs and rollover risks. Enhanced government financing through banks has implications for credit availability and financial stability, necessitating efforts to diversify investor bases and strengthen market structures.</p>
+                </div>
+                <div class="feature-block compact-feature">
+                  <div class="feature-subhead">Why it matters</div>
+                  <p>Monitor whether the theme affects rates, FX, commodities, and sector leadership.</p>
+                </div>
+                <div class="feature-block compact-feature">
+                  <div class="feature-subhead">Watch next</div>
+                  <p>Inflation and Fed communication: Impacts USD, duration, and growth-style equity valuation</p>
+                </div>
+
+                <div class="feature-sources">SOURCES / <a href="https://www.bis.org/publ/bisbull132.htm">Bank for International Settlements</a></div>
+
+              </td>
+            </tr>
+
+
+
+            <tr>
+              <td class="section chart-section" bgcolor="#ffffff" style="padding:28px 32px 30px;background-color:#ffffff;">
+                <div class="kicker" style="color:#8a5516;font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:bold;line-height:14px;text-transform:uppercase;">Chart desk / FRED</div>
+                <h2 class="section-title">Chart of the Week</h2>
+                <h3 class="insight-title">Inflation Progress and the Rate-Cut Path</h3>
+                <img class="chart-image" src="chart_of_the_week.png" alt="Chart of the Week: Inflation Progress and the Rate-Cut Path">
+                <p class="body-copy">Latest reading: US CPI 3.30%.</p>
+                <div class="key-read"><strong>Why it matters</strong><span>Inflation affects central-bank policy, margins, airlines, utilities, and currency risk.</span></div>
+                <div class="source-line">DATA AS OF / Monday, 17 August 2026 | 9:00am SGT &nbsp;&middot;&nbsp; <a href="https://fred.stlouisfed.org/series/CPIAUCSL">SOURCE</a></div>
+              </td>
+            </tr>
+
+
+            <tr>
+              <td class="section markets-section" bgcolor="#fcfbf8" style="padding:28px 32px 30px;background-color:#fcfbf8;">
+                <div class="kicker" style="color:#8a5516;font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:bold;line-height:14px;text-transform:uppercase;">Cross-asset monitor</div>
+                <h2 class="section-title">Markets at a glance</h2>
+                <p class="section-deck" style="color:#4d5861;">The essential price moves, with secondary instruments left to the web edition.</p>
+
+
+                <div class="table-label" style="color:#15355b;font-family:Arial,Helvetica,sans-serif;font-size:9px;font-weight:bold;line-height:13px;text-transform:uppercase;">FX</div>
+                <table class="compact-table" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;table-layout:fixed;">
+                  <tr>
+                    <th width="34%" style="width:34%;padding:9px 14px;text-align:left;color:#59636c;">Asset</th>
+                    <th width="22%" style="width:22%;padding:9px 14px;text-align:right;color:#59636c;">Last</th>
+                    <th width="22%" style="width:22%;padding:9px 14px;text-align:right;color:#59636c;">1W</th>
+                    <th width="22%" style="width:22%;padding:9px 14px;text-align:right;color:#59636c;">YTD</th>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-cell" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;color:#202a34;">USD/SGD</td>
+                    <td class="number" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;">1.2789</td>
+                    <td class="number negative" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#a23b36;">-0.11%</td>
+                    <td class="number negative" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#a23b36;">-0.92%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-cell" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;color:#202a34;">AUD/USD</td>
+                    <td class="number" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;">0.7125</td>
+                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+0.99%</td>
+                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+6.38%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-cell" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;color:#202a34;">EUR/USD</td>
+                    <td class="number" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;">1.1602</td>
+                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+0.48%</td>
+                    <td class="number negative" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#a23b36;">-1.23%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-cell" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;color:#202a34;">DXY</td>
+                    <td class="number" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;">99.415</td>
+                    <td class="number negative" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#a23b36;">-0.40%</td>
+                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+1.15%</td>
+                  </tr>
+
+                </table>
+
+
+
+                <div class="table-label second-label" style="color:#15355b;font-family:Arial,Helvetica,sans-serif;font-size:9px;font-weight:bold;line-height:13px;text-transform:uppercase;">Commodities</div>
+                <table class="compact-table" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;table-layout:fixed;">
+                  <tr>
+                    <th width="34%" style="width:34%;padding:9px 14px;text-align:left;color:#59636c;">Asset</th>
+                    <th width="22%" style="width:22%;padding:9px 14px;text-align:right;color:#59636c;">Last</th>
+                    <th width="22%" style="width:22%;padding:9px 14px;text-align:right;color:#59636c;">1W</th>
+                    <th width="22%" style="width:22%;padding:9px 14px;text-align:right;color:#59636c;">YTD</th>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-cell" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;color:#202a34;">Brent</td>
+                    <td class="number" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;">50.64</td>
+                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+1.06%</td>
+                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+1.89%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-cell" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;color:#202a34;">WTI</td>
+                    <td class="number" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;">82.58</td>
+                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+0.55%</td>
+                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+43.82%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-cell" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;color:#202a34;">Gold</td>
+                    <td class="number" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;">4451.6001</td>
+                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+2.06%</td>
+                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+2.91%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-cell" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;color:#202a34;">Copper</td>
+                    <td class="number" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;">40.01</td>
+                    <td class="number negative" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#a23b36;">-0.42%</td>
+                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+19.97%</td>
+                  </tr>
+
+                </table>
+
+
+
+                <div class="subsection-rule"></div>
+                <h3 class="subsection-title">Sector leadership</h3>
+
+                <div class="sector-region-label" style="margin:0 0 7px;color:#15355b;font-family:Arial,Helvetica,sans-serif;font-size:9px;line-height:13px;font-weight:bold;text-transform:uppercase;">US Markets</div>
+                <table role="presentation" class="sector-metrics" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;table-layout:fixed;">
+                  <tr>
+                    <td width="34%" style="width:34%;padding:13px 15px;border:1px solid #dde0dc;vertical-align:top;">
+                      <span style="display:block;margin-bottom:5px;color:#5f6971;font-family:Arial,Helvetica,sans-serif;font-size:9px;line-height:13px;font-weight:bold;text-transform:uppercase;">Leader</span>
+                      <strong style="display:block;color:#25303a;font-size:12px;line-height:17px;">Energy</strong>
+                      <em class="positive" style="display:block;margin-top:4px;color:#167451;font-family:'Courier New',Courier,monospace;font-size:10px;line-height:13px;font-style:normal;">+2.87%</em>
+                    </td>
+                    <td width="34%" style="width:34%;padding:13px 15px;border:1px solid #dde0dc;vertical-align:top;">
+                      <span style="display:block;margin-bottom:5px;color:#5f6971;font-family:Arial,Helvetica,sans-serif;font-size:9px;line-height:13px;font-weight:bold;text-transform:uppercase;">Laggard</span>
+                      <strong style="display:block;color:#25303a;font-size:12px;line-height:17px;">Consumer Discretionary</strong>
+                      <em class="negative" style="display:block;margin-top:4px;color:#a23b36;font-family:'Courier New',Courier,monospace;font-size:10px;line-height:13px;font-style:normal;">-1.23%</em>
+                    </td>
+                    <td width="32%" style="width:32%;padding:13px 15px;border:1px solid #dde0dc;vertical-align:top;">
+                      <span style="display:block;margin-bottom:5px;color:#5f6971;font-family:Arial,Helvetica,sans-serif;font-size:9px;line-height:13px;font-weight:bold;text-transform:uppercase;">Breadth</span>
+                      <strong style="display:block;color:#25303a;font-size:12px;line-height:17px;">7/10 advancing</strong>
+                    </td>
+                  </tr>
+                </table>
+
+
+                <div class="sector-region-label" style="margin:0 0 7px;color:#15355b;font-family:Arial,Helvetica,sans-serif;font-size:9px;line-height:13px;font-weight:bold;text-transform:uppercase;">European Markets</div>
+                <table role="presentation" class="sector-metrics" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;table-layout:fixed;">
+                  <tr>
+                    <td width="34%" style="width:34%;padding:13px 15px;border:1px solid #dde0dc;vertical-align:top;">
+                      <span style="display:block;margin-bottom:5px;color:#5f6971;font-family:Arial,Helvetica,sans-serif;font-size:9px;line-height:13px;font-weight:bold;text-transform:uppercase;">Leader</span>
+                      <strong style="display:block;color:#25303a;font-size:12px;line-height:17px;">Energy</strong>
+                      <em class="positive" style="display:block;margin-top:4px;color:#167451;font-family:'Courier New',Courier,monospace;font-size:10px;line-height:13px;font-style:normal;">+2.19%</em>
+                    </td>
+                    <td width="34%" style="width:34%;padding:13px 15px;border:1px solid #dde0dc;vertical-align:top;">
+                      <span style="display:block;margin-bottom:5px;color:#5f6971;font-family:Arial,Helvetica,sans-serif;font-size:9px;line-height:13px;font-weight:bold;text-transform:uppercase;">Laggard</span>
+                      <strong style="display:block;color:#25303a;font-size:12px;line-height:17px;">Consumer Staples</strong>
+                      <em class="negative" style="display:block;margin-top:4px;color:#a23b36;font-family:'Courier New',Courier,monospace;font-size:10px;line-height:13px;font-style:normal;">-2.96%</em>
+                    </td>
+                    <td width="32%" style="width:32%;padding:13px 15px;border:1px solid #dde0dc;vertical-align:top;">
+                      <span style="display:block;margin-bottom:5px;color:#5f6971;font-family:Arial,Helvetica,sans-serif;font-size:9px;line-height:13px;font-weight:bold;text-transform:uppercase;">Breadth</span>
+                      <strong style="display:block;color:#25303a;font-size:12px;line-height:17px;">4/10 advancing</strong>
+                    </td>
+                  </tr>
+                </table>
+
+
+                <div class="sector-region-label" style="margin:0 0 7px;color:#15355b;font-family:Arial,Helvetica,sans-serif;font-size:9px;line-height:13px;font-weight:bold;text-transform:uppercase;">Asian / APAC Markets</div>
+                <table role="presentation" class="sector-metrics" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;table-layout:fixed;">
+                  <tr>
+                    <td width="34%" style="width:34%;padding:13px 15px;border:1px solid #dde0dc;vertical-align:top;">
+                      <span style="display:block;margin-bottom:5px;color:#5f6971;font-family:Arial,Helvetica,sans-serif;font-size:9px;line-height:13px;font-weight:bold;text-transform:uppercase;">Leader</span>
+                      <strong style="display:block;color:#25303a;font-size:12px;line-height:17px;">Financials</strong>
+                      <em class="positive" style="display:block;margin-top:4px;color:#167451;font-family:'Courier New',Courier,monospace;font-size:10px;line-height:13px;font-style:normal;">+3.23%</em>
+                    </td>
+                    <td width="34%" style="width:34%;padding:13px 15px;border:1px solid #dde0dc;vertical-align:top;">
+                      <span style="display:block;margin-bottom:5px;color:#5f6971;font-family:Arial,Helvetica,sans-serif;font-size:9px;line-height:13px;font-weight:bold;text-transform:uppercase;">Laggard</span>
+                      <strong style="display:block;color:#25303a;font-size:12px;line-height:17px;">Consumer Discretionary</strong>
+                      <em class="negative" style="display:block;margin-top:4px;color:#a23b36;font-family:'Courier New',Courier,monospace;font-size:10px;line-height:13px;font-style:normal;">-7.25%</em>
+                    </td>
+                    <td width="32%" style="width:32%;padding:13px 15px;border:1px solid #dde0dc;vertical-align:top;">
+                      <span style="display:block;margin-bottom:5px;color:#5f6971;font-family:Arial,Helvetica,sans-serif;font-size:9px;line-height:13px;font-weight:bold;text-transform:uppercase;">Breadth</span>
+                      <strong style="display:block;color:#25303a;font-size:12px;line-height:17px;">4/10 advancing</strong>
+                    </td>
+                  </tr>
+                </table>
+
+
+
+              </td>
+            </tr>
+
+
+            <tr>
+              <td class="section portfolio-section" bgcolor="#ffffff" style="padding:28px 32px 30px;background-color:#ffffff;">
+                <div class="kicker" style="color:#8a5516;font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:bold;line-height:14px;text-transform:uppercase;">Portfolio lens</div>
+                <h2 class="section-title">Portfolio impact</h2>
+                <p class="section-deck portfolio-deck">Equity exposure is concentrated in Capital Goods and EUR-denominated holdings. YTD contribution is led by Meta Wolf AG, while Bayerische Motoren Werke AG is the largest detractor.</p>
+                <table role="presentation" class="metric-grid" width="100%" cellpadding="0" cellspacing="0" border="0">
+
+                  <tr>
+
+
+                    <td class="metric-card" width="50%" style="width:50%;padding:14px 15px;border:1px solid #dde0dc;vertical-align:top;">
+                      <div class="metric-label">Best contributor</div>
+                      <strong>Meta Wolf AG</strong>
+                      <span class="positive" style="color:#167451;">+USD 28.9m</span>
+                    </td>
+
+
+
+                    <td class="metric-card" width="50%" style="width:50%;padding:14px 15px;border:1px solid #dde0dc;vertical-align:top;">
+                      <div class="metric-label">Largest detractor</div>
+                      <strong>Bayerische Motoren Werke AG</strong>
+                      <span class="negative" style="color:#a23b36;">-USD 1.9m</span>
+                    </td>
+
+
+                  </tr>
+
+                  <tr>
+
+
+                    <td class="metric-card" width="50%" style="width:50%;padding:14px 15px;border:1px solid #dde0dc;vertical-align:top;">
+                      <div class="metric-label">Sector concentration</div>
+                      <strong>Capital Goods</strong>
+                      <span class="neutral" style="color:#59636c;">74%</span>
+                    </td>
+
+
+
+                    <td class="metric-card" width="50%" style="width:50%;padding:14px 15px;border:1px solid #dde0dc;vertical-align:top;">
+                      <div class="metric-label">Currency concentration</div>
+                      <strong>EUR</strong>
+                      <span class="neutral" style="color:#59636c;">85%</span>
+                    </td>
+
+
+                  </tr>
+
+                </table>
+              </td>
+            </tr>
+
+
+
+            <tr>
+              <td class="section outlook-section" bgcolor="#fcfbf8" style="padding:28px 32px 30px;background-color:#fcfbf8;">
+                <div class="kicker" style="color:#8a5516;font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:bold;line-height:14px;text-transform:uppercase;">Forward calendar</div>
+                <h2 class="section-title">Week ahead</h2>
+                <table role="presentation" class="watch-list" width="100%" cellpadding="0" cellspacing="0" border="0">
+
+                  <tr>
+                    <td class="watch-region" width="76" style="width:76px;padding:14px 12px 14px 0;border-top:1px solid #dfe2de;vertical-align:top;">US</td>
+                    <td class="watch-copy" style="padding:13px 0;border-top:1px solid #dfe2de;vertical-align:top;">
+                      <h3>Inflation and Fed communication</h3>
+                      <p>Impacts USD, duration, and growth-style equity valuation</p>
+                      <div class="source-line">AFFECTED / FX, rates, equities</div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="watch-region" width="76" style="width:76px;padding:14px 12px 14px 0;border-top:1px solid #dfe2de;vertical-align:top;">EU</td>
+                    <td class="watch-copy" style="padding:13px 0;border-top:1px solid #dfe2de;vertical-align:top;">
+                      <h3>ECB / European growth data</h3>
+                      <p>Relevant for Allianz, BMW, RWE, Sanofi, ING, and Meta Wolf AG</p>
+                      <div class="source-line">AFFECTED / Equities, credit</div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="watch-region" width="76" style="width:76px;padding:14px 12px 14px 0;border-top:1px solid #dfe2de;vertical-align:top;">APAC</td>
+                    <td class="watch-copy" style="padding:13px 0;border-top:1px solid #dfe2de;vertical-align:top;">
+                      <h3>China activity and Singapore macro</h3>
+                      <p>Relevant for Alibaba, SATS, SIA, Sembcorp, CapitaLand, Ping An, and SGD exposure</p>
+                      <div class="source-line">AFFECTED / Equities, FX</div>
+                    </td>
+                  </tr>
+
+                </table>
+              </td>
+            </tr>
+
+
+
+            <tr>
+              <td class="section scan-section" bgcolor="#ffffff" style="padding:28px 32px 30px;background-color:#ffffff;">
+                <div class="kicker" style="color:#8a5516;font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:bold;line-height:14px;text-transform:uppercase;">Global scan</div>
+                <h2 class="section-title">One headline per region</h2>
+                <table role="presentation" class="headline-list" width="100%" cellpadding="0" cellspacing="0" border="0">
+
+                  <tr>
+                    <td class="headline-region" width="76" style="width:76px;padding:13px 12px 13px 0;border-top:1px solid #dfe2de;vertical-align:top;">US</td>
+                    <td class="headline-copy" style="padding:12px 0;border-top:1px solid #dfe2de;vertical-align:top;">
+                      <span>No material market update captured.</span>
+                      <div class="headline-meta">Source monitor &middot; Monitoring</div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="headline-region" width="76" style="width:76px;padding:13px 12px 13px 0;border-top:1px solid #dfe2de;vertical-align:top;">EU</td>
+                    <td class="headline-copy" style="padding:12px 0;border-top:1px solid #dfe2de;vertical-align:top;">
+                      <a href="https://www.ft.com/content/63ac111b-c841-4134-9751-f7cc419ae5c5?syn-25a6b1a6=1">Everyone but me is getting excited about European equities</a>
+                      <div class="headline-meta">Financial Times Markets &middot; Equities</div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="headline-region" width="76" style="width:76px;padding:13px 12px 13px 0;border-top:1px solid #dfe2de;vertical-align:top;">UK</td>
+                    <td class="headline-copy" style="padding:12px 0;border-top:1px solid #dfe2de;vertical-align:top;">
+                      <span>No material market update captured.</span>
+                      <div class="headline-meta">Source monitor &middot; Monitoring</div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="headline-region" width="76" style="width:76px;padding:13px 12px 13px 0;border-top:1px solid #dfe2de;vertical-align:top;">APAC</td>
+                    <td class="headline-copy" style="padding:12px 0;border-top:1px solid #dfe2de;vertical-align:top;">
+                      <a href="https://www.cnbc.com/2026/08/17/china-economy-sales-investment-july-.html">China's economy slows further in July as retail sales barely grow, investment slump steepens</a>
+                      <div class="headline-meta">CNBC &middot; Equities</div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="headline-region" width="76" style="width:76px;padding:13px 12px 13px 0;border-top:1px solid #dfe2de;vertical-align:top;">EMEA</td>
+                    <td class="headline-copy" style="padding:12px 0;border-top:1px solid #dfe2de;vertical-align:top;">
+                      <span>No material market update captured.</span>
+                      <div class="headline-meta">Source monitor &middot; Monitoring</div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="headline-region" width="76" style="width:76px;padding:13px 12px 13px 0;border-top:1px solid #dfe2de;vertical-align:top;">Global</td>
+                    <td class="headline-copy" style="padding:12px 0;border-top:1px solid #dfe2de;vertical-align:top;">
+                      <a href="https://www.cnbc.com/2026/08/15/cash-money-market-funds-bonds.html">Between earn-nothing cash, broken long-term bonds, these are the safety trades of 2026 market</a>
+                      <div class="headline-meta">CNBC &middot; Equities</div>
+                    </td>
+                  </tr>
+
+                </table>
+              </td>
+            </tr>
+
+
+            <tr>
+              <td class="footer" bgcolor="#111820" style="padding:24px 32px 27px;background-color:#111820;color:#aeb5bc;">
+                <div class="footer-brand">Wolf Research</div>
+                <div class="footer-title">Weekly Market Brief</div>
+                <p><strong>Generated:</strong> 2026-08-17T17:15:51.416568+08:00 &nbsp;&middot;&nbsp; Asia/Singapore</p>
+                <p>Internal distribution only. Analytical context, not investment advice. Sources link to original publications where available.</p>
+                <p>Detailed holdings, full sector tables, secondary headlines, fallback usage, and validation records remain available in the web edition and audit log.</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

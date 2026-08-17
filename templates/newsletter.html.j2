@@ -1,261 +1,368 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="supported-color-schemes" content="light dark">
+    <meta name="x-apple-disable-message-reformatting">
     <title>{{ newsletter.title }}</title>
     <style>
 {{ css }}
     </style>
+    <!--[if mso]>
+    <style>
+      table { border-collapse: collapse !important; }
+      .market-table th, .market-table td, .portfolio-table th, .portfolio-table td {
+        mso-line-height-rule: exactly;
+      }
+    </style>
+    <![endif]-->
   </head>
-  <body>
-    <div class="preheader">Wolf Research weekly market brief for internal office distribution.</div>
-    <table role="presentation" class="page" width="100%">
+  <body class="email-body" bgcolor="#d8d7d2" style="margin:0;padding:0;background-color:#d8d7d2;color:#191919;">
+    <div class="preheader">Wolf Research: the signals, moves, and events shaping markets this week.</div>
+    <table role="presentation" class="page" width="100%" bgcolor="#d8d7d2" cellpadding="0" cellspacing="0" border="0" style="width:100%;background-color:#d8d7d2;table-layout:fixed;">
       <tr>
         <td align="center">
-          <table role="presentation" class="container" width="720">
+          <table role="presentation" class="container" width="720" bgcolor="#f4f0e9" cellpadding="0" cellspacing="0" border="0" style="width:720px;max-width:720px;background-color:#f4f0e9;table-layout:fixed;">
+            <tr><td class="top-rule">&nbsp;</td></tr>
             <tr>
               <td class="masthead">
-                <div class="brand">Wolf Research</div>
-                <h1 class="title">{{ newsletter.title }}</h1>
-                <div class="date">{{ display_header_date(newsletter.generated_at, newsletter.timezone) }}</div>
-                <div class="distribution">Internal Office Distribution</div>
-                <table role="presentation" class="meta-bar" width="100%">
+                <table role="presentation" width="100%">
                   <tr>
-                    <td class="meta-cell">Coverage<strong>Portfolio / Macro / Markets</strong></td>
-                    <td class="meta-cell">Portfolio Lens<strong>Equities + fixed income</strong></td>
-                    <td class="meta-cell">Mode<strong>Source-backed market brief</strong></td>
+                    <td class="mark-cell"><div class="brand-mark">WR</div></td>
+                    <td class="brand-cell">
+                      <div class="brand">Wolf Research</div>
+                      <div class="edition">{{ newsletter.title }} / {{ display_header_date(newsletter.generated_at, newsletter.timezone) }}</div>
+                    </td>
+                    <td class="issue-cell">{{ issue_code(newsletter.generated_at, newsletter.timezone) }}</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td class="topic-bar">
+                <table role="presentation" width="100%">
+                  <tr>
+                    <td>MACRO &middot; CROSS-ASSET &middot; FX &middot; COMMODITIES &middot; EQUITIES</td>
+                    <td class="topic-meta">{{ estimated_read_minutes(newsletter.sections) }} MIN READ</td>
                   </tr>
                 </table>
               </td>
             </tr>
 
+            {% set executive = newsletter.sections.get("executive_snapshot", {}) %}
             <tr>
-              <td class="section">
-                <div class="kicker">At a Glance</div>
-                <h2 class="section-title">Executive Snapshot</h2>
-                <table role="presentation" class="snapshot-grid" width="100%">
-                  {% for row in executive_cards(newsletter.sections)|batch(3, none) %}
+              <td class="paper-section first-section">
+                <div class="eyebrow">The Macro Grid</div>
+                <h1 class="cover-title">The week in one view</h1>
+                <p class="standfirst">Five signals selected for market impact, cross-asset reach, and portfolio relevance.</p>
+                <table role="presentation" class="signal-list" width="100%">
+                  {% for signal in executive.signals %}
                   <tr>
-                    {% for card in row %}
-                    {% if card %}
-                    <td class="snapshot-card">
-                      <div class="snapshot-label">{{ card.label }}</div>
-                      <div class="snapshot-takeaway">{{ card.takeaway }}</div>
-                      <div class="snapshot-implication">{{ card.implication }}</div>
+                    <td class="signal-card">
+                      <table role="presentation" width="100%">
+                        <tr>
+                          <td class="signal-copy">
+                            <div class="signal-label">{{ signal.label }}</div>
+                            <h2>{{ signal.headline }}</h2>
+                            <p>{{ signal.detail }}</p>
+                            {% if signal.source and signal.source.name and signal.source.name not in ["Sample Data", "Fallback source"] %}
+                            <div class="source-line">SOURCE / {% if signal.source.url %}<a href="{{ signal.source.url }}">{{ signal.source.name }}</a>{% else %}{{ signal.source.name }}{% endif %}</div>
+                            {% endif %}
+                          </td>
+                          <td class="risk-cell"><span class="risk risk-{{ signal.risk|lower }}">{{ signal.risk }}</span></td>
+                        </tr>
+                      </table>
                     </td>
-                    {% endif %}
-                    {% endfor %}
                   </tr>
-                  {% if not loop.last %}
-                  <tr><td colspan="3" class="snapshot-spacer">&nbsp;</td></tr>
-                  {% endif %}
                   {% endfor %}
                 </table>
               </td>
             </tr>
+
+            {% set story = newsletter.sections.get("story_of_the_week") %}
+            {% if story %}
+            <tr>
+              <td class="macro-pulse">
+                <table role="presentation" width="100%" class="pulse-meta">
+                  <tr>
+                    <td><span class="pulse-dot">&bull;</span> Story of the Week / MACRO PULSE</td>
+                    <td class="pulse-read">{{ unique_source_count(newsletter.sections) }} SOURCES</td>
+                  </tr>
+                </table>
+                <h2>{{ story.title }}</h2>
+                <p class="pulse-standfirst">{{ story.narrative }}</p>
+                <div class="topic-tags">
+                  {% for tag in story_tags(story) %}<span>{{ tag }}</span>{% endfor %}
+                </div>
+                <div class="desk-line">WOLF RESEARCH / MACRO DESK &nbsp;&middot;&nbsp; {{ display_header_date(newsletter.generated_at, newsletter.timezone) }}</div>
+                <table role="presentation" class="pulse-points" width="100%">
+                  {% for item in story.implications %}
+                  <tr><td class="point-mark">&#9632;</td><td>{{ item }}</td></tr>
+                  {% endfor %}
+                </table>
+                {% if story.sources %}
+                <div class="pulse-sources">SOURCES /
+                  {% for source in story.sources %}
+                    {% if source.name not in ["Sample Data", "Fallback source"] %}{% if source.url %}<a href="{{ source.url }}">{{ source.name }}</a>{% else %}{{ source.name }}{% endif %}{% if not loop.last %} &middot; {% endif %}{% endif %}
+                  {% endfor %}
+                </div>
+                {% endif %}
+              </td>
+            </tr>
+            {% endif %}
+
+            {% set chart = newsletter.sections.get("chart_of_the_week") %}
+            {% if chart %}
+            <tr>
+              <td class="white-section" id="chart-of-week">
+                <div class="section-meta">Chart Desk / {{ chart.source_name or "FRED" }}</div>
+                <h2 class="section-title">Chart of the Week</h2>
+                <p class="section-deck">{{ chart.title }}</p>
+                {% if chart.embedded_image %}
+                <img class="chart-image" src="{{ chart.image_src or chart.preview_image_src or 'chart_of_the_week.png' }}" alt="{{ chart.title }}">
+                {% endif %}
+                {% if chart.summary %}<p class="body-copy">{{ chart.summary }}</p>{% endif %}
+                {% if chart.market_signal_reason %}<div class="pull-quote"><strong>The read:</strong> {{ chart.market_signal_reason }}</div>{% endif %}
+                <div class="source-line">
+                  {% if chart.series_used %}FRED SERIES / {{ chart.series_used|join(", ") }}{% endif %}
+                  {% if chart.original_url %} &nbsp;&middot;&nbsp; <a href="{{ chart.original_url }}">SOURCE</a>{% endif %}
+                </div>
+              </td>
+            </tr>
+            {% endif %}
+
+            {% set fx = newsletter.sections.get("fx_markets") %}
+            {% set commodities = newsletter.sections.get("commodities") %}
+            {% if fx or commodities %}
+            <tr>
+              <td class="paper-section" id="market-tape">
+                <div class="section-meta">Cross-Asset Monitor</div>
+                <h2 class="section-title">Market tape</h2>
+                <p class="section-deck">Price action first; driver notes sit beneath each instrument.</p>
+                <table role="presentation" class="market-stack" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;">
+                  {% if fx %}
+                  <tr>
+                    <td class="market-block" style="padding:0;vertical-align:top;">
+                      <h3 class="table-title">FX Markets</h3>
+                      <table class="market-table" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;table-layout:fixed;">
+                        <tr>
+                          <th width="36%" style="width:36%;padding:7px 10px;text-align:left;">Asset</th>
+                          <th width="16%" style="width:16%;padding:7px 10px;text-align:right;">Last</th>
+                          <th width="16%" style="width:16%;padding:7px 10px;text-align:right;">1W</th>
+                          <th width="16%" style="width:16%;padding:7px 10px;text-align:right;">1M</th>
+                          <th width="16%" style="width:16%;padding:7px 10px;text-align:right;">YTD</th>
+                        </tr>
+                        {% for row in fx.rows %}
+                        <tr>
+                          <td class="asset-name market-cell" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;">{{ row.label }}</td>
+                          <td class="number market-cell" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">{{ row.last }}</td>
+                          <td class="number market-cell {{ change_class(row.one_week_change) }}" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">{{ format_pct(row.one_week_change) }}</td>
+                          <td class="number market-cell {{ change_class(row.one_month_change) }}" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">{{ format_pct(row.one_month_change) }}</td>
+                          <td class="number market-cell {{ change_class(row.ytd_change or 0) }}" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">{{ format_pct(row.ytd_change or 0) }}</td>
+                        </tr>
+                        {% endfor %}
+                      </table>
+                      <div class="tape-notes">
+                        <div class="mini-label">Desk notes</div>
+                        {% for row in fx.rows[:2] %}<p><strong>{{ row.label }}</strong> {{ row.driver|truncate(135, true, "...") }}</p>{% endfor %}
+                      </div>
+                    </td>
+                  </tr>
+                  {% endif %}
+                  {% if fx and commodities %}
+                  <tr><td class="market-gap" style="height:22px;line-height:22px;font-size:1px;">&nbsp;</td></tr>
+                  {% endif %}
+                  {% if commodities %}
+                  <tr>
+                    <td class="market-block" style="padding:0;vertical-align:top;">
+                      <h3 class="table-title">Commodities</h3>
+                      <table class="market-table" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;table-layout:fixed;">
+                        <tr>
+                          <th width="36%" style="width:36%;padding:7px 10px;text-align:left;">Asset</th>
+                          <th width="16%" style="width:16%;padding:7px 10px;text-align:right;">Last</th>
+                          <th width="16%" style="width:16%;padding:7px 10px;text-align:right;">1W</th>
+                          <th width="16%" style="width:16%;padding:7px 10px;text-align:right;">1M</th>
+                          <th width="16%" style="width:16%;padding:7px 10px;text-align:right;">YTD</th>
+                        </tr>
+                        {% for row in commodities.rows %}
+                        <tr>
+                          <td class="asset-name market-cell" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;">{{ row.label }}</td>
+                          <td class="number market-cell" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">{{ row.last }}</td>
+                          <td class="number market-cell {{ change_class(row.one_week_change) }}" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">{{ format_pct(row.one_week_change) }}</td>
+                          <td class="number market-cell {{ change_class(row.one_month_change) }}" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">{{ format_pct(row.one_month_change) }}</td>
+                          <td class="number market-cell {{ change_class(row.ytd_change or 0) }}" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">{{ format_pct(row.ytd_change or 0) }}</td>
+                        </tr>
+                        {% endfor %}
+                      </table>
+                      <div class="tape-notes">
+                        <div class="mini-label">Desk notes</div>
+                        {% for row in commodities.rows[:2] %}<p><strong>{{ row.label }}</strong> {{ row.driver|truncate(135, true, "...") }}</p>{% endfor %}
+                      </div>
+                    </td>
+                  </tr>
+                  {% endif %}
+                </table>
+              </td>
+            </tr>
+            {% endif %}
+
+            {% set sector = newsletter.sections.get("sector_scoreboard") %}
+            {% if sector %}
+            <tr>
+              <td class="white-section" id="sector-scoreboard">
+                <div class="section-meta">Equity Desk</div>
+                <h2 class="section-title">Sector Scoreboard</h2>
+                <p class="section-deck">Regional leadership, breadth, and the factors behind the move.</p>
+                {% for block in sector.regions %}
+                <div class="region-heading">{{ block.label }}</div>
+                <table class="sector-table" width="100%">
+                  <tr><th>Sector / signal</th><th>1W</th><th>1M</th><th>YTD</th></tr>
+                  {% for row in block.rows %}
+                  <tr>
+                    <td class="asset-name">{{ row.sector }}</td>
+                    <td class="number {{ heat_class(row.one_week) }}">{{ format_pct(row.one_week) }}</td>
+                    <td class="number {{ heat_class(row.one_month) }}">{{ format_pct(row.one_month) }}</td>
+                    <td class="number {{ heat_class(row.ytd) }}">{{ format_pct(row.ytd) }}</td>
+                  </tr>
+                  {% endfor %}
+                </table>
+                {% if block.rows %}<div class="sector-note"><strong>Desk note:</strong> {{ block.rows[0].comment|truncate(190, true, "...") }}</div>{% endif %}
+                {% endfor %}
+              </td>
+            </tr>
+            {% endif %}
 
             {% set portfolio = newsletter.sections.get("portfolio_snapshot") %}
-            {% if portfolio %}
-            <tr>
-              <td class="section">
-                <div class="kicker">Portfolio Lens</div>
-                <h2 class="section-title">{{ portfolio.title }}</h2>
-                <table role="presentation" class="snapshot-grid" width="100%">
-                  {% for row in portfolio.kpis|batch(3, none) %}
-                  <tr>
-                    {% for kpi in row %}
-                    {% if kpi %}
-                    <td class="snapshot-card">
-                      <div class="snapshot-label">{{ kpi.label }}</div>
-                      <div class="snapshot-takeaway">{{ kpi.value }}</div>
-                    </td>
-                    {% endif %}
-                    {% endfor %}
-                  </tr>
-                  {% if not loop.last %}
-                  <tr><td colspan="3" class="snapshot-spacer">&nbsp;</td></tr>
-                  {% endif %}
-                  {% endfor %}
-                </table>
-                <table class="data-table" width="100%">
-                  <tr>
-                    <th>Holding</th>
-                    <th>Currency</th>
-                    <th>Sector</th>
-                    <th>Current Value</th>
-                    <th>YTD P&L</th>
-                    <th>YTD %</th>
-                  </tr>
-                  {% for holding in portfolio.top_holdings %}
-                  <tr>
-                    <td>{{ holding.holding }}</td>
-                    <td>{{ holding.currency }}</td>
-                    <td>{{ holding.sector }}</td>
-                    <td class="number {% if holding.is_manual_pricing %}neutral{% endif %}">{{ holding.current_value_display }}</td>
-                    <td class="number {{ change_class(holding.ytd_pnl or 0) if not holding.is_manual_pricing else 'neutral' }}">{{ holding.ytd_pnl_display }}</td>
-                    <td class="number {{ change_class(holding.ytd_pct or 0) if not holding.is_manual_pricing else 'neutral' }}">{{ holding.ytd_pct_display }}</td>
-                  </tr>
-                  {% endfor %}
-                </table>
-              </td>
-            </tr>
-            {% endif %}
-
             {% set equity = newsletter.sections.get("equity_holdings_monitor") %}
-            {% if equity %}
+            {% if portfolio and equity %}
             <tr>
-              <td class="section">
-                <div class="kicker">Equity Book</div>
-                <h2 class="section-title">{{ equity.title }}</h2>
-                <div class="callout">{{ equity.interpretation }}</div>
-                <h3 class="subhead">Top Equity Contributors</h3>
-                <table class="data-table" width="100%">
-                  <tr><th>Holding</th><th>Sector</th><th>Currency</th><th>Current Value</th><th>YTD P&L</th><th>YTD %</th></tr>
-                  {% for holding in equity.top_contributors %}
-                  <tr><td>{{ holding.holding }}</td><td>{{ holding.sector }}</td><td>{{ holding.currency }}</td><td class="number">{{ holding.current_value_display }}</td><td class="number {{ change_class(holding.ytd_pnl or 0) }}">{{ holding.ytd_pnl_display }}</td><td class="number {{ change_class(holding.ytd_pct or 0) }}">{{ holding.ytd_pct_display }}</td></tr>
-                  {% endfor %}
-                  {% if not equity.top_contributors %}<tr><td colspan="6">Manual pricing required before contributor ranking is available.</td></tr>{% endif %}
-                </table>
-                <h3 class="subhead">Top Equity Detractors</h3>
-                <table class="data-table" width="100%">
-                  <tr><th>Holding</th><th>Sector</th><th>Currency</th><th>Current Value</th><th>YTD P&L</th><th>YTD %</th></tr>
-                  {% for holding in equity.top_detractors %}
-                  <tr><td>{{ holding.holding }}</td><td>{{ holding.sector }}</td><td>{{ holding.currency }}</td><td class="number">{{ holding.current_value_display }}</td><td class="number {{ change_class(holding.ytd_pnl or 0) }}">{{ holding.ytd_pnl_display }}</td><td class="number {{ change_class(holding.ytd_pct or 0) }}">{{ holding.ytd_pct_display }}</td></tr>
-                  {% endfor %}
-                  {% if not equity.top_detractors %}<tr><td colspan="6">Manual pricing required before detractor ranking is available.</td></tr>{% endif %}
-                </table>
-                <h3 class="subhead">Sector Exposure</h3>
-                <table class="data-table" width="100%">
-                  <tr><th>Sector</th><th>Current Value</th><th>Weight</th><th>YTD P&L</th></tr>
-                  {% for row in equity.sector_exposure %}
-                  <tr><td>{{ row.name }}</td><td class="number">{{ row.current_value_display }}</td><td class="number">{{ row.weight_display }}</td><td class="number {{ change_class(row.ytd_pnl or 0) if row.ytd_pnl is not none else 'neutral' }}">{{ row.ytd_pnl_display }}</td></tr>
-                  {% endfor %}
-                </table>
-                <h3 class="subhead">Currency Exposure</h3>
-                <table class="data-table" width="100%">
-                  <tr><th>Currency</th><th>Current Value</th><th>Weight</th><th>YTD P&L</th></tr>
-                  {% for row in equity.currency_exposure %}
-                  <tr><td>{{ row.name }}</td><td class="number">{{ row.current_value_display }}</td><td class="number">{{ row.weight_display }}</td><td class="number {{ change_class(row.ytd_pnl or 0) if row.ytd_pnl is not none else 'neutral' }}">{{ row.ytd_pnl_display }}</td></tr>
-                  {% endfor %}
-                </table>
-              </td>
-            </tr>
-            {% endif %}
-
-            {% set fixed_income = newsletter.sections.get("fixed_income_monitor") %}
-            {% if fixed_income %}
-            <tr>
-              <td class="section-tight">
-                <div class="kicker">Fixed Income</div>
-                <h2 class="section-title">{{ fixed_income.title }}</h2>
-                {% if fixed_income.mode == "position-level" %}
-                <table role="presentation" class="snapshot-grid" width="100%">
+              <td class="paper-section" id="portfolio-lens">
+                <div class="section-meta">Portfolio Lens</div>
+                <h2 class="section-title">Portfolio Snapshot</h2>
+                {% if equity.interpretation %}<div class="pull-quote">{{ equity.interpretation }}</div>{% endif %}
+                <table role="presentation" class="kpi-grid" width="100%">
+                  {% for kpi_row in portfolio.kpis[:6]|batch(3, none) %}
                   <tr>
-                    <td class="snapshot-card">
-                      <div class="snapshot-label">Bond Positions</div>
-                      <div class="snapshot-takeaway">{{ fixed_income.position_count }}</div>
+                    {% for kpi in kpi_row %}
+                    {% if kpi %}<td class="kpi-card"><div>{{ kpi.label }}</div><strong>{{ kpi.value }}</strong></td>{% endif %}
+                    {% endfor %}
+                  </tr>
+                  {% endfor %}
+                </table>
+                <h3 class="table-title portfolio-table-title">Largest monitored holdings</h3>
+                <table class="portfolio-table" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;table-layout:fixed;">
+                  <tr>
+                    <th width="25%" style="width:25%;padding:7px;text-align:left;">Holding</th>
+                    <th width="23%" style="width:23%;padding:7px;text-align:left;">Sector</th>
+                    <th width="8%" style="width:8%;padding:7px;text-align:left;border-left:1px solid #e6e1d8;">CCY</th>
+                    <th width="15%" style="width:15%;padding:7px;text-align:right;border-left:1px solid #e6e1d8;">Value</th>
+                    <th width="17%" style="width:17%;padding:7px;text-align:right;border-left:1px solid #e6e1d8;">YTD P&amp;L</th>
+                    <th width="12%" style="width:12%;padding:7px;text-align:right;border-left:1px solid #e6e1d8;">YTD</th>
+                  </tr>
+                  {% for holding in portfolio.top_holdings[:6] %}
+                  <tr>
+                    <td style="padding:8px 7px;border-bottom:1px solid #ddd8cf;vertical-align:top;">{{ holding.holding }}</td>
+                    <td style="padding:8px 7px;border-bottom:1px solid #ddd8cf;vertical-align:top;">{{ holding.sector }}</td>
+                    <td style="padding:8px 7px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;vertical-align:top;">{{ holding.currency }}</td>
+                    <td class="number {% if holding.is_manual_pricing %}neutral{% endif %}" style="padding:8px 7px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;vertical-align:top;">{{ holding.current_value_display }}</td>
+                    <td class="number {{ change_class(holding.ytd_pnl or 0) if not holding.is_manual_pricing else 'neutral' }}" style="padding:8px 7px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;vertical-align:top;">{{ holding.ytd_pnl_display }}</td>
+                    <td class="number {{ change_class(holding.ytd_pct or 0) if not holding.is_manual_pricing else 'neutral' }}" style="padding:8px 7px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;vertical-align:top;">{{ holding.ytd_pct_display }}</td>
+                  </tr>
+                  {% endfor %}
+                </table>
+
+                <h3 class="monitor-title">Equity Holdings Monitor</h3>
+                <table role="presentation" class="two-column" width="100%">
+                  <tr>
+                    <td class="monitor-cell">
+                      <div class="mini-label">Top contributors</div>
+                      {% for item in equity.top_contributors[:5] %}
+                      <table role="presentation" class="rank-row" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding:5px 12px 5px 0;">{{ item.holding }}</td><td class="positive" style="padding:5px 0 5px 12px;text-align:right;white-space:nowrap;">{{ item.ytd_pnl_display }}</td></tr></table>
+                      {% endfor %}
+                      {% if not equity.top_contributors %}<div class="empty-note">No priced contributors available.</div>{% endif %}
                     </td>
-                    <td class="snapshot-card">
-                      <div class="snapshot-label">Issuers</div>
-                      <div class="snapshot-takeaway">{{ fixed_income.issuer_count }}</div>
+                    <td class="column-gutter">&nbsp;</td>
+                    <td class="monitor-cell">
+                      <div class="mini-label">Top detractors</div>
+                      {% for item in equity.top_detractors[:5] %}
+                      <table role="presentation" class="rank-row" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding:5px 12px 5px 0;">{{ item.holding }}</td><td class="negative" style="padding:5px 0 5px 12px;text-align:right;white-space:nowrap;">{{ item.ytd_pnl_display }}</td></tr></table>
+                      {% endfor %}
+                      {% if not equity.top_detractors %}<div class="empty-note">No priced detractors available.</div>{% endif %}
                     </td>
-                    <td class="snapshot-card">
-                      <div class="snapshot-label">Market Value</div>
-                      <div class="snapshot-takeaway">{{ fixed_income.total_market_value_display }}</div>
+                  </tr>
+                  <tr><td colspan="3" class="vertical-gutter">&nbsp;</td></tr>
+                  <tr>
+                    <td class="monitor-cell">
+                      <div class="mini-label">Sector exposure</div>
+                      {% for item in equity.sector_exposure[:5] %}<table role="presentation" class="rank-row" width="100%"><tr><td>{{ item.name }}</td><td>{{ item.weight_display }}</td></tr></table>{% endfor %}
+                    </td>
+                    <td class="column-gutter">&nbsp;</td>
+                    <td class="monitor-cell">
+                      <div class="mini-label">Currency exposure</div>
+                      {% for item in equity.currency_exposure[:5] %}<table role="presentation" class="rank-row" width="100%"><tr><td>{{ item.name }}</td><td>{{ item.weight_display }}</td></tr></table>{% endfor %}
                     </td>
                   </tr>
                 </table>
-                {% endif %}
-                <table class="data-table" width="100%">
-                  {% if fixed_income.mode == "position-level" %}
-                  <tr><th>Issuer</th><th>Count</th><th>Type</th><th>Region</th><th>Market Value</th><th>Gain/Loss</th></tr>
-                  {% for row in fixed_income.rows %}
-                  <tr><td>{{ row.issuer }}</td><td class="number">{{ row.count }}</td><td>{{ row.type }}</td><td>{{ row.region }}</td><td class="number">{{ row.market_value_display }}</td><td class="number {{ change_class(row.gain_loss_usd or 0) }}">{{ row.gain_loss_display }}</td></tr>
-                  {% endfor %}
-                  {% else %}
-                  <tr><th>Issuer</th><th>Count</th><th>Type</th><th>Region</th><th>Notes</th></tr>
-                  {% for row in fixed_income.rows %}
-                  <tr><td>{{ row.issuer }}</td><td class="number">{{ row.count }}</td><td>{{ row.type }}</td><td>{{ row.region }}</td><td>{{ row.notes }}</td></tr>
-                  {% endfor %}
-                  {% endif %}
-                </table>
-                {% if fixed_income.mode == "position-level" %}
-                <h3 class="subhead">Currency Exposure</h3>
-                <table class="data-table" width="100%">
-                  <tr><th>Currency</th><th>Positions</th><th>Market Value</th><th>Weight</th><th>Gain/Loss</th></tr>
-                  {% for row in fixed_income.currency_exposure %}
-                  <tr><td>{{ row.name }}</td><td class="number">{{ row.count }}</td><td class="number">{{ row.market_value_display }}</td><td class="number">{{ row.weight_display }}</td><td class="number {{ change_class(row.gain_loss_usd or 0) }}">{{ row.gain_loss_display }}</td></tr>
-                  {% endfor %}
-                </table>
-                <h3 class="subhead">Maturity Exposure</h3>
-                <table class="data-table" width="100%">
-                  <tr><th>Maturity Bucket</th><th>Positions</th><th>Market Value</th><th>Weight</th><th>Gain/Loss</th></tr>
-                  {% for row in fixed_income.maturity_exposure %}
-                  <tr><td>{{ row.name }}</td><td class="number">{{ row.count }}</td><td class="number">{{ row.market_value_display }}</td><td class="number">{{ row.weight_display }}</td><td class="number {{ change_class(row.gain_loss_usd or 0) }}">{{ row.gain_loss_display }}</td></tr>
-                  {% endfor %}
-                </table>
-                {% endif %}
-                <div class="section-note">{{ fixed_income.note }}</div>
               </td>
             </tr>
             {% endif %}
 
-            {% for market_key in ["fx_markets", "commodities", "sector_scoreboard"] %}
-              {% set table = newsletter.sections.get(market_key) %}
-              {% if table %}
-              <tr>
-                <td class="section-tight">
-                  <div class="kicker">{% if market_key == "fx_markets" %}FX{% elif market_key == "commodities" %}Commodities{% else %}Sector Heatmap{% endif %}</div>
-                  <h2 class="section-title">{{ table.title }}</h2>
-                  <table class="data-table" width="100%">
-                    {% if market_key == "sector_scoreboard" %}
-                    <tr><th>Sector</th><th>1W</th><th>1M</th><th>YTD</th><th>Comment</th></tr>
-                    {% for row in table.rows %}
-                    <tr><td>{{ row.sector }}</td><td class="number {{ heat_class(row.one_week) }}">{{ format_change(row.one_week) }}</td><td class="number {{ heat_class(row.one_month) }}">{{ format_change(row.one_month) }}</td><td class="number {{ heat_class(row.ytd) }}">{{ format_change(row.ytd) }}</td><td>{{ row.comment }}</td></tr>
-                    {% endfor %}
-                    {% else %}
-                    <tr><th>Asset</th><th>Last</th><th>1W</th><th>1M</th><th>Driver</th></tr>
-                    {% for row in table.rows %}
-                    <tr><td>{{ row.label }}</td><td class="number">{{ row.last }}</td><td class="number {{ change_class(row.one_week_change) }}">{{ format_change(row.one_week_change) }}</td><td class="number {{ change_class(row.one_month_change) }}">{{ format_change(row.one_month_change) }}</td><td class="driver">{{ row.driver }}</td></tr>
-                    {% endfor %}
-                    {% endif %}
-                  </table>
-                </td>
-              </tr>
-              {% endif %}
-            {% endfor %}
-
-            {% for section_key in ["macro_news", "private_markets"] %}
-              {% set section = newsletter.sections.get(section_key) %}
-              {% if section %}
-              <tr>
-                <td class="section-tight">
-                  <div class="kicker">{{ "Macro Pulse" if section_key == "macro_news" else "Private Markets" }}</div>
-                  <h2 class="section-title">{{ section.title }}</h2>
-                  {% for bullet in section.bullets %}
-                  <div class="bullet">• {{ bullet }}</div>
-                  {% endfor %}
-                </td>
-              </tr>
-              {% endif %}
-            {% endfor %}
-
-            {% set linked = newsletter.sections.get("portfolio_linked_news") %}
-            {% if linked %}
+            {% set macro = newsletter.sections.get("macro_news") %}
+            {% if macro %}
             <tr>
-              <td class="section-tight">
-                <div class="kicker">Portfolio-Linked News</div>
-                <h2 class="section-title">{{ linked.title }}</h2>
-                {% if linked["items"] %}
-                <table class="data-table" width="100%">
-                  <tr><th>Holding / Issuer</th><th>Region</th><th>Asset Class</th><th>News Theme</th><th>Why It Matters</th><th>Source</th></tr>
-                  {% for item in linked["items"] %}
-                  <tr><td>{{ item.name }}</td><td>{{ item.region }}</td><td>{{ item.asset_class }}</td><td>{{ item.news_theme }}</td><td>{{ item.why_it_matters }}</td><td><a href="{{ item.source.url }}">{{ item.source.name }}</a></td></tr>
-                  {% endfor %}
-                </table>
-                {% else %}
-                <div class="section-note">{{ linked.empty_message }}</div>
+              <td class="white-section" id="macro-news">
+                <div class="section-meta">Macro Desk</div>
+                <h2 class="section-title">Macro News</h2>
+                <p class="section-deck">What changed, why it matters, and where it transmits.</p>
+                {% for item in macro["items"] %}
+                <div class="article-row">
+                  <div class="article-kicker">{{ item.theme }}</div>
+                  <h3>{{ item.summary }}</h3>
+                  <p><strong>Market read:</strong> {{ item.market_implication }}</p>
+                  <p class="portfolio-read"><strong>Portfolio lens:</strong> {{ item.portfolio_relevance }}</p>
+                  <div class="source-line">SOURCES /
+                    {% for source in item.sources %}{% if source.name not in ["Sample Data", "Fallback source"] %}{% if source.url %}<a href="{{ source.url }}">{{ source.name }}</a>{% else %}{{ source.name }}{% endif %}{% if not loop.last %} &middot; {% endif %}{% endif %}{% endfor %}
+                  </div>
+                </div>
+                {% endfor %}
+                {% if not macro["items"] %}<div class="empty-note">{{ macro.empty_message }}</div>{% endif %}
+              </td>
+            </tr>
+            {% endif %}
+
+            {% set private = newsletter.sections.get("private_markets") %}
+            {% set linked = newsletter.sections.get("portfolio_linked_news") %}
+            {% if private or linked %}
+            <tr>
+              <td class="paper-section" id="portfolio-intelligence">
+                <div class="section-meta">Capital &amp; Holdings</div>
+                <h2 class="section-title">Private markets and portfolio intelligence</h2>
+                {% if private %}
+                <div class="region-heading">Private markets</div>
+                {% for item in private["items"] %}
+                <div class="compact-story">
+                  <div class="article-kicker">{{ item.theme }}</div>
+                  <h3>{{ item.summary }}</h3>
+                  <p>{{ item.why_it_matters }}</p>
+                  <div class="source-line">SOURCE / {% for source in item.sources %}{% if source.url %}<a href="{{ source.url }}">{{ source.name }}</a>{% else %}{{ source.name }}{% endif %}{% if not loop.last %} &middot; {% endif %}{% endfor %}</div>
+                </div>
+                {% endfor %}
+                {% if not private["items"] %}<div class="empty-note">{{ private.empty_message }}</div>{% endif %}
+                {% endif %}
+
+                {% if linked %}
+                <div class="region-heading">Portfolio-Linked News</div>
+                {% for item in linked["items"] %}
+                <div class="linked-row">
+                  <div class="linked-meta">{{ item.name }} / {{ item.region }} / {{ item.asset_class }}</div>
+                  <h3>{{ item.news_theme }}</h3>
+                  <p>{{ item.why_it_matters }}</p>
+                  {% if item.source %}<div class="source-line">SOURCE / {% if item.source.url %}<a href="{{ item.source.url }}">{{ item.source.name }}</a>{% else %}{{ item.source.name }}{% endif %}</div>{% endif %}
+                </div>
+                {% endfor %}
+                {% if not linked["items"] %}<div class="empty-note">{{ linked.empty_message }}</div>{% endif %}
                 {% endif %}
               </td>
             </tr>
@@ -264,37 +371,31 @@
             {% set regional = newsletter.sections.get("regional_headlines") %}
             {% if regional %}
             <tr>
-              <td class="section-tight">
-                <div class="kicker">Regional Monitor</div>
-                <h2 class="section-title">{{ regional.title }}</h2>
-                {% for group in regional.regions %}
-                <div class="region-chip">{{ group.region }}</div>
-                {% if group.headlines %}
-                  {% for item in group.headlines %}
-                  <div class="headline">• <a href="{{ item.url }}">{{ item.headline }}</a> <span class="source-tag">{{ item.source }}</span> <span class="source">{{ item.category }}</span></div>
-                  {% endfor %}
-                {% else %}
-                <div class="section-note">No material update captured from configured sources.</div>
-                {% endif %}
-                {% endfor %}
-              </td>
-            </tr>
-            {% endif %}
-
-            {% set story = newsletter.sections.get("story_of_the_week") %}
-            {% if story %}
-            <tr>
-              <td class="section">
-                <div class="feature-card">
-                  <div class="feature-label">Story of the Week</div>
-                  <h3>{{ story.title }}</h3>
-                  <p>{{ story.narrative }}</p>
-                  <ul>
-                    {% for item in story.implications %}
-                    <li>{{ item }}</li>
+              <td class="white-section" id="regional-headlines">
+                <div class="section-meta">Foreign Desks</div>
+                <h2 class="section-title">Regional Headlines</h2>
+                <p class="section-deck">A compact dispatch across the six coverage regions.</p>
+                <table role="presentation" class="region-grid" width="100%">
+                  {% for region_row in regional.regions|batch(2, none) %}
+                  <tr>
+                    {% for group in region_row %}
+                    {% if group %}
+                    <td class="region-cell">
+                      <div class="region-label">{{ group.region }}</div>
+                      {% for item in group.headlines %}
+                      <div class="headline-item">
+                        <div class="headline-meta">{{ item.category }} / {{ item.source }}</div>
+                        <a href="{{ item.url }}">{{ item.headline }}</a>
+                        {% if item.market_implication %}<p>{{ item.market_implication }}</p>{% endif %}
+                      </div>
+                      {% endfor %}
+                      {% if not group.headlines %}<div class="empty-note">No material update captured.</div>{% endif %}
+                    </td>
+                    {% endif %}
                     {% endfor %}
-                  </ul>
-                </div>
+                  </tr>
+                  {% endfor %}
+                </table>
               </td>
             </tr>
             {% endif %}
@@ -302,24 +403,28 @@
             {% set watchlist = newsletter.sections.get("portfolio_watchlist") %}
             {% if watchlist %}
             <tr>
-              <td class="section-tight">
-                <div class="kicker">Forward Watchlist</div>
-                <h2 class="section-title">{{ watchlist.title }}</h2>
-                <table class="data-table" width="100%">
-                  <tr><th>Period</th><th>Region</th><th>Event / Theme</th><th>Portfolio Relevance</th><th>Asset Classes Affected</th></tr>
-                  {% for row in watchlist.rows %}
-                  <tr><td>{{ row.period }}</td><td>{{ row.region }}</td><td>{{ row.event }}</td><td>{{ row.portfolio_relevance }}</td><td>{{ row.asset_classes }}</td></tr>
-                  {% endfor %}
+              <td class="paper-section" id="outlook">
+                <div class="section-meta">Outlook</div>
+                <h2 class="section-title">What to Watch This Week</h2>
+                {% for row in watchlist.rows %}
+                <table role="presentation" class="watch-row" width="100%">
+                  <tr>
+                    <td class="watch-when"><strong>{{ row.region }}</strong><span>{{ row.period }}</span></td>
+                    <td class="watch-copy"><h3>{{ row.event }}</h3><p>{{ row.portfolio_relevance }}</p><div class="source-line">AFFECTED / {{ row.asset_classes }}</div></td>
+                  </tr>
                 </table>
+                {% endfor %}
               </td>
             </tr>
             {% endif %}
 
             <tr>
               <td class="footer">
-                <strong>Generated timestamp:</strong> {{ newsletter.generated_at }}<br>
-                Internal distribution only. Analytical context, not investment advice.<br>
-                Source/audit note: manual/private pricing and fixed income risk limitations are retained in audit logs. Portfolio relevance is a ranking overlay, not a recommendation engine.
+                <div class="footer-brand">Wolf Research</div>
+                <div class="footer-title">{{ newsletter.title }}</div>
+                <p><strong>Generated:</strong> {{ newsletter.generated_at }} &nbsp;&middot;&nbsp; {{ newsletter.timezone }}</p>
+                <p>Sources may include Gmail MCP newsletter digests, official institutional feeds, Marketaux, FRED, Alpha Vantage, and source-linked public reporting. Gmail content is normalized as untrusted input before analysis.</p>
+                <p>Internal distribution only. Educational market commentary, not investment advice. Source limitations, stale data, fallback use, and manual pricing exceptions are retained in the audit log.</p>
               </td>
             </tr>
           </table>

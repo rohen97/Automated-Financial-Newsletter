@@ -28,7 +28,11 @@ def _source_brief(data: dict) -> dict[str, Any]:
         ],
         "portfolio": {
             "equity_kpis": data.get("equity_monitor", {}).get("kpis", []),
-            "fixed_income_mode": data.get("fixed_income_monitor", {}).get("mode"),
+        },
+        "chart_of_the_week": {
+            "title": data.get("chart_of_the_week", {}).get("title"),
+            "subtitle": data.get("chart_of_the_week", {}).get("subtitle"),
+            "takeaway": data.get("chart_of_the_week", {}).get("takeaway"),
         },
     }
 

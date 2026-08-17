@@ -5,6 +5,10 @@ fx:
     label: AUD/USD
   - symbol: EURUSD=X
     label: EUR/USD
+  - symbol: USDCNH=X
+    label: USD/CNH
+  - symbol: USDJPY=X
+    label: USD/JPY
   - symbol: DX-Y.NYB
     label: DXY
 commodities:
@@ -33,6 +37,40 @@ sectors:
     label: Consumer Discretionary
   - symbol: XLP
     label: Consumer Staples
+sector_scoreboard:
+  US:
+    Technology: {alpha_vantage: XLK, bloomberg: "XLK US Equity"}
+    Financials: {alpha_vantage: XLF, bloomberg: "XLF US Equity"}
+    Industrials: {alpha_vantage: XLI, bloomberg: "XLI US Equity"}
+    Consumer Discretionary: {alpha_vantage: XLY, bloomberg: "XLY US Equity"}
+    Consumer Staples: {alpha_vantage: XLP, bloomberg: "XLP US Equity"}
+    Health Care: {alpha_vantage: XLV, bloomberg: "XLV US Equity"}
+    Energy: {alpha_vantage: XLE, bloomberg: "XLE US Equity"}
+    Utilities: {alpha_vantage: XLU, bloomberg: "XLU US Equity"}
+    Real Estate: {alpha_vantage: XLRE, bloomberg: "XLRE US Equity"}
+    Materials: {alpha_vantage: XLB, bloomberg: "XLB US Equity"}
+  Europe:
+    Technology: {alpha_vantage: EXV3.DE, bloomberg: "SX8P Index"}
+    Financials: {alpha_vantage: EUFN, bloomberg: "SXFP Index"}
+    Industrials: {alpha_vantage: EXH4.DE, bloomberg: "SXNP Index"}
+    Consumer Discretionary: {alpha_vantage: EXH2.DE, bloomberg: "SXQP Index"}
+    Consumer Staples: {alpha_vantage: EXH3.DE, bloomberg: "SX3P Index"}
+    Health Care: {alpha_vantage: EXV4.DE, bloomberg: "SXDP Index"}
+    Energy: {alpha_vantage: EXH1.DE, bloomberg: "SXEP Index"}
+    Utilities: {alpha_vantage: EXH9.DE, bloomberg: "SX6P Index"}
+    Real Estate: {alpha_vantage: IPRP.AS, bloomberg: "SX86P Index"}
+    Materials: {alpha_vantage: EXV6.DE, bloomberg: "SXPP Index"}
+  Asia_APAC:
+    Technology: {alpha_vantage: CQQQ, bloomberg: "MXAP0IT Index"}
+    Financials: {alpha_vantage: AIA, bloomberg: "MXAP0FN Index"}
+    Industrials: {alpha_vantage: FLAX, bloomberg: "MXAP0IN Index"}
+    Consumer Discretionary: {alpha_vantage: KWEB, bloomberg: "MXAP0CD Index"}
+    Consumer Staples: {alpha_vantage: EPP, bloomberg: "MXAP0CS Index"}
+    Health Care: {alpha_vantage: KURE, bloomberg: "MXAP0HC Index"}
+    Energy: {alpha_vantage: EWS, bloomberg: "MXAP0EN Index"}
+    Utilities: {alpha_vantage: EWS, bloomberg: "MXAP0UT Index"}
+    Real Estate: {alpha_vantage: VNQI, bloomberg: "MXAP0RE Index"}
+    Materials: {alpha_vantage: EWA, bloomberg: "MXAP0MT Index"}
 benchmarks:
   - symbol: SPY
     label: S&P 500

@@ -22,8 +22,17 @@ class MarketRow(BaseModel):
     last: float | str
     one_week_change: float
     one_month_change: float
+    ytd_change: float = 0.0
     driver: str
     source: SourceItem
+    latest_date: str | None = None
+    is_stale: bool | None = None
+    confidence_score: float | None = None
+    comment_method: str | None = None
+    driver_1w: str | None = None
+    driver_1m: str | None = None
+    driver_ytd: str | None = None
+    portfolio_relevance: str | None = None
 
 
 class MarketTable(BaseModel):
@@ -48,6 +57,7 @@ class SectorTable(BaseModel):
 class NewsletterSection(BaseModel):
     title: str
     bullets: list[str] = Field(default_factory=list)
+    signals: list[dict] = Field(default_factory=list)
     sources: list[SourceItem] = Field(default_factory=list)
 
 
@@ -80,6 +90,39 @@ class PortfolioSnapshot(BaseModel):
 
 class GenericTableSection(BaseModel):
     title: str
+    subtitle: str | None = None
+    takeaway: str | None = None
+    source: dict | None = None
+    source_name: str | None = None
+    source_type: str | None = None
+    published_at: str | None = None
+    original_url: str | None = None
+    image_url: str | None = None
+    local_image_path: str | None = None
+    image_src: str | None = None
+    email_image_src: str | None = None
+    preview_image_src: str | None = None
+    summary: str | None = None
+    portfolio_relevance: str | None = None
+    extraction_method: str | None = None
+    copyright_note: str | None = None
+    compliance_approved: bool | None = None
+    embedded_image: bool | None = None
+    fallback_mode: bool | None = None
+    generated_at: str | None = None
+    rotation_week_number: int | None = None
+    rotation_selected_source: str | None = None
+    source_attempts: list[dict] = Field(default_factory=list)
+    chart_id: str | None = None
+    series_used: list[str] = Field(default_factory=list)
+    transformation_used: dict | None = None
+    latest_values: dict[str, float] = Field(default_factory=dict)
+    unit_label: str | None = None
+    lookback: str | None = None
+    market_signal_reason: str | None = None
+    selection_score: float | None = None
+    fred_chart_scores: list[dict] = Field(default_factory=list)
+    chart_selection_history_updated: bool | None = None
     rows: list[dict] = Field(default_factory=list)
     items: list[dict] = Field(default_factory=list)
     regions: list[dict] = Field(default_factory=list)
@@ -114,6 +157,9 @@ class GenericTableSection(BaseModel):
     total_gain_loss_display: str | None = None
     invalid_or_manual_holdings: list[str] = Field(default_factory=list)
     missing_bond_fields: list[str] = Field(default_factory=list)
+    provider_used: str | None = None
+    missing_proxies: list[dict] = Field(default_factory=list)
+    stale_prices: list[dict] = Field(default_factory=list)
 
 
 class Newsletter(BaseModel):

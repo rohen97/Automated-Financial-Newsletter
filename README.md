@@ -61,11 +61,10 @@ The newsletter can rank headlines and frame commentary around current portfolio 
 examples/current_portfolio.csv
 ```
 
-The equity and issuer-only fixed income monitors use:
+The equity monitor uses:
 
 ```text
 data/portfolio/equity_holdings.csv
-data/portfolio/fixed_income_holdings.csv
 data/portfolio/portfolio_config.yaml
 ```
 
@@ -81,9 +80,9 @@ Configure the input path and thresholds in:
 config/portfolio.yaml
 ```
 
-When portfolio mode is enabled, the newsletter adds Portfolio Snapshot, Equity Holdings Monitor, Fixed Income Monitor, Portfolio-Linked News, Regional Headlines, and a portfolio-aware watchlist.
+When portfolio mode is enabled, the newsletter adds Portfolio Snapshot, Equity Holdings Monitor, Chart of the Week, Portfolio-Linked News, Regional Headlines, and a portfolio-aware watchlist.
 
-Manual pricing and issuer-only fixed income limitations are written to:
+Manual pricing and source limitations are written to:
 
 ```text
 output/latest/audit_log.json
@@ -102,19 +101,29 @@ The send step is blocked if required sections are missing, fewer than five sourc
 
 Edit `config/sources.yaml` to add RSS feeds, source quality scores, or fallback sources. Every article should include title, source, date, URL, summary, and category.
 
+## Gmail MCP Newsletter Sources
+
+Gmail is the primary inbox channel for subscribed research. The Gmail label `Wolf Research Sources` is the collection boundary; route trusted newsletters into that label with Gmail filters.
+
+Run the repository skill at `automation/skills/build-wolf-market-brief` to search the last eight days, screen email content as untrusted input, deduplicate coverage, and write normalized metadata to the gitignored `data/inbox/gmail_digest.json` cache. The Python pipeline merges that cache with Marketaux, official RSS feeds, Google News discovery, FRED, and Alpha Vantage.
+
+The skill may create a reviewed Gmail draft after validation. It never sends automatically, and the standard application remains in `SEND_MODE=dry_run` unless delivery is explicitly enabled.
+
 ## Update Sections
 
 Edit `config/newsletter.yaml` for required sections and newsletter settings. Section prompts live in `src/llm/prompts.py`; structured schemas live in `src/llm/schemas.py`.
 
 ## Email Design Preview
 
-The institutional navy and gold HTML email template lives at `templates/newsletter.html.j2`, with email-safe CSS in `assets/newsletter.css`.
+The publication-style HTML email template lives at `templates/newsletter.html.j2`, with email-safe CSS in `assets/newsletter.css`. It uses a paper editorial layout, a dark Macro Pulse feature, sourced charts, compact market tape, and regional desk sections.
 
 Generate a preview:
 
 ```powershell
 python scripts/preview_design.py
 ```
+
+When `output/latest/newsletter.json` exists, the preview reuses it so the preview and latest newsletter share identical content without consuming APIs twice.
 
 The preview is saved to:
 

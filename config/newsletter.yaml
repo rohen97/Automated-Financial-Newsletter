@@ -1,13 +1,15 @@
-title: Wolf Research Weekly
+title: Weekly Market Brief
 timezone: Asia/Singapore
 send_mode: dry_run
 lookback_days: 7
 recipients: []
+include_fixed_income_monitor: false
+include_chart_of_the_week: true
 required_sections:
   - executive_snapshot
   - portfolio_snapshot
   - equity_holdings_monitor
-  - fixed_income_monitor
+  - chart_of_the_week
   - macro_news
   - fx_markets
   - commodities
@@ -20,3 +22,55 @@ required_sections:
 style:
   tone: institutional, concise, analytical, investment-focused
   max_bullets_per_section: 5
+sections:
+  macro_news:
+    enabled: true
+    max_items: 6
+    require_sources: true
+  private_markets:
+    enabled: true
+    max_items: 5
+    require_sources: false
+  portfolio_linked_news:
+    enabled: true
+    max_items: 8
+    allow_sector_matches: true
+    allow_region_matches: true
+  regional_headlines:
+    enabled: true
+    regions:
+      - US
+      - EU
+      - UK
+      - APAC
+      - EMEA
+      - Global
+    max_per_region: 3
+    require_min_regions_with_sources: 3
+  fx_markets:
+    enabled: true
+    require_driver_comments: true
+    require_1w_1m_ytd_explanation: true
+  commodities:
+    enabled: true
+    require_driver_comments: true
+    require_1w_1m_ytd_explanation: true
+  sector_scoreboard:
+    enabled: true
+    regions:
+      - US
+      - Europe
+      - Asia_APAC
+    require_driver_comments: true
+    require_1w_1m_ytd_explanation: true
+    max_sectors_per_region: 10
+market_driver_comments:
+  enabled: true
+  use_openai_if_available: true
+  fallback_to_deterministic: true
+  banned_generic_phrases:
+    - Near-term underperformance
+    - Leadership broadening
+    - Broad USD momentum
+    - Demand balance
+    - Risk sentiment

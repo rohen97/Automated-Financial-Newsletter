@@ -1,6 +1,6 @@
 {
   "title": "Wolf Research Weekly",
-  "generated_at": "2026-07-06T15:32:01.837769+08:00",
+  "generated_at": "2026-07-06T17:45:29.766975+08:00",
   "timezone": "Asia/Singapore",
   "sections": {
     "executive_snapshot": {
@@ -12,24 +12,24 @@
       ],
       "sources": [
         {
-          "name": "Sample Data",
-          "url": "https://example.com/wolf-research/fx/usd-strength-keeps-asian-fx-volatility-in-focus"
+          "name": "Federal Reserve",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260702a.htm"
         },
         {
-          "name": "Sample Data",
-          "url": "https://example.com/wolf-research/watchlist/investors-watch-inflation-data-and-central-bank-guidance-this-week"
+          "name": "Federal Reserve",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20260624a.htm"
         },
         {
-          "name": "Sample Data",
-          "url": "https://example.com/wolf-research/macro/central-bank-policy-remains-the-key-macro-risk-for-portfolios"
+          "name": "CNBC",
+          "url": "https://www.cnbc.com/2026/07/03/new-jersey-deli-stockfraud-sentence-patten.html"
         },
         {
-          "name": "Sample Data",
-          "url": "https://example.com/wolf-research/private_markets/private-credit-fundraising-remains-resilient"
+          "name": "CNBC",
+          "url": "https://www.cnbc.com/2026/07/03/spacex-stock-congress-meuser-cisneros-ipo-disclosure.html"
         },
         {
-          "name": "Sample Data",
-          "url": "https://example.com/wolf-research/commodities/oil-markets-balance-supply-discipline-against-softer-demand-signals"
+          "name": "Federal Reserve",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/other20260701a.htm"
         }
       ]
     },
@@ -60,46 +60,46 @@
       "rows": [
         {
           "label": "USD/SGD",
-          "last": 1.35,
-          "one_week_change": 0.0054,
-          "one_month_change": 0.0175,
-          "driver": "Fallback sample data. Replace with configured market data API in production.",
+          "last": 1.2935,
+          "one_week_change": -0.08,
+          "one_month_change": 0.23,
+          "driver": "USD rates / regional risk sentiment",
           "source": {
-            "name": "Sample Data",
-            "url": "https://example.com/wolf-research/sample-data"
+            "name": "Yahoo Finance",
+            "url": "https://finance.yahoo.com/quote/USDSGD=X"
           }
         },
         {
           "label": "AUD/USD",
-          "last": 0.66,
-          "one_week_change": 0.0026,
-          "one_month_change": 0.0086,
-          "driver": "Fallback sample data. Replace with configured market data API in production.",
+          "last": 0.6934,
+          "one_week_change": 0.55,
+          "one_month_change": -1.55,
+          "driver": "China growth / commodities beta",
           "source": {
-            "name": "Sample Data",
-            "url": "https://example.com/wolf-research/sample-data"
+            "name": "Yahoo Finance",
+            "url": "https://finance.yahoo.com/quote/AUDUSD=X"
           }
         },
         {
           "label": "EUR/USD",
-          "last": 1.08,
-          "one_week_change": 0.0043,
-          "one_month_change": 0.014,
-          "driver": "Fallback sample data. Replace with configured market data API in production.",
+          "last": 1.1422,
+          "one_week_change": 0.32,
+          "one_month_change": -0.87,
+          "driver": "ECB repricing",
           "source": {
-            "name": "Sample Data",
-            "url": "https://example.com/wolf-research/sample-data"
+            "name": "Yahoo Finance",
+            "url": "https://finance.yahoo.com/quote/EURUSD=X"
           }
         },
         {
           "label": "DXY",
-          "last": 104.2,
-          "one_week_change": 0.4168,
-          "one_month_change": 1.3546,
-          "driver": "Fallback sample data. Replace with configured market data API in production.",
+          "last": 101.079,
+          "one_week_change": -0.28,
+          "one_month_change": 1.03,
+          "driver": "Broad USD momentum",
           "source": {
-            "name": "Sample Data",
-            "url": "https://example.com/wolf-research/sample-data"
+            "name": "Yahoo Finance",
+            "url": "https://finance.yahoo.com/quote/DX-Y.NYB"
           }
         }
       ]
@@ -109,57 +109,57 @@
       "rows": [
         {
           "label": "Brent",
-          "last": 82.0,
-          "one_week_change": 0.328,
-          "one_month_change": 1.066,
-          "driver": "Fallback sample data. Replace with configured market data API in production.",
+          "last": 71.68,
+          "one_week_change": -0.43,
+          "one_month_change": -23.95,
+          "driver": "OPEC supply discipline / demand balance",
           "source": {
-            "name": "Sample Data",
-            "url": "https://example.com/wolf-research/sample-data"
+            "name": "Yahoo Finance",
+            "url": "https://finance.yahoo.com/quote/BZ=F"
           }
         },
         {
           "label": "WTI",
-          "last": 78.0,
-          "one_week_change": 0.312,
-          "one_month_change": 1.014,
-          "driver": "Fallback sample data. Replace with configured market data API in production.",
+          "last": 68.34,
+          "one_week_change": -1.29,
+          "one_month_change": -25.15,
+          "driver": "US inventory cycle / refinery demand",
           "source": {
-            "name": "Sample Data",
-            "url": "https://example.com/wolf-research/sample-data"
+            "name": "Yahoo Finance",
+            "url": "https://finance.yahoo.com/quote/CL=F"
           }
         },
         {
           "label": "Gold",
-          "last": 2350.0,
-          "one_week_change": 9.4,
-          "one_month_change": 30.55,
-          "driver": "Fallback sample data. Replace with configured market data API in production.",
+          "last": 4148.7998,
+          "one_week_change": 1.72,
+          "one_month_change": -4.32,
+          "driver": "Real yields / safe-haven demand",
           "source": {
-            "name": "Sample Data",
-            "url": "https://example.com/wolf-research/sample-data"
+            "name": "Yahoo Finance",
+            "url": "https://finance.yahoo.com/quote/GC=F"
           }
         },
         {
           "label": "Copper",
-          "last": 4.5,
-          "one_week_change": 0.018,
-          "one_month_change": 0.0585,
-          "driver": "Fallback sample data. Replace with configured market data API in production.",
+          "last": 6.218,
+          "one_week_change": 1.25,
+          "one_month_change": -1.76,
+          "driver": "China growth expectations",
           "source": {
-            "name": "Sample Data",
-            "url": "https://example.com/wolf-research/sample-data"
+            "name": "Yahoo Finance",
+            "url": "https://finance.yahoo.com/quote/HG=F"
           }
         },
         {
           "label": "Natural Gas / LNG proxy",
-          "last": 2.7,
-          "one_week_change": 0.0108,
-          "one_month_change": 0.0351,
-          "driver": "Fallback sample data. Replace with configured market data API in production.",
+          "last": 3.23,
+          "one_week_change": -0.03,
+          "one_month_change": 2.64,
+          "driver": "Weather demand / LNG flow signals",
           "source": {
-            "name": "Sample Data",
-            "url": "https://example.com/wolf-research/sample-data"
+            "name": "Yahoo Finance",
+            "url": "https://finance.yahoo.com/quote/NG=F"
           }
         }
       ]
@@ -167,138 +167,221 @@
     "private_markets": {
       "title": "Private Markets",
       "bullets": [
-        "Private credit fundraising remains resilient",
-        "Exit markets show gradual reopening for high-quality assets"
+        "The Week’s 10 Biggest Funding Rounds: AI, Energy And Biotech Lead The Way",
+        "Crunchbase Data: Global Startup Investment Hit Record $510B In H1 2026 As AI Boom Accelerates Funding And Exits",
+        "The Crunchbase Tech Layoffs Tracker",
+        "London-Based Tapestry VC Closes On $80M Third Fund To Invest In Repeat European Founders",
+        "Exclusive: No More Side Hustles: Why AI Startup Omnea Will Give Employees $250K To Openly Plan Their Next Startup"
       ],
       "sources": [
         {
-          "name": "Sample Data",
-          "url": "https://example.com/wolf-research/private_markets/private-credit-fundraising-remains-resilient"
+          "name": "Crunchbase News",
+          "url": "https://news.crunchbase.com/venture/biggest-funding-rounds-ai-energy-biotech-joulent/"
         },
         {
-          "name": "Sample Data",
-          "url": "https://example.com/wolf-research/private_markets/exit-markets-show-gradual-reopening-for-high-quality-assets"
+          "name": "Crunchbase News",
+          "url": "https://news.crunchbase.com/venture/global-startup-exits-ipo-ma-soar-ai-q2-h1-2026/"
+        },
+        {
+          "name": "Crunchbase News",
+          "url": "https://news.crunchbase.com/startups/tech-layoffs/"
+        },
+        {
+          "name": "Crunchbase News",
+          "url": "https://news.crunchbase.com/venture/80m-repeat-founders-fund-europe-na-tapestry/"
+        },
+        {
+          "name": "Crunchbase News",
+          "url": "https://news.crunchbase.com/startups/omnea-funding-employees-future-founders-freeman/"
         }
       ]
     },
     "sector_scoreboard": {
       "title": "Sector Scoreboard",
-      "bullets": [
-        "Financials moved lower over the week (-1.35).",
-        "Technology moved lower over the week (-0.90).",
-        "Energy moved lower over the week (-0.45).",
-        "Health Care moved unchanged over the week (+0.00).",
-        "Industrials moved higher over the week (+0.45)."
-      ],
-      "sources": [
+      "rows": [
         {
-          "name": "Sample Data",
-          "url": "https://example.com/wolf-research/sector-scoreboard"
+          "sector": "Financials",
+          "one_week": 4.06,
+          "one_month": 8.08,
+          "ytd": 4.57,
+          "comment": "Outperforming",
+          "source": {
+            "name": "Yahoo Finance",
+            "url": "https://finance.yahoo.com/quote/XLF"
+          }
         },
         {
-          "name": "Sample Data",
-          "url": "https://example.com/wolf-research/sector-scoreboard"
+          "sector": "Technology",
+          "one_week": -2.16,
+          "one_month": -8.89,
+          "ytd": 40.56,
+          "comment": "Under pressure",
+          "source": {
+            "name": "Yahoo Finance",
+            "url": "https://finance.yahoo.com/quote/XLK"
+          }
         },
         {
-          "name": "Sample Data",
-          "url": "https://example.com/wolf-research/sector-scoreboard"
+          "sector": "Energy",
+          "one_week": -1.61,
+          "one_month": -8.18,
+          "ytd": 22.3,
+          "comment": "Under pressure",
+          "source": {
+            "name": "Yahoo Finance",
+            "url": "https://finance.yahoo.com/quote/XLE"
+          }
         },
         {
-          "name": "Sample Data",
-          "url": "https://example.com/wolf-research/sector-scoreboard"
+          "sector": "Health Care",
+          "one_week": 5.21,
+          "one_month": 11.84,
+          "ytd": 20.84,
+          "comment": "Outperforming",
+          "source": {
+            "name": "Yahoo Finance",
+            "url": "https://finance.yahoo.com/quote/XLV"
+          }
         },
         {
-          "name": "Sample Data",
-          "url": "https://example.com/wolf-research/sector-scoreboard"
+          "sector": "Industrials",
+          "one_week": -0.11,
+          "one_month": 5.58,
+          "ytd": 23.08,
+          "comment": "Under pressure",
+          "source": {
+            "name": "Yahoo Finance",
+            "url": "https://finance.yahoo.com/quote/XLI"
+          }
+        },
+        {
+          "sector": "Consumer Discretionary",
+          "one_week": 3.33,
+          "one_month": -0.4,
+          "ytd": 5.89,
+          "comment": "Outperforming",
+          "source": {
+            "name": "Yahoo Finance",
+            "url": "https://finance.yahoo.com/quote/XLY"
+          }
+        },
+        {
+          "sector": "Consumer Staples",
+          "one_week": 1.25,
+          "one_month": 3.86,
+          "ytd": 3.42,
+          "comment": "Outperforming",
+          "source": {
+            "name": "Yahoo Finance",
+            "url": "https://finance.yahoo.com/quote/XLP"
+          }
         }
       ]
     },
     "story_of_the_week": {
-      "title": "USD strength keeps Asian FX volatility in focus",
-      "narrative": "USD strength keeps Asian FX volatility in focus. Fallback article used when live feeds are unavailable.",
+      "title": "Federal Reserve Board issues enforcement action with Small Business Bank and announces termination enforcement actions with BNP Paribas S.A., BNP Paribas USA, Inc., BNP Paribas Securities Corp., and Community Bankshares, Inc.",
+      "narrative": "Federal Reserve Board issues enforcement action with Small Business Bank and announces termination enforcement actions with BNP Paribas S.A., BNP Paribas USA, Inc., BNP Paribas Securities Corp., and Community Bankshares, Inc.",
       "implications": [
         "Monitor whether the theme affects rates, FX, commodities, and sector leadership.",
         "Treat this as analytical context, not an investment recommendation."
       ],
       "sources": [
         {
-          "name": "Sample Data",
-          "url": "https://example.com/wolf-research/fx/usd-strength-keeps-asian-fx-volatility-in-focus"
+          "name": "Federal Reserve",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260702a.htm"
         }
       ]
     },
     "week_in_headlines": [
       {
-        "title": "USD strength keeps Asian FX volatility in focus",
+        "title": "Federal Reserve Board issues enforcement action with Small Business Bank and announces termination enforcement actions with BNP Paribas S.A., BNP Paribas USA, Inc., BNP Paribas Securities Corp., and Community Bankshares, Inc.",
         "source": {
-          "name": "Sample Data",
-          "url": "https://example.com/wolf-research/fx/usd-strength-keeps-asian-fx-volatility-in-focus"
-        },
-        "category": "fx",
-        "importance_score": 0.5707
-      },
-      {
-        "title": "Investors watch inflation data and central bank guidance this week",
-        "source": {
-          "name": "Sample Data",
-          "url": "https://example.com/wolf-research/watchlist/investors-watch-inflation-data-and-central-bank-guidance-this-week"
-        },
-        "category": "watchlist",
-        "importance_score": 0.5707
-      },
-      {
-        "title": "Central bank policy remains the key macro risk for portfolios",
-        "source": {
-          "name": "Sample Data",
-          "url": "https://example.com/wolf-research/macro/central-bank-policy-remains-the-key-macro-risk-for-portfolios"
+          "name": "Federal Reserve",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260702a.htm"
         },
         "category": "macro",
-        "importance_score": 0.5407
+        "importance_score": 0.6825
       },
       {
-        "title": "Private credit fundraising remains resilient",
+        "title": "Federal Reserve Board's annual bank stress test confirms that large banks are well positioned to weather a severe recession and able to continue to lend to households and businesses",
         "source": {
-          "name": "Sample Data",
-          "url": "https://example.com/wolf-research/private_markets/private-credit-fundraising-remains-resilient"
+          "name": "Federal Reserve",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20260624a.htm"
         },
-        "category": "private_markets",
-        "importance_score": 0.5407
+        "category": "macro",
+        "importance_score": 0.6825
       },
       {
-        "title": "Oil markets balance supply discipline against softer demand signals",
+        "title": "Feds seek lower prison term for $100M New Jersey deli fraudster — but some reasons why are hidden",
         "source": {
-          "name": "Sample Data",
-          "url": "https://example.com/wolf-research/commodities/oil-markets-balance-supply-discipline-against-softer-demand-signals"
+          "name": "CNBC",
+          "url": "https://www.cnbc.com/2026/07/03/new-jersey-deli-stockfraud-sentence-patten.html"
         },
-        "category": "commodities",
-        "importance_score": 0.5264
+        "category": "markets",
+        "importance_score": 0.6375
       },
       {
-        "title": "Private equity exits remain selective as valuation gaps persist",
+        "title": "First known congressional SpaceX stock buys surface after record IPO",
         "source": {
-          "name": "Sample Data",
-          "url": "https://example.com/wolf-research/private_markets/private-equity-exits-remain-selective-as-valuation-gaps-persist"
+          "name": "CNBC",
+          "url": "https://www.cnbc.com/2026/07/03/spacex-stock-congress-meuser-cisneros-ipo-disclosure.html"
         },
-        "category": "private_markets",
-        "importance_score": 0.5264
+        "category": "markets",
+        "importance_score": 0.6375
       },
       {
-        "title": "Technology and financials lead the sector performance split",
+        "title": "Federal Reserve issues initial findings from its 2025 triennial payments study",
         "source": {
-          "name": "Sample Data",
-          "url": "https://example.com/wolf-research/sectors/technology-and-financials-lead-the-sector-performance-split"
+          "name": "Federal Reserve",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/other20260701a.htm"
         },
-        "category": "sectors",
-        "importance_score": 0.5121
+        "category": "macro",
+        "importance_score": 0.615
       },
       {
-        "title": "Exit markets show gradual reopening for high-quality assets",
+        "title": "Federal Reserve Board issues enforcement action with employee of Bank of Eufaula and S N B Bancshares, Inc.",
         "source": {
-          "name": "Sample Data",
-          "url": "https://example.com/wolf-research/private_markets/exit-markets-show-gradual-reopening-for-high-quality-assets"
+          "name": "Federal Reserve",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260625b.htm"
         },
-        "category": "private_markets",
-        "importance_score": 0.4589
+        "category": "macro",
+        "importance_score": 0.615
+      },
+      {
+        "title": "Federal Reserve Board announces termination of enforcement action with Jiko Group, Inc.",
+        "source": {
+          "name": "Federal Reserve",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260625a.htm"
+        },
+        "category": "macro",
+        "importance_score": 0.615
+      },
+      {
+        "title": "Federal Reserve notes with deep sadness the passing of Alan Greenspan",
+        "source": {
+          "name": "Federal Reserve",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/other20260622a.htm"
+        },
+        "category": "macro",
+        "importance_score": 0.615
+      },
+      {
+        "title": "Federal Reserve Board issues enforcement action with former employee of Manufacturers and Traders Trust Company",
+        "source": {
+          "name": "Federal Reserve",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260618a.htm"
+        },
+        "category": "macro",
+        "importance_score": 0.615
+      },
+      {
+        "title": "Federal Reserve Board requests comment on proposal to require certain payment stablecoin issuers to maintain an effective customer identification program",
+        "source": {
+          "name": "Federal Reserve",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20260618a.htm"
+        },
+        "category": "macro",
+        "importance_score": 0.615
       }
     ],
     "watchlist": [
@@ -319,11 +402,11 @@
         }
       },
       {
-        "event": "USD strength keeps Asian FX volatility in focus",
+        "event": "Federal Reserve Board issues enforcement action with Small Business Bank and announces termination enforcement actions with BNP Paribas S.A., BNP Paribas USA, Inc., BNP Paribas Securities Corp., and Community Bankshares, Inc.",
         "why_it_matters": "Highest-ranked current headline in the content engine.",
         "source": {
-          "name": "Sample Data",
-          "url": "https://example.com/wolf-research/fx/usd-strength-keeps-asian-fx-volatility-in-focus"
+          "name": "Federal Reserve",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260702a.htm"
         }
       }
     ]

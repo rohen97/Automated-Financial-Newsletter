@@ -7,3 +7,11 @@ __pycache__/
 .env.local
 *.key
 public_preview/
+data/inbox/gmail_digest.json
+output/test/
+output/visual_checks/
+output/review_v2/final-print-page-*.png
+output/review_v2/print-page-*.png
+output/review_v2/newsletter_v2_*.png
+output/review_v2/newsletter_v2_print.pdf
+output/review_v2/outlook_pdf_review/

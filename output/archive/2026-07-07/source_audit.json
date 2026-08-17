@@ -1,0 +1,49 @@
+{
+  "title": "Wolf Research Weekly",
+  "generated_at": "2026-07-07T17:51:00.763342+08:00",
+  "timezone": "Asia/Singapore",
+  "source_urls": [
+    "https://example.com/wolf-research/commodities/oil-markets-balance-supply-discipline-against-softer-demand-signals",
+    "https://example.com/wolf-research/fx/usd-strength-keeps-asian-fx-volatility-in-focus",
+    "https://example.com/wolf-research/private_markets/exit-markets-show-gradual-reopening-for-high-quality-assets",
+    "https://example.com/wolf-research/private_markets/private-credit-fundraising-remains-resilient",
+    "https://example.com/wolf-research/private_markets/private-equity-exits-remain-selective-as-valuation-gaps-persist",
+    "https://example.com/wolf-research/sample-data",
+    "https://example.com/wolf-research/sector-scoreboard",
+    "https://example.com/wolf-research/sectors/technology-and-financials-lead-the-sector-performance-split",
+    "https://fred.stlouisfed.org/"
+  ],
+  "warnings": [],
+  "portfolio_data_loaded": true,
+  "equity_holdings_count": 16,
+  "usable_equity_pricing_count": 16,
+  "fixed_income_issuer_count": 38,
+  "fixed_income_position_count": 151,
+  "fixed_income_mode": "position-level",
+  "fixed_income_total_market_value_usd": 216683428.8,
+  "fixed_income_total_gain_loss_usd": -913909.99,
+  "manual_pricing_count": 16,
+  "missing_pricing_count": 0,
+  "invalid_or_manual_holdings": [],
+  "total_equity_portfolio_value_usd": 171598778.0,
+  "total_ytd_equity_pnl_usd": 30616737.0,
+  "best_contributor": "Meta Wolf AG",
+  "worst_contributor": "Bayerische Motoren Werke AG",
+  "largest_sector_exposure": "Capital Goods",
+  "largest_currency_exposure": "EUR",
+  "portfolio_linked_articles_count": 0,
+  "regional_headline_counts": {
+    "US": 3,
+    "EU": 0,
+    "UK": 0,
+    "APAC": 0,
+    "EMEA": 0,
+    "Global": 0
+  },
+  "missing_bond_fields": [
+    "yield",
+    "duration",
+    "rating"
+  ],
+  "portfolio_validation_status": "issuer-only fixed income; equity pricing usable"
+}
