@@ -16,7 +16,7 @@ Copy-Item .env.example .env
 - `SEND_MODE=dry_run` saves outputs without sending email.
 - `SEND_MODE=send` sends through SendGrid after safety checks pass.
 - `SENDGRID_API_KEY`, `SENDGRID_FROM_EMAIL`, and `NEWSLETTER_TO` are required for production email.
-- `FRED_API_KEY`, `ALPHA_VANTAGE_API_KEY`, `MARKETAUX_API_KEY`, `FT_API_KEY`, and `CRUNCHBASE_API_KEY` are optional data integrations.
+- `FRED_API_KEY`, `ALPHA_VANTAGE_API_KEY`, `MARKETAUX_API_KEY`, `FT_API_KEY`, `TIINGO_API_KEY`, and `CRUNCHBASE_API_KEY` are optional data integrations.
 - `FT_API_ORG_NAME` and `FT_API_TRACKING_SOURCE` configure the campaign attribution required on FT article links.
 - `TIMEZONE=Asia/Singapore` keeps the newsletter aligned to Singapore time.
 
@@ -68,6 +68,28 @@ remains available as a fallback.
 The API contract and licence-specific requirements are documented in the
 [FT API reference](https://developer.ft.com/portal/docs-api-reference) and
 [FT datamining quick start](https://developer.ft.com/portal/docs-quick-start-guides-datamining-licence).
+
+## Tiingo News API
+
+Set `TIINGO_API_KEY` locally or as a GitHub Actions secret. Authentication is sent only through the
+`Authorization: Token ...` header; the token is never placed in request URLs or audit logs. The provider uses the
+official `GET https://api.tiingo.com/tiingo/news` endpoint, caps request and response sizes, normalizes original
+publisher names and URLs, and retains Tiingo ticker and topic tags for newsletter relevance scoring.
+
+Tiingo access is additive to Marketaux, FT, RSS, and Google News. Duplicate URLs and similar headlines are removed by
+the existing content pipeline. Set `TIINGO_NEWS_ENABLED=true` to activate fetching. Because Tiingo plan terms differ
+for internal use, retention, and redistribution, archived output remains blocked unless
+`TIINGO_ALLOW_PERSISTENCE=true` is also set after confirming the account licence. `TIINGO_LICENSE_MODE=internal` is
+written to the audit log as a deployment reminder; it does not grant additional usage rights.
+
+A `200` response from Tiingo's authentication test combined with `403` from the News endpoint means the token is valid
+but the account does not currently have News API entitlement. Keep the persistence guard disabled until both endpoint
+access and the intended internal-distribution rights are confirmed.
+
+The endpoint contract and current usage terms are documented in the
+[Tiingo News API documentation](https://www.tiingo.com/documentation/news),
+[authentication guide](https://www.tiingo.com/documentation/general/connecting), and
+[Tiingo terms of use](https://api.tiingo.com/tos/).
 
 ## Portfolio-Aware Mode
 

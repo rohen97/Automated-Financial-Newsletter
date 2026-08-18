@@ -9,6 +9,7 @@ import requests
 from src.fetchers.base import sample_article
 from src.fetchers.financial_times import fetch_financial_times_articles
 from src.fetchers.gmail_digest import load_gmail_digest
+from src.fetchers.tiingo import fetch_tiingo_articles
 from src.fetchers.provider_audit import (
     record_error,
     record_fallback,
@@ -238,6 +239,8 @@ def fetch_news(sources_config: dict, lookback_days: int = 7) -> list[dict]:
     if os.getenv("FT_API_KEY"):
         ft_articles = fetch_financial_times_articles(sources_config.get("ft_api") or {}, lookback_days)
         articles.extend(ft_articles)
+    if os.getenv("TIINGO_API_KEY"):
+        articles.extend(fetch_tiingo_articles(sources_config.get("tiingo_news") or {}, lookback_days))
     if os.getenv("MARKETAUX_API_KEY"):
         articles.extend(
             fetch_marketaux_articles(

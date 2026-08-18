@@ -204,7 +204,16 @@ def _source_name(article: dict) -> str:
 
 
 def _article_text(article: dict) -> str:
-    return f"{article.get('title', '')} {article.get('summary', '')} {article.get('description', '')} {article.get('category', '')}".lower()
+    metadata = [
+        *article.get("tags", []),
+        *article.get("tickers", []),
+        *article.get("entities", []),
+    ]
+    return (
+        f"{article.get('title', '')} {article.get('summary', '')} "
+        f"{article.get('description', '')} {article.get('category', '')} "
+        f"{' '.join(str(item) for item in metadata if item)}"
+    ).lower()
 
 
 def _is_real_source_article(article: dict) -> bool:

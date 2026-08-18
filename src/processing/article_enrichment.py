@@ -95,4 +95,9 @@ def _normalise_category(category: str | None) -> str | None:
 
 
 def _text(article: dict) -> str:
-    return f"{article.get('title', '')} {article.get('summary', '')} {article.get('description', '')} {article.get('category', '')}"
+    tags = " ".join(str(item) for item in article.get("tags", []) if item)
+    tickers = " ".join(str(item) for item in article.get("tickers", []) if item)
+    return (
+        f"{article.get('title', '')} {article.get('summary', '')} "
+        f"{article.get('description', '')} {article.get('category', '')} {tags} {tickers}"
+    )

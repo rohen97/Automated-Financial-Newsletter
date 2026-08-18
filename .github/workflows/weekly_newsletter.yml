@@ -35,6 +35,10 @@ jobs:
       FT_API_KEY: ${{ secrets.FT_API_KEY }}
       FT_API_ORG_NAME: WolfResearch
       FT_API_TRACKING_SOURCE: email
+      TIINGO_API_KEY: ${{ secrets.TIINGO_API_KEY }}
+      TIINGO_NEWS_ENABLED: ${{ vars.TIINGO_NEWS_ENABLED || 'false' }}
+      TIINGO_ALLOW_PERSISTENCE: ${{ vars.TIINGO_ALLOW_PERSISTENCE || 'false' }}
+      TIINGO_LICENSE_MODE: ${{ vars.TIINGO_LICENSE_MODE || 'internal' }}
       CRUNCHBASE_API_KEY: ${{ secrets.CRUNCHBASE_API_KEY }}
     steps:
       - uses: actions/checkout@v4

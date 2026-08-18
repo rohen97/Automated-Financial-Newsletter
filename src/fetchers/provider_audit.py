@@ -12,6 +12,9 @@ _AUDIT: dict[str, Any] = {
     "marketaux_queries_run": [],
     "ft_queries_run": [],
     "ft_articles_fetched": 0,
+    "tiingo_requests_run": [],
+    "tiingo_articles_fetched": 0,
+    "tiingo_status": "not_configured",
     "google_news_queries_run": [],
     "rss_sources_fetched": [],
     "gmail_messages_ingested": 0,
@@ -27,6 +30,9 @@ def reset_provider_audit() -> None:
     _AUDIT["marketaux_queries_run"] = []
     _AUDIT["ft_queries_run"] = []
     _AUDIT["ft_articles_fetched"] = 0
+    _AUDIT["tiingo_requests_run"] = []
+    _AUDIT["tiingo_articles_fetched"] = 0
+    _AUDIT["tiingo_status"] = "not_configured"
     _AUDIT["google_news_queries_run"] = []
     _AUDIT["rss_sources_fetched"] = []
     _AUDIT["gmail_messages_ingested"] = 0
@@ -61,6 +67,18 @@ def record_ft_query(query: str, article_count: int = 0) -> None:
         _AUDIT["ft_queries_run"].append(query)
     _AUDIT["ft_articles_fetched"] += max(0, article_count)
     record_provider("financial_times")
+
+
+def record_tiingo_request(request_name: str, article_count: int = 0) -> None:
+    if request_name not in _AUDIT["tiingo_requests_run"]:
+        _AUDIT["tiingo_requests_run"].append(request_name)
+    _AUDIT["tiingo_articles_fetched"] += max(0, article_count)
+    _AUDIT["tiingo_status"] = "ok"
+    record_provider("tiingo")
+
+
+def record_tiingo_status(status: str) -> None:
+    _AUDIT["tiingo_status"] = status
 
 
 def record_google_news_query(query: str) -> None:
@@ -99,8 +117,11 @@ def _sanitize_message(message: str) -> str:
     text = re.sub(r"(?i)(api_token=)[^&\s]+", r"\1***", text)
     text = re.sub(r"(?i)(apikey=)[^&\s]+", r"\1***", text)
     text = re.sub(r"(?i)(api_key=)[^&\s]+", r"\1***", text)
+    text = re.sub(r"(?i)(token=)[^&\s]+", r"\1***", text)
     text = re.sub(r"(?i)(X-Api-Key[:=]\s*)[^\s,}]+", r"\1***", text)
+    text = re.sub(r"(?i)(Authorization[:=]\s*Token\s+)[^\s,}]+", r"\1***", text)
     text = re.sub(r"(?i)(Bearer\s+)[A-Za-z0-9._\-]+", r"\1***", text)
+    text = re.sub(r"(?i)(Token\s+)[A-Za-z0-9._\-]+", r"\1***", text)
     return text
 
 

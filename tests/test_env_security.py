@@ -7,6 +7,7 @@ SECRET_KEYS = {
     "ALPHA_VANTAGE_API_KEY",
     "MARKETAUX_API_KEY",
     "FT_API_KEY",
+    "TIINGO_API_KEY",
     "SENDGRID_API_KEY",
 }
 
@@ -17,6 +18,10 @@ MARKETAUX_API_KEY=
 FT_API_KEY=
 FT_API_ORG_NAME=WolfResearch
 FT_API_TRACKING_SOURCE=email
+TIINGO_API_KEY=
+TIINGO_NEWS_ENABLED=false
+TIINGO_ALLOW_PERSISTENCE=false
+TIINGO_LICENSE_MODE=internal
 
 SENDGRID_API_KEY=
 SENDGRID_FROM_EMAIL=
@@ -53,5 +58,12 @@ def test_env_files_are_ignored():
 
 def test_weekly_workflow_reads_api_keys_from_secrets():
     workflow = Path(".github/workflows/weekly_newsletter.yml").read_text(encoding="utf-8")
-    for key in ("OPENAI_API_KEY", "FRED_API_KEY", "ALPHA_VANTAGE_API_KEY", "MARKETAUX_API_KEY", "FT_API_KEY"):
+    for key in (
+        "OPENAI_API_KEY",
+        "FRED_API_KEY",
+        "ALPHA_VANTAGE_API_KEY",
+        "MARKETAUX_API_KEY",
+        "FT_API_KEY",
+        "TIINGO_API_KEY",
+    ):
         assert f"{key}: ${{{{ secrets.{key} }}}}" in workflow
