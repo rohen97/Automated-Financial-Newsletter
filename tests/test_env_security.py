@@ -9,6 +9,7 @@ SECRET_KEYS = {
     "FT_API_KEY",
     "TIINGO_API_KEY",
     "SENDGRID_API_KEY",
+    "GMAIL_APP_PASSWORD",
 }
 
 EXPECTED_EXAMPLE = """OPENAI_API_KEY=
@@ -26,6 +27,9 @@ TIINGO_LICENSE_MODE=internal
 SENDGRID_API_KEY=
 SENDGRID_FROM_EMAIL=
 NEWSLETTER_TO=
+EMAIL_PROVIDER=gmail_smtp
+GMAIL_FROM_EMAIL=
+GMAIL_APP_PASSWORD=
 
 SEND_MODE=dry_run
 TIMEZONE=Asia/Singapore
@@ -65,5 +69,8 @@ def test_weekly_workflow_reads_api_keys_from_secrets():
         "MARKETAUX_API_KEY",
         "FT_API_KEY",
         "TIINGO_API_KEY",
+        "GMAIL_FROM_EMAIL",
+        "GMAIL_APP_PASSWORD",
+        "NEWSLETTER_TO",
     ):
         assert f"{key}: ${{{{ secrets.{key} }}}}" in workflow

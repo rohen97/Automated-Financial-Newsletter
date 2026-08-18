@@ -1,6 +1,10 @@
 live_fetch: true
 source_quality:
   Reuters: 0.95
+  Wall Street Journal: 0.90
+  MarketWatch: 0.80
+  Yahoo Finance: 0.80
+  Morningstar: 0.84
   Bloomberg: 0.95
   Financial Times: 0.92
   CNBC: 0.80
@@ -34,7 +38,7 @@ ft_api:
     - name: FT Global Markets
       query: '(markets OR inflation OR "central bank" OR rates OR commodities OR "private equity")'
     - name: FT Portfolio Companies
-      query: '(Alibaba OR BMW OR Allianz OR "Singapore Airlines" OR Sembcorp OR RWE OR Sanofi OR ING OR SATS)'
+      query: '(Alibaba OR BMW OR "Munich Re" OR BASF OR "Singapore Airlines" OR Sembcorp OR RWE OR Sanofi OR SATS)'
 tiingo_news:
   enabled: true
   include_general_feed: true
@@ -57,6 +61,8 @@ tiingo_news:
         - XLI
 marketaux_max_queries: 12
 marketaux_fetch_budget_seconds: 80
+rss_max_entries_per_feed: 30
+google_news_max_entries_per_query: 20
 marketaux_queries:
   - US markets Federal Reserve inflation
   - Europe markets ECB growth
@@ -67,7 +73,7 @@ marketaux_queries:
   - FX USD currency markets
   - commodities oil gold copper natural gas
   - private equity private credit fundraising
-  - Alibaba BMW Allianz Singapore Airlines Sembcorp RWE Microsoft Alphabet Amazon Apple KFW
+  - Alibaba BMW Munich Re BASF Singapore Airlines Sembcorp RWE Microsoft Alphabet Amazon Apple KFW
   - Singapore Airlines SATS oil travel demand
   - Alibaba China internet ecommerce regulation
 rss_feeds:
@@ -89,17 +95,34 @@ rss_feeds:
     - name: Bank for International Settlements
       url: https://www.bis.org/doclist/rss_all_categories.rss
       region: Global
+    - name: Wall Street Journal
+      url: https://feeds.content.dowjones.io/public/rss/RSSWorldNews
   markets:
     - name: CNBC
       url: https://www.cnbc.com/id/100003114/device/rss/rss.html
     - name: Financial Times Markets
       url: https://www.ft.com/markets?format=rss
-    - name: Reuters Markets
-      url: https://feeds.reuters.com/reuters/businessNews
+    - name: Wall Street Journal
+      url: https://feeds.content.dowjones.io/public/rss/RSSMarketsMain
+    - name: MarketWatch
+      url: https://feeds.content.dowjones.io/public/rss/mw_topstories
+    - name: MarketWatch
+      url: https://feeds.content.dowjones.io/public/rss/mw_marketpulse
   private_markets:
     - name: Crunchbase News
       url: https://news.crunchbase.com/feed/
 google_news_queries:
+  # Metadata-only discovery for publishers without a supported free news API/feed.
+  # The pipeline retains headlines, source labels, dates, and original links only.
+  - name: Reuters Markets via Google News
+    query: site:reuters.com/markets markets central banks economy commodities when:7d
+    category: markets
+  - name: Yahoo Finance via Google News
+    query: site:finance.yahoo.com/news markets economy stocks bonds commodities when:7d
+    category: markets
+  - name: Morningstar Markets via Google News
+    query: site:morningstar.com/markets stocks funds economy when:7d
+    category: markets
   - name: IMF via Google News
     query: site:imf.org economy markets financial stability when:7d
     category: macro
@@ -137,7 +160,7 @@ sections:
       - global markets macro rates
   portfolio_linked:
     queries:
-      - Alibaba BMW Allianz Singapore Airlines Sembcorp RWE Sanofi ING SATS
+      - Alibaba BMW Munich Re BASF Singapore Airlines Sembcorp RWE Sanofi SATS
       - Singapore Airlines SATS oil travel demand
       - Alibaba China internet ecommerce regulation
   central_banks:

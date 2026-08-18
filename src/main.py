@@ -65,7 +65,7 @@ def build_newsletter() -> dict:
     equity_data = equity_monitor(equity_holdings)
     linked_news = portfolio_linked_news(equity_holdings, [], ranked_articles)
     regional_news = regional_headlines(ranked_articles)
-    watchlist = portfolio_watchlist()
+    watchlist = portfolio_watchlist(equity_holdings)
     narrative_monitor = build_narrative_monitor(
         ranked_articles,
         narrative_config,

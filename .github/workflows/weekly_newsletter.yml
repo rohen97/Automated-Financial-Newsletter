@@ -26,6 +26,9 @@ jobs:
       TIMEZONE: Asia/Singapore
       ALLOW_FALLBACK_IN_SEND: "false"
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      EMAIL_PROVIDER: ${{ vars.EMAIL_PROVIDER || 'gmail_smtp' }}
+      GMAIL_FROM_EMAIL: ${{ secrets.GMAIL_FROM_EMAIL }}
+      GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
       SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
       SENDGRID_FROM_EMAIL: ${{ secrets.SENDGRID_FROM_EMAIL }}
       NEWSLETTER_TO: ${{ secrets.NEWSLETTER_TO }}
@@ -64,7 +67,9 @@ jobs:
         run: python scripts/preview_review_v2.py
       - name: Deliver finalized V2
         env:
-          SEND_MODE: ${{ (github.event_name == 'schedule' || inputs.send == true) && secrets.SEND_MODE || 'dry_run' }}
+          # A scheduled run is a real delivery attempt. Missing credentials must fail
+          # visibly instead of producing a misleading successful dry run.
+          SEND_MODE: ${{ (github.event_name == 'schedule' || inputs.send == true) && 'send' || 'dry_run' }}
         run: python scripts/send_review_v2.py
       - name: Upload outputs
         if: always()

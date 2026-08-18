@@ -400,7 +400,14 @@ def _trend_rows(current: dict[str, Any], snapshots: list[dict[str, Any]], settin
             }
         )
 
-    rows.sort(key=lambda row: (row["_score"], row["article_count"], row["source_count"]), reverse=True)
+    rows.sort(
+        key=lambda row: (
+            -row["_score"],
+            -row["article_count"],
+            -row["source_count"],
+            row["phrase_key"],
+        )
+    )
     selected = []
     for row in rows:
         if any(_phrases_overlap(row["phrase_key"], existing["phrase_key"]) for existing in selected):

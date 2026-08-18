@@ -103,7 +103,9 @@ def _sector_relevance(region: str, sector: str) -> str:
     if region == "Europe" and sector in {"Consumer Discretionary", "Industrials"}:
         return "portfolio relevance for BMW and European cyclicals."
     if region == "Europe" and sector in {"Financials", "Health Care", "Utilities"}:
-        return "portfolio relevance for ING, Allianz, Sanofi, and RWE."
+        return "portfolio relevance for Munich Re, Sanofi, and RWE."
+    if region == "Europe" and sector == "Materials":
+        return "portfolio relevance for BASF and the European industrial cycle."
     if region == "Asia_APAC" and sector in {"Consumer Discretionary", "Financials", "Industrials"}:
         return "portfolio relevance for Alibaba, Ping An, SATS, and Singapore Airlines."
     if sector in {"Technology", "Real Estate", "Utilities"}:

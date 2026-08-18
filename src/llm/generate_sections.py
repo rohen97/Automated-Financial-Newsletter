@@ -187,7 +187,7 @@ def build_macro_news_section(macro_rows: list[dict], articles: list[dict]) -> di
         ("Inflation", ("inflation", "cpi", "prices"), "Inflation affects policy rates, real yields, airlines, utilities, and margin pressure."),
         ("Labour market", ("jobs", "payrolls", "unemployment", "labour", "labor"), "Labour cooling changes Fed reaction-function risk and demand sensitivity."),
         ("Credit conditions", ("credit", "spread", "financial conditions", "liquidity"), "Credit conditions affect private-market exits, refinancing risk, and risk appetite."),
-        ("Europe growth and ECB path", ("ecb", "europe", "eurozone", "germany", "france"), "European growth affects Allianz, BMW, RWE, Sanofi, ING, and Meta Wolf AG."),
+        ("Europe growth and ECB path", ("ecb", "europe", "eurozone", "germany", "france"), "European growth affects BMW, Munich Re, BASF, RWE, Sanofi, and Meta Wolf AG."),
         ("China / APAC growth", ("china", "singapore", "apac", "asia"), "APAC growth affects Alibaba, SATS, Singapore Airlines, Sembcorp, CapitaLand, and SGD exposure."),
     ]
     items = []

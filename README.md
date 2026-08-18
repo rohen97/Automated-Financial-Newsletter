@@ -14,8 +14,9 @@ Copy-Item .env.example .env
 ## Environment Variables
 
 - `SEND_MODE=dry_run` saves outputs without sending email.
-- `SEND_MODE=send` sends through SendGrid after safety checks pass.
-- `SENDGRID_API_KEY`, `SENDGRID_FROM_EMAIL`, and `NEWSLETTER_TO` are required for production email.
+- `SEND_MODE=send` sends through the provider selected by `EMAIL_PROVIDER` after safety checks pass.
+- `EMAIL_PROVIDER=gmail_smtp` uses `GMAIL_FROM_EMAIL`, a Google app password in `GMAIL_APP_PASSWORD`, and `NEWSLETTER_TO`.
+- `EMAIL_PROVIDER=sendgrid` uses `SENDGRID_API_KEY`, `SENDGRID_FROM_EMAIL`, and `NEWSLETTER_TO`.
 - `FRED_API_KEY`, `ALPHA_VANTAGE_API_KEY`, `MARKETAUX_API_KEY`, `FT_API_KEY`, `TIINGO_API_KEY`, and `CRUNCHBASE_API_KEY` are optional data integrations.
 - `FT_API_ORG_NAME` and `FT_API_TRACKING_SOURCE` configure the campaign attribution required on FT article links.
 - `TIMEZONE=Asia/Singapore` keeps the newsletter aligned to Singapore time.
@@ -91,6 +92,22 @@ The endpoint contract and current usage terms are documented in the
 [authentication guide](https://www.tiingo.com/documentation/general/connecting), and
 [Tiingo terms of use](https://api.tiingo.com/tos/).
 
+## Public Headline Sources
+
+WSJ Markets, WSJ World, MarketWatch Top Stories, and MarketWatch MarketPulse are ingested from their public Dow Jones
+RSS endpoints. The pipeline stores feed-provided headline metadata and original links; it does not bypass subscriptions
+or retrieve paywalled article bodies.
+
+Reuters RSS delivery now requires an authenticated Reuters Connect account, so the free configuration uses a
+site-restricted Google News query for Reuters links. Yahoo does not publish a supported Yahoo Finance news API and its
+Finance help prohibits redistribution of displayed data, so Yahoo Finance is also discovery-only through Google News.
+Morningstar uses the same metadata-only discovery path because its public editorial feed availability varies by region.
+All three sources still pass through the normal recency, deduplication, source-diversity, and relevance filters.
+
+References: [Reuters RSS delivery](https://liaison.thomsonreuters.com/page/rss-feeds-tech-notes),
+[Yahoo Finance data terms](https://help.yahoo.com/kb/finance/exchanges-data-providers-yahoo-finance-sln2310.html), and
+[Morningstar RSS overview](https://my.morningstar.com/my/feeds/rssintro.aspx).
+
 ## Narrative Monitor
 
 The Narrative Monitor runs after article normalization, deduplication, ranking, and portfolio enrichment. It measures
@@ -153,9 +170,11 @@ python -m src.main
 
 The send step is blocked if required sections are missing, fewer than five source URLs are present, schema validation fails, or generated text contains failure phrases such as `as an AI` or `I could not`.
 
+For Gmail automation, enable two-step verification on the sender account and create a Google app password. Store the app password only in the local `.env` file or the GitHub Actions secret `GMAIL_APP_PASSWORD`; never commit it. The Gmail connector used interactively by Codex is separate from GitHub Actions and cannot supply credentials to an unattended workflow.
+
 ## Add Sources
 
-Edit `config/sources.yaml` to add RSS feeds, source quality scores, or fallback sources. Every article should include title, source, date, URL, summary, and category.
+Edit `config/sources.yaml` to add RSS feeds, source quality scores, or fallback sources. Every article should include title, source, date, URL, summary, and category. Prefer public APIs or publisher-provided RSS; do not add HTML scraping for paywalled article bodies.
 
 ## Gmail MCP Newsletter Sources
 
@@ -209,7 +228,7 @@ Enable Pages in GitHub with source set to `GitHub Actions`, then run the `Pages 
 ## GitHub Actions
 
 - `ci.yml` runs tests on push and pull request.
-- `weekly_newsletter.yml` runs every Monday at `01:00 UTC`, equal to `09:00 Singapore time`, generates the newsletter, and uploads outputs as artifacts.
+- `weekly_newsletter.yml` runs every Monday at `01:00 UTC`, equal to `09:00 Singapore time`, validates and sends the finalized V2, and uploads outputs as artifacts. Configure `EMAIL_PROVIDER=gmail_smtp` as a repository variable and add `GMAIL_FROM_EMAIL`, `GMAIL_APP_PASSWORD`, `NEWSLETTER_TO`, and data-provider keys as Actions secrets.
 - `pages_preview.yml` publishes the rendered preview to GitHub Pages.
 
 ## Risk And Compliance Notes

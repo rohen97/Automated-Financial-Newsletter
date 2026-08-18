@@ -30,60 +30,6 @@
     "reason": "Policy/inflation relationship moved meaningfully over recent windows. Selected because market move score was the largest contributor to the chart score."
   },
   {
-    "selected_at": "2026-07-10",
-    "chart_id": "inflation_path",
-    "selection_score": 0.888,
-    "reason": "Inflation data moved meaningfully over recent windows. Selected because market move score was the largest contributor to the chart score."
-  },
-  {
-    "selected_at": "2026-07-10",
-    "chart_id": "us_10y_yield",
-    "selection_score": 0.737,
-    "reason": "US 10Y yield moved meaningfully over recent windows. Selected because market move score was the largest contributor to the chart score."
-  },
-  {
-    "selected_at": "2026-07-10",
-    "chart_id": "policy_vs_inflation",
-    "selection_score": 0.9085,
-    "reason": "Policy/inflation relationship moved meaningfully over recent windows. Selected because market move score was the largest contributor to the chart score."
-  },
-  {
-    "selected_at": "2026-07-10",
-    "chart_id": "inflation_path",
-    "selection_score": 0.888,
-    "reason": "Inflation data moved meaningfully over recent windows. Selected because market move score was the largest contributor to the chart score."
-  },
-  {
-    "selected_at": "2026-07-10",
-    "chart_id": "us_10y_yield",
-    "selection_score": 0.737,
-    "reason": "US 10Y yield moved meaningfully over recent windows. Selected because market move score was the largest contributor to the chart score."
-  },
-  {
-    "selected_at": "2026-07-10",
-    "chart_id": "policy_vs_inflation",
-    "selection_score": 0.9085,
-    "reason": "Policy/inflation relationship moved meaningfully over recent windows. Selected because market move score was the largest contributor to the chart score."
-  },
-  {
-    "selected_at": "2026-07-10",
-    "chart_id": "inflation_path",
-    "selection_score": 0.888,
-    "reason": "Inflation data moved meaningfully over recent windows. Selected because market move score was the largest contributor to the chart score."
-  },
-  {
-    "selected_at": "2026-07-10",
-    "chart_id": "us_10y_yield",
-    "selection_score": 0.737,
-    "reason": "US 10Y yield moved meaningfully over recent windows. Selected because market move score was the largest contributor to the chart score."
-  },
-  {
-    "selected_at": "2026-07-10",
-    "chart_id": "policy_vs_inflation",
-    "selection_score": 0.9085,
-    "reason": "Policy/inflation relationship moved meaningfully over recent windows. Selected because market move score was the largest contributor to the chart score."
-  },
-  {
     "selected_at": "2026-08-12",
     "chart_id": "inflation_path",
     "selection_score": 0.888,
@@ -309,6 +255,60 @@
     "selected_at": "2026-08-17",
     "chart_id": "inflation_path",
     "selection_score": 0.8755,
+    "reason": "Inflation data moved meaningfully over recent windows. Selected because market move score was the largest contributor to the chart score."
+  },
+  {
+    "selected_at": "2026-08-18",
+    "chart_id": "policy_vs_inflation",
+    "selection_score": 0.9085,
+    "reason": "Policy/inflation relationship moved meaningfully over recent windows. Selected because market move score was the largest contributor to the chart score."
+  },
+  {
+    "selected_at": "2026-08-18",
+    "chart_id": "us_10y_yield",
+    "selection_score": 0.7085,
+    "reason": "Selected because news relevance score was the largest contributor to the chart score."
+  },
+  {
+    "selected_at": "2026-08-18",
+    "chart_id": "inflation_path",
+    "selection_score": 0.813,
+    "reason": "Inflation data moved meaningfully over recent windows. Selected because market move score was the largest contributor to the chart score."
+  },
+  {
+    "selected_at": "2026-08-18",
+    "chart_id": "policy_vs_inflation",
+    "selection_score": 0.9085,
+    "reason": "Policy/inflation relationship moved meaningfully over recent windows. Selected because market move score was the largest contributor to the chart score."
+  },
+  {
+    "selected_at": "2026-08-18",
+    "chart_id": "real_rates",
+    "selection_score": 0.7385,
+    "reason": "Selected because news relevance score was the largest contributor to the chart score."
+  },
+  {
+    "selected_at": "2026-08-18",
+    "chart_id": "inflation_path",
+    "selection_score": 0.938,
+    "reason": "Inflation data moved meaningfully over recent windows. Selected because market move score was the largest contributor to the chart score."
+  },
+  {
+    "selected_at": "2026-08-18",
+    "chart_id": "policy_vs_inflation",
+    "selection_score": 0.9085,
+    "reason": "Policy/inflation relationship moved meaningfully over recent windows. Selected because market move score was the largest contributor to the chart score."
+  },
+  {
+    "selected_at": "2026-08-18",
+    "chart_id": "us_10y_yield",
+    "selection_score": 0.7085,
+    "reason": "Selected because news relevance score was the largest contributor to the chart score."
+  },
+  {
+    "selected_at": "2026-08-18",
+    "chart_id": "inflation_path",
+    "selection_score": 1.0005,
     "reason": "Inflation data moved meaningfully over recent windows. Selected because market move score was the largest contributor to the chart score."
   }
 ]

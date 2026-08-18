@@ -242,12 +242,18 @@ def _global_scan(regions: list[dict[str, Any]], feature_title: str = "") -> list
 
 
 def _headline_score(item: dict[str, Any], region: str = "Global", feature_title: str = "") -> int:
-    text = str(item.get("headline", "")).lower()
+    headline_text = str(item.get("headline", "")).lower()
+    text = headline_text
     market_terms = (
+        "artificial intelligence",
         "inflation",
         "rate",
         "fed",
         "central bank",
+        "monetary policy",
+        "defence spending",
+        "defense spending",
+        "fiscal",
         "growth",
         "market",
         "bank",
@@ -262,7 +268,6 @@ def _headline_score(item: dict[str, Any], region: str = "Global", feature_title:
         "employment",
         "yield",
         "credit",
-        "debt",
         "technology",
         "earnings",
         "china",
@@ -280,17 +285,18 @@ def _headline_score(item: dict[str, Any], region: str = "Global", feature_title:
     )
     region_terms = {
         "US": ("united states", "u.s.", "federal reserve", "fed ", "treasury", "wall street"),
-        "EU": ("europe", "european", "eurozone", "ecb", "germany", "france", "renminbi"),
+        "EU": ("europe", "european", "euro area", "eurozone", "ecb", "germany", "france"),
         "UK": ("united kingdom", "britain", "british", "bank of england", "boe", "sterling", "gilt"),
         "APAC": ("asia", "china", "japan", "singapore", "india", "australia", "yen", "yuan"),
-        "EMEA": ("middle east", "africa", "iran", "hormuz", "gulf", "saudi"),
+        "EMEA": ("middle east", "africa", "libya", "iran", "hormuz", "gulf", "saudi"),
         "Global": ("global", "world", "cross-asset", "gold", "commodity"),
     }
-    score = sum(2 for term in market_terms if term in text)
+    market_score = sum(2 for term in market_terms if _contains_term(text, term))
+    score = market_score if market_score else -8
     score -= sum(8 for term in low_signal_terms if term in text)
     has_region_signal = any(_contains_term(text, term) for term in region_terms.get(region, ()))
     score += 3 if has_region_signal else (-6 if region != "Global" else 0)
-    if feature_title and _normalise_title(text) == _normalise_title(feature_title):
+    if feature_title and _normalise_title(headline_text) == _normalise_title(feature_title):
         score -= 10
     if item.get("url"):
         score += 1
@@ -346,11 +352,13 @@ def _chart_view(chart: dict[str, Any]) -> dict[str, Any]:
 
 
 def _narrative_view(section: dict[str, Any]) -> dict[str, Any]:
+    baseline_periods = section.get("baseline_periods", 0)
     return {
         "rows": section.get("rows", [])[:5],
         "document_count": section.get("document_count", 0),
         "source_count": section.get("source_count", 0),
-        "baseline_periods": section.get("baseline_periods", 0),
+        "baseline_periods": baseline_periods,
+        "is_baseline": baseline_periods < 1,
         "note": section.get("note", ""),
         "empty_message": section.get("empty_message", "No reliable narrative trend identified."),
     }
