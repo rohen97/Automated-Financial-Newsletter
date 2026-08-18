@@ -10,6 +10,7 @@ required_sections:
   - portfolio_snapshot
   - equity_holdings_monitor
   - chart_of_the_week
+  - narrative_monitor
   - macro_news
   - fx_markets
   - commodities
@@ -23,6 +24,9 @@ style:
   tone: institutional, concise, analytical, investment-focused
   max_bullets_per_section: 5
 sections:
+  narrative_monitor:
+    enabled: true
+    max_items: 6
   macro_news:
     enabled: true
     max_items: 6

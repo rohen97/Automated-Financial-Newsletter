@@ -29,7 +29,15 @@ def portfolio_relevance_score(article: dict, holdings: list[dict]) -> float:
     if not holdings:
         return 0.0
     terms = portfolio_terms(holdings)
-    haystack = f"{article.get('title', '')} {article.get('summary', '')} {article.get('category', '')}".lower()
+    metadata = [
+        *article.get("tags", []),
+        *article.get("tickers", []),
+        *article.get("entities", []),
+    ]
+    haystack = (
+        f"{article.get('title', '')} {article.get('summary', '')} "
+        f"{article.get('category', '')} {' '.join(str(item) for item in metadata if item)}"
+    ).lower()
     hits = sum(1 for term in terms if len(term) > 2 and term in haystack)
     return min(1.0, round(hits / 6, 4))
 

@@ -10,7 +10,20 @@ REGION_TERMS = {
     "EU": ("eurozone", "ecb", "germany", "france", "netherlands", "european", "euro "),
     "UK": ("united kingdom", "boe", "sterling", "gilts", "uk inflation", "britain"),
     "APAC": ("singapore", "china", "hong kong", "india", "japan", "australia", "asean", "mas", "pboc", "asia"),
-    "EMEA": ("middle east", "africa", "gulf", "emea", "oil supply", "regional risk"),
+    "EMEA": (
+        "middle east",
+        "africa",
+        "gulf",
+        "emea",
+        "iran",
+        "israel",
+        "libya",
+        "qatar",
+        "saudi",
+        "uae",
+        "oil supply",
+        "regional risk",
+    ),
     "Global": ("global", "cross-asset", "dollar", "commodities", "geopolitics", "recession"),
 }
 
@@ -53,7 +66,7 @@ def enrich_article(article: dict) -> dict:
 def classify_region(text: str) -> str:
     lowered = text.lower()
     for region, terms in REGION_TERMS.items():
-        if any(term in lowered for term in terms):
+        if any(_contains_term(lowered, term) for term in terms):
             return region
     return "Global"
 
@@ -61,15 +74,15 @@ def classify_region(text: str) -> str:
 def classify_category(text: str) -> str:
     lowered = text.lower()
     for category, terms in CATEGORY_TERMS.items():
-        if any(term in lowered for term in terms):
+        if any(_contains_term(lowered, term) for term in terms):
             return category
-    return "Macro" if any(term in lowered for term in ("inflation", "jobs", "growth")) else "Equities"
+    return "Macro" if any(_contains_term(lowered, term) for term in ("inflation", "jobs", "growth")) else "Equities"
 
 
 def classify_asset_class(text: str) -> str:
     lowered = text.lower()
     for asset_class, terms in ASSET_CLASS_TERMS.items():
-        if any(term in lowered for term in terms):
+        if any(_contains_term(lowered, term) for term in terms):
             return asset_class
     return "Cross-Asset"
 
@@ -94,5 +107,15 @@ def _normalise_category(category: str | None) -> str | None:
     return mapping.get(str(category).lower(), str(category).replace("_", " ").title())
 
 
+def _contains_term(text: str, term: str) -> bool:
+    clean_term = term.strip().lower()
+    return bool(re.search(rf"(?<![a-z0-9]){re.escape(clean_term)}(?![a-z0-9])", text))
+
+
 def _text(article: dict) -> str:
-    return f"{article.get('title', '')} {article.get('summary', '')} {article.get('description', '')} {article.get('category', '')}"
+    tags = " ".join(str(item) for item in article.get("tags", []) if item)
+    tickers = " ".join(str(item) for item in article.get("tickers", []) if item)
+    return (
+        f"{article.get('title', '')} {article.get('summary', '')} "
+        f"{article.get('description', '')} {article.get('category', '')} {tags} {tickers}"
+    )

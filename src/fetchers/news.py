@@ -7,7 +7,9 @@ from urllib.parse import quote_plus
 import requests
 
 from src.fetchers.base import sample_article
+from src.fetchers.financial_times import fetch_financial_times_articles
 from src.fetchers.gmail_digest import load_gmail_digest
+from src.fetchers.tiingo import fetch_tiingo_articles
 from src.fetchers.provider_audit import (
     record_error,
     record_fallback,
@@ -42,6 +44,7 @@ def fetch_rss_articles(feeds: list[dict], lookback_days: int = 7) -> list[dict]:
         feed_url = feed.get("url")
         if not feed_url:
             continue
+        max_entries = max(1, int(feed.get("max_entries", 100)))
         try:
             response = requests.get(feed_url, headers=REQUEST_HEADERS, timeout=20)
             response.raise_for_status()
@@ -73,12 +76,18 @@ def fetch_rss_articles(feeds: list[dict], lookback_days: int = 7) -> list[dict]:
                 )
             )
             feed_articles += 1
+            if feed_articles >= max_entries:
+                break
         if feed_articles:
             record_rss_source(str(feed.get("name", feed_url)))
     return articles
 
 
-def fetch_google_news_articles(queries: list[dict], lookback_days: int = 7) -> list[dict]:
+def fetch_google_news_articles(
+    queries: list[dict],
+    lookback_days: int = 7,
+    max_entries_per_query: int = 20,
+) -> list[dict]:
     feeds = []
     for item in queries:
         query = clean_text(item.get("query"))
@@ -94,6 +103,7 @@ def fetch_google_news_articles(queries: list[dict], lookback_days: int = 7) -> l
                 "category": item.get("category", "markets"),
                 "region": item.get("region", ""),
                 "discover_source": True,
+                "max_entries": max_entries_per_query,
             }
         )
         record_google_news_query(query)
@@ -169,6 +179,10 @@ def fetch_marketaux_articles(
                 seen_urls.add(url)
         except Exception as exc:
             record_error("marketaux", f"{query}: {exc}")
+            status_code = getattr(getattr(exc, "response", None), "status_code", None)
+            if status_code in {401, 402, 403}:
+                record_error("marketaux", f"Stopped after terminal HTTP {status_code}")
+                break
             consecutive_failures += 1
             if consecutive_failures >= 3:
                 record_error("marketaux", "Stopped after three consecutive provider failures")
@@ -222,10 +236,10 @@ def fetch_news(sources_config: dict, lookback_days: int = 7) -> list[dict]:
         "FX USD currency markets",
         "commodities oil gold copper natural gas",
         "private equity private credit fundraising",
-        "Alibaba BMW Allianz Singapore Airlines Sembcorp RWE Microsoft Alphabet Amazon Apple KFW",
+        "Alibaba BMW Munich Re BASF Singapore Airlines Sembcorp RWE Microsoft Alphabet Amazon Apple KFW",
         "Singapore Airlines SATS oil travel demand",
         "Alibaba China internet ecommerce regulation",
-        "Allianz BMW RWE Sanofi Europe rates growth",
+        "Munich Re BMW BASF RWE Sanofi Europe rates growth",
         "private equity exits secondaries LP liquidity",
     ]
 
@@ -233,6 +247,12 @@ def fetch_news(sources_config: dict, lookback_days: int = 7) -> list[dict]:
     marketaux_queries = marketaux_queries[: int(sources_config.get("marketaux_max_queries", 12))]
 
     articles = load_gmail_digest(sources_config)
+    ft_articles: list[dict] = []
+    if os.getenv("FT_API_KEY"):
+        ft_articles = fetch_financial_times_articles(sources_config.get("ft_api") or {}, lookback_days)
+        articles.extend(ft_articles)
+    if os.getenv("TIINGO_API_KEY"):
+        articles.extend(fetch_tiingo_articles(sources_config.get("tiingo_news") or {}, lookback_days))
     if os.getenv("MARKETAUX_API_KEY"):
         articles.extend(
             fetch_marketaux_articles(
@@ -250,11 +270,20 @@ def fetch_news(sources_config: dict, lookback_days: int = 7) -> list[dict]:
         return fallback
 
     feeds = []
+    rss_max_entries = int(sources_config.get("rss_max_entries_per_feed", 30))
     for category, items in (sources_config.get("rss_feeds") or {}).items():
         for item in items:
-            feeds.append({**item, "category": category})
+            if ft_articles and str(item.get("name", "")).lower().startswith("financial times"):
+                continue
+            feeds.append({**item, "category": category, "max_entries": item.get("max_entries", rss_max_entries)})
     articles.extend(fetch_rss_articles(feeds, lookback_days))
-    articles.extend(fetch_google_news_articles(sources_config.get("google_news_queries") or [], lookback_days))
+    articles.extend(
+        fetch_google_news_articles(
+            sources_config.get("google_news_queries") or [],
+            lookback_days,
+            max_entries_per_query=int(sources_config.get("google_news_max_entries_per_query", 20)),
+        )
+    )
     if articles:
         return articles
     fallback = fallback_articles()

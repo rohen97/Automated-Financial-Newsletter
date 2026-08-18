@@ -2,8 +2,9 @@ from __future__ import annotations
 
 import os
 
-from src.emailer.send_email import send_email
+from src.analysis.ngram_trends import build_narrative_monitor
 from src.charts.chart_of_week import build_chart_of_the_week
+from src.emailer.send_email import send_email
 from src.fetchers.commodities import fetch_commodities_data
 from src.fetchers.fx import fetch_fx_data
 from src.fetchers.macro import fetch_macro_data
@@ -38,6 +39,7 @@ def build_newsletter() -> dict:
     tickers_config = load_yaml("config/tickers.yaml")
     portfolio_config = load_yaml("config/portfolio.yaml")
     chart_config = load_yaml("config/charts.yaml")
+    narrative_config = load_yaml("config/narrative_monitor.yaml")
     lookback_days = int(newsletter_config.get("lookback_days", 7))
     holdings = load_portfolio(portfolio_config.get("input_path", "")) if portfolio_config.get("enabled", True) else []
     portfolio_data_config = load_yaml("data/portfolio/portfolio_config.yaml")
@@ -63,7 +65,12 @@ def build_newsletter() -> dict:
     equity_data = equity_monitor(equity_holdings)
     linked_news = portfolio_linked_news(equity_holdings, [], ranked_articles)
     regional_news = regional_headlines(ranked_articles)
-    watchlist = portfolio_watchlist()
+    watchlist = portfolio_watchlist(equity_holdings)
+    narrative_monitor = build_narrative_monitor(
+        ranked_articles,
+        narrative_config,
+        persist_history=not bool(os.getenv("PYTEST_CURRENT_TEST")),
+    )
 
     data = {
         "macro": fetch_macro_data(),
@@ -71,6 +78,7 @@ def build_newsletter() -> dict:
         "commodities": fetch_commodities_data(tickers_config),
         "sectors": fetch_sector_scoreboard(tickers_config),
         "chart_of_the_week": build_chart_of_the_week(chart_config, articles=ranked_articles, equity_monitor=equity_data),
+        "narrative_monitor": narrative_monitor,
         "private_markets": private_news,
         "ranked_articles": ranked_articles,
         "portfolio_summary": summary,
@@ -94,7 +102,11 @@ def build_newsletter() -> dict:
             "FRED_API_KEY": bool(os.getenv("FRED_API_KEY")),
             "ALPHA_VANTAGE_API_KEY": bool(os.getenv("ALPHA_VANTAGE_API_KEY")),
             "MARKETAUX_API_KEY": bool(os.getenv("MARKETAUX_API_KEY")),
+            "FT_API_KEY": bool(os.getenv("FT_API_KEY")),
+            "TIINGO_API_KEY": bool(os.getenv("TIINGO_API_KEY")),
         },
+        "tiingo_license_mode": os.getenv("TIINGO_LICENSE_MODE", "internal"),
+        "tiingo_persistence_allowed": os.getenv("TIINGO_ALLOW_PERSISTENCE", "false").lower() == "true",
         "article_count_raw": raw_article_count,
         "article_count_deduped": deduped_article_count,
         **provider_audit_snapshot(),
@@ -128,6 +140,7 @@ def save_outputs(newsletter_dict: dict) -> dict:
     sector_section = sections.get("sector_scoreboard", {})
     fx_section = sections.get("fx_markets", {})
     commodities_section = sections.get("commodities", {})
+    narrative_section = sections.get("narrative_monitor", {})
     audit.update(
         {
             "api_keys_detected": runtime_audit.get("api_keys_detected", {}),
@@ -135,6 +148,13 @@ def save_outputs(newsletter_dict: dict) -> dict:
             "fred_series_fetched": runtime_audit.get("fred_series_fetched", []),
             "alpha_vantage_symbols_fetched": runtime_audit.get("alpha_vantage_symbols_fetched", []),
             "marketaux_queries_run": runtime_audit.get("marketaux_queries_run", []),
+            "ft_queries_run": runtime_audit.get("ft_queries_run", []),
+            "ft_articles_fetched": runtime_audit.get("ft_articles_fetched", 0),
+            "tiingo_requests_run": runtime_audit.get("tiingo_requests_run", []),
+            "tiingo_articles_fetched": runtime_audit.get("tiingo_articles_fetched", 0),
+            "tiingo_status": runtime_audit.get("tiingo_status", "not_configured"),
+            "tiingo_license_mode": runtime_audit.get("tiingo_license_mode", "internal"),
+            "tiingo_persistence_allowed": runtime_audit.get("tiingo_persistence_allowed", False),
             "google_news_queries_run": runtime_audit.get("google_news_queries_run", []),
             "rss_sources_fetched": runtime_audit.get("rss_sources_fetched", []),
             "gmail_messages_ingested": runtime_audit.get("gmail_messages_ingested", 0),
@@ -164,6 +184,14 @@ def save_outputs(newsletter_dict: dict) -> dict:
             "chart_original_url": chart_section.get("original_url"),
             "chart_local_image_path": chart_section.get("local_image_path"),
             "chart_fallback_mode": chart_section.get("fallback_mode", False),
+            "narrative_monitor_enabled": bool(narrative_section),
+            "narrative_model_version": narrative_section.get("model_version"),
+            "narrative_document_count": narrative_section.get("document_count", 0),
+            "narrative_source_count": narrative_section.get("source_count", 0),
+            "narrative_baseline_periods": narrative_section.get("baseline_periods", 0),
+            "narrative_rows_count": len(narrative_section.get("rows", [])),
+            "narrative_status_counts": narrative_section.get("status_counts", {}),
+            "narrative_history_updated": narrative_section.get("history_updated", False),
             "fixed_income_section_enabled": False,
             "manual_pricing_count": equity_section.get("manual_pricing_count", 0),
             "missing_pricing_count": equity_section.get("missing_pricing_count", 0),
@@ -219,11 +247,13 @@ def save_outputs(newsletter_dict: dict) -> dict:
     write_text(latest_dir / "newsletter.html", html)
     write_json(latest_dir / "source_audit.json", audit)
     write_json(latest_dir / "audit_log.json", audit)
+    write_json(latest_dir / "narrative_trends.json", narrative_section)
     write_json(archive_dir / "newsletter.json", newsletter.model_dump(mode="json"))
     write_text(archive_dir / "newsletter.md", markdown)
     write_text(archive_dir / "newsletter.html", html)
     write_json(archive_dir / "source_audit.json", audit)
     write_json(archive_dir / "audit_log.json", audit)
+    write_json(archive_dir / "narrative_trends.json", narrative_section)
     return {"markdown": markdown, "html": html, "archive": archive, "audit": audit}
 
 

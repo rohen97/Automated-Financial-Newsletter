@@ -1,15 +1,17 @@
 from __future__ import annotations
 
+import re
+
 from src.processing.article_enrichment import REGIONS, classify_category, classify_region
 
 
 ALIASES = {
     "Meta Wolf AG": ["meta wolf", "meta wolf ag", "european building materials", "german capital goods"],
-    "ING Groep NV": ["ing", "ing groep", "dutch banks", "european banks"],
     "SATS Ltd": ["sats", "singapore aviation services", "ground handling"],
+    "Muenchener Rueckversicherungs-Gesellschaft AG": ["munich re", "muenchener rueckversicherungs", "european reinsurance", "reinsurer"],
     "Singapore Airlines Ltd": ["singapore airlines", "sia", "airlines", "aviation", "travel demand", "jet fuel"],
     "Sembcorp Industries Ltd": ["sembcorp", "singapore utilities", "energy transition", "power"],
-    "Allianz SE": ["allianz", "european insurance", "insurers"],
+    "BASF SE": ["basf", "european chemicals", "german chemicals", "materials"],
     "RWE AG": ["rwe", "european utilities", "renewable power", "power prices"],
     "CapitaLand Ascendas REIT": ["capitaland ascendas", "ascendas reit", "singapore reits", "industrial reits"],
     "Ping An Insurance Group Co": ["ping an", "chinese insurance", "china financials"],
@@ -22,22 +24,77 @@ ALIASES = {
 
 SECTOR_THEME = {
     "technology": ("Technology duration / AI / software", "Rates and growth expectations affect technology valuation multiples."),
+    "software & services": ("Software and digital demand", "Growth expectations, enterprise spending, and valuation multiples affect software exposure."),
+    "capital goods": ("Capital-goods cycle", "European growth, rates, and industrial investment affect capital-goods demand."),
+    "automobiles & components": ("European autos and cyclicals", "European growth, tariffs, FX, and consumer demand affect automotive exposure."),
     "industrials": ("Transport and industrial cycle", "Oil, travel demand, and regional growth affect transport and industrial exposure."),
+    "transportation": ("Air travel and transport", "Oil prices, regional travel demand, and capacity affect transportation exposure."),
     "utilities": ("Utilities and power prices", "Rates, power prices, and energy-transition policy affect utility cash-flow expectations."),
     "insurance": ("Insurance and rates", "Rates and credit spreads affect insurer reinvestment income and capital-market sensitivity."),
+    "materials": ("Chemicals and industrial demand", "European manufacturing, energy costs, and China demand affect materials exposure."),
     "financials": ("Financials and credit", "Rates, curve shape, and credit conditions affect financial-sector risk."),
     "health care": ("Healthcare defensiveness", "Policy, rates, and European growth affect healthcare defensiveness and valuation."),
     "real estate": ("Real estate and rates", "Long-end yields affect REIT valuations and funding costs."),
 }
 
 REGION_RELEVANCE = {
-    "EU": ("European growth and rates", "Relevant for Allianz, BMW, RWE, Sanofi, ING, and Meta Wolf AG."),
+    "EU": ("European growth and rates", "Relevant for BMW, Munich Re, BASF, RWE, Sanofi, and EUR exposure."),
     "APAC": ("APAC growth and currency risk", "Relevant for Alibaba, SATS, SIA, Sembcorp, CapitaLand, Ping An, and SGD/CNY exposure."),
     "US": ("US rates and global risk appetite", "Relevant for equity duration, USD direction, and global funding conditions."),
     "Global": ("Global cross-asset risk", "Relevant for portfolio beta, commodities, FX, and funding conditions."),
     "EMEA": ("EMEA geopolitical and commodity risk", "Relevant for oil, LNG, inflation, airlines, and risk sentiment."),
     "UK": ("UK rates and sterling risk", "Relevant as a developed-market rates and currency signal."),
 }
+
+LOW_SIGNAL_HEADLINE_TERMS = (
+    "announces approval of the application",
+    "invite the public",
+    "public comment",
+    "requests comment",
+)
+
+MARKET_HEADLINE_TERMS = (
+    "acquisition",
+    "ai",
+    "bank",
+    "bond",
+    "central bank",
+    "commodity",
+    "credit",
+    "currency",
+    "deal",
+    "debt",
+    "downgrade",
+    "earnings",
+    "economy",
+    "employment",
+    "equity",
+    "fed",
+    "fund",
+    "gdp",
+    "geopolitics",
+    "gold",
+    "growth",
+    "inflation",
+    "investment",
+    "jobs",
+    "market",
+    "merger",
+    "monetary policy",
+    "oil",
+    "rating",
+    "rates",
+    "recession",
+    "sanctions",
+    "shares",
+    "stock",
+    "tariff",
+    "technology",
+    "trade",
+    "treasury",
+    "war",
+    "yield",
+)
 
 
 def infer_region(article: dict) -> str:
@@ -47,24 +104,60 @@ def infer_region(article: dict) -> str:
 
 
 def regional_headlines(articles: list[dict], max_per_region: int = 3) -> dict:
-    grouped = {region: [] for region in REGIONS}
+    candidates = {region: [] for region in REGIONS}
     for article in articles:
         if not article.get("url"):
             continue
         if not _is_real_source_article(article):
             continue
+        if _is_low_signal_headline(article):
+            continue
         region = infer_region(article)
-        if len(grouped[region]) < max_per_region:
-            grouped[region].append(
-                {
-                    "headline": article.get("title", ""),
-                    "source": _source_name(article),
-                    "category": article.get("category") or classify_category(f"{article.get('title', '')} {article.get('summary', '')}"),
-                    "url": article.get("url", ""),
-                    "market_implication": _market_implication(article),
-                }
-            )
+        candidates[region].append(
+            {
+                "headline": article.get("title", ""),
+                "source": _source_name(article),
+                "category": article.get("category") or classify_category(f"{article.get('title', '')} {article.get('summary', '')}"),
+                "url": article.get("url", ""),
+                "market_implication": _market_implication(article),
+            }
+        )
+    grouped = {
+        region: _diverse_headlines(candidates[region], max_per_region)
+        for region in REGIONS
+    }
     return {"title": "Regional Headlines", "regions": [{"region": region, "headlines": grouped[region]} for region in REGIONS]}
+
+
+def _diverse_headlines(items: list[dict], limit: int) -> list[dict]:
+    selected: list[dict] = []
+    seen_sources: set[str] = set()
+    for item in items:
+        source = str(item.get("source", "")).casefold()
+        if source in seen_sources:
+            continue
+        selected.append(item)
+        seen_sources.add(source)
+        if len(selected) >= limit:
+            return selected
+    for item in items:
+        if item not in selected:
+            selected.append(item)
+        if len(selected) >= limit:
+            break
+    return selected
+
+
+def _is_low_signal_headline(article: dict) -> bool:
+    title = str(article.get("title", "")).casefold()
+    if any(term in title for term in LOW_SIGNAL_HEADLINE_TERMS):
+        return True
+    return not any(_contains_market_term(title, term) for term in MARKET_HEADLINE_TERMS)
+
+
+def _contains_market_term(text: str, term: str) -> bool:
+    clean_term = term.casefold()
+    return bool(re.search(rf"(?<![a-z0-9]){re.escape(clean_term)}(?![a-z0-9])", text))
 
 
 def portfolio_linked_news(equity_holdings: list[dict], issuers: list[str | dict], articles: list[dict]) -> dict:
@@ -99,17 +192,40 @@ def portfolio_linked_news(equity_holdings: list[dict], issuers: list[str | dict]
     }
 
 
-def portfolio_watchlist() -> dict:
+def portfolio_watchlist(equity_holdings: list[dict] | None = None) -> dict:
+    equity_holdings = equity_holdings or []
+    eu_relevance = _regional_watchlist_relevance(equity_holdings, "EU", "EUR")
+    apac_relevance = _regional_watchlist_relevance(equity_holdings, "APAC", "regional FX")
     return {
         "title": "What to Watch This Week",
         "rows": [
             {"period": "This week", "region": "US", "event": "Inflation and Fed communication", "portfolio_relevance": "Impacts USD, duration, and growth-style equity valuation", "asset_classes": "FX, rates, equities"},
-            {"period": "This week", "region": "EU", "event": "ECB / European growth data", "portfolio_relevance": "Relevant for Allianz, BMW, RWE, Sanofi, ING, and Meta Wolf AG", "asset_classes": "Equities, credit"},
-            {"period": "This week", "region": "APAC", "event": "China activity and Singapore macro", "portfolio_relevance": "Relevant for Alibaba, SATS, SIA, Sembcorp, CapitaLand, Ping An, and SGD exposure", "asset_classes": "Equities, FX"},
+            {"period": "This week", "region": "EU", "event": "ECB / European growth data", "portfolio_relevance": eu_relevance, "asset_classes": "Equities, credit"},
+            {"period": "This week", "region": "APAC", "event": "China activity and Singapore macro", "portfolio_relevance": apac_relevance, "asset_classes": "Equities, FX"},
             {"period": "This week", "region": "Global", "event": "Oil and LNG supply headlines", "portfolio_relevance": "Relevant for inflation, airlines, utilities, and commodities exposure", "asset_classes": "Commodities, rates"},
             {"period": "This week", "region": "EMEA", "event": "Credit spread and geopolitical risk", "portfolio_relevance": "Relevant for risk sentiment, oil prices, and funding conditions", "asset_classes": "Credit, FX"},
         ],
     }
+
+
+def _regional_watchlist_relevance(holdings: list[dict], region: str, currency_label: str) -> str:
+    display_names = {
+        "Muenchener Rueckversicherungs-Gesellschaft AG": "Munich Re",
+        "Bayerische Motoren Werke AG": "BMW",
+        "CapitaLand Investment Ltd/Sing": "CapitaLand Investment",
+        "Ping An Insurance Group Co of": "Ping An",
+    }
+    regional = [holding for holding in holdings if str(holding.get("region", "")) == region]
+    regional.sort(key=lambda holding: float(holding.get("current_value") or 0), reverse=True)
+    names = [display_names.get(item.get("holding", ""), item.get("holding", "")) for item in regional[:6]]
+    names = [name for name in names if name]
+    if not names:
+        return f"Relevant for {region} holdings and {currency_label} exposure"
+    if len(names) == 1:
+        holdings_text = names[0]
+    else:
+        holdings_text = f"{', '.join(names[:-1])}, and {names[-1]}"
+    return f"Relevant for {holdings_text}, plus {currency_label} exposure"
 
 
 def _holding_profiles(equity_holdings: list[dict]) -> list[dict]:
@@ -204,7 +320,16 @@ def _source_name(article: dict) -> str:
 
 
 def _article_text(article: dict) -> str:
-    return f"{article.get('title', '')} {article.get('summary', '')} {article.get('description', '')} {article.get('category', '')}".lower()
+    metadata = [
+        *article.get("tags", []),
+        *article.get("tickers", []),
+        *article.get("entities", []),
+    ]
+    return (
+        f"{article.get('title', '')} {article.get('summary', '')} "
+        f"{article.get('description', '')} {article.get('category', '')} "
+        f"{' '.join(str(item) for item in metadata if item)}"
+    ).lower()
 
 
 def _is_real_source_article(article: dict) -> bool:

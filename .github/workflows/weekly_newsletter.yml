@@ -26,18 +26,35 @@ jobs:
       TIMEZONE: Asia/Singapore
       ALLOW_FALLBACK_IN_SEND: "false"
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      EMAIL_PROVIDER: ${{ vars.EMAIL_PROVIDER || 'gmail_smtp' }}
+      GMAIL_FROM_EMAIL: ${{ secrets.GMAIL_FROM_EMAIL }}
+      GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
       SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
       SENDGRID_FROM_EMAIL: ${{ secrets.SENDGRID_FROM_EMAIL }}
       NEWSLETTER_TO: ${{ secrets.NEWSLETTER_TO }}
       FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
       ALPHA_VANTAGE_API_KEY: ${{ secrets.ALPHA_VANTAGE_API_KEY }}
       MARKETAUX_API_KEY: ${{ secrets.MARKETAUX_API_KEY }}
+      FT_API_KEY: ${{ secrets.FT_API_KEY }}
+      FT_API_ORG_NAME: WolfResearch
+      FT_API_TRACKING_SOURCE: email
+      TIINGO_API_KEY: ${{ secrets.TIINGO_API_KEY }}
+      TIINGO_NEWS_ENABLED: ${{ vars.TIINGO_NEWS_ENABLED || 'false' }}
+      TIINGO_ALLOW_PERSISTENCE: ${{ vars.TIINGO_ALLOW_PERSISTENCE || 'false' }}
+      TIINGO_LICENSE_MODE: ${{ vars.TIINGO_LICENSE_MODE || 'internal' }}
       CRUNCHBASE_API_KEY: ${{ secrets.CRUNCHBASE_API_KEY }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+      - name: Restore narrative trend history
+        uses: actions/cache@v4
+        with:
+          path: data/trends/ngram_history.json
+          key: narrative-history-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: |
+            narrative-history-${{ runner.os }}-
       - name: Install dependencies
         run: pip install -r requirements.txt
       - name: Run tests
@@ -50,7 +67,9 @@ jobs:
         run: python scripts/preview_review_v2.py
       - name: Deliver finalized V2
         env:
-          SEND_MODE: ${{ (github.event_name == 'schedule' || inputs.send == true) && secrets.SEND_MODE || 'dry_run' }}
+          # A scheduled run is a real delivery attempt. Missing credentials must fail
+          # visibly instead of producing a misleading successful dry run.
+          SEND_MODE: ${{ (github.event_name == 'schedule' || inputs.send == true) && 'send' || 'dry_run' }}
         run: python scripts/send_review_v2.py
       - name: Upload outputs
         if: always()

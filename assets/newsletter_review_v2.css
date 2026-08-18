@@ -398,6 +398,13 @@ a:hover { text-decoration: underline; }
 .negative { color: #a23b36 !important; }
 .neutral { color: #6f7880 !important; }
 
+.narrative-table td { vertical-align: top; }
+.narrative-note { display: block; margin-top: 4px; color: #5f6971; font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: normal; line-height: 14px; }
+.narrative-status { color: #59636c; font-family: "Courier New", Courier, monospace; font-size: 9px; line-height: 13px; text-transform: uppercase; }
+.status-emerging, .status-accelerating { color: #8a5516; }
+.status-persistent { color: #15355b; }
+.status-fading, .status-establishing { color: #68727a; }
+
 .subsection-rule {
   margin: 24px 0 18px;
   border-top: 1px solid #dfe2de;
@@ -572,7 +579,7 @@ a:hover { text-decoration: underline; }
     background: #fcfbf8 !important;
     color: #17202b !important;
   }
-  .chart-section, .portfolio-section, .scan-section { background: #ffffff !important; color: #17202b !important; }
+  .chart-section, .narrative-section, .portfolio-section, .scan-section { background: #ffffff !important; color: #17202b !important; }
   .top-rule { background: #15355b !important; }
   .brand-mark { border-color: #15355b !important; color: #15355b !important; }
   .brand, .signal-meta, .watch-region, .headline-region, .region-cell, .sector-region-label,
@@ -593,6 +600,9 @@ a:hover { text-decoration: underline; }
   .positive { color: #167451 !important; }
   .negative { color: #a23b36 !important; }
   .neutral { color: #59636c !important; }
+  .narrative-note, .narrative-status { color: #5f6971 !important; }
+  .status-emerging, .status-accelerating { color: #8a5516 !important; }
+  .status-persistent { color: #15355b !important; }
   .chart-image { background: #ffffff !important; border-color: #dde0dc !important; }
   .feature-section, .footer { background: #0c1116 !important; }
 }
@@ -600,7 +610,7 @@ a:hover { text-decoration: underline; }
 [data-ogsb] body, [data-ogsb] .page { background: #14181c !important; }
 [data-ogsb] .container, [data-ogsb] .masthead, [data-ogsb] .intro-section,
 [data-ogsb] .markets-section, [data-ogsb] .outlook-section { background: #fcfbf8 !important; }
-[data-ogsb] .chart-section, [data-ogsb] .portfolio-section, [data-ogsb] .scan-section,
+[data-ogsb] .chart-section, [data-ogsb] .narrative-section, [data-ogsb] .portfolio-section, [data-ogsb] .scan-section,
 [data-ogsb] .metric-card { background: #ffffff !important; }
 [data-ogsb] .key-read { background: #f4f5f2 !important; }
 [data-ogsb] .feature-section, [data-ogsb] .footer { background: #0c1116 !important; }
@@ -612,6 +622,9 @@ a:hover { text-decoration: underline; }
 [data-ogsc] .compact-table td, [data-ogsc] .leadership-table td, [data-ogsc] .sector-metrics td { color: #202a34 !important; border-color: #dfe2de !important; }
 [data-ogsc] .positive { color: #167451 !important; }
 [data-ogsc] .negative { color: #a23b36 !important; }
+[data-ogsc] .narrative-note, [data-ogsc] .narrative-status { color: #5f6971 !important; }
+[data-ogsc] .status-emerging, [data-ogsc] .status-accelerating { color: #8a5516 !important; }
+[data-ogsc] .status-persistent { color: #15355b !important; }
 
 @media only screen and (max-width: 720px) {
   html, body { width: 100% !important; min-width: 0 !important; overflow-x: hidden !important; }
@@ -622,7 +635,7 @@ a:hover { text-decoration: underline; }
     table-layout: fixed !important;
   }
   .intro-section, .feature-section, .chart-section, .markets-section,
-  .portfolio-section, .outlook-section, .scan-section, .footer,
+  .narrative-section, .portfolio-section, .outlook-section, .scan-section, .footer,
   .signal-copy, .watch-copy, .headline-copy, h1, h2, h3, p, a {
     box-sizing: border-box !important;
     max-width: 100% !important;
@@ -630,7 +643,7 @@ a:hover { text-decoration: underline; }
     word-break: normal !important;
   }
   .masthead, .intro-section, .feature-section, .chart-section, .markets-section,
-  .portfolio-section, .outlook-section, .scan-section, .footer {
+  .narrative-section, .portfolio-section, .outlook-section, .scan-section, .footer {
     padding-left: 18px !important;
     padding-right: 18px !important;
   }

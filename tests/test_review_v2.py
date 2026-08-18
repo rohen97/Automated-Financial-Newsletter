@@ -2,7 +2,7 @@ from pathlib import Path
 
 from src.llm.schemas import Newsletter
 from src.render.assemble_newsletter import render_newsletter_html
-from src.render.review_v2 import render_review_v2_html
+from src.render.review_v2 import _global_scan, render_review_v2_html
 
 
 def test_review_v2_is_a_shorter_separate_editorial_variant():
@@ -37,3 +37,68 @@ def test_review_v2_is_a_shorter_separate_editorial_variant():
     assert "requests comment on a proposal" not in review_html
     assert "COMAC challenge the aviation" not in review_html
     assert len(review_html) < len(initial_html)
+
+
+def test_global_scan_keeps_material_headlines_and_rejects_administrative_notices():
+    regions = [
+        {
+            "region": "US",
+            "headlines": [
+                {
+                    "headline": "Federal Reserve requests comment on a proposal",
+                    "source": "Federal Reserve",
+                    "category": "Macro",
+                    "url": "https://example.test/fed-notice",
+                }
+            ],
+        },
+        {
+            "region": "EU",
+            "headlines": [
+                {
+                    "headline": "The rise in defence spending and the euro area economy",
+                    "source": "European Central Bank",
+                    "category": "Macro",
+                    "url": "https://example.test/ecb",
+                }
+            ],
+        },
+        {
+            "region": "EMEA",
+            "headlines": [
+                {
+                    "headline": "Libya seeks investment to develop oil resources",
+                    "source": "Financial Times",
+                    "category": "Equities",
+                    "url": "https://example.test/libya",
+                }
+            ],
+        },
+        {
+            "region": "Global",
+            "headlines": [
+                {
+                    "headline": "Africa's public debt amid global headwinds",
+                    "source": "Bank for International Settlements",
+                    "category": "Macro",
+                    "url": "https://example.test/feature-duplicate",
+                },
+                {
+                    "headline": "AI and monetary policy",
+                    "source": "Bank for International Settlements",
+                    "category": "Macro",
+                    "url": "https://example.test/bis",
+                }
+            ],
+        },
+    ]
+
+    scan = {
+        item["region"]: item
+        for item in _global_scan(regions, feature_title="Africa's public debt amid global headwinds")
+    }
+
+    assert scan["US"]["url"] == ""
+    assert scan["EU"]["url"] == "https://example.test/ecb"
+    assert scan["EMEA"]["url"] == "https://example.test/libya"
+    assert scan["Global"]["url"] == "https://example.test/bis"

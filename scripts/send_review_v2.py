@@ -12,7 +12,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from src.charts.chart_renderer import chart_metadata_matches, chart_metadata_path
-from src.emailer.send_email import EmailSafetyError, send_email
+from src.emailer.send_email import EmailSafetyError, send_email, validate_html_body
 from src.utils.env import load_local_env
 
 
@@ -56,6 +56,11 @@ def _validate_delivery(newsletter: dict, audit: dict, html_path: Path, chart_pat
         problems.append("newsletter warnings are present")
     if not html_path.exists():
         problems.append("finalized V2 HTML is missing")
+    else:
+        try:
+            validate_html_body(html_path.read_text(encoding="utf-8"))
+        except EmailSafetyError as exc:
+            problems.append(str(exc))
     if not chart_path.exists():
         problems.append("chart image is missing")
     else:

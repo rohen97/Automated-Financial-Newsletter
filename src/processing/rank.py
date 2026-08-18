@@ -35,13 +35,13 @@ def score_recency(published_at: datetime | None, now: datetime | None = None) ->
 
 
 def score_market_relevance(article: dict) -> float:
-    haystack = f"{article.get('title', '')} {article.get('summary', '')}".lower()
+    haystack = _article_text(article)
     hits = sum(1 for terms in KEYWORDS.values() for term in terms if term in haystack)
     return clamp_score(0.25 + hits * 0.12)
 
 
 def score_cross_asset_impact(article: dict) -> float:
-    haystack = f"{article.get('title', '')} {article.get('summary', '')}".lower()
+    haystack = _article_text(article)
     touched = sum(1 for terms in KEYWORDS.values() if any(term in haystack for term in terms))
     return clamp_score(touched / 4)
 
@@ -60,7 +60,7 @@ def score_portfolio_relevance(article: dict) -> float:
         return 1.0
     if article.get("matched_sectors") or article.get("matched_currencies"):
         return 0.7
-    haystack = f"{article.get('title', '')} {article.get('summary', '')}".lower()
+    haystack = _article_text(article)
     portfolio_terms = ("alibaba", "singapore airlines", "sats", "sembcorp", "allianz", "bmw", "rwe", "sanofi", "capitaLand".lower(), "china", "singapore", "europe", "rates", "oil")
     hits = sum(1 for term in portfolio_terms if term in haystack)
     return clamp_score(0.2 + hits * 0.16)
@@ -71,6 +71,18 @@ def score_regional_balance(article: dict, region_counts: dict[str, int] | None =
         return 0.7
     region = article.get("region") or "Global"
     return clamp_score(1.0 - region_counts.get(region, 0) * 0.18)
+
+
+def _article_text(article: dict) -> str:
+    metadata = [
+        *article.get("tags", []),
+        *article.get("tickers", []),
+        *article.get("entities", []),
+    ]
+    return (
+        f"{article.get('title', '')} {article.get('summary', '')} "
+        f"{' '.join(str(item) for item in metadata if item)}"
+    ).lower()
 
 
 def importance_score(
@@ -110,7 +122,11 @@ def rank_articles(articles: list[dict], source_quality: dict[str, float] | None 
     source_quality = source_quality or {}
     for article in articles:
         source = article.get("source") or "Sample Data"
-        source_quality_score = source_quality.get(source, source_quality.get("Sample Data", 0.55))
+        quality_provider = article.get("source_quality_provider")
+        source_quality_score = source_quality.get(
+            source,
+            source_quality.get(quality_provider, source_quality.get("Sample Data", 0.55)),
+        )
         portfolio_relevance_score = score_portfolio_relevance(article)
         market_relevance_score = score_market_relevance(article)
         recency_score = score_recency(article.get("published_at"))

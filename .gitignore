@@ -8,6 +8,7 @@ __pycache__/
 *.key
 public_preview/
 data/inbox/gmail_digest.json
+data/trends/ngram_history.json
 output/test/
 output/visual_checks/
 output/review_v2/final-print-page-*.png
