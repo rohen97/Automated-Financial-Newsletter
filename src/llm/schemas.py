@@ -160,6 +160,12 @@ class GenericTableSection(BaseModel):
     provider_used: str | None = None
     missing_proxies: list[dict] = Field(default_factory=list)
     stale_prices: list[dict] = Field(default_factory=list)
+    document_count: int | None = None
+    source_count: int | None = None
+    baseline_periods: int | None = None
+    status_counts: dict[str, int] = Field(default_factory=dict)
+    history_updated: bool | None = None
+    model_version: str | None = None
 
 
 class Newsletter(BaseModel):

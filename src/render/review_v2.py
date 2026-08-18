@@ -75,6 +75,7 @@ def _build_review_view(newsletter: dict[str, Any]) -> dict[str, Any]:
         "signals": signals,
         "story": _story_view(story, watchlist.get("rows", [])),
         "chart": _chart_view(sections.get("chart_of_the_week", {})),
+        "narrative": _narrative_view(sections.get("narrative_monitor", {})),
         "fx_rows": _preferred_market_rows(sections.get("fx_markets", {}).get("rows", []), PREFERRED_FX),
         "commodity_rows": _preferred_market_rows(
             sections.get("commodities", {}).get("rows", []), PREFERRED_COMMODITIES
@@ -341,6 +342,17 @@ def _chart_view(chart: dict[str, Any]) -> dict[str, Any]:
         "title": title or "Current macro signal",
         "summary": summary,
         "key_read": chart.get("portfolio_relevance") or chart.get("market_signal_reason"),
+    }
+
+
+def _narrative_view(section: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "rows": section.get("rows", [])[:5],
+        "document_count": section.get("document_count", 0),
+        "source_count": section.get("source_count", 0),
+        "baseline_periods": section.get("baseline_periods", 0),
+        "note": section.get("note", ""),
+        "empty_message": section.get("empty_message", "No reliable narrative trend identified."),
     }
 
 

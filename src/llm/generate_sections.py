@@ -41,6 +41,9 @@ def generate_sections(data: dict) -> dict:
     if data.get("chart_of_the_week"):
         sections["chart_of_the_week"] = data["chart_of_the_week"]
 
+    if data.get("narrative_monitor"):
+        sections["narrative_monitor"] = data["narrative_monitor"]
+
     sections["fx_markets"] = {"title": "FX Markets", "rows": data["fx"]}
     sections["commodities"] = {"title": "Commodities", "rows": data["commodities"]}
     sectors = data["sectors"]

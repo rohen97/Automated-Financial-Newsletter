@@ -91,6 +91,24 @@ The endpoint contract and current usage terms are documented in the
 [authentication guide](https://www.tiingo.com/documentation/general/connecting), and
 [Tiingo terms of use](https://api.tiingo.com/tos/).
 
+## Narrative Monitor
+
+The Narrative Monitor runs after article normalization, deduplication, ranking, and portfolio enrichment. It measures
+bigram and trigram document frequency across distinct publishers, then compares the current news corpus with up to eight
+prior weekly snapshots. Signals are labelled `Emerging`, `Accelerating`, `Persistent`, `Fading`, or `Establishing`.
+They describe changes in coverage intensity, not market direction or a trading recommendation.
+
+Settings live in `config/narrative_monitor.yaml`. Local aggregate history is stored in the gitignored
+`data/trends/ngram_history.json`; GitHub Actions restores that file through a small workflow cache so the Monday run can
+maintain its rolling baseline. The current section and its audit metadata are written to:
+
+```text
+output/latest/narrative_trends.json
+output/latest/audit_log.json
+```
+
+The implementation uses the Python standard library, so it adds no model package or runtime dependency.
+
 ## Portfolio-Aware Mode
 
 The newsletter can rank headlines and frame commentary around current portfolio exposures. The default sample portfolio is:

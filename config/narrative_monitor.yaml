@@ -1,0 +1,13 @@
+enabled: true
+history_path: data/trends/ngram_history.json
+ngram_sizes:
+  - 2
+  - 3
+min_article_count: 2
+min_distinct_sources: 2
+baseline_periods: 8
+max_history_periods: 12
+max_history_phrases: 500
+max_rows: 6
+accelerating_threshold: 1.5
+fading_threshold: 0.67

@@ -73,6 +73,19 @@ def newsletter_to_markdown(newsletter: Newsletter) -> str:
             lines.append(section.get("summary") or section.get("takeaway") or "")
             if section.get("original_url"):
                 lines.append(f"Source: {section.get('source_name', 'Source')} - {section['original_url']}")
+        elif key == "narrative_monitor" and isinstance(section, dict):
+            if section.get("rows"):
+                lines.append("| Narrative | Status | Momentum | Coverage |")
+                lines.append("|---|---|---:|---| ")
+                for row in section["rows"]:
+                    lines.append(
+                        f"| {row.get('phrase', '')} | {row.get('status', '')} | "
+                        f"{row.get('momentum_display', '')} | {row.get('coverage_display', '')} |"
+                    )
+            else:
+                lines.append(section.get("empty_message", "No reliable narrative trend identified."))
+            if section.get("note"):
+                lines.append(f"Note: {section['note']}")
         elif isinstance(section, dict) and "top_holdings" in section:
             lines.append("| Holding | Asset Class | Region | Currency | Weight |")
             lines.append("|---|---|---|---|---:|")
@@ -398,6 +411,15 @@ def newsletter_to_basic_html(newsletter: Newsletter) -> str:
         parts.append(_chart_card(chart))
         parts.append("</td></tr>")
 
+    narrative = sections.get("narrative_monitor")
+    if narrative:
+        parts.append(
+            "<tr><td class='section-tight'><div class='kicker'>Narrative Intelligence</div>"
+            "<h2 class='section-title'>Narrative Monitor</h2>"
+        )
+        parts.append(_narrative_table(narrative))
+        parts.append("</td></tr>")
+
     for key in ("fx_markets", "commodities", "sector_scoreboard"):
         section = sections.get(key)
         if section:
@@ -528,6 +550,30 @@ def _chart_card(chart: dict) -> str:
     return "".join(html)
 
 
+def _narrative_table(section: dict) -> str:
+    rows = section.get("rows", [])
+    if not rows:
+        return f"<div class='section-note'>{escape(str(section.get('empty_message', 'No reliable narrative trend identified.')))}</div>"
+    html = [
+        "<table class='data-table narrative-table' width='100%'>",
+        "<tr><th>Narrative</th><th>Status</th><th>Momentum</th><th>Coverage</th></tr>",
+    ]
+    for row in rows:
+        html.append(
+            "<tr>"
+            f"<td><strong>{escape(str(row.get('phrase', '')))}</strong><br>"
+            f"<span class='source'>{escape(str(row.get('trend_note', '')))}</span></td>"
+            f"<td>{escape(str(row.get('status', '')))}</td>"
+            f"<td class='number'>{escape(str(row.get('momentum_display', '')))}</td>"
+            f"<td>{escape(str(row.get('coverage_display', '')))}</td>"
+            "</tr>"
+        )
+    html.append("</table>")
+    if section.get("note"):
+        html.append(f"<div class='section-note'>{escape(str(section['note']))}</div>")
+    return "".join(html)
+
+
 def _simple_holdings_table(title: str, holdings: list[dict]) -> str:
     rows = [f"<h3 class='subhead'>{escape(title)}</h3>"]
     rows.append("<table class='data-table' width='100%'><tr><th>Holding</th><th>Sector</th><th>Currency</th><th>Current Value</th><th>YTD P&L</th><th>YTD %</th></tr>")
@@ -650,6 +696,7 @@ def section_title(key: str) -> str:
         "portfolio_snapshot": "Portfolio Snapshot",
         "equity_holdings_monitor": "Equity Holdings Monitor",
         "chart_of_the_week": "Chart of the Week",
+        "narrative_monitor": "Narrative Monitor",
         "portfolio_linked_news": "Portfolio-Linked News",
         "portfolio_watchlist": "What to Watch This Week",
     }

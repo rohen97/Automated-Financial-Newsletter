@@ -133,6 +133,38 @@
             </tr>
             {% endif %}
 
+            {% set narrative = newsletter.sections.get("narrative_monitor") %}
+            {% if narrative %}
+            <tr>
+              <td class="white-section narrative-section" id="narrative-monitor">
+                <div class="section-meta">Narrative Intelligence / {{ narrative.document_count or 0 }} Articles / {{ narrative.source_count or 0 }} Sources</div>
+                <h2 class="section-title">Narrative Monitor</h2>
+                <p class="section-deck">The themes gaining or losing attention across this week's aggregated news flow.</p>
+                {% if narrative.rows %}
+                <table class="narrative-table" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;table-layout:fixed;">
+                  <tr>
+                    <th width="43%" style="width:43%;padding:7px 9px;text-align:left;">Narrative</th>
+                    <th width="19%" style="width:19%;padding:7px 9px;text-align:left;">Status</th>
+                    <th width="16%" style="width:16%;padding:7px 9px;text-align:right;">Momentum</th>
+                    <th width="22%" style="width:22%;padding:7px 9px;text-align:left;">Coverage</th>
+                  </tr>
+                  {% for row in narrative.rows %}
+                  <tr>
+                    <td style="padding:10px 9px;border-bottom:1px solid #ddd8cf;vertical-align:top;"><strong>{{ row.phrase }}</strong><span class="narrative-note">{{ row.trend_note }}</span></td>
+                    <td style="padding:10px 9px;border-bottom:1px solid #ddd8cf;vertical-align:top;"><span class="narrative-status status-{{ row.status|lower }}">{{ row.status }}</span></td>
+                    <td class="number" style="padding:10px 9px;border-bottom:1px solid #ddd8cf;text-align:right;white-space:nowrap;vertical-align:top;">{{ row.momentum_display }}</td>
+                    <td style="padding:10px 9px;border-bottom:1px solid #ddd8cf;vertical-align:top;">{{ row.coverage_display }}</td>
+                  </tr>
+                  {% endfor %}
+                </table>
+                {% else %}
+                <div class="empty-note">{{ narrative.empty_message }}</div>
+                {% endif %}
+                <div class="source-line">METHOD / N-GRAM DOCUMENT FREQUENCY{% if narrative.baseline_periods %} &nbsp;&middot;&nbsp; {{ narrative.baseline_periods }} PRIOR PERIODS{% endif %}<br>{{ narrative.note }}</div>
+              </td>
+            </tr>
+            {% endif %}
+
             {% set fx = newsletter.sections.get("fx_markets") %}
             {% set commodities = newsletter.sections.get("commodities") %}
             {% if fx or commodities %}
