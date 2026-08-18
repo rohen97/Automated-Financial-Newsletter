@@ -1,5 +1,7 @@
 from pathlib import Path
 
+import pytest
+
 from src.portfolio.equity import (
     equity_monitor,
     load_equity_holdings,
@@ -44,7 +46,7 @@ def test_equity_holdings_csv_parses_actual_values():
 def test_equity_monitor_calculates_portfolio_metrics():
     monitor = equity_monitor(load_equity_holdings())
     assert monitor["total_equity_portfolio_value_usd"] == 55709552.095
-    assert monitor["total_ytd_equity_pnl_usd"] == 2439662.668
+    assert monitor["total_ytd_equity_pnl_usd"] == pytest.approx(2439662.668)
     assert monitor["best_contributor"] == "Softtech Engineers Ltd"
     assert monitor["worst_contributor"] == "Bayerische Motoren Werke AG"
     assert monitor["largest_sector_exposure"] == "Automobiles & Components"
