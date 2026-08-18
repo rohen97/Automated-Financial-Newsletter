@@ -6,6 +6,8 @@ __pycache__/
 .env
 .env.local
 *.key
+client_secret*.json
+gmail_oauth_credentials*.json
 public_preview/
 data/inbox/gmail_digest.json
 data/trends/ngram_history.json

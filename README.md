@@ -15,7 +15,8 @@ Copy-Item .env.example .env
 
 - `SEND_MODE=dry_run` saves outputs without sending email.
 - `SEND_MODE=send` sends through the provider selected by `EMAIL_PROVIDER` after safety checks pass.
-- `EMAIL_PROVIDER=gmail_smtp` uses `GMAIL_FROM_EMAIL`, a Google app password in `GMAIL_APP_PASSWORD`, and `NEWSLETTER_TO`.
+- `EMAIL_PROVIDER=gmail_api` uses `GMAIL_FROM_EMAIL`, `GMAIL_CLIENT_ID`, `GMAIL_CLIENT_SECRET`, `GMAIL_REFRESH_TOKEN`, and `NEWSLETTER_TO`.
+- `EMAIL_PROVIDER=gmail_smtp` remains available for accounts that support Google app passwords.
 - `EMAIL_PROVIDER=sendgrid` uses `SENDGRID_API_KEY`, `SENDGRID_FROM_EMAIL`, and `NEWSLETTER_TO`.
 - `FRED_API_KEY`, `ALPHA_VANTAGE_API_KEY`, `MARKETAUX_API_KEY`, `FT_API_KEY`, `TIINGO_API_KEY`, and `CRUNCHBASE_API_KEY` are optional data integrations.
 - `FT_API_ORG_NAME` and `FT_API_TRACKING_SOURCE` configure the campaign attribution required on FT article links.
@@ -170,7 +171,23 @@ python -m src.main
 
 The send step is blocked if required sections are missing, fewer than five source URLs are present, schema validation fails, or generated text contains failure phrases such as `as an AI` or `I could not`.
 
-For Gmail automation, enable two-step verification on the sender account and create a Google app password. Store the app password only in the local `.env` file or the GitHub Actions secret `GMAIL_APP_PASSWORD`; never commit it. The Gmail connector used interactively by Codex is separate from GitHub Actions and cannot supply credentials to an unattended workflow.
+For Gmail automation, use OAuth send-only access. The Gmail connector used interactively by Codex is separate from GitHub Actions and cannot supply credentials to an unattended workflow.
+
+### Gmail OAuth Setup
+
+1. Enable the Gmail API in a Google Cloud project.
+2. Configure the OAuth consent screen and request only `https://www.googleapis.com/auth/gmail.send`.
+3. Create and download a Desktop app OAuth client JSON.
+4. Install dependencies and run the one-time local authorization:
+
+```powershell
+python -m pip install -r requirements.txt
+python scripts/configure_gmail_oauth.py "C:\path\to\client_secret.json" `
+  --from-email "sender@example.com" `
+  --recipient "recipient@example.com"
+```
+
+The authorization helper opens Google consent in the browser and saves the client ID, client secret, and refresh token to the gitignored `.env` without printing them. Never commit the downloaded client JSON or `.env`. Store `GMAIL_CLIENT_ID`, `GMAIL_CLIENT_SECRET`, and `GMAIL_REFRESH_TOKEN` as GitHub Actions secrets for unattended delivery.
 
 ## Add Sources
 
@@ -228,7 +245,7 @@ Enable Pages in GitHub with source set to `GitHub Actions`, then run the `Pages 
 ## GitHub Actions
 
 - `ci.yml` runs tests on push and pull request.
-- `weekly_newsletter.yml` runs every Monday at `01:00 UTC`, equal to `09:00 Singapore time`, validates and sends the finalized V2, and uploads outputs as artifacts. Configure `EMAIL_PROVIDER=gmail_smtp` as a repository variable and add `GMAIL_FROM_EMAIL`, `GMAIL_APP_PASSWORD`, `NEWSLETTER_TO`, and data-provider keys as Actions secrets.
+- `weekly_newsletter.yml` runs every Monday at `01:00 UTC`, equal to `09:00 Singapore time`, validates and sends the finalized V2, and uploads outputs as artifacts. Configure `EMAIL_PROVIDER=gmail_api` as a repository variable and add `GMAIL_FROM_EMAIL`, `GMAIL_CLIENT_ID`, `GMAIL_CLIENT_SECRET`, `GMAIL_REFRESH_TOKEN`, `NEWSLETTER_TO`, and data-provider keys as Actions secrets.
 - `pages_preview.yml` publishes the rendered preview to GitHub Pages.
 
 ## Risk And Compliance Notes

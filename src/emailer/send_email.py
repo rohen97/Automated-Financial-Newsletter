@@ -37,6 +37,14 @@ def send_email(subject: str, html: str, recipients: list[str], warnings: list[st
     plain_text = html_to_text(html)
 
     provider = os.getenv("EMAIL_PROVIDER", "sendgrid").strip().lower()
+    if provider in {"gmail_api", "gmail_oauth"}:
+        return _send_gmail_api(
+            subject=subject,
+            html=html,
+            plain_text=plain_text,
+            recipients=recipients,
+            chart_path=chart_path,
+        )
     if provider in {"gmail", "gmail_smtp"}:
         return _send_gmail_smtp(
             subject=subject,
@@ -54,7 +62,8 @@ def send_email(subject: str, html: str, recipients: list[str], warnings: list[st
             chart_path=chart_path,
         )
     raise EmailSafetyError(
-        f"Unsupported EMAIL_PROVIDER '{provider}'. Use gmail_smtp or sendgrid."
+        f"Unsupported EMAIL_PROVIDER '{provider}'. Use gmail_api, gmail_smtp, or "
+        "sendgrid."
     )
 
 
@@ -118,25 +127,14 @@ def _send_gmail_smtp(
             "GMAIL_FROM_EMAIL and GMAIL_APP_PASSWORD."
         )
 
-    message = EmailMessage()
-    message["Subject"] = subject
-    message["From"] = from_email
-    message["To"] = ", ".join(recipients)
-    message.set_content(plain_text)
-    message.add_alternative(html, subtype="html")
-
-    inline_attachment_count = 0
-    if chart_path.exists():
-        html_part = message.get_payload()[-1]
-        html_part.add_related(
-            chart_path.read_bytes(),
-            maintype="image",
-            subtype="png",
-            cid="<chart_of_the_week>",
-            filename=chart_path.name,
-            disposition="inline",
-        )
-        inline_attachment_count = 1
+    message, inline_attachment_count = _build_mime_message(
+        subject=subject,
+        from_email=from_email,
+        html=html,
+        plain_text=plain_text,
+        recipients=recipients,
+        chart_path=chart_path,
+    )
 
     try:
         port = int(os.getenv("GMAIL_SMTP_PORT", "465"))
@@ -156,6 +154,113 @@ def _send_gmail_smtp(
         "plain_text_bytes": len(plain_text.encode("utf-8")),
         "inline_attachment_count": inline_attachment_count,
     }
+
+
+def _send_gmail_api(
+    *,
+    subject: str,
+    html: str,
+    plain_text: str,
+    recipients: list[str],
+    chart_path: Path,
+) -> dict:
+    credentials = {
+        "client_id": os.getenv("GMAIL_CLIENT_ID"),
+        "client_secret": os.getenv("GMAIL_CLIENT_SECRET"),
+        "refresh_token": os.getenv("GMAIL_REFRESH_TOKEN"),
+        "from_email": os.getenv("GMAIL_FROM_EMAIL"),
+    }
+    missing = [name for name, value in credentials.items() if not value]
+    if missing:
+        raise EmailSafetyError(
+            "Gmail API OAuth credentials are required for send mode. Missing: "
+            + ", ".join(missing)
+            + "."
+        )
+
+    try:
+        token_response = requests.post(
+            "https://oauth2.googleapis.com/token",
+            data={
+                "client_id": credentials["client_id"],
+                "client_secret": credentials["client_secret"],
+                "refresh_token": credentials["refresh_token"],
+                "grant_type": "refresh_token",
+            },
+            timeout=20,
+        )
+        token_response.raise_for_status()
+        access_token = token_response.json().get("access_token")
+    except (requests.RequestException, ValueError) as exc:
+        raise EmailSafetyError("Gmail OAuth token refresh failed.") from exc
+    if not access_token:
+        raise EmailSafetyError("Gmail OAuth token refresh returned no access token.")
+
+    message, inline_attachment_count = _build_mime_message(
+        subject=subject,
+        from_email=str(credentials["from_email"]),
+        html=html,
+        plain_text=plain_text,
+        recipients=recipients,
+        chart_path=chart_path,
+    )
+    encoded_message = base64.urlsafe_b64encode(message.as_bytes()).decode("ascii")
+    try:
+        send_response = requests.post(
+            "https://gmail.googleapis.com/gmail/v1/users/me/messages/send",
+            headers={
+                "Authorization": f"Bearer {access_token}",
+                "Content-Type": "application/json",
+            },
+            json={"raw": encoded_message},
+            timeout=30,
+        )
+        send_response.raise_for_status()
+        response_payload = send_response.json()
+    except (requests.RequestException, ValueError) as exc:
+        raise EmailSafetyError("Gmail API message delivery failed.") from exc
+
+    return {
+        "sent": True,
+        "mode": "send",
+        "provider": "gmail_api",
+        "status_code": send_response.status_code,
+        "message_id": response_payload.get("id"),
+        "html_bytes": len(html.encode("utf-8")),
+        "plain_text_bytes": len(plain_text.encode("utf-8")),
+        "inline_attachment_count": inline_attachment_count,
+    }
+
+
+def _build_mime_message(
+    *,
+    subject: str,
+    from_email: str,
+    html: str,
+    plain_text: str,
+    recipients: list[str],
+    chart_path: Path,
+) -> tuple[EmailMessage, int]:
+    message = EmailMessage()
+    message["Subject"] = subject
+    message["From"] = from_email
+    message["To"] = ", ".join(recipients)
+    message.set_content(plain_text)
+    message.add_alternative(html, subtype="html")
+
+    inline_attachment_count = 0
+    if chart_path.exists():
+        html_part = message.get_payload()[-1]
+        html_part.add_related(
+            chart_path.read_bytes(),
+            maintype="image",
+            subtype="png",
+            cid="<chart_of_the_week>",
+            filename=chart_path.name,
+            disposition="inline",
+        )
+        inline_attachment_count = 1
+    return message, inline_attachment_count
 
 
 def validate_html_body(html: str) -> None:

@@ -10,6 +10,8 @@ SECRET_KEYS = {
     "TIINGO_API_KEY",
     "SENDGRID_API_KEY",
     "GMAIL_APP_PASSWORD",
+    "GMAIL_CLIENT_SECRET",
+    "GMAIL_REFRESH_TOKEN",
 }
 
 EXPECTED_EXAMPLE = """OPENAI_API_KEY=
@@ -27,8 +29,11 @@ TIINGO_LICENSE_MODE=internal
 SENDGRID_API_KEY=
 SENDGRID_FROM_EMAIL=
 NEWSLETTER_TO=
-EMAIL_PROVIDER=gmail_smtp
+EMAIL_PROVIDER=gmail_api
 GMAIL_FROM_EMAIL=
+GMAIL_CLIENT_ID=
+GMAIL_CLIENT_SECRET=
+GMAIL_REFRESH_TOKEN=
 GMAIL_APP_PASSWORD=
 
 SEND_MODE=dry_run
@@ -58,6 +63,7 @@ def test_env_files_are_ignored():
     assert ".env" in text
     assert ".env.local" in text
     assert "*.key" in text
+    assert "client_secret*.json" in text
 
 
 def test_weekly_workflow_reads_api_keys_from_secrets():
@@ -70,6 +76,9 @@ def test_weekly_workflow_reads_api_keys_from_secrets():
         "FT_API_KEY",
         "TIINGO_API_KEY",
         "GMAIL_FROM_EMAIL",
+        "GMAIL_CLIENT_ID",
+        "GMAIL_CLIENT_SECRET",
+        "GMAIL_REFRESH_TOKEN",
         "GMAIL_APP_PASSWORD",
         "NEWSLETTER_TO",
     ):
