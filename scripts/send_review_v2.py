@@ -11,9 +11,9 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.charts.chart_renderer import chart_metadata_matches, chart_metadata_path
-from src.emailer.send_email import EmailSafetyError, send_email, validate_html_body
-from src.utils.env import load_local_env
+from src.charts.chart_renderer import chart_metadata_matches, chart_metadata_path  # noqa: E402
+from src.emailer.send_email import EmailSafetyError, send_email, validate_html_body  # noqa: E402
+from src.utils.env import load_local_env  # noqa: E402
 
 
 def main() -> None:
@@ -35,6 +35,7 @@ def main() -> None:
     recipients = _recipients(os.getenv("NEWSLETTER_TO", ""))
     if not recipients:
         raise EmailSafetyError("NEWSLETTER_TO is required for finalized V2 delivery.")
+    bcc_recipients = _recipients(os.getenv("NEWSLETTER_BCC", ""))
 
     html = html_path.read_text(encoding="utf-8")
     result = send_email(
@@ -42,6 +43,7 @@ def main() -> None:
         html,
         recipients,
         warnings=newsletter.get("warnings", []),
+        bcc_recipients=bcc_recipients,
     )
     print(json.dumps(result))
 

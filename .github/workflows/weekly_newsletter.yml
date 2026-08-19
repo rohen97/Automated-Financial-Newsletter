@@ -35,6 +35,9 @@ jobs:
       SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
       SENDGRID_FROM_EMAIL: ${{ secrets.SENDGRID_FROM_EMAIL }}
       NEWSLETTER_TO: ${{ secrets.NEWSLETTER_TO }}
+      NEWSLETTER_BCC: ${{ secrets.NEWSLETTER_BCC }}
+      ALLOW_COMPANY_SEND: ${{ vars.ALLOW_COMPANY_SEND || 'false' }}
+      MAX_COMPANY_RECIPIENTS: ${{ vars.MAX_COMPANY_RECIPIENTS || '500' }}
       FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
       ALPHA_VANTAGE_API_KEY: ${{ secrets.ALPHA_VANTAGE_API_KEY }}
       MARKETAUX_API_KEY: ${{ secrets.MARKETAUX_API_KEY }}

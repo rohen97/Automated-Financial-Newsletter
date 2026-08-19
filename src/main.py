@@ -31,6 +31,8 @@ def save_outputs(newsletter_dict: dict) -> dict:
     raw_chart_section = newsletter_dict.get("sections", {}).get("chart_of_the_week", {})
     chart_source_path = _optional_path(raw_chart_section.get("local_image_path"))
     chart_metadata_source_path = _optional_path(raw_chart_section.get("render_metadata_path"))
+    if chart_source_path and chart_metadata_source_path is None:
+        chart_metadata_source_path = chart_source_path.with_suffix(".meta.json")
     if raw_chart_section:
         raw_chart_section["local_image_path"] = str(latest_dir / "chart_of_the_week.png")
         raw_chart_section["render_metadata_path"] = str(

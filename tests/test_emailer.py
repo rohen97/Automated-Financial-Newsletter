@@ -221,3 +221,74 @@ def test_gmail_api_requires_oauth_credentials(monkeypatch):
             _complete_html(),
             ["reader@example.com"],
         )
+
+
+def test_company_bcc_requires_explicit_opt_in(monkeypatch):
+    monkeypatch.setenv("SEND_MODE", "send")
+    monkeypatch.setenv("EMAIL_PROVIDER", "sendgrid")
+    monkeypatch.setenv("SENDGRID_API_KEY", "test-api-key")
+    monkeypatch.setenv("SENDGRID_FROM_EMAIL", "sender@example.com")
+    monkeypatch.delenv("ALLOW_COMPANY_SEND", raising=False)
+    monkeypatch.setattr(emailer, "PROJECT_ROOT", emailer.Path("missing-project-root"))
+
+    with pytest.raises(emailer.EmailSafetyError, match="ALLOW_COMPANY_SEND"):
+        emailer.send_email(
+            "Wolf Research company test",
+            _complete_html(),
+            ["sender@example.com"],
+            bcc_recipients=["employee@example.com"],
+        )
+
+
+def test_gmail_api_routes_company_audience_through_bcc(monkeypatch, tmp_path):
+    calls: list[dict] = []
+
+    class Response:
+        def __init__(self, status_code, payload):
+            self.status_code = status_code
+            self._payload = payload
+
+        def raise_for_status(self):
+            return None
+
+        def json(self):
+            return self._payload
+
+    def fake_post(url, **kwargs):
+        calls.append({"url": url, **kwargs})
+        if url.endswith("/token"):
+            return Response(200, {"access_token": "test-access-token"})
+        return Response(200, {"id": "gmail-message-id"})
+
+    monkeypatch.setenv("SEND_MODE", "send")
+    monkeypatch.setenv("EMAIL_PROVIDER", "gmail_api")
+    monkeypatch.setenv("GMAIL_FROM_EMAIL", "sender@example.com")
+    monkeypatch.setenv("GMAIL_CLIENT_ID", "test-client-id")
+    monkeypatch.setenv("GMAIL_CLIENT_SECRET", "test-client-secret")
+    monkeypatch.setenv("GMAIL_REFRESH_TOKEN", "test-refresh-token")
+    monkeypatch.setenv("ALLOW_COMPANY_SEND", "true")
+    monkeypatch.setenv("MAX_COMPANY_RECIPIENTS", "10")
+    monkeypatch.setattr(emailer.requests, "post", fake_post)
+    monkeypatch.setattr(emailer, "PROJECT_ROOT", tmp_path)
+
+    result = emailer.send_email(
+        "Wolf Research company test",
+        _complete_html(),
+        ["sender@example.com"],
+        bcc_recipients=[
+            "employee.one@example.com",
+            "employee.two@example.com",
+            "EMPLOYEE.ONE@example.com",
+        ],
+    )
+
+    raw_message = base64.urlsafe_b64decode(calls[1]["json"]["raw"])
+    message = BytesParser(policy=policy.default).parsebytes(raw_message)
+    assert message["To"] == "sender@example.com"
+    assert set(str(message["Bcc"]).split(", ")) == {
+        "employee.one@example.com",
+        "employee.two@example.com",
+    }
+    assert result["to_recipient_count"] == 1
+    assert result["bcc_recipient_count"] == 2
+    assert "employee.one@example.com" not in str(result)
