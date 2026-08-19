@@ -11,6 +11,7 @@ def test_dry_run_output_generation(tmp_path, monkeypatch):
     assert (tmp_path / "output/latest/newsletter.json").exists()
     assert (tmp_path / "output/latest/source_audit.json").exists()
     assert (tmp_path / "output/latest/manifest.json").exists()
+    assert (tmp_path / "output/latest/chart_of_the_week.meta.json").exists()
 
     newsletter_payload = json.loads(
         (tmp_path / "output/latest/newsletter.json").read_text(encoding="utf-8")
