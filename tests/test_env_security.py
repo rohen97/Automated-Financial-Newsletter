@@ -12,6 +12,7 @@ SECRET_KEYS = {
     "GMAIL_APP_PASSWORD",
     "GMAIL_CLIENT_SECRET",
     "GMAIL_REFRESH_TOKEN",
+    "NEWSLETTER_BCC",
 }
 
 EXPECTED_EXAMPLE = """OPENAI_API_KEY=
@@ -29,6 +30,7 @@ TIINGO_LICENSE_MODE=internal
 SENDGRID_API_KEY=
 SENDGRID_FROM_EMAIL=
 NEWSLETTER_TO=
+NEWSLETTER_BCC=
 EMAIL_PROVIDER=gmail_api
 GMAIL_FROM_EMAIL=
 GMAIL_CLIENT_ID=
@@ -39,6 +41,8 @@ GMAIL_APP_PASSWORD=
 SEND_MODE=dry_run
 TIMEZONE=Asia/Singapore
 ALLOW_FALLBACK_IN_SEND=false
+ALLOW_COMPANY_SEND=false
+MAX_COMPANY_RECIPIENTS=500
 
 MARKET_DATA_PROVIDER=alpha_vantage
 MACRO_DATA_PROVIDER=fred
@@ -81,5 +85,6 @@ def test_weekly_workflow_reads_api_keys_from_secrets():
         "GMAIL_REFRESH_TOKEN",
         "GMAIL_APP_PASSWORD",
         "NEWSLETTER_TO",
+        "NEWSLETTER_BCC",
     ):
         assert f"{key}: ${{{{ secrets.{key} }}}}" in workflow

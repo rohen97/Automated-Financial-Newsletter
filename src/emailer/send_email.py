@@ -20,15 +20,25 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 MIN_HTML_BYTES = 1024
 
 
-def send_email(subject: str, html: str, recipients: list[str], warnings: list[str] | None = None) -> dict:
+def send_email(
+    subject: str,
+    html: str,
+    recipients: list[str],
+    warnings: list[str] | None = None,
+    *,
+    bcc_recipients: list[str] | None = None,
+) -> dict:
     send_mode = os.getenv("SEND_MODE", "dry_run")
     if send_mode != "send":
         return {"sent": False, "mode": "dry_run", "reason": "SEND_MODE is not send"}
     if warnings:
         raise EmailSafetyError("; ".join(warnings))
     validate_html_body(html)
+    recipients = _normalize_recipients(recipients)
+    bcc_recipients = _normalize_recipients(bcc_recipients or [])
     if not recipients:
         raise EmailSafetyError("At least one email recipient is required for send mode.")
+    _validate_bcc_delivery(recipients, bcc_recipients)
 
     chart_path = PROJECT_ROOT / "output" / "latest" / "chart_of_the_week.png"
     if chart_path.exists():
@@ -43,6 +53,7 @@ def send_email(subject: str, html: str, recipients: list[str], warnings: list[st
             html=html,
             plain_text=plain_text,
             recipients=recipients,
+            bcc_recipients=bcc_recipients,
             chart_path=chart_path,
         )
     if provider in {"gmail", "gmail_smtp"}:
@@ -51,6 +62,7 @@ def send_email(subject: str, html: str, recipients: list[str], warnings: list[st
             html=html,
             plain_text=plain_text,
             recipients=recipients,
+            bcc_recipients=bcc_recipients,
             chart_path=chart_path,
         )
     if provider == "sendgrid":
@@ -59,6 +71,7 @@ def send_email(subject: str, html: str, recipients: list[str], warnings: list[st
             html=html,
             plain_text=plain_text,
             recipients=recipients,
+            bcc_recipients=bcc_recipients,
             chart_path=chart_path,
         )
     raise EmailSafetyError(
@@ -73,6 +86,7 @@ def _send_sendgrid(
     html: str,
     plain_text: str,
     recipients: list[str],
+    bcc_recipients: list[str],
     chart_path: Path,
 ) -> dict:
     api_key = os.getenv("SENDGRID_API_KEY")
@@ -82,8 +96,11 @@ def _send_sendgrid(
     attachments = []
     if chart_path.exists():
         attachments.append(_inline_attachment(chart_path, "chart_of_the_week"))
+    personalization = {"to": [{"email": email} for email in recipients]}
+    if bcc_recipients:
+        personalization["bcc"] = [{"email": email} for email in bcc_recipients]
     payload = {
-        "personalizations": [{"to": [{"email": email} for email in recipients]}],
+        "personalizations": [personalization],
         "from": {"email": from_email},
         "subject": subject,
         "content": [
@@ -108,6 +125,8 @@ def _send_sendgrid(
         "html_bytes": len(html.encode("utf-8")),
         "plain_text_bytes": len(plain_text.encode("utf-8")),
         "inline_attachment_count": len(attachments),
+        "to_recipient_count": len(recipients),
+        "bcc_recipient_count": len(bcc_recipients),
     }
 
 
@@ -117,6 +136,7 @@ def _send_gmail_smtp(
     html: str,
     plain_text: str,
     recipients: list[str],
+    bcc_recipients: list[str],
     chart_path: Path,
 ) -> dict:
     from_email = os.getenv("GMAIL_FROM_EMAIL")
@@ -133,6 +153,7 @@ def _send_gmail_smtp(
         html=html,
         plain_text=plain_text,
         recipients=recipients,
+        bcc_recipients=bcc_recipients,
         chart_path=chart_path,
     )
 
@@ -153,6 +174,8 @@ def _send_gmail_smtp(
         "html_bytes": len(html.encode("utf-8")),
         "plain_text_bytes": len(plain_text.encode("utf-8")),
         "inline_attachment_count": inline_attachment_count,
+        "to_recipient_count": len(recipients),
+        "bcc_recipient_count": len(bcc_recipients),
     }
 
 
@@ -162,6 +185,7 @@ def _send_gmail_api(
     html: str,
     plain_text: str,
     recipients: list[str],
+    bcc_recipients: list[str],
     chart_path: Path,
 ) -> dict:
     credentials = {
@@ -202,6 +226,7 @@ def _send_gmail_api(
         html=html,
         plain_text=plain_text,
         recipients=recipients,
+        bcc_recipients=bcc_recipients,
         chart_path=chart_path,
     )
     encoded_message = base64.urlsafe_b64encode(message.as_bytes()).decode("ascii")
@@ -229,6 +254,8 @@ def _send_gmail_api(
         "html_bytes": len(html.encode("utf-8")),
         "plain_text_bytes": len(plain_text.encode("utf-8")),
         "inline_attachment_count": inline_attachment_count,
+        "to_recipient_count": len(recipients),
+        "bcc_recipient_count": len(bcc_recipients),
     }
 
 
@@ -239,12 +266,15 @@ def _build_mime_message(
     html: str,
     plain_text: str,
     recipients: list[str],
+    bcc_recipients: list[str],
     chart_path: Path,
 ) -> tuple[EmailMessage, int]:
     message = EmailMessage()
     message["Subject"] = subject
     message["From"] = from_email
     message["To"] = ", ".join(recipients)
+    if bcc_recipients:
+        message["Bcc"] = ", ".join(bcc_recipients)
     message.set_content(plain_text)
     message.add_alternative(html, subtype="html")
 
@@ -261,6 +291,57 @@ def _build_mime_message(
         )
         inline_attachment_count = 1
     return message, inline_attachment_count
+
+
+def _normalize_recipients(recipients: list[str]) -> list[str]:
+    normalized = []
+    seen = set()
+    invalid_count = 0
+    for value in recipients:
+        email = str(value).strip()
+        if not re.fullmatch(r"[^@\s]+@[^@\s]+\.[^@\s]+", email):
+            invalid_count += 1
+            continue
+        key = email.casefold()
+        if key not in seen:
+            normalized.append(email)
+            seen.add(key)
+    if invalid_count:
+        raise EmailSafetyError(
+            f"Recipient configuration contains {invalid_count} invalid email address(es)."
+        )
+    return normalized
+
+
+def _validate_bcc_delivery(recipients: list[str], bcc_recipients: list[str]) -> None:
+    if not bcc_recipients:
+        return
+    if os.getenv("ALLOW_COMPANY_SEND", "false").strip().lower() != "true":
+        raise EmailSafetyError(
+            "BCC company delivery is blocked. Set ALLOW_COMPANY_SEND=true only after "
+            "the final owner-only review."
+        )
+    if len(recipients) != 1:
+        raise EmailSafetyError(
+            "BCC company delivery requires exactly one visible NEWSLETTER_TO address."
+        )
+    overlap = {item.casefold() for item in recipients} & {
+        item.casefold() for item in bcc_recipients
+    }
+    if overlap:
+        raise EmailSafetyError(
+            "The visible recipient must not also appear in NEWSLETTER_BCC."
+        )
+    try:
+        max_recipients = int(os.getenv("MAX_COMPANY_RECIPIENTS", "500"))
+    except ValueError as exc:
+        raise EmailSafetyError("MAX_COMPANY_RECIPIENTS must be a valid integer.") from exc
+    if max_recipients < 1:
+        raise EmailSafetyError("MAX_COMPANY_RECIPIENTS must be at least 1.")
+    if len(bcc_recipients) > max_recipients:
+        raise EmailSafetyError(
+            f"BCC recipient count exceeds the configured limit of {max_recipients}."
+        )
 
 
 def validate_html_body(html: str) -> None:

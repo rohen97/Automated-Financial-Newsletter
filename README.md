@@ -189,6 +189,24 @@ python -m src.main
 
 The send step is blocked if required sections are missing, fewer than five source URLs are present, schema validation fails, or generated text contains failure phrases such as `as an AI` or `I could not`.
 
+For an individual-address company audience, keep one owner/archive mailbox in
+`NEWSLETTER_TO` and place the employee list in the private `NEWSLETTER_BCC`
+environment variable. Separate addresses with commas or semicolons. The list must
+never be committed, pasted into workflow YAML, or placed in `.env.example`.
+
+```text
+NEWSLETTER_TO=owner-or-archive@example.com
+NEWSLETTER_BCC=employee.one@example.com;employee.two@example.com
+ALLOW_COMPANY_SEND=false
+MAX_COMPANY_RECIPIENTS=500
+```
+
+Company delivery remains blocked until `ALLOW_COMPANY_SEND=true`. Keep it false
+through the owner-only review, then store `NEWSLETTER_BCC` as a GitHub Actions
+secret and `ALLOW_COMPANY_SEND` as an explicitly approved repository variable.
+Only the visible owner/archive address appears in `To`; employee addresses are
+deduplicated and routed through BCC.
+
 For Gmail automation, use OAuth send-only access. The Gmail connector used interactively by Codex is separate from GitHub Actions and cannot supply credentials to an unattended workflow.
 
 ### Gmail OAuth Setup
