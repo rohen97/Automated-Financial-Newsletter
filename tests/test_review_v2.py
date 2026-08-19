@@ -13,6 +13,8 @@ def test_review_v2_is_a_shorter_separate_editorial_variant():
     review_html = render_review_v2_html(newsletter)
 
     assert "Three things that matter" in review_html
+    assert "WEEKLY EDITION" in review_html
+    assert "V2 REVIEW" not in review_html
     assert review_html.count('class="signal-index"') == 3
     assert "MARKET IMPACT /" in review_html
     assert "Markets at a glance" in review_html
