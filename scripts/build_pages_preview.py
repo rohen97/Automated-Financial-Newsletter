@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 from pathlib import Path
 import sys
 
@@ -16,11 +17,15 @@ TARGET_DIR = ROOT / "public_preview"
 
 
 def main() -> None:
-    if not SOURCE.exists():
-        raise FileNotFoundError(f"Preview HTML does not exist: {SOURCE}")
+    parser = argparse.ArgumentParser(description="Package a sanitized Pages preview.")
+    parser.add_argument("--source", type=Path, default=SOURCE)
+    args = parser.parse_args()
+    source = args.source
+    if not source.exists():
+        raise FileNotFoundError(f"Preview HTML does not exist: {source}")
     TARGET_DIR.mkdir(parents=True, exist_ok=True)
-    write_bytes_atomic(TARGET_DIR / "index.html", SOURCE.read_bytes())
-    chart_source = SOURCE.parent / "chart_of_the_week.png"
+    write_bytes_atomic(TARGET_DIR / "index.html", source.read_bytes())
+    chart_source = source.parent / "chart_of_the_week.png"
     if chart_source.exists():
         write_bytes_atomic(TARGET_DIR / "chart_of_the_week.png", chart_source.read_bytes())
     write_text_atomic(TARGET_DIR / ".nojekyll", "")

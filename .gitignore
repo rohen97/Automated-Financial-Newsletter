@@ -9,6 +9,7 @@ __pycache__/
 client_secret*.json
 gmail_oauth_credentials*.json
 public_preview/
+output/public_design_preview/
 data/inbox/gmail_digest.json
 data/trends/ngram_history.json
 output/test/

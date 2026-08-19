@@ -243,7 +243,11 @@ output/design_preview/newsletter_preview.html
 
 ## GitHub Pages Preview
 
-The `Pages Preview` workflow publishes a static sample preview to GitHub Pages. It deploys only rendered HTML from `public_preview/`; it does not publish `.env`, audit logs, JSON outputs, or raw secret files.
+The `Pages Preview` workflow publishes a static synthetic sample to GitHub Pages.
+It renders `examples/public_preview_newsletter.json`, never the current internal
+edition or portfolio data. It deploys only the sanitized HTML and public FRED
+chart from `public_preview/`; it does not publish `.env`, audit logs, JSON outputs,
+raw keys, current internal headlines, or real portfolio sections.
 
 Expected URL after Pages is enabled:
 

@@ -19,7 +19,8 @@ flowchart LR
     F --> J[Atomic latest and archive output]
     F --> K[Design preview builder]
     K --> L[newsletter_preview.html]
-    L --> M[Pages preview builder]
+    R[Synthetic public fixture] --> S[Public-only preview render]
+    S --> M[Pages preview builder]
     M --> N[public_preview/index.html]
     N --> O[GitHub Pages]
     F --> P[Gmail MIME builder]
@@ -35,6 +36,7 @@ flowchart LR
 | Template | `templates/newsletter.html.j2` | `templates/newsletter_review_v2.html.j2` |
 | Styles | `assets/newsletter.css` | `assets/newsletter_review_v2.css` |
 | Local preview | `scripts/preview_design.py` | `scripts/preview_review_v2.py` |
+| Pages fixture | Production data is never used | `examples/public_preview_newsletter.json` |
 | Pages packaging | `scripts/build_pages_preview.py` | `public_preview/` |
 | Final publication | `src/pipeline/output_writer.py` | `output/latest/manifest.json` |
 
@@ -60,10 +62,12 @@ flowchart LR
 1. Open `output/design_preview/newsletter_preview.html` locally for the current
    full edition.
 2. Open `output/review_v2/newsletter_v2.html` for the reduced design experiment.
-3. Review `public_preview/index.html` in the pull request or use the deployed
-   GitHub Pages URL after the Pages workflow completes.
+3. Review the synthetic `public_preview/index.html` in the pull request or use
+   the deployed GitHub Pages URL after the Pages workflow completes.
 4. Confirm `output/latest/manifest.json` checksums before approving delivery.
 
-The Pages bundle intentionally contains only rendered HTML and the chart image.
-It excludes environment files, API keys, raw provider responses, audit logs, and
-portfolio source files.
+The Pages workflow always renders the fixed synthetic fixture. It never reads
+`output/latest/newsletter.json`, and the bundle contains only public-sample HTML
+and a public FRED chart image. It excludes real portfolio sections, current
+internal headlines, environment files, API keys, provider responses, and audit
+logs.
