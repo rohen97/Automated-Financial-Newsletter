@@ -9,7 +9,13 @@ from src.markets.driver_explainer import explain_fx
 
 
 DEFAULT_LEVELS = {"USD/SGD": 1.35, "AUD/USD": 0.66, "EUR/USD": 1.08, "USD/CNH": 7.25, "USD/JPY": 160.0, "DXY": 104.2}
-ALPHA_SYMBOLS = {"USD/SGD": "USD/SGD", "AUD/USD": "AUD/USD", "EUR/USD": "EUR/USD", "USD/CNH": "USD/CNH", "USD/JPY": "USD/JPY", "DXY": "UUP"}
+ALPHA_SYMBOLS = {
+    "USD/SGD": "USD/SGD",
+    "AUD/USD": "AUD/USD",
+    "EUR/USD": "EUR/USD",
+    "USD/CNH": "USD/CNH",
+    "USD/JPY": "USD/JPY",
+}
 
 
 def fetch_fx_data(tickers_config: dict) -> list[dict]:

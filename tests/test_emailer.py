@@ -1,5 +1,9 @@
 from __future__ import annotations
 
+import base64
+from email import policy
+from email.parser import BytesParser
+
 import pytest
 
 from src.emailer import send_email as emailer
@@ -129,6 +133,91 @@ def test_gmail_smtp_requires_credentials(monkeypatch):
     with pytest.raises(emailer.EmailSafetyError, match="Gmail SMTP credentials"):
         emailer.send_email(
             "Wolf Research Gmail test",
+            _complete_html(),
+            ["reader@example.com"],
+        )
+
+
+def test_send_email_via_gmail_api_uses_oauth_and_complete_mime(
+    monkeypatch, tmp_path
+):
+    calls: list[dict] = []
+
+    class Response:
+        def __init__(self, status_code, payload):
+            self.status_code = status_code
+            self._payload = payload
+
+        def raise_for_status(self):
+            return None
+
+        def json(self):
+            return self._payload
+
+    def fake_post(url, **kwargs):
+        calls.append({"url": url, **kwargs})
+        if url.endswith("/token"):
+            return Response(200, {"access_token": "test-access-token"})
+        return Response(200, {"id": "gmail-message-id"})
+
+    chart_path = tmp_path / "output" / "latest" / "chart_of_the_week.png"
+    chart_path.parent.mkdir(parents=True)
+    chart_path.write_bytes(b"\x89PNG\r\n\x1a\nchart-data")
+    html = _complete_html().replace(
+        "<body>", '<body><img src="chart_of_the_week.png" alt="Chart of the week">'
+    )
+
+    monkeypatch.setenv("SEND_MODE", "send")
+    monkeypatch.setenv("EMAIL_PROVIDER", "gmail_api")
+    monkeypatch.setenv("GMAIL_FROM_EMAIL", "sender@example.com")
+    monkeypatch.setenv("GMAIL_CLIENT_ID", "test-client-id")
+    monkeypatch.setenv("GMAIL_CLIENT_SECRET", "test-client-secret")
+    monkeypatch.setenv("GMAIL_REFRESH_TOKEN", "test-refresh-token")
+    monkeypatch.setattr(emailer.requests, "post", fake_post)
+    monkeypatch.setattr(emailer, "PROJECT_ROOT", tmp_path)
+
+    result = emailer.send_email(
+        "Wolf Research OAuth test",
+        html,
+        ["reader@example.com"],
+    )
+
+    assert result["sent"] is True
+    assert result["provider"] == "gmail_api"
+    assert result["message_id"] == "gmail-message-id"
+    assert result["inline_attachment_count"] == 1
+    assert calls[0]["url"] == "https://oauth2.googleapis.com/token"
+    assert calls[0]["data"]["grant_type"] == "refresh_token"
+    assert calls[1]["url"].endswith("/gmail/v1/users/me/messages/send")
+    assert calls[1]["headers"]["Authorization"] == "Bearer test-access-token"
+
+    raw_message = base64.urlsafe_b64decode(calls[1]["json"]["raw"])
+    message = BytesParser(policy=policy.default).parsebytes(raw_message)
+    content_types = [part.get_content_type() for part in message.walk()]
+    assert message["From"] == "sender@example.com"
+    assert message["To"] == "reader@example.com"
+    assert "text/plain" in content_types
+    assert "text/html" in content_types
+    assert "image/png" in content_types
+    assert b"test-client-secret" not in raw_message
+    assert b"test-refresh-token" not in raw_message
+
+
+def test_gmail_api_requires_oauth_credentials(monkeypatch):
+    monkeypatch.setenv("SEND_MODE", "send")
+    monkeypatch.setenv("EMAIL_PROVIDER", "gmail_api")
+    for key in (
+        "GMAIL_FROM_EMAIL",
+        "GMAIL_CLIENT_ID",
+        "GMAIL_CLIENT_SECRET",
+        "GMAIL_REFRESH_TOKEN",
+    ):
+        monkeypatch.delenv(key, raising=False)
+    monkeypatch.setattr(emailer, "PROJECT_ROOT", emailer.Path("missing-project-root"))
+
+    with pytest.raises(emailer.EmailSafetyError, match="Gmail API OAuth credentials"):
+        emailer.send_email(
+            "Wolf Research OAuth test",
             _complete_html(),
             ["reader@example.com"],
         )

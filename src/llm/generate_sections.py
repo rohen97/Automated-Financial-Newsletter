@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import re
+
 from src.analysis.story_selector import select_story_of_the_week
 from src.llm.openai_sections import enhance_sections_with_openai
 
@@ -21,7 +23,7 @@ def generate_sections(data: dict) -> dict:
         "Executive Snapshot",
         [
             "Cross-asset focus remains on rates, USD direction, commodity supply signals, and sector leadership.",
-            "Portfolio relevance is weighted toward current equity holdings and issuer-level fixed income exposure.",
+            "Portfolio relevance is weighted toward current equity holdings, sector concentration, and currency exposure.",
             "Manual/private pricing issues are retained in audit logs rather than repeated in the newsletter body.",
         ],
         top_sources,
@@ -40,6 +42,12 @@ def generate_sections(data: dict) -> dict:
 
     if data.get("chart_of_the_week"):
         sections["chart_of_the_week"] = data["chart_of_the_week"]
+
+    if data.get("weekly_delta"):
+        sections["weekly_delta"] = data["weekly_delta"]
+
+    if data.get("dislocation_watch"):
+        sections["dislocation_watch"] = data["dislocation_watch"]
 
     if data.get("narrative_monitor"):
         sections["narrative_monitor"] = data["narrative_monitor"]
@@ -60,7 +68,10 @@ def generate_sections(data: dict) -> dict:
 
     sections["regional_headlines"] = data.get("regional_headlines", {"title": "Regional Headlines", "regions": []})
 
-    sections["story_of_the_week"] = select_story_of_the_week(ranked)
+    sections["story_of_the_week"] = select_story_of_the_week(
+        ranked,
+        data.get("narrative_monitor"),
+    )
 
     sections["portfolio_watchlist"] = data.get("portfolio_watchlist", {"title": "What to Watch This Week", "rows": []})
 
@@ -267,10 +278,14 @@ def _best_article(articles: list[dict], keywords: tuple[str, ...], used_urls: se
             continue
         if not _is_real_source_article(article):
             continue
-        text = f"{article.get('title', '')} {article.get('summary', '')} {article.get('category', '')}".lower()
-        if any(keyword in text for keyword in keywords):
+        text = f"{article.get('title', '')} {article.get('summary', '')}".lower()
+        if any(_contains_keyword(text, keyword) for keyword in keywords):
             return article
     return None
+
+
+def _contains_keyword(text: str, keyword: str) -> bool:
+    return bool(re.search(rf"(?<![a-z0-9]){re.escape(keyword.lower())}(?![a-z0-9])", text))
 
 
 def _is_real_source_article(article: dict) -> bool:

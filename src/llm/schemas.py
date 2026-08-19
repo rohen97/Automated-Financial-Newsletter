@@ -66,6 +66,8 @@ class StoryOfTheWeek(BaseModel):
     narrative: str
     implications: list[str]
     sources: list[SourceItem]
+    selection_signal: dict = Field(default_factory=dict)
+    openai_rewrite_status: str | None = None
 
 
 class WatchlistItem(BaseModel):

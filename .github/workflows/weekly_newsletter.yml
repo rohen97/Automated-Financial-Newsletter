@@ -26,8 +26,11 @@ jobs:
       TIMEZONE: Asia/Singapore
       ALLOW_FALLBACK_IN_SEND: "false"
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-      EMAIL_PROVIDER: ${{ vars.EMAIL_PROVIDER || 'gmail_smtp' }}
+      EMAIL_PROVIDER: ${{ vars.EMAIL_PROVIDER || 'gmail_api' }}
       GMAIL_FROM_EMAIL: ${{ secrets.GMAIL_FROM_EMAIL }}
+      GMAIL_CLIENT_ID: ${{ secrets.GMAIL_CLIENT_ID }}
+      GMAIL_CLIENT_SECRET: ${{ secrets.GMAIL_CLIENT_SECRET }}
+      GMAIL_REFRESH_TOKEN: ${{ secrets.GMAIL_REFRESH_TOKEN }}
       GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
       SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
       SENDGRID_FROM_EMAIL: ${{ secrets.SENDGRID_FROM_EMAIL }}

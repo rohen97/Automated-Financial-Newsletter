@@ -97,11 +97,21 @@ a:hover { text-decoration: underline; }
 .chart-image { display: block; width: 100%; max-width: 650px; height: auto; margin-top: 14px; border: 1px solid #ddd8cf; background: #ffffff; }
 .pull-quote { margin: 15px 0 4px; padding: 11px 14px; border-left: 3px solid #b87919; background: #f8f4ed; color: #34322f; font-size: 14px; line-height: 21px; }
 
-.narrative-table { width: 100%; table-layout: fixed; }
-.narrative-table th { padding: 7px 9px; border-bottom: 1px solid #8e8980; color: #716d66; font-family: "Courier New", monospace; font-size: 8px; line-height: 12px; text-align: left; text-transform: uppercase; }
-.narrative-table td { padding: 10px 9px; border-bottom: 1px solid #ddd8cf; color: #292826; font-size: 11px; line-height: 15px; vertical-align: top; }
-.narrative-note { display: block; margin-top: 4px; color: #77736d; font-size: 9px; line-height: 13px; font-weight: normal; }
-.narrative-status { color: #6f6b64; font-family: "Courier New", monospace; font-size: 9px; line-height: 13px; text-transform: uppercase; }
+.delta-table { width: 100%; table-layout: fixed; }
+.delta-table th { padding: 7px 9px; border-bottom: 1px solid #8e8980; color: #716d66; font-family: Arial, Helvetica, sans-serif; font-size: 8px; font-weight: bold; line-height: 12px; text-align: left; text-transform: uppercase; }
+.delta-table td { color: #292826; font-size: 11px; line-height: 15px; vertical-align: top; }
+.delta-index { color: #9a651b; font-family: "Courier New", monospace; font-size: 10px; }
+.delta-signal { display: block; color: #22211f; font-family: Georgia, "Times New Roman", serif; font-size: 14px; line-height: 18px; }
+.delta-state { display: block; margin-top: 2px; font-family: Arial, Helvetica, sans-serif; font-size: 8px; font-weight: bold; line-height: 11px; text-transform: uppercase; }
+.delta-interpretation { display: block; margin-top: 5px; color: #6f6b64; font-size: 10px; line-height: 14px; }
+.delta-source { display: block; margin-top: 4px; color: #858078; font-size: 8px; line-height: 11px; text-transform: uppercase; }
+.delta-metric { font-size: 11px; line-height: 16px; }
+.state-positive { color: #167451 !important; }
+.state-negative { color: #a23b36 !important; }
+.state-neutral { color: #6f6b64 !important; }
+.dislocation-label { display: block; color: #8d6a25; font-size: 8px; font-weight: bold; line-height: 11px; text-transform: uppercase; }
+.dislocation-title { display: block; margin-top: 3px; color: #22211f; font-family: Georgia, "Times New Roman", serif; font-size: 14px; line-height: 18px; }
+.dislocation-copy, .dislocation-assets { display: block; margin-top: 5px; color: #615e58; font-size: 10px; line-height: 15px; }
 .status-emerging, .status-accelerating { color: #8d5a12; }
 .status-persistent { color: #173f72; }
 .status-fading, .status-establishing { color: #77736d; }
@@ -201,9 +211,10 @@ a:hover { text-decoration: underline; }
   .market-table th:not(:first-child), .market-table td:not(:first-child), .portfolio-table th,
   .portfolio-table td { border-left-color: #444649 !important; }
   .pull-quote { background: #292a2c !important; color: #e6e2dc !important; }
-  .narrative-table th { color: #c7c3bc !important; border-color: #66686b !important; }
-  .narrative-table td { color: #efede8 !important; border-color: #444649 !important; }
-  .narrative-note, .status-fading, .status-establishing { color: #bbb7b0 !important; }
+  .delta-table th { color: #c7c3bc !important; border-color: #66686b !important; }
+  .delta-table td { color: #efede8 !important; border-color: #444649 !important; }
+  .delta-signal, .dislocation-title { color: #efede8 !important; }
+  .delta-interpretation, .delta-source, .dislocation-copy, .dislocation-assets { color: #bbb7b0 !important; }
   .status-emerging, .status-accelerating { color: #e1b361 !important; }
   .status-persistent { color: #9fc4f2 !important; }
   .region-heading { background: #292b2e !important; border-left-color: #6d9bd2 !important; }
@@ -235,9 +246,10 @@ a:hover { text-decoration: underline; }
 [data-ogsc] .market-table th, [data-ogsc] .sector-table th, [data-ogsc] .portfolio-table th { color: #c7c3bc !important; }
 [data-ogsc] .market-table td, [data-ogsc] .sector-table td, [data-ogsc] .portfolio-table td,
 [data-ogsc] .rank-row td { color: #efede8 !important; border-color: #444649 !important; }
-[data-ogsc] .narrative-table th { color: #c7c3bc !important; }
-[data-ogsc] .narrative-table td { color: #efede8 !important; border-color: #444649 !important; }
-[data-ogsc] .narrative-note, [data-ogsc] .status-fading, [data-ogsc] .status-establishing { color: #bbb7b0 !important; }
+[data-ogsc] .delta-table th { color: #c7c3bc !important; }
+[data-ogsc] .delta-table td { color: #efede8 !important; border-color: #444649 !important; }
+[data-ogsc] .delta-signal, [data-ogsc] .dislocation-title { color: #efede8 !important; }
+[data-ogsc] .delta-interpretation, [data-ogsc] .delta-source, [data-ogsc] .dislocation-copy, [data-ogsc] .dislocation-assets { color: #bbb7b0 !important; }
 [data-ogsc] .status-emerging, [data-ogsc] .status-accelerating { color: #e1b361 !important; }
 [data-ogsc] .status-persistent { color: #9fc4f2 !important; }
 [data-ogsc] .positive { color: #73d6a6 !important; }
@@ -263,7 +275,7 @@ a:hover { text-decoration: underline; }
   .column-gutter { display: block !important; width: auto !important; height: 14px !important; }
   .kpi-card { display: block !important; width: auto !important; }
   .market-table th, .market-table td, .sector-table th, .sector-table td, .portfolio-table th, .portfolio-table td { padding: 6px 4px !important; font-size: 9px !important; }
-  .narrative-table th, .narrative-table td { padding-left: 4px !important; padding-right: 4px !important; font-size: 9px !important; }
+  .delta-table th, .delta-table td { padding-left: 4px !important; padding-right: 4px !important; font-size: 9px !important; }
   .asset-driver { font-size: 8px !important; line-height: 11px !important; }
   .portfolio-table th:nth-child(2), .portfolio-table td:nth-child(2) { display: none !important; }
   .portfolio-table .number { white-space: normal !important; }

@@ -31,10 +31,16 @@ jobs:
         run: pip install -r requirements.txt
       - name: Run tests
         run: pytest
-      - name: Generate static preview
-        run: python scripts/preview_design.py
+      - name: Generate sanitized static preview
+        run: >-
+          python scripts/preview_design.py
+          --input examples/public_preview_newsletter.json
+          --output output/public_design_preview/newsletter_preview.html
+          --chart output/design_preview/chart_of_the_week.png
       - name: Prepare Pages artifact
-        run: python scripts/build_pages_preview.py
+        run: >-
+          python scripts/build_pages_preview.py
+          --source output/public_design_preview/newsletter_preview.html
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload Pages artifact

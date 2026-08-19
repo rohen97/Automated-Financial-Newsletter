@@ -9,6 +9,8 @@ def test_portfolio_sections_are_present():
     assert "portfolio_snapshot" in sections
     assert "equity_holdings_monitor" in sections
     assert "chart_of_the_week" in sections
+    assert "weekly_delta" in sections
+    assert "dislocation_watch" in sections
     assert "narrative_monitor" in sections
     assert "portfolio_linked_news" in sections
     assert "regional_headlines" in sections

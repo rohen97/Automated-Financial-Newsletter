@@ -1,0 +1,235 @@
+{
+  "title": "Weekly Market Brief | Public Design Sample",
+  "generated_at": "2026-01-05T09:00:00+08:00",
+  "timezone": "Asia/Singapore",
+  "sections": {
+    "executive_snapshot": {
+      "title": "The week in one view",
+      "signals": [
+        {
+          "label": "MACRO",
+          "headline": "Rates remain the primary transmission channel",
+          "detail": "Illustrative signal showing how concise desk commentary appears in the finished brief.",
+          "risk": "HIGH",
+          "source": {"name": "FRED", "url": "https://fred.stlouisfed.org/"}
+        },
+        {
+          "label": "FX",
+          "headline": "Dollar momentum pauses as policy paths converge",
+          "detail": "A synthetic cross-asset example used solely to demonstrate hierarchy and spacing.",
+          "risk": "MEDIUM",
+          "source": {"name": "European Central Bank", "url": "https://www.ecb.europa.eu/"}
+        },
+        {
+          "label": "COMMODITIES",
+          "headline": "Energy and metals send different growth signals",
+          "detail": "Illustrative market language, not a current forecast or investment recommendation.",
+          "risk": "MEDIUM",
+          "source": {"name": "FRED", "url": "https://fred.stlouisfed.org/"}
+        }
+      ]
+    },
+    "story_of_the_week": {
+      "title": "The policy path matters more than the latest print",
+      "narrative": "This public sample demonstrates the dark Macro Pulse feature using synthetic editorial copy and public institutional links.",
+      "implications": [
+        "Watch whether rate expectations move together across the US, Europe, and Asia.",
+        "Separate short-term price action from changes in the medium-term policy path.",
+        "Treat this page as a visual demonstration, not live market research."
+      ],
+      "sources": [
+        {"name": "FRED", "url": "https://fred.stlouisfed.org/"},
+        {"name": "BLS", "url": "https://www.bls.gov/"}
+      ]
+    },
+    "chart_of_the_week": {
+      "title": "Illustrative US 10-Year Treasury Yield",
+      "source_name": "FRED",
+      "summary": "Public macro data demonstrates the newsletter chart treatment. Values in the surrounding sample are illustrative.",
+      "market_signal_reason": "The chart is included to show visual hierarchy and email-safe image handling.",
+      "embedded_image": true,
+      "image_src": "chart_of_the_week.png",
+      "series_used": ["DGS10"],
+      "original_url": "https://fred.stlouisfed.org/series/DGS10"
+    },
+    "weekly_delta": {
+      "title": "What Changed This Week",
+      "source_count": 3,
+      "note": "Illustrative values for public design review only.",
+      "rows": [
+        {
+          "signal": "US 10-Year Yield",
+          "state": "Higher",
+          "tone": "negative",
+          "interpretation": "Long-duration assets face a modest valuation headwind in this synthetic example.",
+          "current_display": "4.20%",
+          "weekly_change_display": "+8 bp",
+          "source": {"name": "FRED"}
+        },
+        {
+          "signal": "Broad Dollar Index",
+          "state": "Softer",
+          "tone": "positive",
+          "interpretation": "A gentler dollar can ease financial conditions at the margin.",
+          "current_display": "102.4",
+          "weekly_change_display": "-0.4%",
+          "source": {"name": "Illustrative market data"}
+        },
+        {
+          "signal": "Gold",
+          "state": "Firm",
+          "tone": "positive",
+          "interpretation": "The sample move illustrates cross-asset comparison and color treatment.",
+          "current_display": "2,150",
+          "weekly_change_display": "+1.2%",
+          "source": {"name": "Illustrative market data"}
+        }
+      ]
+    },
+    "dislocation_watch": {
+      "title": "Dislocation Watch",
+      "items": [
+        {
+          "label": "RATES / EQUITIES",
+          "title": "Yields and growth equities rise together",
+          "observation": "The synthetic relationship moved against its usual short-run pattern.",
+          "why_it_matters": "Persistence would suggest earnings optimism is offsetting discount-rate pressure.",
+          "affected_assets": "Rates, equities"
+        }
+      ]
+    },
+    "fx_markets": {
+      "title": "FX Markets",
+      "rows": [
+        {
+          "label": "USD/SGD",
+          "last": "1.3400",
+          "one_week_change": -0.35,
+          "one_month_change": -0.80,
+          "ytd_change": -1.10,
+          "driver": "Illustrative policy-rate convergence and regional risk sentiment.",
+          "source": {"name": "Public design sample", "url": "https://www.mas.gov.sg/"}
+        },
+        {
+          "label": "EUR/USD",
+          "last": "1.0950",
+          "one_week_change": 0.40,
+          "one_month_change": 0.65,
+          "ytd_change": 1.25,
+          "driver": "Synthetic ECB repricing and broad-dollar momentum example.",
+          "source": {"name": "Public design sample", "url": "https://www.ecb.europa.eu/"}
+        },
+        {
+          "label": "USD/JPY",
+          "last": "148.20",
+          "one_week_change": 0.15,
+          "one_month_change": -0.30,
+          "ytd_change": 0.80,
+          "driver": "Illustrative yield-differential and central-bank communication effects.",
+          "source": {"name": "Public design sample", "url": "https://www.boj.or.jp/en/"}
+        }
+      ]
+    },
+    "commodities": {
+      "title": "Commodities",
+      "rows": [
+        {
+          "label": "Brent",
+          "last": "78.40",
+          "one_week_change": 0.75,
+          "one_month_change": -1.20,
+          "ytd_change": 2.10,
+          "driver": "Illustrative supply headlines and global-demand expectations.",
+          "source": {"name": "Public design sample", "url": "https://fred.stlouisfed.org/"}
+        },
+        {
+          "label": "Gold",
+          "last": "2,150",
+          "one_week_change": 1.20,
+          "one_month_change": 2.40,
+          "ytd_change": 4.10,
+          "driver": "Synthetic real-yield, dollar, and defensive-demand effects.",
+          "source": {"name": "Public design sample", "url": "https://fred.stlouisfed.org/"}
+        },
+        {
+          "label": "Copper",
+          "last": "4.05",
+          "one_week_change": -0.45,
+          "one_month_change": 0.30,
+          "ytd_change": 1.60,
+          "driver": "Illustrative China-demand and inventory signals.",
+          "source": {"name": "Public design sample", "url": "https://fred.stlouisfed.org/"}
+        }
+      ]
+    },
+    "sector_scoreboard": {
+      "title": "Sector Scoreboard",
+      "regions": [
+        {
+          "region": "US",
+          "label": "US Markets",
+          "rows": [
+            {"sector": "Technology", "one_week": 1.10, "one_month": 2.40, "ytd": 4.20, "comment": "Illustrative earnings resilience and duration sensitivity."},
+            {"sector": "Financials", "one_week": 0.45, "one_month": 1.20, "ytd": 2.70, "comment": "Synthetic curve and credit-quality signal."},
+            {"sector": "Utilities", "one_week": -0.30, "one_month": 0.20, "ytd": 1.10, "comment": "Illustrative defensive-sector performance."}
+          ]
+        },
+        {
+          "region": "Europe",
+          "label": "European Markets",
+          "rows": [
+            {"sector": "Industrials", "one_week": 0.70, "one_month": 1.50, "ytd": 3.10, "comment": "Illustrative export and growth expectations."},
+            {"sector": "Health Care", "one_week": 0.20, "one_month": -0.40, "ytd": 1.80, "comment": "Synthetic defensive-growth balance."}
+          ]
+        },
+        {
+          "region": "Asia_APAC",
+          "label": "Asian / APAC Markets",
+          "rows": [
+            {"sector": "Technology", "one_week": 1.35, "one_month": 2.10, "ytd": 3.80, "comment": "Illustrative semiconductor and regional-demand momentum."},
+            {"sector": "Financials", "one_week": -0.15, "one_month": 0.55, "ytd": 1.40, "comment": "Synthetic rates and credit-cycle reading."}
+          ]
+        }
+      ]
+    },
+    "macro_news": {
+      "title": "Macro News",
+      "items": [
+        {
+          "theme": "INFLATION",
+          "summary": "Price pressures cool gradually in this illustrative scenario",
+          "market_implication": "A measured disinflation path would keep policy optionality high.",
+          "portfolio_relevance": "Public design sample; no actual portfolio exposure is represented.",
+          "sources": [{"name": "BLS", "url": "https://www.bls.gov/"}]
+        },
+        {
+          "theme": "CENTRAL BANKS",
+          "summary": "Policy communication emphasizes incoming data",
+          "market_implication": "Cross-market volatility remains sensitive to changes in the expected policy path.",
+          "portfolio_relevance": "Illustrative cross-asset context only.",
+          "sources": [{"name": "European Central Bank", "url": "https://www.ecb.europa.eu/"}]
+        }
+      ]
+    },
+    "regional_headlines": {
+      "title": "Regional Headlines",
+      "regions": [
+        {"region": "US", "headlines": [{"headline": "Illustrative US policy update", "source": "BLS", "category": "Macro", "url": "https://www.bls.gov/", "market_implication": "Demonstrates regional headline hierarchy."}]},
+        {"region": "EU", "headlines": [{"headline": "Illustrative European policy update", "source": "ECB", "category": "Rates", "url": "https://www.ecb.europa.eu/", "market_implication": "Demonstrates sourced regional coverage."}]},
+        {"region": "UK", "headlines": [{"headline": "Illustrative UK data update", "source": "ONS", "category": "Macro", "url": "https://www.ons.gov.uk/", "market_implication": "Synthetic design content only."}]},
+        {"region": "APAC", "headlines": [{"headline": "Illustrative APAC growth update", "source": "ADB", "category": "Growth", "url": "https://www.adb.org/", "market_implication": "Synthetic design content only."}]},
+        {"region": "EMEA", "headlines": []},
+        {"region": "Global", "headlines": [{"headline": "Illustrative global financial-conditions update", "source": "BIS", "category": "Cross-Asset", "url": "https://www.bis.org/", "market_implication": "Demonstrates the global desk treatment."}]}
+      ]
+    },
+    "portfolio_watchlist": {
+      "title": "What to Watch This Week",
+      "rows": [
+        {"period": "This week", "region": "US", "event": "Inflation and central-bank communication", "portfolio_relevance": "Illustrative impact on USD, duration, and growth assets.", "asset_classes": "FX, rates, equities"},
+        {"period": "This week", "region": "EU", "event": "European growth indicators", "portfolio_relevance": "Illustrative impact on equities and credit.", "asset_classes": "Equities, credit"},
+        {"period": "This week", "region": "APAC", "event": "Regional activity data", "portfolio_relevance": "Illustrative impact on currencies and cyclical sectors.", "asset_classes": "Equities, FX"}
+      ]
+    }
+  },
+  "warnings": []
+}

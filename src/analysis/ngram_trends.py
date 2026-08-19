@@ -11,18 +11,43 @@ from typing import Any
 from src.utils.io import project_path, write_json
 
 
-MODEL_VERSION = "ngram-v1"
+MODEL_VERSION = "ngram-v2"
 TOKEN_RE = re.compile(r"[A-Za-z][A-Za-z0-9'-]*")
 FALLBACK_SOURCES = {"sample data", "fallback source"}
 BOILERPLATE_PHRASES = {
+    "breaking news",
     "click here",
+    "latest news",
     "read more",
     "market update",
+    "top stories",
     "this week",
     "last week",
     "according to",
     "wolf research",
 }
+DEFAULT_EXCLUDED_PHRASES = {
+    "associated press",
+    "business insider",
+    "financial times",
+    "google news",
+    "marketwatch",
+    "morningstar",
+    "reuters",
+    "seeking alpha",
+    "wall street",
+    "wall street journal",
+    "yahoo finance",
+    "yahoo finance singapore",
+}
+PUBLISHER_SUFFIX_RE = re.compile(
+    r"\s+(?:-|\||\u2013|\u2014)\s+(?:"
+    r"Associated Press|Business Insider|Financial Times|Google News|MarketWatch|"
+    r"Morningstar|Reuters|Seeking Alpha|The Wall Street Journal|Wall Street Journal|"
+    r"Yahoo Finance(?: Singapore)?"
+    r")\s*$",
+    re.IGNORECASE,
+)
 STOPWORDS = {
     "a",
     "about",
@@ -189,10 +214,16 @@ def build_narrative_monitor(
     period_end = generated_at.date().isoformat()
     documents = [_document(article) for article in articles if _is_usable_article(article)]
     documents = [document for document in documents if document["tokens"]]
-    current = _aggregate(documents, settings["ngram_sizes"])
+    current = _aggregate(
+        documents,
+        settings["ngram_sizes"],
+        settings["excluded_phrases"],
+    )
 
     target = _history_path(history_path or settings["history_path"])
     history = _load_history(target)
+    if history.get("model_version") != MODEL_VERSION:
+        history = {"version": 1, "model_version": MODEL_VERSION, "snapshots": []}
     prior_snapshots = [
         snapshot
         for snapshot in history.get("snapshots", [])
@@ -235,6 +266,11 @@ def build_narrative_monitor(
 def _settings(config: dict[str, Any] | None) -> dict[str, Any]:
     supplied = config or {}
     sizes = [int(value) for value in supplied.get("ngram_sizes", [2, 3]) if int(value) in {2, 3, 4}]
+    configured_exclusions = {
+        str(value).strip().casefold()
+        for value in supplied.get("excluded_phrases", [])
+        if str(value).strip()
+    }
     return {
         "enabled": bool(supplied.get("enabled", True)),
         "history_path": supplied.get("history_path", "data/trends/ngram_history.json"),
@@ -245,6 +281,7 @@ def _settings(config: dict[str, Any] | None) -> dict[str, Any]:
         "max_history_periods": max(int(supplied.get("max_history_periods", 12)), 2),
         "max_history_phrases": max(int(supplied.get("max_history_phrases", 500)), 25),
         "max_rows": max(int(supplied.get("max_rows", 6)), 1),
+        "excluded_phrases": DEFAULT_EXCLUDED_PHRASES | configured_exclusions,
         "accelerating_threshold": float(supplied.get("accelerating_threshold", 1.5)),
         "fading_threshold": float(supplied.get("fading_threshold", 0.67)),
     }
@@ -260,11 +297,15 @@ def _is_usable_article(article: dict[str, Any]) -> bool:
 def _document(article: dict[str, Any]) -> dict[str, Any]:
     tags = " ".join(str(item) for item in article.get("tags", []) if item)
     entities = " ".join(str(item) for item in article.get("entities", []) if item)
+    title = _strip_publisher_suffix(str(article.get("title", "")))
+    summary = _strip_publisher_suffix(
+        str(article.get("summary") or article.get("description", ""))
+    )
     text = " ".join(
         str(value)
         for value in (
-            article.get("title", ""),
-            article.get("summary") or article.get("description", ""),
+            title,
+            summary,
             tags,
             entities,
         )
@@ -274,7 +315,7 @@ def _document(article: dict[str, Any]) -> dict[str, Any]:
     return {
         "tokens": _tokenise(text),
         "source": str(article.get("source") or "Unknown source").strip(),
-        "title": str(article.get("title") or "Untitled").strip(),
+        "title": title or "Untitled",
         "region": str(article.get("region") or "Global").strip(),
         "category": str(article.get("category") or "Markets").strip(),
         "portfolio_relevant": bool(
@@ -295,7 +336,11 @@ def _tokenise(value: str) -> list[str]:
     return tokens
 
 
-def _aggregate(documents: list[dict[str, Any]], sizes: list[int]) -> dict[str, Any]:
+def _aggregate(
+    documents: list[dict[str, Any]],
+    sizes: list[int],
+    excluded_phrases: set[str],
+) -> dict[str, Any]:
     counts: Counter[str] = Counter()
     weighted: Counter[str] = Counter()
     sources: dict[str, set[str]] = defaultdict(set)
@@ -305,7 +350,7 @@ def _aggregate(documents: list[dict[str, Any]], sizes: list[int]) -> dict[str, A
     portfolio_hits: Counter[str] = Counter()
 
     for document in documents:
-        phrases = set(_ngrams(document["tokens"], sizes))
+        phrases = set(_ngrams(document["tokens"], sizes, excluded_phrases))
         for phrase in phrases:
             counts[phrase] += 1
             weighted[phrase] += document["weight"]
@@ -330,7 +375,7 @@ def _aggregate(documents: list[dict[str, Any]], sizes: list[int]) -> dict[str, A
     }
 
 
-def _ngrams(tokens: list[str], sizes: list[int]):
+def _ngrams(tokens: list[str], sizes: list[int], excluded_phrases: set[str]):
     for size in sizes:
         for index in range(len(tokens) - size + 1):
             words = tokens[index : index + size]
@@ -341,7 +386,13 @@ def _ngrams(tokens: list[str], sizes: list[int]):
             phrase = " ".join(words)
             if any(blocked in phrase for blocked in BOILERPLATE_PHRASES):
                 continue
+            if any(blocked in phrase for blocked in excluded_phrases):
+                continue
             yield phrase
+
+
+def _strip_publisher_suffix(value: str) -> str:
+    return PUBLISHER_SUFFIX_RE.sub("", value).strip()
 
 
 def _trend_rows(current: dict[str, Any], snapshots: list[dict[str, Any]], settings: dict[str, Any]) -> list[dict[str, Any]]:

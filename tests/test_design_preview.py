@@ -14,7 +14,9 @@ def test_email_template_renders_brand_and_tables():
     assert "FX Markets" in html
     assert "Commodities" in html
     assert "Chart of the Week" in html
-    assert "Narrative Monitor" in html
+    assert "What Changed This Week" in html
+    assert "Dislocation Watch" in html
+    assert "Narrative Monitor" not in html
     assert "Fixed Income Monitor" not in html
     assert "Story of the Week" in html
     assert html.count("Sector Scoreboard") == 1

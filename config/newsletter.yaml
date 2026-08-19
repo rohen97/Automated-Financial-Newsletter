@@ -10,7 +10,8 @@ required_sections:
   - portfolio_snapshot
   - equity_holdings_monitor
   - chart_of_the_week
-  - narrative_monitor
+  - weekly_delta
+  - dislocation_watch
   - macro_news
   - fx_markets
   - commodities
@@ -24,8 +25,16 @@ style:
   tone: institutional, concise, analytical, investment-focused
   max_bullets_per_section: 5
 sections:
+  weekly_delta:
+    enabled: true
+    max_items: 5
+  dislocation_watch:
+    enabled: true
+    max_items: 2
   narrative_monitor:
     enabled: true
+    visible: false
+    editorial_signal: true
     max_items: 6
   macro_news:
     enabled: true

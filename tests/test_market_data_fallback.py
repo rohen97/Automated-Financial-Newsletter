@@ -1,6 +1,6 @@
 from datetime import date, timedelta
 
-from src.fetchers import fx
+from src.fetchers import commodities, fx
 from src.fetchers.market_data import market_row
 from src.fetchers.provider_audit import source_counts
 
@@ -42,6 +42,56 @@ def test_fx_uses_yahoo_before_sample_fallback(monkeypatch):
 
     assert rows[0]["source"]["name"] == "Yahoo Finance"
     assert fallback_calls == []
+
+
+def test_dxy_uses_the_index_symbol_instead_of_the_uup_etf(monkeypatch):
+    monkeypatch.delenv("PYTEST_CURRENT_TEST", raising=False)
+    alpha_calls = []
+    monkeypatch.setattr(fx, "alpha_market_row", lambda *args, **kwargs: alpha_calls.append(args))
+    monkeypatch.setattr(
+        fx,
+        "market_row",
+        lambda label, symbol, *_args, **_kwargs: {
+            "label": label,
+            "last": 99.6,
+            "one_week_change": -0.2,
+            "one_month_change": -1.0,
+            "ytd_change": 1.3,
+            "source": {"name": "Yahoo Finance", "url": f"https://finance.yahoo.com/quote/{symbol}"},
+        },
+    )
+
+    rows = fx.fetch_fx_data({"fx": [{"label": "DXY", "symbol": "DX-Y.NYB"}]})
+
+    assert alpha_calls == []
+    assert rows[0]["last"] == 99.6
+    assert rows[0]["source"]["url"].endswith("DX-Y.NYB")
+
+
+def test_commodity_levels_use_configured_futures_not_etf_proxies(monkeypatch):
+    monkeypatch.delenv("PYTEST_CURRENT_TEST", raising=False)
+    symbols = []
+
+    def fake_market_row(label, symbol, *_args, **_kwargs):
+        symbols.append(symbol)
+        return {
+            "label": label,
+            "last": 91.5,
+            "one_week_change": 2.0,
+            "one_month_change": 3.0,
+            "ytd_change": 4.0,
+            "source": {"name": "Yahoo Finance", "url": f"https://finance.yahoo.com/quote/{symbol}"},
+        }
+
+    monkeypatch.setattr(commodities, "market_row", fake_market_row)
+
+    rows = commodities.fetch_commodities_data(
+        {"commodities": [{"label": "Brent", "symbol": "BZ=F"}]}
+    )
+
+    assert symbols == ["BZ=F"]
+    assert rows[0]["last"] == 91.5
+    assert rows[0]["source"]["url"].endswith("BZ=F")
 
 
 def test_source_counts_does_not_double_count_nested_sources():

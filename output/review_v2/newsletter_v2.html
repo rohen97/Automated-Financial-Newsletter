@@ -294,10 +294,12 @@ a:hover { text-decoration: underline; }
 .feature-sources a { color: #dbad61; }
 
 .chart-section,
+.delta-section,
 .portfolio-section,
 .scan-section { background: #ffffff; }
 
 .chart-section,
+.delta-section,
 .markets-section,
 .portfolio-section,
 .outlook-section,
@@ -408,12 +410,17 @@ a:hover { text-decoration: underline; }
 .negative { color: #a23b36 !important; }
 .neutral { color: #6f7880 !important; }
 
-.narrative-table td { vertical-align: top; }
-.narrative-note { display: block; margin-top: 4px; color: #5f6971; font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: normal; line-height: 14px; }
-.narrative-status { color: #59636c; font-family: "Courier New", Courier, monospace; font-size: 9px; line-height: 13px; text-transform: uppercase; }
-.status-emerging, .status-accelerating { color: #8a5516; }
-.status-persistent { color: #15355b; }
-.status-fading, .status-establishing { color: #68727a; }
+.delta-table td { vertical-align: top; }
+.delta-table th { color: #3e4953; font-family: Arial, Helvetica, sans-serif; font-size: 9px; font-weight: bold; line-height: 13px; text-transform: uppercase; }
+.delta-index { color: #a46b1c; }
+.delta-signal, .dislocation-title { color: #17202b; }
+.delta-interpretation, .dislocation-copy { color: #5f6971; }
+.delta-source { color: #7b848b; }
+.delta-state, .dislocation-label { letter-spacing: 0; }
+.state-positive { color: #167451 !important; }
+.state-negative { color: #a23b36 !important; }
+.state-neutral { color: #68727a !important; }
+.dislocation-row { margin-bottom: 8px; }
 
 .subsection-rule {
   margin: 24px 0 18px;
@@ -589,7 +596,7 @@ a:hover { text-decoration: underline; }
     background: #fcfbf8 !important;
     color: #17202b !important;
   }
-  .chart-section, .narrative-section, .portfolio-section, .scan-section { background: #ffffff !important; color: #17202b !important; }
+  .chart-section, .delta-section, .portfolio-section, .scan-section { background: #ffffff !important; color: #17202b !important; }
   .top-rule { background: #15355b !important; }
   .brand-mark { border-color: #15355b !important; color: #15355b !important; }
   .brand, .signal-meta, .watch-region, .headline-region, .region-cell, .sector-region-label,
@@ -610,9 +617,8 @@ a:hover { text-decoration: underline; }
   .positive { color: #167451 !important; }
   .negative { color: #a23b36 !important; }
   .neutral { color: #59636c !important; }
-  .narrative-note, .narrative-status { color: #5f6971 !important; }
-  .status-emerging, .status-accelerating { color: #8a5516 !important; }
-  .status-persistent { color: #15355b !important; }
+  .delta-signal, .dislocation-title, .dislocation-assets { color: #17202b !important; }
+  .delta-interpretation, .delta-source, .dislocation-copy { color: #5f6971 !important; }
   .chart-image { background: #ffffff !important; border-color: #dde0dc !important; }
   .feature-section, .footer { background: #0c1116 !important; }
 }
@@ -620,7 +626,7 @@ a:hover { text-decoration: underline; }
 [data-ogsb] body, [data-ogsb] .page { background: #14181c !important; }
 [data-ogsb] .container, [data-ogsb] .masthead, [data-ogsb] .intro-section,
 [data-ogsb] .markets-section, [data-ogsb] .outlook-section { background: #fcfbf8 !important; }
-[data-ogsb] .chart-section, [data-ogsb] .narrative-section, [data-ogsb] .portfolio-section, [data-ogsb] .scan-section,
+[data-ogsb] .chart-section, [data-ogsb] .delta-section, [data-ogsb] .portfolio-section, [data-ogsb] .scan-section,
 [data-ogsb] .metric-card { background: #ffffff !important; }
 [data-ogsb] .key-read { background: #f4f5f2 !important; }
 [data-ogsb] .feature-section, [data-ogsb] .footer { background: #0c1116 !important; }
@@ -632,20 +638,19 @@ a:hover { text-decoration: underline; }
 [data-ogsc] .compact-table td, [data-ogsc] .leadership-table td, [data-ogsc] .sector-metrics td { color: #202a34 !important; border-color: #dfe2de !important; }
 [data-ogsc] .positive { color: #167451 !important; }
 [data-ogsc] .negative { color: #a23b36 !important; }
-[data-ogsc] .narrative-note, [data-ogsc] .narrative-status { color: #5f6971 !important; }
-[data-ogsc] .status-emerging, [data-ogsc] .status-accelerating { color: #8a5516 !important; }
-[data-ogsc] .status-persistent { color: #15355b !important; }
+[data-ogsc] .delta-signal, [data-ogsc] .dislocation-title, [data-ogsc] .dislocation-assets { color: #17202b !important; }
+[data-ogsc] .delta-interpretation, [data-ogsc] .delta-source, [data-ogsc] .dislocation-copy { color: #5f6971 !important; }
 
 @media only screen and (max-width: 720px) {
   html, body { width: 100% !important; min-width: 0 !important; overflow-x: hidden !important; }
   .page, .container { width: 100% !important; max-width: 100% !important; min-width: 0 !important; table-layout: fixed !important; }
-  .signal-list, .compact-table, .sector-metrics, .metric-grid, .watch-list, .headline-list {
+  .signal-list, .compact-table, .delta-table, .sector-metrics, .metric-grid, .watch-list, .headline-list {
     width: 100% !important;
     max-width: 100% !important;
     table-layout: fixed !important;
   }
   .intro-section, .feature-section, .chart-section, .markets-section,
-  .narrative-section, .portfolio-section, .outlook-section, .scan-section, .footer,
+  .delta-section, .portfolio-section, .outlook-section, .scan-section, .footer,
   .signal-copy, .watch-copy, .headline-copy, h1, h2, h3, p, a {
     box-sizing: border-box !important;
     max-width: 100% !important;
@@ -653,7 +658,7 @@ a:hover { text-decoration: underline; }
     word-break: normal !important;
   }
   .masthead, .intro-section, .feature-section, .chart-section, .markets-section,
-  .narrative-section, .portfolio-section, .outlook-section, .scan-section, .footer {
+  .delta-section, .portfolio-section, .outlook-section, .scan-section, .footer {
     padding-left: 18px !important;
     padding-right: 18px !important;
   }
@@ -670,7 +675,7 @@ a:hover { text-decoration: underline; }
     width: calc(100vw - 80px) !important;
     max-width: calc(100vw - 80px) !important;
   }
-  .compact-table th, .compact-table td { padding-left: 5px !important; padding-right: 5px !important; font-size: 10px !important; }
+  .compact-table th, .compact-table td, .delta-table th, .delta-table td { padding-left: 5px !important; padding-right: 5px !important; font-size: 10px !important; }
   .leadership-table td { display: block !important; width: auto !important; padding: 8px 7px !important; }
   .leadership-table .region-cell { padding-top: 13px !important; }
   .sector-metrics td { padding-left: 10px !important; padding-right: 10px !important; }
@@ -686,7 +691,7 @@ a:hover { text-decoration: underline; }
 
   @page { margin: 11mm 9mm; }
 
-  html, body, .page, .container, .masthead, .intro-section, .chart-section,
+  html, body, .page, .container, .masthead, .intro-section, .chart-section, .delta-section,
   .markets-section, .portfolio-section, .outlook-section, .scan-section {
     background: #ffffff !important;
     color: #17202b !important;
@@ -718,13 +723,13 @@ a:hover { text-decoration: underline; }
   .feature-sources a { color: #15355b !important; }
   .topic-tags span { border-color: #9aa1a6 !important; color: #4f5a63 !important; }
 
-  .chart-section, .chart-image, .key-read, .metric-grid, .sector-metrics,
+  .chart-section, .delta-section, .delta-table, .dislocation-row, .chart-image, .key-read, .metric-grid, .sector-metrics,
   .watch-list tr, .headline-list tr {
     page-break-inside: avoid;
     break-inside: avoid;
   }
 
-  .intro-section, .chart-section, .markets-section, .portfolio-section,
+  .intro-section, .chart-section, .delta-section, .markets-section, .portfolio-section,
   .outlook-section, .scan-section {
     padding-top: 20px !important;
     padding-bottom: 22px !important;
@@ -749,7 +754,7 @@ a:hover { text-decoration: underline; }
     <!--[if mso]>
     <style>
       body, table, td, div, p, a { font-family: Arial, Helvetica, sans-serif !important; }
-      .container, .masthead, .intro-section, .chart-section, .markets-section,
+      .container, .masthead, .intro-section, .chart-section, .delta-section, .markets-section,
       .portfolio-section, .outlook-section, .scan-section {
         background-color: #ffffff !important;
         color: #17202b !important;
@@ -775,7 +780,7 @@ a:hover { text-decoration: underline; }
                     </td>
                     <td class="brand-cell" style="vertical-align:middle;">
                       <div class="brand">Wolf Research</div>
-                      <div class="edition">Weekly Market Brief / Tuesday, 18 August 2026 | 9:00am SGT</div>
+                      <div class="edition">Weekly Market Brief / Wednesday, 19 August 2026 | 9:00am SGT</div>
                     </td>
                     <td class="issue-cell" width="98" style="width:98px;text-align:right;vertical-align:middle;">
                       <div>WR 2026.34</div>
@@ -799,8 +804,8 @@ a:hover { text-decoration: underline; }
                       <div class="signal-inner">
                       <div class="signal-meta" style="color:#15355b;font-family:Arial,Helvetica,sans-serif;font-size:9px;font-weight:bold;line-height:13px;text-transform:uppercase;">Macro <span>&middot;</span> MARKET IMPACT / MEDIUM</div>
                       <h2>Rates and yields</h2>
-                      <p style="color:#35414c;">Recent lectures from prominent economic leaders underscore the complexities facing global economies. Piero Cipollone discussed the cooperative spirit essential for the digital euro, while Yannis Stournaras highlighted financing strategies amid geopolitical...</p>
-                      <div class="source-line">SOURCE / <a href="https://www.bis.org/review/r260813d.htm">Bank for International Settlements</a></div>
+                      <p style="color:#35414c;">Dinner speech by Philip R. Lane, Member of the Executive Board of the European Central Bank, at the closing conference of the European System of Central Banks Research Network on Challenges for Monetary Policy.</p>
+                      <div class="source-line">SOURCE / <a href="https://www.bis.org/review/r260813c.htm">Bank for International Settlements</a></div>
                       </div>
                     </td>
                   </tr>
@@ -810,9 +815,9 @@ a:hover { text-decoration: underline; }
                     <td class="signal-copy" style="padding:17px 0;border-top:1px solid #d9ddd9;vertical-align:top;">
                       <div class="signal-inner">
                       <div class="signal-meta" style="color:#15355b;font-family:Arial,Helvetica,sans-serif;font-size:9px;font-weight:bold;line-height:13px;text-transform:uppercase;">Equities <span>&middot;</span> MARKET IMPACT / MEDIUM</div>
-                      <h2>Consumer Discretionary / Asian / APAC Markets fell 3.84% over the week</h2>
-                      <p style="color:#35414c;">1W: Asia_APAC Consumer Discretionary moved -3.84% as China/APAC growth, regional FX, and policy expectations affected short-term positioning. 1M: the +0.75% move reflects accumulated performance versus regional macro and sector earnings expectations.</p>
-                      <div class="source-line">SOURCE / <a href="https://finance.yahoo.com/quote/KWEB">Yahoo Finance</a></div>
+                      <h2>Energy / US Markets rose 4.34% over the week</h2>
+                      <p style="color:#35414c;">1W: US Energy moved +4.34% as US rates, earnings expectations, and domestic growth data affected short-term positioning. 1M: the +9.91% move reflects accumulated performance versus regional macro and sector earnings expectations.</p>
+                      <div class="source-line">SOURCE / <a href="https://finance.yahoo.com/quote/XLE">Yahoo Finance</a></div>
                       </div>
                     </td>
                   </tr>
@@ -838,22 +843,22 @@ a:hover { text-decoration: underline; }
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                   <tr>
                     <td class="feature-label">Story of the Week / Macro Pulse</td>
-                    <td class="feature-source-count">73 VERIFIED SOURCES</td>
+                    <td class="feature-source-count">64 VERIFIED SOURCES</td>
                   </tr>
                 </table>
-                <h2>Global Economic Challenges and Market Responses</h2>
-                <div class="topic-tags"><span>RATES</span><span>INFLATION</span><span>FX</span><span>GEOPOLITICS</span><span>EQUITIES</span></div>
+                <h2>Piero Cipollone: The cooperative spirit at the heart of the digital euro</h2>
+                <div class="topic-tags"><span>RATES</span><span>FX</span><span>CREDIT</span></div>
                 <div class="feature-block">
                   <div class="feature-subhead">The view</div>
-                  <p>Recent lectures from prominent economic leaders underscore the complexities facing global economies. Piero Cipollone discussed the cooperative spirit essential for the digital euro, while Yannis Stournaras highlighted financing strategies amid geopolitical tensions in Europe. Concurrently, recent trends in the African public debt landscape reveal heightened vulnerabilities due to increased borrowing costs and reliance on banks. Overall, higher borrowing costs and inflationary pressures are reshaping market dynamics across regions.</p>
+                  <p>Lecture by Mr Piero Cipollone, Member of the Executive Board of the European Central Bank, at the annual meeting of the Federation of Italian Cooperative Credit Banks (Federcasse), Rome, 17 July 2026.</p>
                 </div>
                 <div class="feature-block compact-feature">
                   <div class="feature-subhead">Why it matters</div>
-                  <p>Monitor whether the theme affects rates, FX, commodities, and sector leadership.</p>
+                  <p>The digital euro matters for European payments infrastructure, bank intermediation, and the transmission of ECB policy.</p>
                 </div>
                 <div class="feature-block compact-feature">
                   <div class="feature-subhead">Watch next</div>
-                  <p>Inflation and Fed communication: Impacts USD, duration, and growth-style equity valuation</p>
+                  <p>Further ECB digital-euro guidance: Monitor changes to the policy and implementation path.</p>
                 </div>
 
                 <div class="feature-sources">SOURCES / <a href="https://www.bis.org/review/r260813d.htm">Bank for International Settlements</a></div>
@@ -867,59 +872,114 @@ a:hover { text-decoration: underline; }
               <td class="section chart-section" bgcolor="#ffffff" style="padding:28px 32px 30px;background-color:#ffffff;">
                 <div class="kicker" style="color:#8a5516;font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:bold;line-height:14px;text-transform:uppercase;">Chart desk / FRED</div>
                 <h2 class="section-title">Chart of the Week</h2>
-                <h3 class="insight-title">Inflation Progress and the Rate-Cut Path</h3>
-                <img class="chart-image" src="chart_of_the_week.png" alt="Chart of the Week: Inflation Progress and the Rate-Cut Path">
-                <p class="body-copy">Latest reading: US CPI 3.30%.</p>
-                <div class="key-read"><strong>Why it matters</strong><span>Inflation affects central-bank policy, margins, airlines, utilities, and currency risk.</span></div>
-                <div class="source-line">DATA AS OF / Tuesday, 18 August 2026 | 9:00am SGT &nbsp;&middot;&nbsp; <a href="https://fred.stlouisfed.org/series/CPIAUCSL">SOURCE</a></div>
+                <h3 class="insight-title">US 10Y Yield Remains the Key Discount-Rate Anchor</h3>
+                <img class="chart-image" src="chart_of_the_week.png" alt="Chart of the Week: US 10Y Yield Remains the Key Discount-Rate Anchor">
+                <p class="body-copy">Latest reading: US 10Y yield 4.72%.</p>
+                <div class="key-read"><strong>Why it matters</strong><span>Rates remain central for equity multiples, REITs, utilities, growth exposure, and FX translation risk.</span></div>
+                <div class="source-line">DATA AS OF / Wednesday, 19 August 2026 | 9:00am SGT &nbsp;&middot;&nbsp; <a href="https://fred.stlouisfed.org/series/DGS10">SOURCE</a></div>
               </td>
             </tr>
 
 
             <tr>
-              <td class="section narrative-section" bgcolor="#ffffff" style="padding:28px 32px 30px;background-color:#ffffff;">
-                <div class="kicker" style="color:#8a5516;font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:bold;line-height:14px;text-transform:uppercase;">Narrative intelligence / 290 articles / 18 sources</div>
-                <h2 class="section-title">Narrative Monitor</h2>
+              <td id="weekly-delta" class="section delta-section" bgcolor="#ffffff" style="padding:28px 32px 30px;background-color:#ffffff;">
+                <div class="kicker" style="color:#8a5516;font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:bold;line-height:14px;text-transform:uppercase;">Weekly delta / 5 verified signals / 2 sources</div>
+                <h2 class="section-title">What Changed This Week</h2>
+                <p class="section-deck" style="color:#4d5861;">The observable shifts that changed the cross-asset backdrop.</p>
 
-                <p class="section-deck" style="color:#4d5861;">This edition establishes the coverage baseline. Momentum signals begin after the next completed edition.</p>
-
-
-
-                <table class="narrative-table compact-table" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;table-layout:fixed;">
+                <table class="delta-table" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;table-layout:fixed;">
                   <tr>
-                    <th width="68%" style="width:68%;padding:9px 12px;text-align:left;color:#59636c;">Baseline narrative</th>
-                    <th width="32%" style="width:32%;padding:9px 12px;text-align:left;color:#59636c;">Coverage</th>
+                    <th width="8%" style="width:8%;padding:8px 8px 8px 0;text-align:left;color:#59636c;">&nbsp;</th>
+                    <th width="52%" style="width:52%;padding:8px 12px 8px 0;text-align:left;color:#59636c;">Signal</th>
+                    <th width="20%" style="width:20%;padding:8px 12px;text-align:right;color:#59636c;">Latest</th>
+                    <th width="20%" style="width:20%;padding:8px 0 8px 12px;text-align:right;color:#59636c;">1W</th>
                   </tr>
 
                   <tr>
-                    <td style="padding:11px 12px;border-bottom:1px solid #e2e4e1;color:#202a34;vertical-align:top;"><strong>Federal Reserve</strong></td>
-                    <td style="padding:11px 12px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;color:#35404a;vertical-align:top;">18 articles / 3 sources</td>
+                    <td class="delta-index" style="padding:13px 8px 13px 0;border-bottom:1px solid #e2e4e1;color:#a46b1c;font-family:'Courier New',Courier,monospace;font-size:10px;line-height:15px;vertical-align:top;">01</td>
+                    <td class="delta-copy" style="padding:12px 12px 13px 0;border-bottom:1px solid #e2e4e1;color:#202a34;vertical-align:top;">
+                      <strong class="delta-signal" style="display:block;color:#17202b;font-family:Georgia,'Times New Roman',serif;font-size:15px;line-height:20px;">US 10Y yield</strong>
+                      <span class="delta-state state-neutral" style="display:block;margin-top:2px;color:#68727a;font-family:Arial,Helvetica,sans-serif;font-size:8px;font-weight:bold;line-height:12px;text-transform:uppercase;">Stable</span>
+                      <span class="delta-interpretation" style="display:block;margin-top:5px;color:#5f6971;font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:15px;">Long-end yields were broadly stable, limiting the weekly discount-rate impulse.</span>
+                      <span class="delta-source" style="display:block;margin-top:4px;color:#7b848b;font-family:Arial,Helvetica,sans-serif;font-size:8px;line-height:11px;text-transform:uppercase;">Source / FRED</span>
+                    </td>
+                    <td class="delta-metric" style="padding:12px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;font-family:'Courier New',Courier,monospace;font-size:12px;line-height:17px;vertical-align:top;">4.72%</td>
+                    <td class="delta-metric state-neutral" style="padding:12px 0 12px 12px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#59636c;font-family:'Courier New',Courier,monospace;font-size:12px;font-weight:bold;line-height:17px;vertical-align:top;">+0bp</td>
                   </tr>
 
                   <tr>
-                    <td style="padding:11px 12px;border-bottom:1px solid #e2e4e1;color:#202a34;vertical-align:top;"><strong>Yahoo Finance</strong></td>
-                    <td style="padding:11px 12px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;color:#35404a;vertical-align:top;">20 articles / 3 sources</td>
+                    <td class="delta-index" style="padding:13px 8px 13px 0;border-bottom:1px solid #e2e4e1;color:#a46b1c;font-family:'Courier New',Courier,monospace;font-size:10px;line-height:15px;vertical-align:top;">02</td>
+                    <td class="delta-copy" style="padding:12px 12px 13px 0;border-bottom:1px solid #e2e4e1;color:#202a34;vertical-align:top;">
+                      <strong class="delta-signal" style="display:block;color:#17202b;font-family:Georgia,'Times New Roman',serif;font-size:15px;line-height:20px;">US financial conditions</strong>
+                      <span class="delta-state state-neutral" style="display:block;margin-top:2px;color:#68727a;font-family:Arial,Helvetica,sans-serif;font-size:8px;font-weight:bold;line-height:12px;text-transform:uppercase;">Stable</span>
+                      <span class="delta-interpretation" style="display:block;margin-top:5px;color:#5f6971;font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:15px;">Financial conditions changed little and did not add a strong liquidity impulse.</span>
+                      <span class="delta-source" style="display:block;margin-top:4px;color:#7b848b;font-family:Arial,Helvetica,sans-serif;font-size:8px;line-height:11px;text-transform:uppercase;">Source / FRED</span>
+                    </td>
+                    <td class="delta-metric" style="padding:12px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;font-family:'Courier New',Courier,monospace;font-size:12px;line-height:17px;vertical-align:top;">-0.55</td>
+                    <td class="delta-metric state-neutral" style="padding:12px 0 12px 12px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#59636c;font-family:'Courier New',Courier,monospace;font-size:12px;font-weight:bold;line-height:17px;vertical-align:top;">0.00</td>
                   </tr>
 
                   <tr>
-                    <td style="padding:11px 12px;border-bottom:1px solid #e2e4e1;color:#202a34;vertical-align:top;"><strong>Wall Street</strong></td>
-                    <td style="padding:11px 12px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;color:#35404a;vertical-align:top;">6 articles / 5 sources</td>
+                    <td class="delta-index" style="padding:13px 8px 13px 0;border-bottom:1px solid #e2e4e1;color:#a46b1c;font-family:'Courier New',Courier,monospace;font-size:10px;line-height:15px;vertical-align:top;">03</td>
+                    <td class="delta-copy" style="padding:12px 12px 13px 0;border-bottom:1px solid #e2e4e1;color:#202a34;vertical-align:top;">
+                      <strong class="delta-signal" style="display:block;color:#17202b;font-family:Georgia,'Times New Roman',serif;font-size:15px;line-height:20px;">DXY</strong>
+                      <span class="delta-state state-positive" style="display:block;margin-top:2px;color:#167451;font-family:Arial,Helvetica,sans-serif;font-size:8px;font-weight:bold;line-height:12px;text-transform:uppercase;">USD softer</span>
+                      <span class="delta-interpretation" style="display:block;margin-top:5px;color:#5f6971;font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:15px;">A softer dollar eased translation and funding pressure outside the United States.</span>
+                      <span class="delta-source" style="display:block;margin-top:4px;color:#7b848b;font-family:Arial,Helvetica,sans-serif;font-size:8px;line-height:11px;text-transform:uppercase;">Source / Yahoo Finance</span>
+                    </td>
+                    <td class="delta-metric" style="padding:12px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;font-family:'Courier New',Courier,monospace;font-size:12px;line-height:17px;vertical-align:top;">99.46</td>
+                    <td class="delta-metric state-positive" style="padding:12px 0 12px 12px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;font-family:'Courier New',Courier,monospace;font-size:12px;font-weight:bold;line-height:17px;vertical-align:top;">-0.55%</td>
                   </tr>
 
                   <tr>
-                    <td style="padding:11px 12px;border-bottom:1px solid #e2e4e1;color:#202a34;vertical-align:top;"><strong>Oil Price</strong></td>
-                    <td style="padding:11px 12px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;color:#35404a;vertical-align:top;">6 articles / 4 sources</td>
+                    <td class="delta-index" style="padding:13px 8px 13px 0;border-bottom:1px solid #e2e4e1;color:#a46b1c;font-family:'Courier New',Courier,monospace;font-size:10px;line-height:15px;vertical-align:top;">04</td>
+                    <td class="delta-copy" style="padding:12px 12px 13px 0;border-bottom:1px solid #e2e4e1;color:#202a34;vertical-align:top;">
+                      <strong class="delta-signal" style="display:block;color:#17202b;font-family:Georgia,'Times New Roman',serif;font-size:15px;line-height:20px;">Brent</strong>
+                      <span class="delta-state state-negative" style="display:block;margin-top:2px;color:#a23b36;font-family:Arial,Helvetica,sans-serif;font-size:8px;font-weight:bold;line-height:12px;text-transform:uppercase;">Inflationary</span>
+                      <span class="delta-interpretation" style="display:block;margin-top:5px;color:#5f6971;font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:15px;">Higher crude prices increased the near-term inflation and input-cost signal.</span>
+                      <span class="delta-source" style="display:block;margin-top:4px;color:#7b848b;font-family:Arial,Helvetica,sans-serif;font-size:8px;line-height:11px;text-transform:uppercase;">Source / Yahoo Finance</span>
+                    </td>
+                    <td class="delta-metric" style="padding:12px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;font-family:'Courier New',Courier,monospace;font-size:12px;line-height:17px;vertical-align:top;">$91.46</td>
+                    <td class="delta-metric state-negative" style="padding:12px 0 12px 12px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#a23b36;font-family:'Courier New',Courier,monospace;font-size:12px;font-weight:bold;line-height:17px;vertical-align:top;">+2.79%</td>
                   </tr>
 
                   <tr>
-                    <td style="padding:11px 12px;border-bottom:1px solid #e2e4e1;color:#202a34;vertical-align:top;"><strong>Central Bank</strong></td>
-                    <td style="padding:11px 12px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;color:#35404a;vertical-align:top;">6 articles / 4 sources</td>
+                    <td class="delta-index" style="padding:13px 8px 13px 0;border-bottom:1px solid #e2e4e1;color:#a46b1c;font-family:'Courier New',Courier,monospace;font-size:10px;line-height:15px;vertical-align:top;">05</td>
+                    <td class="delta-copy" style="padding:12px 12px 13px 0;border-bottom:1px solid #e2e4e1;color:#202a34;vertical-align:top;">
+                      <strong class="delta-signal" style="display:block;color:#17202b;font-family:Georgia,'Times New Roman',serif;font-size:15px;line-height:20px;">US sector breadth</strong>
+                      <span class="delta-state state-neutral" style="display:block;margin-top:2px;color:#68727a;font-family:Arial,Helvetica,sans-serif;font-size:8px;font-weight:bold;line-height:12px;text-transform:uppercase;">Mixed</span>
+                      <span class="delta-interpretation" style="display:block;margin-top:5px;color:#5f6971;font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:15px;">US sector participation was balanced and offered no decisive breadth signal.</span>
+                      <span class="delta-source" style="display:block;margin-top:4px;color:#7b848b;font-family:Arial,Helvetica,sans-serif;font-size:8px;line-height:11px;text-transform:uppercase;">Source / Yahoo Finance</span>
+                    </td>
+                    <td class="delta-metric" style="padding:12px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;font-family:'Courier New',Courier,monospace;font-size:12px;line-height:17px;vertical-align:top;">5/10 advancing</td>
+                    <td class="delta-metric state-neutral" style="padding:12px 0 12px 12px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#59636c;font-family:'Courier New',Courier,monospace;font-size:12px;font-weight:bold;line-height:17px;vertical-align:top;">+0 net</td>
                   </tr>
 
                 </table>
 
 
-                <div class="source-line">METHOD / N-GRAM DOCUMENT FREQUENCY<br>Coverage momentum measures changes in news attention, not market direction or a trading signal.</div>
+                <div class="subsection-rule"></div>
+                <div class="kicker" style="color:#8a5516;font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:bold;line-height:14px;text-transform:uppercase;">Cross-asset exceptions</div>
+                <h3 class="subsection-title">Dislocation Watch</h3>
+                <p class="section-deck" style="color:#4d5861;">Relationships that moved against their usual directional pattern.</p>
+
+
+                <table role="presentation" class="dislocation-row" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;table-layout:fixed;">
+                  <tr>
+                    <td width="74%" style="width:74%;padding:12px 14px;border-bottom:1px solid #e2e4e1;border-left:3px solid #c4892f;vertical-align:top;">
+                      <span class="dislocation-label" style="display:block;color:#8a5516;font-family:Arial,Helvetica,sans-serif;font-size:8px;font-weight:bold;line-height:11px;text-transform:uppercase;">Regional Breadth</span>
+                      <strong class="dislocation-title" style="display:block;margin-top:3px;color:#17202b;font-family:Georgia,'Times New Roman',serif;font-size:14px;line-height:19px;">Regional participation split widened</strong>
+                      <span class="dislocation-copy" style="display:block;margin-top:5px;color:#4f5a63;font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:15px;">US Markets recorded 5/10 advancing sectors versus 1/10 in Asian / APAC Markets. The headline equity signal is masking materially different regional participation and concentration risk.</span>
+                    </td>
+                    <td width="26%" style="width:26%;padding:12px;border-bottom:1px solid #e2e4e1;vertical-align:top;">
+                      <span class="mini-label" style="display:block;color:#68727a;font-family:Arial,Helvetica,sans-serif;font-size:8px;font-weight:bold;line-height:11px;text-transform:uppercase;">Affected</span>
+                      <span class="dislocation-assets" style="display:block;margin-top:4px;color:#25303a;font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:15px;">Regional equities, sector allocation, FX</span>
+                    </td>
+                  </tr>
+                </table>
+
+
+                <div class="source-line">METHOD / VERIFIED WEEKLY DELTAS &amp; THRESHOLD-BASED DIVERGENCES<br>Weekly changes use the latest available provider observations; direction labels describe market conditions, not recommendations.</div>
               </td>
             </tr>
 
@@ -941,30 +1001,30 @@ a:hover { text-decoration: underline; }
 
                   <tr>
                     <td class="asset-cell" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;color:#202a34;">USD/SGD</td>
-                    <td class="number" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;">1.2779</td>
-                    <td class="number negative" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#a23b36;">-0.14%</td>
-                    <td class="number negative" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#a23b36;">-0.47%</td>
+                    <td class="number" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;">1.2782</td>
+                    <td class="number negative" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#a23b36;">-0.16%</td>
+                    <td class="number negative" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#a23b36;">-0.37%</td>
                   </tr>
 
                   <tr>
                     <td class="asset-cell" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;color:#202a34;">AUD/USD</td>
-                    <td class="number" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;">0.7106</td>
-                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+0.60%</td>
-                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+6.10%</td>
+                    <td class="number" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;">0.7086</td>
+                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+0.37%</td>
+                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+2.31%</td>
                   </tr>
 
                   <tr>
                     <td class="asset-cell" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;color:#202a34;">EUR/USD</td>
-                    <td class="number" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;">1.1579</td>
-                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+0.31%</td>
-                    <td class="number negative" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#a23b36;">-1.43%</td>
+                    <td class="number" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;">1.1574</td>
+                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+0.43%</td>
+                    <td class="number negative" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#a23b36;">-0.12%</td>
                   </tr>
 
                   <tr>
                     <td class="asset-cell" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;color:#202a34;">DXY</td>
-                    <td class="number" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;">99.623</td>
-                    <td class="number negative" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#a23b36;">-0.20%</td>
-                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+1.37%</td>
+                    <td class="number" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;">99.458</td>
+                    <td class="number negative" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#a23b36;">-0.55%</td>
+                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+1.20%</td>
                   </tr>
 
                 </table>
@@ -982,30 +1042,30 @@ a:hover { text-decoration: underline; }
 
                   <tr>
                     <td class="asset-cell" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;color:#202a34;">Brent</td>
-                    <td class="number" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;">91.13</td>
-                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+2.50%</td>
-                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+49.76%</td>
+                    <td class="number" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;">91.46</td>
+                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+2.79%</td>
+                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+50.30%</td>
                   </tr>
 
                   <tr>
                     <td class="asset-cell" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;color:#202a34;">WTI</td>
-                    <td class="number" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;">84.25</td>
-                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+1.26%</td>
-                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+46.73%</td>
+                    <td class="number" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;">84.58</td>
+                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+1.57%</td>
+                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+47.30%</td>
                   </tr>
 
                   <tr>
                     <td class="asset-cell" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;color:#202a34;">Gold</td>
-                    <td class="number" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;">4456.8999</td>
-                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+1.69%</td>
-                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+3.04%</td>
+                    <td class="number" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;">4395.3999</td>
+                    <td class="number negative" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#a23b36;">-0.31%</td>
+                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+1.61%</td>
                   </tr>
 
                   <tr>
                     <td class="asset-cell" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;color:#202a34;">Copper</td>
-                    <td class="number" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;">6.5595</td>
-                    <td class="number negative" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#a23b36;">-0.79%</td>
-                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+16.51%</td>
+                    <td class="number" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;">6.4715</td>
+                    <td class="number negative" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#a23b36;">-1.90%</td>
+                    <td class="number positive" style="padding:10px 14px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#167451;">+14.95%</td>
                   </tr>
 
                 </table>
@@ -1020,17 +1080,17 @@ a:hover { text-decoration: underline; }
                   <tr>
                     <td width="34%" style="width:34%;padding:13px 15px;border:1px solid #dde0dc;vertical-align:top;">
                       <span style="display:block;margin-bottom:5px;color:#5f6971;font-family:Arial,Helvetica,sans-serif;font-size:9px;line-height:13px;font-weight:bold;text-transform:uppercase;">Leader</span>
-                      <strong style="display:block;color:#25303a;font-size:12px;line-height:17px;">Real Estate</strong>
-                      <em class="positive" style="display:block;margin-top:4px;color:#167451;font-family:'Courier New',Courier,monospace;font-size:10px;line-height:13px;font-style:normal;">+2.70%</em>
+                      <strong style="display:block;color:#25303a;font-size:12px;line-height:17px;">Energy</strong>
+                      <em class="positive" style="display:block;margin-top:4px;color:#167451;font-family:'Courier New',Courier,monospace;font-size:10px;line-height:13px;font-style:normal;">+4.34%</em>
                     </td>
                     <td width="34%" style="width:34%;padding:13px 15px;border:1px solid #dde0dc;vertical-align:top;">
                       <span style="display:block;margin-bottom:5px;color:#5f6971;font-family:Arial,Helvetica,sans-serif;font-size:9px;line-height:13px;font-weight:bold;text-transform:uppercase;">Laggard</span>
-                      <strong style="display:block;color:#25303a;font-size:12px;line-height:17px;">Materials</strong>
-                      <em class="negative" style="display:block;margin-top:4px;color:#a23b36;font-family:'Courier New',Courier,monospace;font-size:10px;line-height:13px;font-style:normal;">-1.31%</em>
+                      <strong style="display:block;color:#25303a;font-size:12px;line-height:17px;">Technology</strong>
+                      <em class="negative" style="display:block;margin-top:4px;color:#a23b36;font-family:'Courier New',Courier,monospace;font-size:10px;line-height:13px;font-style:normal;">-1.72%</em>
                     </td>
                     <td width="32%" style="width:32%;padding:13px 15px;border:1px solid #dde0dc;vertical-align:top;">
                       <span style="display:block;margin-bottom:5px;color:#5f6971;font-family:Arial,Helvetica,sans-serif;font-size:9px;line-height:13px;font-weight:bold;text-transform:uppercase;">Breadth</span>
-                      <strong style="display:block;color:#25303a;font-size:12px;line-height:17px;">7/10 advancing</strong>
+                      <strong style="display:block;color:#25303a;font-size:12px;line-height:17px;">5/10 advancing</strong>
                     </td>
                   </tr>
                 </table>
@@ -1041,13 +1101,13 @@ a:hover { text-decoration: underline; }
                   <tr>
                     <td width="34%" style="width:34%;padding:13px 15px;border:1px solid #dde0dc;vertical-align:top;">
                       <span style="display:block;margin-bottom:5px;color:#5f6971;font-family:Arial,Helvetica,sans-serif;font-size:9px;line-height:13px;font-weight:bold;text-transform:uppercase;">Leader</span>
-                      <strong style="display:block;color:#25303a;font-size:12px;line-height:17px;">Energy</strong>
-                      <em class="positive" style="display:block;margin-top:4px;color:#167451;font-family:'Courier New',Courier,monospace;font-size:10px;line-height:13px;font-style:normal;">+1.51%</em>
+                      <strong style="display:block;color:#25303a;font-size:12px;line-height:17px;">Technology</strong>
+                      <em class="positive" style="display:block;margin-top:4px;color:#167451;font-family:'Courier New',Courier,monospace;font-size:10px;line-height:13px;font-style:normal;">+0.83%</em>
                     </td>
                     <td width="34%" style="width:34%;padding:13px 15px;border:1px solid #dde0dc;vertical-align:top;">
                       <span style="display:block;margin-bottom:5px;color:#5f6971;font-family:Arial,Helvetica,sans-serif;font-size:9px;line-height:13px;font-weight:bold;text-transform:uppercase;">Laggard</span>
-                      <strong style="display:block;color:#25303a;font-size:12px;line-height:17px;">Consumer Staples</strong>
-                      <em class="negative" style="display:block;margin-top:4px;color:#a23b36;font-family:'Courier New',Courier,monospace;font-size:10px;line-height:13px;font-style:normal;">-2.96%</em>
+                      <strong style="display:block;color:#25303a;font-size:12px;line-height:17px;">Materials</strong>
+                      <em class="negative" style="display:block;margin-top:4px;color:#a23b36;font-family:'Courier New',Courier,monospace;font-size:10px;line-height:13px;font-style:normal;">-2.88%</em>
                     </td>
                     <td width="32%" style="width:32%;padding:13px 15px;border:1px solid #dde0dc;vertical-align:top;">
                       <span style="display:block;margin-bottom:5px;color:#5f6971;font-family:Arial,Helvetica,sans-serif;font-size:9px;line-height:13px;font-weight:bold;text-transform:uppercase;">Breadth</span>
@@ -1062,17 +1122,17 @@ a:hover { text-decoration: underline; }
                   <tr>
                     <td width="34%" style="width:34%;padding:13px 15px;border:1px solid #dde0dc;vertical-align:top;">
                       <span style="display:block;margin-bottom:5px;color:#5f6971;font-family:Arial,Helvetica,sans-serif;font-size:9px;line-height:13px;font-weight:bold;text-transform:uppercase;">Leader</span>
-                      <strong style="display:block;color:#25303a;font-size:12px;line-height:17px;">Financials</strong>
-                      <em class="positive" style="display:block;margin-top:4px;color:#167451;font-family:'Courier New',Courier,monospace;font-size:10px;line-height:13px;font-style:normal;">+2.22%</em>
+                      <strong style="display:block;color:#25303a;font-size:12px;line-height:17px;">Health Care</strong>
+                      <em class="positive" style="display:block;margin-top:4px;color:#167451;font-family:'Courier New',Courier,monospace;font-size:10px;line-height:13px;font-style:normal;">+0.54%</em>
                     </td>
                     <td width="34%" style="width:34%;padding:13px 15px;border:1px solid #dde0dc;vertical-align:top;">
                       <span style="display:block;margin-bottom:5px;color:#5f6971;font-family:Arial,Helvetica,sans-serif;font-size:9px;line-height:13px;font-weight:bold;text-transform:uppercase;">Laggard</span>
                       <strong style="display:block;color:#25303a;font-size:12px;line-height:17px;">Consumer Discretionary</strong>
-                      <em class="negative" style="display:block;margin-top:4px;color:#a23b36;font-family:'Courier New',Courier,monospace;font-size:10px;line-height:13px;font-style:normal;">-3.84%</em>
+                      <em class="negative" style="display:block;margin-top:4px;color:#a23b36;font-family:'Courier New',Courier,monospace;font-size:10px;line-height:13px;font-style:normal;">-2.76%</em>
                     </td>
                     <td width="32%" style="width:32%;padding:13px 15px;border:1px solid #dde0dc;vertical-align:top;">
                       <span style="display:block;margin-bottom:5px;color:#5f6971;font-family:Arial,Helvetica,sans-serif;font-size:9px;line-height:13px;font-weight:bold;text-transform:uppercase;">Breadth</span>
-                      <strong style="display:block;color:#25303a;font-size:12px;line-height:17px;">2/10 advancing</strong>
+                      <strong style="display:block;color:#25303a;font-size:12px;line-height:17px;">1/10 advancing</strong>
                     </td>
                   </tr>
                 </table>
@@ -1184,8 +1244,8 @@ a:hover { text-decoration: underline; }
                   <tr>
                     <td class="headline-region" width="76" style="width:76px;padding:13px 12px 13px 0;border-top:1px solid #dfe2de;vertical-align:top;">US</td>
                     <td class="headline-copy" style="padding:12px 0;border-top:1px solid #dfe2de;vertical-align:top;">
-                      <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE9LTjRUdGRsSWZ3aGViNlhoVFU5LVZSSzVlRTRhamxFOFhQR3FfbTZjZXVCRjRRVHhGa0pnMHJkSjFGQzIxUExSM0U2ZWZNRk5NRFJOTFYyc2NLQVUyOEN0Q3l1T19XWDdBYTRWY2xaQ3ByaHNfcU05MWdpYkloam8?oc=5">Oil prices rally, US data dents chances of Fed rate hike - Yahoo Finance</a>
-                      <div class="headline-meta">Yahoo Finance &middot; Equities</div>
+                      <a href="https://www.cnbc.com/2026/08/18/treasury-yields-.html">30-year Treasury yield tops 5.33%, new 19-year high, on inflation and spending concerns</a>
+                      <div class="headline-meta">CNBC &middot; Equities</div>
                     </td>
                   </tr>
 
@@ -1200,8 +1260,8 @@ a:hover { text-decoration: underline; }
                   <tr>
                     <td class="headline-region" width="76" style="width:76px;padding:13px 12px 13px 0;border-top:1px solid #dfe2de;vertical-align:top;">UK</td>
                     <td class="headline-copy" style="padding:12px 0;border-top:1px solid #dfe2de;vertical-align:top;">
-                      <a href="https://www.wsj.com/world/uk/boe-seen-on-hold-through-2027-despite-inflation-spike-b8ab6815?mod=rss_worldnews">BOE Seen on Hold Through 2027 Despite Inflation Spike</a>
-                      <div class="headline-meta">Wall Street Journal &middot; Macro</div>
+                      <span>No material market update captured.</span>
+                      <div class="headline-meta">Source monitor &middot; Monitoring</div>
                     </td>
                   </tr>
 
@@ -1216,15 +1276,15 @@ a:hover { text-decoration: underline; }
                   <tr>
                     <td class="headline-region" width="76" style="width:76px;padding:13px 12px 13px 0;border-top:1px solid #dfe2de;vertical-align:top;">EMEA</td>
                     <td class="headline-copy" style="padding:12px 0;border-top:1px solid #dfe2de;vertical-align:top;">
-                      <a href="https://www.cnbc.com/2026/08/17/japanese-automakers-vulnerable-iran-war-yen-rally.html">Japanese automakers vulnerable to one-two punch of Iran war, yen rally</a>
-                      <div class="headline-meta">CNBC &middot; Equities</div>
+                      <a href="https://www.ft.com/content/71541304-d965-415d-82a3-387775cdb773?syn-25a6b1a6=1">Libya seeks up to $40bn to develop oil resources</a>
+                      <div class="headline-meta">Financial Times Markets &middot; Equities</div>
                     </td>
                   </tr>
 
                   <tr>
                     <td class="headline-region" width="76" style="width:76px;padding:13px 12px 13px 0;border-top:1px solid #dfe2de;vertical-align:top;">Global</td>
                     <td class="headline-copy" style="padding:12px 0;border-top:1px solid #dfe2de;vertical-align:top;">
-                      <a href="https://www.bis.org/publ/bisbull132.htm">Africa's public debt amid global headwinds: balancing resilience and vulnerabilities</a>
+                      <a href="https://www.bis.org/review/r260813c.htm">Philip R Lane: AI and monetary policy</a>
                       <div class="headline-meta">Bank for International Settlements &middot; Macro</div>
                     </td>
                   </tr>
@@ -1238,7 +1298,7 @@ a:hover { text-decoration: underline; }
               <td class="footer" bgcolor="#111820" style="padding:24px 32px 27px;background-color:#111820;color:#aeb5bc;">
                 <div class="footer-brand">Wolf Research</div>
                 <div class="footer-title">Weekly Market Brief</div>
-                <p><strong>Generated:</strong> 2026-08-18T15:58:53.621662+08:00 &nbsp;&middot;&nbsp; Asia/Singapore</p>
+                <p><strong>Generated:</strong> 2026-08-19T14:38:12.244276+08:00 &nbsp;&middot;&nbsp; Asia/Singapore</p>
                 <p>Internal distribution only. Analytical context, not investment advice. Sources link to original publications where available.</p>
                 <p>Detailed holdings, full sector tables, secondary headlines, fallback usage, and validation records remain available in the web edition and audit log.</p>
               </td>

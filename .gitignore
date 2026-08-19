@@ -6,10 +6,15 @@ __pycache__/
 .env
 .env.local
 *.key
+client_secret*.json
+gmail_oauth_credentials*.json
 public_preview/
+output/public_design_preview/
 data/inbox/gmail_digest.json
 data/trends/ngram_history.json
 output/test/
+output/.pipeline/
+data/cache/
 output/visual_checks/
 output/review_v2/final-print-page-*.png
 output/review_v2/print-page-*.png

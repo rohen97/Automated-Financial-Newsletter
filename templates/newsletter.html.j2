@@ -133,34 +133,66 @@
             </tr>
             {% endif %}
 
-            {% set narrative = newsletter.sections.get("narrative_monitor") %}
-            {% if narrative %}
+            {% set delta = newsletter.sections.get("weekly_delta") %}
+            {% set dislocations = newsletter.sections.get("dislocation_watch") %}
+            {% if delta %}
             <tr>
-              <td class="white-section narrative-section" id="narrative-monitor">
-                <div class="section-meta">Narrative Intelligence / {{ narrative.document_count or 0 }} Articles / {{ narrative.source_count or 0 }} Sources</div>
-                <h2 class="section-title">Narrative Monitor</h2>
-                <p class="section-deck">The themes gaining or losing attention across this week's aggregated news flow.</p>
-                {% if narrative.rows %}
-                <table class="narrative-table" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;table-layout:fixed;">
+              <td class="white-section delta-section" id="weekly-delta">
+                <div class="section-meta">Weekly Delta / {{ delta.rows|length }} Verified Signals / {{ delta.source_count or 0 }} Sources</div>
+                <h2 class="section-title">What Changed This Week</h2>
+                <p class="section-deck">The observable shifts that changed the cross-asset backdrop.</p>
+                {% if delta.rows %}
+                <table class="delta-table" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;table-layout:fixed;">
                   <tr>
-                    <th width="43%" style="width:43%;padding:7px 9px;text-align:left;">Narrative</th>
-                    <th width="19%" style="width:19%;padding:7px 9px;text-align:left;">Status</th>
-                    <th width="16%" style="width:16%;padding:7px 9px;text-align:right;">Momentum</th>
-                    <th width="22%" style="width:22%;padding:7px 9px;text-align:left;">Coverage</th>
+                    <th width="8%" style="width:8%;padding:7px 8px 7px 0;text-align:left;">&nbsp;</th>
+                    <th width="52%" style="width:52%;padding:7px 12px 7px 0;text-align:left;">Signal</th>
+                    <th width="20%" style="width:20%;padding:7px 12px;text-align:right;">Latest</th>
+                    <th width="20%" style="width:20%;padding:7px 0 7px 12px;text-align:right;">1W</th>
                   </tr>
-                  {% for row in narrative.rows %}
+                  {% for row in delta.rows %}
                   <tr>
-                    <td style="padding:10px 9px;border-bottom:1px solid #ddd8cf;vertical-align:top;"><strong>{{ row.phrase }}</strong><span class="narrative-note">{{ row.trend_note }}</span></td>
-                    <td style="padding:10px 9px;border-bottom:1px solid #ddd8cf;vertical-align:top;"><span class="narrative-status status-{{ row.status|lower }}">{{ row.status }}</span></td>
-                    <td class="number" style="padding:10px 9px;border-bottom:1px solid #ddd8cf;text-align:right;white-space:nowrap;vertical-align:top;">{{ row.momentum_display }}</td>
-                    <td style="padding:10px 9px;border-bottom:1px solid #ddd8cf;vertical-align:top;">{{ row.coverage_display }}</td>
+                    <td class="delta-index" style="padding:12px 8px 12px 0;border-bottom:1px solid #ddd8cf;vertical-align:top;">{{ "%02d"|format(loop.index) }}</td>
+                    <td class="delta-copy" style="padding:11px 12px 12px 0;border-bottom:1px solid #ddd8cf;vertical-align:top;">
+                      <strong class="delta-signal">{{ row.signal }}</strong>
+                      <span class="delta-state state-{{ row.tone }}">{{ row.state }}</span>
+                      <span class="delta-interpretation">{{ row.interpretation }}</span>
+                      {% if row.source.name %}<span class="delta-source">Source / {{ row.source.name }}</span>{% endif %}
+                    </td>
+                    <td class="number delta-metric" style="padding:11px 12px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;vertical-align:top;">{{ row.current_display }}</td>
+                    <td class="number delta-metric state-{{ row.tone }}" style="padding:11px 0 11px 12px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;vertical-align:top;">{{ row.weekly_change_display }}</td>
                   </tr>
                   {% endfor %}
                 </table>
                 {% else %}
-                <div class="empty-note">{{ narrative.empty_message }}</div>
+                <div class="empty-note">{{ delta.empty_message }}</div>
                 {% endif %}
-                <div class="source-line">METHOD / N-GRAM DOCUMENT FREQUENCY{% if narrative.baseline_periods %} &nbsp;&middot;&nbsp; {{ narrative.baseline_periods }} PRIOR PERIODS{% endif %}<br>{{ narrative.note }}</div>
+
+                {% if dislocations %}
+                <div class="subsection-rule"></div>
+                <div class="section-meta">Cross-Asset Exceptions</div>
+                <h3 class="subsection-title">Dislocation Watch</h3>
+                <p class="section-deck">Relationships that moved against their usual directional pattern.</p>
+                {% if dislocations["items"] %}
+                {% for item in dislocations["items"][:2] %}
+                <table role="presentation" class="dislocation-row" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;table-layout:fixed;">
+                  <tr>
+                    <td width="74%" style="width:74%;padding:12px 14px;border-bottom:1px solid #ddd8cf;border-left:3px solid #c4892f;vertical-align:top;">
+                      <span class="dislocation-label">{{ item.label }}</span>
+                      <strong class="dislocation-title">{{ item.title }}</strong>
+                      <span class="dislocation-copy">{{ item.observation }} {{ item.why_it_matters }}</span>
+                    </td>
+                    <td width="26%" style="width:26%;padding:12px;border-bottom:1px solid #ddd8cf;vertical-align:top;">
+                      <span class="mini-label">Affected</span>
+                      <span class="dislocation-assets">{{ item.affected_assets }}</span>
+                    </td>
+                  </tr>
+                </table>
+                {% endfor %}
+                {% else %}
+                <div class="empty-note">{{ dislocations.empty_message }}</div>
+                {% endif %}
+                {% endif %}
+                <div class="source-line">METHOD / VERIFIED WEEKLY DELTAS &amp; THRESHOLD-BASED DIVERGENCES<br>{{ delta.note }}</div>
               </td>
             </tr>
             {% endif %}

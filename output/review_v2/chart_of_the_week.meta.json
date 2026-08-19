@@ -1,16 +1,14 @@
 {
   "contract_version": 1,
-  "chart_id": "inflation_path",
-  "title": "Chart of the Week: Inflation Progress and the Rate-Cut Path",
+  "chart_id": "us_10y_yield",
+  "title": "Chart of the Week: US 10Y Yield Remains the Key Discount-Rate Anchor",
   "series": [
-    "CPIAUCSL"
+    "DGS10"
   ],
-  "transformation": {
-    "CPIAUCSL": "yoy_pct_change"
-  },
+  "transformation": {},
   "latest_values": {
-    "CPIAUCSL": 3.303856050706311
+    "DGS10": 4.72
   },
   "render_mode": "matplotlib",
-  "rendered_at": "2026-08-18T07:58:46.901463+00:00"
+  "rendered_at": "2026-08-19T06:38:07.276319+00:00"
 }

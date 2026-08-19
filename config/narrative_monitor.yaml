@@ -11,3 +11,16 @@ max_history_phrases: 500
 max_rows: 6
 accelerating_threshold: 1.5
 fading_threshold: 0.67
+excluded_phrases:
+  - associated press
+  - business insider
+  - financial times
+  - google news
+  - marketwatch
+  - morningstar
+  - reuters
+  - seeking alpha
+  - wall street
+  - wall street journal
+  - yahoo finance
+  - yahoo finance singapore
