@@ -284,10 +284,12 @@ a:hover { text-decoration: underline; }
 .feature-sources a { color: #dbad61; }
 
 .chart-section,
+.delta-section,
 .portfolio-section,
 .scan-section { background: #ffffff; }
 
 .chart-section,
+.delta-section,
 .markets-section,
 .portfolio-section,
 .outlook-section,
@@ -398,12 +400,17 @@ a:hover { text-decoration: underline; }
 .negative { color: #a23b36 !important; }
 .neutral { color: #6f7880 !important; }
 
-.narrative-table td { vertical-align: top; }
-.narrative-note { display: block; margin-top: 4px; color: #5f6971; font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: normal; line-height: 14px; }
-.narrative-status { color: #59636c; font-family: "Courier New", Courier, monospace; font-size: 9px; line-height: 13px; text-transform: uppercase; }
-.status-emerging, .status-accelerating { color: #8a5516; }
-.status-persistent { color: #15355b; }
-.status-fading, .status-establishing { color: #68727a; }
+.delta-table td { vertical-align: top; }
+.delta-table th { color: #3e4953; font-family: Arial, Helvetica, sans-serif; font-size: 9px; font-weight: bold; line-height: 13px; text-transform: uppercase; }
+.delta-index { color: #a46b1c; }
+.delta-signal, .dislocation-title { color: #17202b; }
+.delta-interpretation, .dislocation-copy { color: #5f6971; }
+.delta-source { color: #7b848b; }
+.delta-state, .dislocation-label { letter-spacing: 0; }
+.state-positive { color: #167451 !important; }
+.state-negative { color: #a23b36 !important; }
+.state-neutral { color: #68727a !important; }
+.dislocation-row { margin-bottom: 8px; }
 
 .subsection-rule {
   margin: 24px 0 18px;
@@ -579,7 +586,7 @@ a:hover { text-decoration: underline; }
     background: #fcfbf8 !important;
     color: #17202b !important;
   }
-  .chart-section, .narrative-section, .portfolio-section, .scan-section { background: #ffffff !important; color: #17202b !important; }
+  .chart-section, .delta-section, .portfolio-section, .scan-section { background: #ffffff !important; color: #17202b !important; }
   .top-rule { background: #15355b !important; }
   .brand-mark { border-color: #15355b !important; color: #15355b !important; }
   .brand, .signal-meta, .watch-region, .headline-region, .region-cell, .sector-region-label,
@@ -600,9 +607,8 @@ a:hover { text-decoration: underline; }
   .positive { color: #167451 !important; }
   .negative { color: #a23b36 !important; }
   .neutral { color: #59636c !important; }
-  .narrative-note, .narrative-status { color: #5f6971 !important; }
-  .status-emerging, .status-accelerating { color: #8a5516 !important; }
-  .status-persistent { color: #15355b !important; }
+  .delta-signal, .dislocation-title, .dislocation-assets { color: #17202b !important; }
+  .delta-interpretation, .delta-source, .dislocation-copy { color: #5f6971 !important; }
   .chart-image { background: #ffffff !important; border-color: #dde0dc !important; }
   .feature-section, .footer { background: #0c1116 !important; }
 }
@@ -610,7 +616,7 @@ a:hover { text-decoration: underline; }
 [data-ogsb] body, [data-ogsb] .page { background: #14181c !important; }
 [data-ogsb] .container, [data-ogsb] .masthead, [data-ogsb] .intro-section,
 [data-ogsb] .markets-section, [data-ogsb] .outlook-section { background: #fcfbf8 !important; }
-[data-ogsb] .chart-section, [data-ogsb] .narrative-section, [data-ogsb] .portfolio-section, [data-ogsb] .scan-section,
+[data-ogsb] .chart-section, [data-ogsb] .delta-section, [data-ogsb] .portfolio-section, [data-ogsb] .scan-section,
 [data-ogsb] .metric-card { background: #ffffff !important; }
 [data-ogsb] .key-read { background: #f4f5f2 !important; }
 [data-ogsb] .feature-section, [data-ogsb] .footer { background: #0c1116 !important; }
@@ -622,20 +628,19 @@ a:hover { text-decoration: underline; }
 [data-ogsc] .compact-table td, [data-ogsc] .leadership-table td, [data-ogsc] .sector-metrics td { color: #202a34 !important; border-color: #dfe2de !important; }
 [data-ogsc] .positive { color: #167451 !important; }
 [data-ogsc] .negative { color: #a23b36 !important; }
-[data-ogsc] .narrative-note, [data-ogsc] .narrative-status { color: #5f6971 !important; }
-[data-ogsc] .status-emerging, [data-ogsc] .status-accelerating { color: #8a5516 !important; }
-[data-ogsc] .status-persistent { color: #15355b !important; }
+[data-ogsc] .delta-signal, [data-ogsc] .dislocation-title, [data-ogsc] .dislocation-assets { color: #17202b !important; }
+[data-ogsc] .delta-interpretation, [data-ogsc] .delta-source, [data-ogsc] .dislocation-copy { color: #5f6971 !important; }
 
 @media only screen and (max-width: 720px) {
   html, body { width: 100% !important; min-width: 0 !important; overflow-x: hidden !important; }
   .page, .container { width: 100% !important; max-width: 100% !important; min-width: 0 !important; table-layout: fixed !important; }
-  .signal-list, .compact-table, .sector-metrics, .metric-grid, .watch-list, .headline-list {
+  .signal-list, .compact-table, .delta-table, .sector-metrics, .metric-grid, .watch-list, .headline-list {
     width: 100% !important;
     max-width: 100% !important;
     table-layout: fixed !important;
   }
   .intro-section, .feature-section, .chart-section, .markets-section,
-  .narrative-section, .portfolio-section, .outlook-section, .scan-section, .footer,
+  .delta-section, .portfolio-section, .outlook-section, .scan-section, .footer,
   .signal-copy, .watch-copy, .headline-copy, h1, h2, h3, p, a {
     box-sizing: border-box !important;
     max-width: 100% !important;
@@ -643,7 +648,7 @@ a:hover { text-decoration: underline; }
     word-break: normal !important;
   }
   .masthead, .intro-section, .feature-section, .chart-section, .markets-section,
-  .narrative-section, .portfolio-section, .outlook-section, .scan-section, .footer {
+  .delta-section, .portfolio-section, .outlook-section, .scan-section, .footer {
     padding-left: 18px !important;
     padding-right: 18px !important;
   }
@@ -660,7 +665,7 @@ a:hover { text-decoration: underline; }
     width: calc(100vw - 80px) !important;
     max-width: calc(100vw - 80px) !important;
   }
-  .compact-table th, .compact-table td { padding-left: 5px !important; padding-right: 5px !important; font-size: 10px !important; }
+  .compact-table th, .compact-table td, .delta-table th, .delta-table td { padding-left: 5px !important; padding-right: 5px !important; font-size: 10px !important; }
   .leadership-table td { display: block !important; width: auto !important; padding: 8px 7px !important; }
   .leadership-table .region-cell { padding-top: 13px !important; }
   .sector-metrics td { padding-left: 10px !important; padding-right: 10px !important; }
@@ -676,7 +681,7 @@ a:hover { text-decoration: underline; }
 
   @page { margin: 11mm 9mm; }
 
-  html, body, .page, .container, .masthead, .intro-section, .chart-section,
+  html, body, .page, .container, .masthead, .intro-section, .chart-section, .delta-section,
   .markets-section, .portfolio-section, .outlook-section, .scan-section {
     background: #ffffff !important;
     color: #17202b !important;
@@ -708,13 +713,13 @@ a:hover { text-decoration: underline; }
   .feature-sources a { color: #15355b !important; }
   .topic-tags span { border-color: #9aa1a6 !important; color: #4f5a63 !important; }
 
-  .chart-section, .chart-image, .key-read, .metric-grid, .sector-metrics,
+  .chart-section, .delta-section, .delta-table, .dislocation-row, .chart-image, .key-read, .metric-grid, .sector-metrics,
   .watch-list tr, .headline-list tr {
     page-break-inside: avoid;
     break-inside: avoid;
   }
 
-  .intro-section, .chart-section, .markets-section, .portfolio-section,
+  .intro-section, .chart-section, .delta-section, .markets-section, .portfolio-section,
   .outlook-section, .scan-section {
     padding-top: 20px !important;
     padding-bottom: 22px !important;

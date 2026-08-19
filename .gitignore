@@ -12,6 +12,8 @@ public_preview/
 data/inbox/gmail_digest.json
 data/trends/ngram_history.json
 output/test/
+output/.pipeline/
+data/cache/
 output/visual_checks/
 output/review_v2/final-print-page-*.png
 output/review_v2/print-page-*.png

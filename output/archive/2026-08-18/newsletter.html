@@ -1,0 +1,1489 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="supported-color-schemes" content="light dark">
+    <meta name="x-apple-disable-message-reformatting">
+    <title>Weekly Market Brief</title>
+    <style>
+/* Ask supporting mail clients to use our palettes instead of force-inverting them. */
+:root {
+  color-scheme: light dark;
+  supported-color-schemes: light dark;
+}
+
+html, body {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #d8d7d2;
+  color: #191919;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+table { border-collapse: collapse; border-spacing: 0; }
+a { color: #173f72; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.page { width: 100%; background: #d8d7d2; table-layout: fixed; }
+.container { width: 720px; max-width: 720px; margin: 0 auto; background: #f4f0e9; table-layout: fixed; }
+.preheader { display: none; max-height: 0; overflow: hidden; opacity: 0; }
+.top-rule { height: 7px; line-height: 7px; font-size: 1px; background: #173f72; }
+
+.masthead { padding: 24px 34px 19px; background: #f4f0e9; border-bottom: 1px solid #d3cec4; }
+.mark-cell { width: 58px; vertical-align: middle; }
+.brand-mark {
+  width: 44px;
+  height: 44px;
+  border: 1px solid #cbc6bc;
+  background: #ffffff;
+  color: #173f72;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 44px;
+  text-align: center;
+  font-weight: bold;
+}
+.brand-cell { vertical-align: middle; }
+.brand { color: #173f72; font-size: 21px; line-height: 25px; font-weight: bold; text-transform: uppercase; }
+.edition { margin-top: 3px; color: #75716b; font-family: "Courier New", monospace; font-size: 11px; line-height: 15px; text-transform: uppercase; }
+.issue-cell { width: 82px; color: #8d6a25; font-family: "Courier New", monospace; font-size: 11px; text-align: right; vertical-align: middle; }
+
+.topic-bar { padding: 8px 34px; background: #111214; border-bottom: 2px solid #b87919; color: #94979c; font-family: "Courier New", monospace; font-size: 10px; line-height: 14px; }
+.topic-meta { color: #b87919; text-align: right; white-space: nowrap; }
+
+.paper-section, .white-section, .macro-pulse { border-bottom: 1px solid #d7d2c8; }
+.paper-section { padding: 28px 34px 30px; background: #f4f0e9; }
+.white-section { padding: 28px 34px 30px; background: #fffdfa; }
+.first-section { padding-top: 33px; }
+.eyebrow, .section-meta, .article-kicker, .signal-label, .mini-label, .linked-meta, .headline-meta, .region-label {
+  font-family: "Courier New", monospace;
+  text-transform: uppercase;
+}
+.eyebrow, .section-meta { color: #8d6a25; font-size: 11px; line-height: 15px; letter-spacing: 0; }
+.cover-title { margin: 7px 0 4px; font-size: 35px; line-height: 40px; font-weight: normal; }
+.standfirst, .section-deck { color: #706d67; }
+.standfirst { margin: 0 0 21px; font-size: 15px; line-height: 21px; }
+.section-title { margin: 5px 0 3px; color: #171717; font-size: 28px; line-height: 33px; font-weight: normal; }
+.section-deck { margin: 0 0 19px; font-size: 14px; line-height: 20px; }
+.body-copy { margin: 14px 0 0; color: #34322f; font-size: 14px; line-height: 21px; }
+
+.signal-list { width: 100%; }
+.signal-card { padding: 0 0 10px; }
+.signal-card > table { background: #fffdfa; border: 1px solid #d9d4ca; }
+.signal-copy { padding: 15px 18px; vertical-align: top; }
+.signal-copy h2 { margin: 3px 0 3px; font-size: 18px; line-height: 23px; }
+.signal-copy p { margin: 0; color: #68655f; font-size: 13px; line-height: 18px; }
+.signal-label { color: #173f72; font-size: 9px; line-height: 12px; }
+.risk-cell { width: 62px; padding: 15px 14px 0 0; vertical-align: top; text-align: right; }
+.risk { display: inline-block; padding: 3px 7px; border: 1px solid #ae8a48; color: #8d6a25; font-family: "Courier New", monospace; font-size: 9px; line-height: 12px; }
+.risk-high { border-color: #173f72; color: #173f72; }
+.risk-low { border-color: #a8a39a; color: #77736d; }
+
+.source-line { margin-top: 8px; color: #8b8780; font-family: "Courier New", monospace; font-size: 9px; line-height: 13px; text-transform: uppercase; }
+.source-line a { color: #173f72; }
+
+.macro-pulse { padding: 28px 36px 32px; background: #111214; color: #e9e7e2; font-family: "Courier New", monospace; border-top: 3px solid #a87420; }
+.pulse-meta { color: #f0a324; font-size: 11px; line-height: 15px; }
+.pulse-read { color: #82858a; text-align: right; }
+.pulse-dot { color: #ec5a5f; font-size: 19px; vertical-align: -2px; }
+.macro-pulse h2 { margin: 17px 0 8px; font-size: 27px; line-height: 35px; font-weight: normal; letter-spacing: 0; }
+.pulse-standfirst { margin: 0; color: #b8b6b2; font-size: 14px; line-height: 21px; }
+.topic-tags { margin: 14px 0 11px; }
+.topic-tags span { display: inline-block; margin: 0 6px 5px 0; padding: 3px 7px; border: 1px solid #53565a; color: #bebcb8; font-size: 9px; line-height: 12px; }
+.desk-line { padding: 0 0 11px; border-bottom: 1px solid #35373a; color: #f0a324; font-size: 10px; line-height: 14px; }
+.pulse-points { margin-top: 13px; }
+.pulse-points td { padding: 0 0 13px; color: #cccac5; font-size: 13px; line-height: 20px; vertical-align: top; }
+.pulse-points .point-mark { width: 19px; padding-top: 2px; color: #f0a324; font-size: 10px; }
+.pulse-sources { padding-top: 10px; border-top: 1px solid #35373a; color: #797c80; font-size: 9px; line-height: 14px; }
+.pulse-sources a { color: #d7a64a; }
+
+.chart-image { display: block; width: 100%; max-width: 650px; height: auto; margin-top: 14px; border: 1px solid #ddd8cf; background: #ffffff; }
+.pull-quote { margin: 15px 0 4px; padding: 11px 14px; border-left: 3px solid #b87919; background: #f8f4ed; color: #34322f; font-size: 14px; line-height: 21px; }
+
+.narrative-table { width: 100%; table-layout: fixed; }
+.narrative-table th { padding: 7px 9px; border-bottom: 1px solid #8e8980; color: #716d66; font-family: "Courier New", monospace; font-size: 8px; line-height: 12px; text-align: left; text-transform: uppercase; }
+.narrative-table td { padding: 10px 9px; border-bottom: 1px solid #ddd8cf; color: #292826; font-size: 11px; line-height: 15px; vertical-align: top; }
+.narrative-note { display: block; margin-top: 4px; color: #77736d; font-size: 9px; line-height: 13px; font-weight: normal; }
+.narrative-status { color: #6f6b64; font-family: "Courier New", monospace; font-size: 9px; line-height: 13px; text-transform: uppercase; }
+.status-emerging, .status-accelerating { color: #8d5a12; }
+.status-persistent { color: #173f72; }
+.status-fading, .status-establishing { color: #77736d; }
+
+.two-column { width: 100%; }
+.two-column-cell, .monitor-cell { width: 48%; vertical-align: top; }
+.column-gutter { width: 4%; font-size: 1px; line-height: 1px; }
+.vertical-gutter { height: 14px; line-height: 14px; font-size: 1px; }
+.table-title { margin: 0 0 7px; color: #173f72; font-family: "Courier New", monospace; font-size: 12px; line-height: 16px; text-transform: uppercase; }
+.market-stack, .market-table, .sector-table, .portfolio-table { width: 100%; }
+.market-table, .portfolio-table { table-layout: fixed; }
+.market-table th, .sector-table th, .portfolio-table th { padding: 6px 7px; border-bottom: 1px solid #8e8980; color: #716d66; font-family: "Courier New", monospace; font-size: 8px; line-height: 12px; text-align: left; text-transform: uppercase; }
+.market-table td, .sector-table td, .portfolio-table td { padding: 7px; border-bottom: 1px solid #ddd8cf; font-size: 10px; line-height: 14px; vertical-align: top; }
+.market-table .asset-name { width: 36%; }
+.market-table th:not(:first-child), .market-table td:not(:first-child) { border-left: 1px solid #e6e1d8; }
+.market-block { width: 100%; }
+.market-gap { height: 22px; line-height: 22px; font-size: 1px; }
+.sector-table .asset-name { width: 67%; }
+.asset-name { font-weight: bold; }
+.asset-driver { margin-top: 3px; color: #77736d; font-size: 9px; line-height: 13px; font-weight: normal; }
+.tape-notes { margin-top: 10px; padding: 9px 10px; border-left: 2px solid #b87919; background: #fffdfa; }
+.tape-notes p { margin: 4px 0; color: #66625c; font-size: 9px; line-height: 13px; }
+.sector-note { margin: 7px 0 14px; color: #77736d; font-size: 10px; line-height: 15px; }
+.number { text-align: right !important; white-space: nowrap; font-family: "Courier New", monospace; }
+.positive { color: #167451 !important; }
+.negative { color: #a23b36 !important; }
+.neutral { color: #77736d !important; }
+.heat-positive { background: #e8f1eb; }
+.heat-negative { background: #f6e8e5; }
+.heat-neutral { background: #eeece8; }
+.region-heading { margin: 18px 0 6px; padding: 6px 9px; border-left: 3px solid #173f72; background: #f1eee8; color: #173f72; font-family: "Courier New", monospace; font-size: 10px; line-height: 14px; text-transform: uppercase; }
+
+.kpi-grid { margin-top: 16px; }
+.kpi-card { width: 33.33%; padding: 10px 11px; border: 1px solid #d8d3c9; background: #fffdfa; vertical-align: top; }
+.kpi-card div { color: #858078; font-family: "Courier New", monospace; font-size: 8px; line-height: 11px; text-transform: uppercase; }
+.kpi-card strong { display: block; margin-top: 4px; color: #173f72; font-size: 13px; line-height: 17px; }
+.portfolio-table-title { margin-top: 18px; }
+.monitor-title { margin: 22px 0 10px; padding-top: 16px; border-top: 1px solid #d6d1c7; font-size: 20px; line-height: 25px; font-weight: normal; }
+.monitor-cell { padding: 12px; border: 1px solid #d8d3c9; background: #fffdfa; }
+.mini-label { margin-bottom: 8px; color: #8d6a25; font-size: 9px; line-height: 12px; }
+.rank-row td { padding: 5px 0; border-bottom: 1px solid #e2ddd4; color: #3f3d39; font-size: 11px; line-height: 14px; }
+.rank-row td:first-child { padding-right: 12px; }
+.rank-row td:last-child { text-align: right; font-family: "Courier New", monospace; }
+.empty-note { padding: 10px 0; color: #858078; font-size: 12px; line-height: 18px; }
+
+.article-row, .compact-story, .linked-row { padding: 0 0 19px; margin: 0 0 19px; border-bottom: 1px solid #ddd8cf; }
+.article-row:last-child, .compact-story:last-child, .linked-row:last-child { margin-bottom: 0; }
+.article-kicker, .linked-meta { color: #8d6a25; font-size: 9px; line-height: 13px; }
+.article-row h3, .compact-story h3, .linked-row h3 { margin: 5px 0 6px; color: #202020; font-size: 18px; line-height: 24px; }
+.article-row p, .compact-story p, .linked-row p { margin: 4px 0; color: #55524c; font-size: 13px; line-height: 19px; }
+.portfolio-read { color: #6f6b64 !important; }
+
+.region-grid { width: 100%; }
+.region-cell { width: 50%; padding: 12px 16px 14px; border: 1px solid #ddd8cf; vertical-align: top; }
+.region-label { margin-bottom: 8px; color: #173f72; font-size: 10px; line-height: 14px; }
+.headline-item { padding: 0 0 11px; margin: 0 0 10px; border-bottom: 1px solid #e4dfd6; }
+.headline-item:last-child { border-bottom: 0; }
+.headline-meta { color: #928d85; font-size: 8px; line-height: 11px; }
+.headline-item a { display: block; margin-top: 3px; color: #222222; font-size: 13px; line-height: 18px; font-weight: bold; }
+.headline-item p { margin: 4px 0 0; color: #77736d; font-size: 11px; line-height: 16px; }
+
+.watch-row { margin-bottom: 10px; background: #fffdfa; border: 1px solid #d8d3c9; }
+.watch-when { width: 82px; padding: 14px 12px; border-right: 1px solid #d8d3c9; color: #173f72; font-family: "Courier New", monospace; font-size: 10px; line-height: 14px; text-transform: uppercase; vertical-align: top; }
+.watch-when span { display: block; margin-top: 5px; color: #8b8780; font-size: 8px; }
+.watch-copy { padding: 13px 15px; vertical-align: top; }
+.watch-copy h3 { margin: 0 0 4px; font-size: 16px; line-height: 21px; }
+.watch-copy p { margin: 0; color: #66625c; font-size: 12px; line-height: 18px; }
+
+.footer { padding: 25px 34px 28px; background: #111214; color: #96989b; font-family: "Courier New", monospace; font-size: 9px; line-height: 15px; }
+.footer-brand { color: #d7a64a; font-size: 10px; text-transform: uppercase; }
+.footer-title { margin: 4px 0 12px; color: #ffffff; font-family: Georgia, "Times New Roman", serif; font-size: 20px; line-height: 24px; }
+.footer p { margin: 6px 0; }
+.footer strong { color: #d8d8d8; }
+
+@media (prefers-color-scheme: dark) {
+  body, .page { background: #151617 !important; color: #f0ede7 !important; }
+  .container, .masthead, .paper-section { background: #1d1e20 !important; color: #f0ede7 !important; }
+  .white-section { background: #232426 !important; color: #f0ede7 !important; }
+  .top-rule { background: #4777b5 !important; }
+  .brand-mark, .signal-card > table, .kpi-card, .monitor-cell, .watch-row, .tape-notes {
+    background: #27282a !important;
+    border-color: #494b4e !important;
+  }
+  .brand, .section-title, .cover-title, .signal-copy h2, .article-row h3, .compact-story h3,
+  .linked-row h3, .headline-item a, .watch-copy h3, .monitor-title, .table-title, .region-label {
+    color: #f2efe9 !important;
+  }
+  .brand-mark, .signal-label, .source-line a, .region-heading, .watch-when { color: #9fc4f2 !important; }
+  .edition, .standfirst, .section-deck, .signal-copy p, .body-copy, .article-row p,
+  .compact-story p, .linked-row p, .headline-item p, .watch-copy p, .portfolio-read,
+  .sector-note, .asset-driver, .empty-note { color: #c1bdb5 !important; }
+  .market-table th, .sector-table th, .portfolio-table th { color: #c7c3bc !important; border-color: #66686b !important; }
+  .market-table td, .sector-table td, .portfolio-table td, .rank-row td {
+    color: #efede8 !important;
+    border-color: #444649 !important;
+  }
+  .market-table th:not(:first-child), .market-table td:not(:first-child), .portfolio-table th,
+  .portfolio-table td { border-left-color: #444649 !important; }
+  .pull-quote { background: #292a2c !important; color: #e6e2dc !important; }
+  .narrative-table th { color: #c7c3bc !important; border-color: #66686b !important; }
+  .narrative-table td { color: #efede8 !important; border-color: #444649 !important; }
+  .narrative-note, .status-fading, .status-establishing { color: #bbb7b0 !important; }
+  .status-emerging, .status-accelerating { color: #e1b361 !important; }
+  .status-persistent { color: #9fc4f2 !important; }
+  .region-heading { background: #292b2e !important; border-left-color: #6d9bd2 !important; }
+  .positive { color: #73d6a6 !important; }
+  .negative { color: #ff9a93 !important; }
+  .neutral { color: #bbb7b0 !important; }
+  .heat-positive { background: #18382c !important; color: #86deb4 !important; }
+  .heat-negative { background: #442422 !important; color: #ffaaa3 !important; }
+  .heat-neutral { background: #343537 !important; color: #d0ccc5 !important; }
+  .macro-pulse, .topic-bar, .footer { background: #0d0e10 !important; }
+  .chart-image { background: #ffffff !important; border-color: #505255 !important; }
+}
+
+/* Outlook.com and the new Outlook expose these attributes in dark mode. */
+[data-ogsb] body, [data-ogsb] .page { background: #151617 !important; }
+[data-ogsc] body, [data-ogsc] .page { color: #f0ede7 !important; }
+[data-ogsb] .container, [data-ogsb] .masthead, [data-ogsb] .paper-section { background: #1d1e20 !important; }
+[data-ogsb] .white-section { background: #232426 !important; }
+[data-ogsb] .brand-mark, [data-ogsb] .signal-card > table, [data-ogsb] .kpi-card,
+[data-ogsb] .monitor-cell, [data-ogsb] .watch-row, [data-ogsb] .tape-notes { background: #27282a !important; }
+[data-ogsc] .brand, [data-ogsc] .section-title, [data-ogsc] .cover-title,
+[data-ogsc] .signal-copy h2, [data-ogsc] .article-row h3, [data-ogsc] .compact-story h3,
+[data-ogsc] .linked-row h3, [data-ogsc] .headline-item a, [data-ogsc] .watch-copy h3,
+[data-ogsc] .monitor-title, [data-ogsc] .table-title { color: #f2efe9 !important; }
+[data-ogsc] .standfirst, [data-ogsc] .section-deck, [data-ogsc] .signal-copy p,
+[data-ogsc] .body-copy, [data-ogsc] .article-row p, [data-ogsc] .compact-story p,
+[data-ogsc] .linked-row p, [data-ogsc] .headline-item p, [data-ogsc] .watch-copy p,
+[data-ogsc] .portfolio-read, [data-ogsc] .sector-note { color: #c1bdb5 !important; }
+[data-ogsc] .market-table th, [data-ogsc] .sector-table th, [data-ogsc] .portfolio-table th { color: #c7c3bc !important; }
+[data-ogsc] .market-table td, [data-ogsc] .sector-table td, [data-ogsc] .portfolio-table td,
+[data-ogsc] .rank-row td { color: #efede8 !important; border-color: #444649 !important; }
+[data-ogsc] .narrative-table th { color: #c7c3bc !important; }
+[data-ogsc] .narrative-table td { color: #efede8 !important; border-color: #444649 !important; }
+[data-ogsc] .narrative-note, [data-ogsc] .status-fading, [data-ogsc] .status-establishing { color: #bbb7b0 !important; }
+[data-ogsc] .status-emerging, [data-ogsc] .status-accelerating { color: #e1b361 !important; }
+[data-ogsc] .status-persistent { color: #9fc4f2 !important; }
+[data-ogsc] .positive { color: #73d6a6 !important; }
+[data-ogsc] .negative { color: #ff9a93 !important; }
+[data-ogsc] .neutral { color: #bbb7b0 !important; }
+[data-ogsb] .pull-quote, [data-ogsb] .region-heading { background: #292a2c !important; }
+[data-ogsb] .macro-pulse, [data-ogsb] .topic-bar, [data-ogsb] .footer { background: #0d0e10 !important; }
+
+@media only screen and (max-width: 760px) {
+  html, body { width: 100% !important; min-width: 0 !important; overflow-x: hidden !important; }
+  .page, .container { width: 100% !important; max-width: 100% !important; min-width: 0 !important; table-layout: fixed !important; }
+  .container td { overflow-wrap: break-word !important; word-wrap: break-word !important; }
+  .masthead, .paper-section, .white-section, .macro-pulse, .footer { padding-left: 18px !important; padding-right: 18px !important; }
+  .brand { font-size: 18px !important; }
+  .issue-cell { display: none !important; }
+  .topic-bar { padding-left: 18px !important; padding-right: 18px !important; }
+  .topic-bar td { white-space: normal !important; }
+  .topic-meta { display: none !important; }
+  .edition { font-size: 9px !important; line-height: 12px !important; }
+  .cover-title { font-size: 30px !important; line-height: 35px !important; }
+  .macro-pulse h2 { font-size: 23px !important; line-height: 30px !important; }
+  .two-column-cell, .monitor-cell, .region-cell { display: block !important; width: auto !important; }
+  .column-gutter { display: block !important; width: auto !important; height: 14px !important; }
+  .kpi-card { display: block !important; width: auto !important; }
+  .market-table th, .market-table td, .sector-table th, .sector-table td, .portfolio-table th, .portfolio-table td { padding: 6px 4px !important; font-size: 9px !important; }
+  .narrative-table th, .narrative-table td { padding-left: 4px !important; padding-right: 4px !important; font-size: 9px !important; }
+  .asset-driver { font-size: 8px !important; line-height: 11px !important; }
+  .portfolio-table th:nth-child(2), .portfolio-table td:nth-child(2) { display: none !important; }
+  .portfolio-table .number { white-space: normal !important; }
+  .risk-cell { width: 48px !important; padding-right: 9px !important; }
+  .signal-copy { padding-left: 13px !important; padding-right: 8px !important; }
+}
+
+    </style>
+    <!--[if mso]>
+    <style>
+      table { border-collapse: collapse !important; }
+      .market-table th, .market-table td, .portfolio-table th, .portfolio-table td {
+        mso-line-height-rule: exactly;
+      }
+    </style>
+    <![endif]-->
+  </head>
+  <body class="email-body" bgcolor="#d8d7d2" style="margin:0;padding:0;background-color:#d8d7d2;color:#191919;">
+    <div class="preheader">Wolf Research: the signals, moves, and events shaping markets this week.</div>
+    <table role="presentation" class="page" width="100%" bgcolor="#d8d7d2" cellpadding="0" cellspacing="0" border="0" style="width:100%;background-color:#d8d7d2;table-layout:fixed;">
+      <tr>
+        <td align="center">
+          <table role="presentation" class="container" width="720" bgcolor="#f4f0e9" cellpadding="0" cellspacing="0" border="0" style="width:720px;max-width:720px;background-color:#f4f0e9;table-layout:fixed;">
+            <tr><td class="top-rule">&nbsp;</td></tr>
+            <tr>
+              <td class="masthead">
+                <table role="presentation" width="100%">
+                  <tr>
+                    <td class="mark-cell"><div class="brand-mark">WR</div></td>
+                    <td class="brand-cell">
+                      <div class="brand">Wolf Research</div>
+                      <div class="edition">Weekly Market Brief / Tuesday, 18 August 2026 | 9:00am SGT</div>
+                    </td>
+                    <td class="issue-cell">WR 2026.34</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td class="topic-bar">
+                <table role="presentation" width="100%">
+                  <tr>
+                    <td>MACRO &middot; CROSS-ASSET &middot; FX &middot; COMMODITIES &middot; EQUITIES</td>
+                    <td class="topic-meta">18 MIN READ</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+
+            <tr>
+              <td class="paper-section first-section">
+                <div class="eyebrow">The Macro Grid</div>
+                <h1 class="cover-title">The week in one view</h1>
+                <p class="standfirst">Five signals selected for market impact, cross-asset reach, and portfolio relevance.</p>
+                <table role="presentation" class="signal-list" width="100%">
+
+                  <tr>
+                    <td class="signal-card">
+                      <table role="presentation" width="100%">
+                        <tr>
+                          <td class="signal-copy">
+                            <div class="signal-label">Macro</div>
+                            <h2>Rates and yields</h2>
+                            <p>Lecture by Mr Piero Cipollone, Member of the Executive Board of the European Central Bank, at the annual meeting of the Federation of Italian Cooperative Credit Banks (Federcasse), Rome, 17 July 2026.</p>
+
+                            <div class="source-line">SOURCE / <a href="https://www.bis.org/review/r260813d.htm">Bank for International Settlements</a></div>
+
+                          </td>
+                          <td class="risk-cell"><span class="risk risk-medium">MEDIUM</span></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="signal-card">
+                      <table role="presentation" width="100%">
+                        <tr>
+                          <td class="signal-copy">
+                            <div class="signal-label">FX</div>
+                            <h2>AUD/USD rose 0.71% over the week</h2>
+                            <p>1W: AUD/USD moved +0.71% as rates, USD direction, and regional data shaped short-term positioning. 1M: the +1.93% move reflects accumulated central-bank repricing and growth differentials. YTD: the +6.21% direction remains tied to policy-rate differentials, in</p>
+
+                            <div class="source-line">SOURCE / <a href="https://finance.yahoo.com/quote/AUDUSD=X">Yahoo Finance</a></div>
+
+                          </td>
+                          <td class="risk-cell"><span class="risk risk-low">LOW</span></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="signal-card">
+                      <table role="presentation" width="100%">
+                        <tr>
+                          <td class="signal-copy">
+                            <div class="signal-label">Commodities</div>
+                            <h2>Brent rose 2.41% over the week</h2>
+                            <p>1W: Brent moved +2.41% with near-term supply headlines, USD moves, and macro data affecting positioning. 1M: the +3.35% move reflects inventory, demand expectations, real-yield pressure, and China/global growth signals. YTD: the +49.63% direction remains linke</p>
+
+                            <div class="source-line">SOURCE / <a href="https://finance.yahoo.com/quote/BZ=F">Yahoo Finance</a></div>
+
+                          </td>
+                          <td class="risk-cell"><span class="risk risk-low">LOW</span></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="signal-card">
+                      <table role="presentation" width="100%">
+                        <tr>
+                          <td class="signal-copy">
+                            <div class="signal-label">Equities</div>
+                            <h2>Consumer Discretionary / Asian / APAC Markets fell 4.68% over the week</h2>
+                            <p>1W: Asia_APAC Consumer Discretionary moved -4.68% as China/APAC growth, regional FX, and policy expectations affected short-term positioning. 1M: the -0.13% move reflects accumulated performance versus regional macro and sector earnings expectations. YTD: the </p>
+
+                            <div class="source-line">SOURCE / <a href="https://finance.yahoo.com/quote/KWEB">Yahoo Finance</a></div>
+
+                          </td>
+                          <td class="risk-cell"><span class="risk risk-medium">MEDIUM</span></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="signal-card">
+                      <table role="presentation" width="100%">
+                        <tr>
+                          <td class="signal-copy">
+                            <div class="signal-label">Portfolio</div>
+                            <h2>Air travel and transport</h2>
+                            <p>Oil prices, regional travel demand, and capacity affect transportation exposure.</p>
+
+                            <div class="source-line">SOURCE / <a href="https://www.cnbc.com/2026/08/18/american-airlines-seatback-screens.html">CNBC</a></div>
+
+                          </td>
+                          <td class="risk-cell"><span class="risk risk-medium">MEDIUM</span></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                </table>
+              </td>
+            </tr>
+
+
+
+            <tr>
+              <td class="macro-pulse">
+                <table role="presentation" width="100%" class="pulse-meta">
+                  <tr>
+                    <td><span class="pulse-dot">&bull;</span> Story of the Week / MACRO PULSE</td>
+                    <td class="pulse-read">70 SOURCES</td>
+                  </tr>
+                </table>
+                <h2>Macro Insights: The Current Economic Landscape</h2>
+                <p class="pulse-standfirst">The latest macroeconomic indicators reveal critical dynamics affecting financial markets. The US policy rate of 3.63% highlights its significance in discount-rate sensitivity, while the 10Y yield at 4.68% shapes longer-duration securities and equity valuations. Inflation remains a concern with the CPI at 332.81, driving cross-asset repricing. Moreover, a stable unemployment rate of 4.10% indicates labor market strength, which could inform the Federal Reserve's decision-making. Lastly, financial conditions at -0.55% signal the prevailing risk appetite among investors and its implications for credit markets.</p>
+                <div class="topic-tags">
+                  <span>RATES</span><span>INFLATION</span><span>FX</span><span>EQUITIES</span><span>CREDIT</span>
+                </div>
+                <div class="desk-line">WOLF RESEARCH / MACRO DESK &nbsp;&middot;&nbsp; Tuesday, 18 August 2026 | 9:00am SGT</div>
+                <table role="presentation" class="pulse-points" width="100%">
+
+                  <tr><td class="point-mark">&#9632;</td><td>Monitor whether the theme affects rates, FX, commodities, and sector leadership.</td></tr>
+
+                  <tr><td class="point-mark">&#9632;</td><td>Treat this as analytical context, not an investment recommendation.</td></tr>
+
+                </table>
+
+                <div class="pulse-sources">SOURCES /
+
+                    <a href="https://www.bis.org/review/r260813d.htm">Bank for International Settlements</a>
+
+                </div>
+
+              </td>
+            </tr>
+
+
+
+
+            <tr>
+              <td class="white-section" id="chart-of-week">
+                <div class="section-meta">Chart Desk / FRED</div>
+                <h2 class="section-title">Chart of the Week</h2>
+                <p class="section-deck">Chart of the Week: Policy Rate Versus Inflation</p>
+
+                <img class="chart-image" src="chart_of_the_week.png" alt="Chart of the Week: Policy Rate Versus Inflation">
+
+                <p class="body-copy">The selected FRED chart highlights Policy restrictiveness, rate-cut timing, USD, equity multiples. Latest readings: FEDFUNDS: 3.63, CPIAUCSL: 3.30. Selection score: 0.91.</p>
+                <div class="pull-quote"><strong>The read:</strong> Policy/inflation relationship moved meaningfully over recent windows. Selected because market move score was the largest contributor to the chart score.</div>
+                <div class="source-line">
+                  FRED SERIES / FEDFUNDS, CPIAUCSL
+                   &nbsp;&middot;&nbsp; <a href="https://fred.stlouisfed.org/">SOURCE</a>
+                </div>
+              </td>
+            </tr>
+
+
+
+
+            <tr>
+              <td class="white-section narrative-section" id="narrative-monitor">
+                <div class="section-meta">Narrative Intelligence / 284 Articles / 19 Sources</div>
+                <h2 class="section-title">Narrative Monitor</h2>
+                <p class="section-deck">The themes gaining or losing attention across this week's aggregated news flow.</p>
+
+                <table class="narrative-table" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;table-layout:fixed;">
+                  <tr>
+                    <th width="43%" style="width:43%;padding:7px 9px;text-align:left;">Narrative</th>
+                    <th width="19%" style="width:19%;padding:7px 9px;text-align:left;">Status</th>
+                    <th width="16%" style="width:16%;padding:7px 9px;text-align:right;">Momentum</th>
+                    <th width="22%" style="width:22%;padding:7px 9px;text-align:left;">Coverage</th>
+                  </tr>
+
+                  <tr>
+                    <td style="padding:10px 9px;border-bottom:1px solid #ddd8cf;vertical-align:top;"><strong>Federal Reserve</strong><span class="narrative-note">18 articles across 3 sources; the rolling baseline is being established.</span></td>
+                    <td style="padding:10px 9px;border-bottom:1px solid #ddd8cf;vertical-align:top;"><span class="narrative-status status-establishing">Establishing</span></td>
+                    <td class="number" style="padding:10px 9px;border-bottom:1px solid #ddd8cf;text-align:right;white-space:nowrap;vertical-align:top;">Baseline</td>
+                    <td style="padding:10px 9px;border-bottom:1px solid #ddd8cf;vertical-align:top;">18 articles / 3 sources</td>
+                  </tr>
+
+                  <tr>
+                    <td style="padding:10px 9px;border-bottom:1px solid #ddd8cf;vertical-align:top;"><strong>Central Bank</strong><span class="narrative-note">6 articles across 5 sources; the rolling baseline is being established.</span></td>
+                    <td style="padding:10px 9px;border-bottom:1px solid #ddd8cf;vertical-align:top;"><span class="narrative-status status-establishing">Establishing</span></td>
+                    <td class="number" style="padding:10px 9px;border-bottom:1px solid #ddd8cf;text-align:right;white-space:nowrap;vertical-align:top;">Baseline</td>
+                    <td style="padding:10px 9px;border-bottom:1px solid #ddd8cf;vertical-align:top;">6 articles / 5 sources</td>
+                  </tr>
+
+                  <tr>
+                    <td style="padding:10px 9px;border-bottom:1px solid #ddd8cf;vertical-align:top;"><strong>Bond Yield</strong><span class="narrative-note">5 articles across 3 sources; the rolling baseline is being established.</span></td>
+                    <td style="padding:10px 9px;border-bottom:1px solid #ddd8cf;vertical-align:top;"><span class="narrative-status status-establishing">Establishing</span></td>
+                    <td class="number" style="padding:10px 9px;border-bottom:1px solid #ddd8cf;text-align:right;white-space:nowrap;vertical-align:top;">Baseline</td>
+                    <td style="padding:10px 9px;border-bottom:1px solid #ddd8cf;vertical-align:top;">5 articles / 3 sources</td>
+                  </tr>
+
+                  <tr>
+                    <td style="padding:10px 9px;border-bottom:1px solid #ddd8cf;vertical-align:top;"><strong>Oil Price</strong><span class="narrative-note">4 articles across 4 sources; the rolling baseline is being established.</span></td>
+                    <td style="padding:10px 9px;border-bottom:1px solid #ddd8cf;vertical-align:top;"><span class="narrative-status status-establishing">Establishing</span></td>
+                    <td class="number" style="padding:10px 9px;border-bottom:1px solid #ddd8cf;text-align:right;white-space:nowrap;vertical-align:top;">Baseline</td>
+                    <td style="padding:10px 9px;border-bottom:1px solid #ddd8cf;vertical-align:top;">4 articles / 4 sources</td>
+                  </tr>
+
+                  <tr>
+                    <td style="padding:10px 9px;border-bottom:1px solid #ddd8cf;vertical-align:top;"><strong>Interest Rate</strong><span class="narrative-note">4 articles across 4 sources; the rolling baseline is being established.</span></td>
+                    <td style="padding:10px 9px;border-bottom:1px solid #ddd8cf;vertical-align:top;"><span class="narrative-status status-establishing">Establishing</span></td>
+                    <td class="number" style="padding:10px 9px;border-bottom:1px solid #ddd8cf;text-align:right;white-space:nowrap;vertical-align:top;">Baseline</td>
+                    <td style="padding:10px 9px;border-bottom:1px solid #ddd8cf;vertical-align:top;">4 articles / 4 sources</td>
+                  </tr>
+
+                  <tr>
+                    <td style="padding:10px 9px;border-bottom:1px solid #ddd8cf;vertical-align:top;"><strong>Middle East</strong><span class="narrative-note">4 articles across 3 sources; the rolling baseline is being established.</span></td>
+                    <td style="padding:10px 9px;border-bottom:1px solid #ddd8cf;vertical-align:top;"><span class="narrative-status status-establishing">Establishing</span></td>
+                    <td class="number" style="padding:10px 9px;border-bottom:1px solid #ddd8cf;text-align:right;white-space:nowrap;vertical-align:top;">Baseline</td>
+                    <td style="padding:10px 9px;border-bottom:1px solid #ddd8cf;vertical-align:top;">4 articles / 3 sources</td>
+                  </tr>
+
+                </table>
+
+                <div class="source-line">METHOD / N-GRAM DOCUMENT FREQUENCY<br>Coverage momentum measures changes in news attention, not market direction or a trading signal.</div>
+              </td>
+            </tr>
+
+
+
+
+
+            <tr>
+              <td class="paper-section" id="market-tape">
+                <div class="section-meta">Cross-Asset Monitor</div>
+                <h2 class="section-title">Market tape</h2>
+                <p class="section-deck">Price action first; driver notes sit beneath each instrument.</p>
+                <table role="presentation" class="market-stack" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;">
+
+                  <tr>
+                    <td class="market-block" style="padding:0;vertical-align:top;">
+                      <h3 class="table-title">FX Markets</h3>
+                      <table class="market-table" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;table-layout:fixed;">
+                        <tr>
+                          <th width="36%" style="width:36%;padding:7px 10px;text-align:left;">Asset</th>
+                          <th width="16%" style="width:16%;padding:7px 10px;text-align:right;">Last</th>
+                          <th width="16%" style="width:16%;padding:7px 10px;text-align:right;">1W</th>
+                          <th width="16%" style="width:16%;padding:7px 10px;text-align:right;">1M</th>
+                          <th width="16%" style="width:16%;padding:7px 10px;text-align:right;">YTD</th>
+                        </tr>
+
+                        <tr>
+                          <td class="asset-name market-cell" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;">USD/SGD</td>
+                          <td class="number market-cell" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">1.2779</td>
+                          <td class="number market-cell negative" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">-0.14%</td>
+                          <td class="number market-cell negative" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">-1.10%</td>
+                          <td class="number market-cell negative" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">-0.47%</td>
+                        </tr>
+
+                        <tr>
+                          <td class="asset-name market-cell" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;">AUD/USD</td>
+                          <td class="number market-cell" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">0.7114</td>
+                          <td class="number market-cell positive" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">+0.71%</td>
+                          <td class="number market-cell positive" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">+1.93%</td>
+                          <td class="number market-cell positive" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">+6.21%</td>
+                        </tr>
+
+                        <tr>
+                          <td class="asset-name market-cell" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;">EUR/USD</td>
+                          <td class="number market-cell" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">1.1582</td>
+                          <td class="number market-cell positive" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">+0.33%</td>
+                          <td class="number market-cell positive" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">+1.35%</td>
+                          <td class="number market-cell negative" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">-1.41%</td>
+                        </tr>
+
+                        <tr>
+                          <td class="asset-name market-cell" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;">USD/CNH</td>
+                          <td class="number market-cell" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">6.7449</td>
+                          <td class="number market-cell " style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">+0.00%</td>
+                          <td class="number market-cell " style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">+0.00%</td>
+                          <td class="number market-cell " style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">+0.00%</td>
+                        </tr>
+
+                        <tr>
+                          <td class="asset-name market-cell" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;">USD/JPY</td>
+                          <td class="number market-cell" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">159.6</td>
+                          <td class="number market-cell positive" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">+0.21%</td>
+                          <td class="number market-cell negative" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">-1.79%</td>
+                          <td class="number market-cell positive" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">+2.04%</td>
+                        </tr>
+
+                        <tr>
+                          <td class="asset-name market-cell" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;">DXY</td>
+                          <td class="number market-cell" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">99.598</td>
+                          <td class="number market-cell negative" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">-0.22%</td>
+                          <td class="number market-cell negative" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">-1.14%</td>
+                          <td class="number market-cell positive" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">+1.34%</td>
+                        </tr>
+
+                      </table>
+                      <div class="tape-notes">
+                        <div class="mini-label">Desk notes</div>
+                        <p><strong>USD/SGD</strong> 1W: USD/SGD moved -0.14% as rates, USD direction, and regional data shaped short-term positioning. 1M: the -1.10% move reflects accu...</p><p><strong>AUD/USD</strong> 1W: AUD/USD moved +0.71% as rates, USD direction, and regional data shaped short-term positioning. 1M: the +1.93% move reflects accu...</p>
+                      </div>
+                    </td>
+                  </tr>
+
+
+                  <tr><td class="market-gap" style="height:22px;line-height:22px;font-size:1px;">&nbsp;</td></tr>
+
+
+                  <tr>
+                    <td class="market-block" style="padding:0;vertical-align:top;">
+                      <h3 class="table-title">Commodities</h3>
+                      <table class="market-table" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;table-layout:fixed;">
+                        <tr>
+                          <th width="36%" style="width:36%;padding:7px 10px;text-align:left;">Asset</th>
+                          <th width="16%" style="width:16%;padding:7px 10px;text-align:right;">Last</th>
+                          <th width="16%" style="width:16%;padding:7px 10px;text-align:right;">1W</th>
+                          <th width="16%" style="width:16%;padding:7px 10px;text-align:right;">1M</th>
+                          <th width="16%" style="width:16%;padding:7px 10px;text-align:right;">YTD</th>
+                        </tr>
+
+                        <tr>
+                          <td class="asset-name market-cell" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;">Brent</td>
+                          <td class="number market-cell" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">91.05</td>
+                          <td class="number market-cell positive" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">+2.41%</td>
+                          <td class="number market-cell positive" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">+3.35%</td>
+                          <td class="number market-cell positive" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">+49.63%</td>
+                        </tr>
+
+                        <tr>
+                          <td class="asset-name market-cell" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;">WTI</td>
+                          <td class="number market-cell" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">84.29</td>
+                          <td class="number market-cell positive" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">+1.31%</td>
+                          <td class="number market-cell positive" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">+2.18%</td>
+                          <td class="number market-cell positive" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">+46.80%</td>
+                        </tr>
+
+                        <tr>
+                          <td class="asset-name market-cell" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;">Gold</td>
+                          <td class="number market-cell" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">4456.7002</td>
+                          <td class="number market-cell positive" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">+1.68%</td>
+                          <td class="number market-cell positive" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">+11.06%</td>
+                          <td class="number market-cell positive" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">+3.03%</td>
+                        </tr>
+
+                        <tr>
+                          <td class="asset-name market-cell" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;">Copper</td>
+                          <td class="number market-cell" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">6.5395</td>
+                          <td class="number market-cell negative" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">-1.10%</td>
+                          <td class="number market-cell positive" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">+5.14%</td>
+                          <td class="number market-cell positive" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">+16.15%</td>
+                        </tr>
+
+                        <tr>
+                          <td class="asset-name market-cell" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;">Natural Gas / LNG proxy</td>
+                          <td class="number market-cell" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">2.725</td>
+                          <td class="number market-cell negative" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">-1.52%</td>
+                          <td class="number market-cell negative" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">-6.39%</td>
+                          <td class="number market-cell negative" style="padding:8px 10px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;">-26.07%</td>
+                        </tr>
+
+                      </table>
+                      <div class="tape-notes">
+                        <div class="mini-label">Desk notes</div>
+                        <p><strong>Brent</strong> 1W: Brent moved +2.41% with near-term supply headlines, USD moves, and macro data affecting positioning. 1M: the +3.35% move reflect...</p><p><strong>WTI</strong> 1W: WTI moved +1.31% with near-term supply headlines, USD moves, and macro data affecting positioning. 1M: the +2.18% move reflects ...</p>
+                      </div>
+                    </td>
+                  </tr>
+
+                </table>
+              </td>
+            </tr>
+
+
+
+
+            <tr>
+              <td class="white-section" id="sector-scoreboard">
+                <div class="section-meta">Equity Desk</div>
+                <h2 class="section-title">Sector Scoreboard</h2>
+                <p class="section-deck">Regional leadership, breadth, and the factors behind the move.</p>
+
+                <div class="region-heading">US Markets</div>
+                <table class="sector-table" width="100%">
+                  <tr><th>Sector / signal</th><th>1W</th><th>1M</th><th>YTD</th></tr>
+
+                  <tr>
+                    <td class="asset-name">Technology</td>
+                    <td class="number heat-negative negative">-0.11%</td>
+                    <td class="number heat-positive positive">+5.87%</td>
+                    <td class="number heat-positive positive">+29.12%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-name">Financials</td>
+                    <td class="number heat-positive positive">+0.13%</td>
+                    <td class="number heat-positive positive">+2.87%</td>
+                    <td class="number heat-positive positive">+5.67%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-name">Industrials</td>
+                    <td class="number heat-negative negative">-0.54%</td>
+                    <td class="number heat-positive positive">+2.95%</td>
+                    <td class="number heat-positive positive">+19.07%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-name">Consumer Discretionary</td>
+                    <td class="number heat-negative negative">-1.99%</td>
+                    <td class="number heat-positive positive">+1.24%</td>
+                    <td class="number heat-negative negative">-2.13%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-name">Consumer Staples</td>
+                    <td class="number heat-positive positive">+1.17%</td>
+                    <td class="number heat-positive positive">+0.58%</td>
+                    <td class="number heat-positive positive">+10.30%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-name">Health Care</td>
+                    <td class="number heat-positive positive">+1.25%</td>
+                    <td class="number heat-positive positive">+5.60%</td>
+                    <td class="number heat-positive positive">+9.89%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-name">Energy</td>
+                    <td class="number heat-positive positive">+4.07%</td>
+                    <td class="number heat-positive positive">+9.93%</td>
+                    <td class="number heat-positive positive">+41.83%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-name">Utilities</td>
+                    <td class="number heat-positive positive">+2.25%</td>
+                    <td class="number heat-negative negative">-1.24%</td>
+                    <td class="number heat-positive positive">+4.50%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-name">Real Estate</td>
+                    <td class="number heat-positive positive">+2.18%</td>
+                    <td class="number heat-negative negative">-0.84%</td>
+                    <td class="number heat-positive positive">+11.62%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-name">Materials</td>
+                    <td class="number heat-negative negative">-2.10%</td>
+                    <td class="number heat-positive positive">+3.15%</td>
+                    <td class="number heat-positive positive">+14.93%</td>
+                  </tr>
+
+                </table>
+                <div class="sector-note"><strong>Desk note:</strong> 1W: US Technology moved -0.11% as US rates, earnings expectations, and domestic growth data affected short-term positioning. 1M: the +5.87% move reflects accumulated performance versus re...</div>
+
+                <div class="region-heading">European Markets</div>
+                <table class="sector-table" width="100%">
+                  <tr><th>Sector / signal</th><th>1W</th><th>1M</th><th>YTD</th></tr>
+
+                  <tr>
+                    <td class="asset-name">Technology</td>
+                    <td class="number heat-negative negative">-1.72%</td>
+                    <td class="number heat-positive positive">+6.25%</td>
+                    <td class="number heat-positive positive">+23.47%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-name">Financials</td>
+                    <td class="number heat-positive positive">+0.57%</td>
+                    <td class="number heat-positive positive">+5.63%</td>
+                    <td class="number heat-positive positive">+14.26%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-name">Industrials</td>
+                    <td class="number heat-negative negative">-0.86%</td>
+                    <td class="number heat-positive positive">+5.84%</td>
+                    <td class="number heat-positive positive">+13.87%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-name">Consumer Discretionary</td>
+                    <td class="number heat-negative negative">-0.80%</td>
+                    <td class="number heat-positive positive">+2.00%</td>
+                    <td class="number heat-positive positive">+9.55%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-name">Consumer Staples</td>
+                    <td class="number heat-negative negative">-3.00%</td>
+                    <td class="number heat-negative negative">-5.00%</td>
+                    <td class="number heat-positive positive">+3.15%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-name">Health Care</td>
+                    <td class="number heat-negative negative">-0.80%</td>
+                    <td class="number heat-negative negative">-0.66%</td>
+                    <td class="number heat-negative negative">-0.30%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-name">Energy</td>
+                    <td class="number heat-positive positive">+1.79%</td>
+                    <td class="number heat-positive positive">+6.76%</td>
+                    <td class="number heat-positive positive">+35.23%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-name">Utilities</td>
+                    <td class="number heat-negative negative">-1.31%</td>
+                    <td class="number heat-negative negative">-3.89%</td>
+                    <td class="number heat-positive positive">+12.27%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-name">Real Estate</td>
+                    <td class="number heat-negative negative">-1.95%</td>
+                    <td class="number heat-negative negative">-2.73%</td>
+                    <td class="number heat-negative negative">-2.35%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-name">Materials</td>
+                    <td class="number heat-negative negative">-2.91%</td>
+                    <td class="number heat-positive positive">+8.19%</td>
+                    <td class="number heat-positive positive">+22.52%</td>
+                  </tr>
+
+                </table>
+                <div class="sector-note"><strong>Desk note:</strong> 1W: Europe Technology moved -1.72% as European growth, ECB expectations, and currency-sensitive earnings affected short-term positioning. 1M: the +6.25% move reflects accumulated performa...</div>
+
+                <div class="region-heading">Asian / APAC Markets</div>
+                <table class="sector-table" width="100%">
+                  <tr><th>Sector / signal</th><th>1W</th><th>1M</th><th>YTD</th></tr>
+
+                  <tr>
+                    <td class="asset-name">Technology</td>
+                    <td class="number heat-negative negative">-2.27%</td>
+                    <td class="number heat-positive positive">+0.67%</td>
+                    <td class="number heat-negative negative">-2.59%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-name">Financials</td>
+                    <td class="number heat-positive positive">+0.31%</td>
+                    <td class="number heat-positive positive">+4.80%</td>
+                    <td class="number heat-positive positive">+39.80%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-name">Industrials</td>
+                    <td class="number heat-positive positive">+3.23%</td>
+                    <td class="number heat-positive positive">+6.87%</td>
+                    <td class="number heat-positive positive">+24.38%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-name">Consumer Discretionary</td>
+                    <td class="number heat-negative negative">-4.68%</td>
+                    <td class="number heat-negative negative">-0.13%</td>
+                    <td class="number heat-negative negative">-21.37%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-name">Consumer Staples</td>
+                    <td class="number heat-negative negative">-0.69%</td>
+                    <td class="number heat-positive positive">+3.81%</td>
+                    <td class="number heat-positive positive">+13.30%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-name">Health Care</td>
+                    <td class="number heat-positive positive">+0.13%</td>
+                    <td class="number heat-positive positive">+11.17%</td>
+                    <td class="number heat-positive positive">+9.98%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-name">Energy</td>
+                    <td class="number heat-negative negative">-1.11%</td>
+                    <td class="number heat-positive positive">+6.56%</td>
+                    <td class="number heat-positive positive">+21.94%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-name">Utilities</td>
+                    <td class="number heat-negative negative">-1.11%</td>
+                    <td class="number heat-positive positive">+6.56%</td>
+                    <td class="number heat-positive positive">+21.94%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-name">Real Estate</td>
+                    <td class="number heat-negative negative">-0.62%</td>
+                    <td class="number heat-negative negative">-1.05%</td>
+                    <td class="number heat-negative negative">-1.31%</td>
+                  </tr>
+
+                  <tr>
+                    <td class="asset-name">Materials</td>
+                    <td class="number heat-negative negative">-0.63%</td>
+                    <td class="number heat-positive positive">+3.51%</td>
+                    <td class="number heat-positive positive">+13.63%</td>
+                  </tr>
+
+                </table>
+                <div class="sector-note"><strong>Desk note:</strong> 1W: Asia_APAC Technology moved -2.27% as China/APAC growth, regional FX, and policy expectations affected short-term positioning. 1M: the +0.67% move reflects accumulated performance vers...</div>
+
+              </td>
+            </tr>
+
+
+
+
+
+            <tr>
+              <td class="paper-section" id="portfolio-lens">
+                <div class="section-meta">Portfolio Lens</div>
+                <h2 class="section-title">Portfolio Snapshot</h2>
+                <div class="pull-quote">Equity exposure is concentrated in Automobiles & Components and EUR-denominated holdings. YTD contribution is led by Softtech Engineers Ltd, while Bayerische Motoren Werke AG is the largest detractor.</div>
+                <table role="presentation" class="kpi-grid" width="100%">
+
+                  <tr>
+
+                    <td class="kpi-card"><div>Total Equity Portfolio Value</div><strong>USD 55.7m</strong></td>
+
+                    <td class="kpi-card"><div>Total YTD Equity P&L</div><strong>+USD 2.4m</strong></td>
+
+                    <td class="kpi-card"><div>Best Contributor</div><strong>Softtech Engineers Ltd</strong></td>
+
+                  </tr>
+
+                  <tr>
+
+                    <td class="kpi-card"><div>Worst Contributor</div><strong>Bayerische Motoren Werke AG</strong></td>
+
+                    <td class="kpi-card"><div>Largest Sector Exposure</div><strong>Automobiles & Components</strong></td>
+
+                    <td class="kpi-card"><div>Largest Currency Exposure</div><strong>EUR</strong></td>
+
+                  </tr>
+
+                </table>
+                <h3 class="table-title portfolio-table-title">Largest monitored holdings</h3>
+                <table class="portfolio-table" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;table-layout:fixed;">
+                  <tr>
+                    <th width="25%" style="width:25%;padding:7px;text-align:left;">Holding</th>
+                    <th width="23%" style="width:23%;padding:7px;text-align:left;">Sector</th>
+                    <th width="8%" style="width:8%;padding:7px;text-align:left;border-left:1px solid #e6e1d8;">CCY</th>
+                    <th width="15%" style="width:15%;padding:7px;text-align:right;border-left:1px solid #e6e1d8;">Value</th>
+                    <th width="17%" style="width:17%;padding:7px;text-align:right;border-left:1px solid #e6e1d8;">YTD P&amp;L</th>
+                    <th width="12%" style="width:12%;padding:7px;text-align:right;border-left:1px solid #e6e1d8;">YTD</th>
+                  </tr>
+
+                  <tr>
+                    <td style="padding:8px 7px;border-bottom:1px solid #ddd8cf;vertical-align:top;">Bayerische Motoren Werke AG</td>
+                    <td style="padding:8px 7px;border-bottom:1px solid #ddd8cf;vertical-align:top;">Automobiles & Components</td>
+                    <td style="padding:8px 7px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;vertical-align:top;">EUR</td>
+                    <td class="number " style="padding:8px 7px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;vertical-align:top;">USD 15.7m</td>
+                    <td class="number negative" style="padding:8px 7px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;vertical-align:top;">-USD 1.9m</td>
+                    <td class="number negative" style="padding:8px 7px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;vertical-align:top;">-10.86%</td>
+                  </tr>
+
+                  <tr>
+                    <td style="padding:8px 7px;border-bottom:1px solid #ddd8cf;vertical-align:top;">Softtech Engineers Ltd</td>
+                    <td style="padding:8px 7px;border-bottom:1px solid #ddd8cf;vertical-align:top;">Software & Services</td>
+                    <td style="padding:8px 7px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;vertical-align:top;">INR</td>
+                    <td class="number " style="padding:8px 7px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;vertical-align:top;">USD 14.9m</td>
+                    <td class="number positive" style="padding:8px 7px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;vertical-align:top;">+USD 3.5m</td>
+                    <td class="number positive" style="padding:8px 7px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;vertical-align:top;">+30.46%</td>
+                  </tr>
+
+                  <tr>
+                    <td style="padding:8px 7px;border-bottom:1px solid #ddd8cf;vertical-align:top;">Muenchener Rueckversicherungs-Gesellschaft AG</td>
+                    <td style="padding:8px 7px;border-bottom:1px solid #ddd8cf;vertical-align:top;">Insurance</td>
+                    <td style="padding:8px 7px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;vertical-align:top;">EUR</td>
+                    <td class="number " style="padding:8px 7px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;vertical-align:top;">USD 6.3m</td>
+                    <td class="number positive" style="padding:8px 7px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;vertical-align:top;">+USD 639.1k</td>
+                    <td class="number positive" style="padding:8px 7px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;vertical-align:top;">+11.32%</td>
+                  </tr>
+
+                  <tr>
+                    <td style="padding:8px 7px;border-bottom:1px solid #ddd8cf;vertical-align:top;">SAA Software</td>
+                    <td style="padding:8px 7px;border-bottom:1px solid #ddd8cf;vertical-align:top;">Invalid / Private Security</td>
+                    <td style="padding:8px 7px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;vertical-align:top;">EUR</td>
+                    <td class="number " style="padding:8px 7px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;vertical-align:top;">USD 3.5m</td>
+                    <td class="number positive" style="padding:8px 7px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;vertical-align:top;">+USD 1.2k</td>
+                    <td class="number positive" style="padding:8px 7px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;vertical-align:top;">+0.03%</td>
+                  </tr>
+
+                  <tr>
+                    <td style="padding:8px 7px;border-bottom:1px solid #ddd8cf;vertical-align:top;">Singapore Airlines Ltd</td>
+                    <td style="padding:8px 7px;border-bottom:1px solid #ddd8cf;vertical-align:top;">Transportation</td>
+                    <td style="padding:8px 7px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;vertical-align:top;">SGD</td>
+                    <td class="number " style="padding:8px 7px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;vertical-align:top;">USD 2.1m</td>
+                    <td class="number positive" style="padding:8px 7px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;vertical-align:top;">+USD 146.0k</td>
+                    <td class="number positive" style="padding:8px 7px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;vertical-align:top;">+7.38%</td>
+                  </tr>
+
+                  <tr>
+                    <td style="padding:8px 7px;border-bottom:1px solid #ddd8cf;vertical-align:top;">RWE AG</td>
+                    <td style="padding:8px 7px;border-bottom:1px solid #ddd8cf;vertical-align:top;">Utilities</td>
+                    <td style="padding:8px 7px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;vertical-align:top;">EUR</td>
+                    <td class="number " style="padding:8px 7px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;vertical-align:top;">USD 2.0m</td>
+                    <td class="number positive" style="padding:8px 7px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;vertical-align:top;">+USD 55.7k</td>
+                    <td class="number positive" style="padding:8px 7px;border-bottom:1px solid #ddd8cf;border-left:1px solid #e6e1d8;text-align:right;white-space:nowrap;vertical-align:top;">+2.87%</td>
+                  </tr>
+
+                </table>
+
+                <h3 class="monitor-title">Equity Holdings Monitor</h3>
+                <table role="presentation" class="two-column" width="100%">
+                  <tr>
+                    <td class="monitor-cell">
+                      <div class="mini-label">Top contributors</div>
+
+                      <table role="presentation" class="rank-row" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding:5px 12px 5px 0;">Softtech Engineers Ltd</td><td class="positive" style="padding:5px 0 5px 12px;text-align:right;white-space:nowrap;">+USD 3.5m</td></tr></table>
+
+                      <table role="presentation" class="rank-row" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding:5px 12px 5px 0;">Muenchener Rueckversicherungs-Gesellschaft AG</td><td class="positive" style="padding:5px 0 5px 12px;text-align:right;white-space:nowrap;">+USD 639.1k</td></tr></table>
+
+                      <table role="presentation" class="rank-row" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding:5px 12px 5px 0;">SATS Ltd</td><td class="positive" style="padding:5px 0 5px 12px;text-align:right;white-space:nowrap;">+USD 228.4k</td></tr></table>
+
+                      <table role="presentation" class="rank-row" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding:5px 12px 5px 0;">Singapore Airlines Ltd</td><td class="positive" style="padding:5px 0 5px 12px;text-align:right;white-space:nowrap;">+USD 146.0k</td></tr></table>
+
+                      <table role="presentation" class="rank-row" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding:5px 12px 5px 0;">Meta Wolf AG</td><td class="positive" style="padding:5px 0 5px 12px;text-align:right;white-space:nowrap;">+USD 89.9k</td></tr></table>
+
+
+                    </td>
+                    <td class="column-gutter">&nbsp;</td>
+                    <td class="monitor-cell">
+                      <div class="mini-label">Top detractors</div>
+
+                      <table role="presentation" class="rank-row" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding:5px 12px 5px 0;">Bayerische Motoren Werke AG</td><td class="negative" style="padding:5px 0 5px 12px;text-align:right;white-space:nowrap;">-USD 1.9m</td></tr></table>
+
+                      <table role="presentation" class="rank-row" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding:5px 12px 5px 0;">Ping An Insurance Group Co of</td><td class="negative" style="padding:5px 0 5px 12px;text-align:right;white-space:nowrap;">-USD 160.4k</td></tr></table>
+
+                      <table role="presentation" class="rank-row" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding:5px 12px 5px 0;">CapitaLand Ascendas REIT</td><td class="negative" style="padding:5px 0 5px 12px;text-align:right;white-space:nowrap;">-USD 79.1k</td></tr></table>
+
+                      <table role="presentation" class="rank-row" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding:5px 12px 5px 0;">Sanofi SA</td><td class="negative" style="padding:5px 0 5px 12px;text-align:right;white-space:nowrap;">-USD 74.8k</td></tr></table>
+
+                      <table role="presentation" class="rank-row" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding:5px 12px 5px 0;">CapitaLand Investment Ltd/Sing</td><td class="negative" style="padding:5px 0 5px 12px;text-align:right;white-space:nowrap;">-USD 71.6k</td></tr></table>
+
+
+                    </td>
+                  </tr>
+                  <tr><td colspan="3" class="vertical-gutter">&nbsp;</td></tr>
+                  <tr>
+                    <td class="monitor-cell">
+                      <div class="mini-label">Sector exposure</div>
+                      <table role="presentation" class="rank-row" width="100%"><tr><td>Automobiles & Components</td><td>28%</td></tr></table><table role="presentation" class="rank-row" width="100%"><tr><td>Software & Services</td><td>27%</td></tr></table><table role="presentation" class="rank-row" width="100%"><tr><td>Insurance</td><td>15%</td></tr></table><table role="presentation" class="rank-row" width="100%"><tr><td>Invalid / Private Security</td><td>6%</td></tr></table><table role="presentation" class="rank-row" width="100%"><tr><td>Transportation</td><td>6%</td></tr></table>
+                    </td>
+                    <td class="column-gutter">&nbsp;</td>
+                    <td class="monitor-cell">
+                      <div class="mini-label">Currency exposure</div>
+                      <table role="presentation" class="rank-row" width="100%"><tr><td>EUR</td><td>55%</td></tr></table><table role="presentation" class="rank-row" width="100%"><tr><td>INR</td><td>27%</td></tr></table><table role="presentation" class="rank-row" width="100%"><tr><td>SGD</td><td>13%</td></tr></table><table role="presentation" class="rank-row" width="100%"><tr><td>HKD</td><td>5%</td></tr></table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+
+
+
+            <tr>
+              <td class="white-section" id="macro-news">
+                <div class="section-meta">Macro Desk</div>
+                <h2 class="section-title">Macro News</h2>
+                <p class="section-deck">What changed, why it matters, and where it transmits.</p>
+
+                <div class="article-row">
+                  <div class="article-kicker">Rates and yields</div>
+                  <h3>Lecture by Mr Piero Cipollone, Member of the Executive Board of the European Central Bank, at the annual meeting of the Federation of Italian Cooperative Credit Banks (Federcasse), Rome, 17 July 2026.</h3>
+                  <p><strong>Market read:</strong> Discount-rate sensitivity remains the main transmission channel for equities and FX. Latest data: 3.63%.</p>
+                  <p class="portfolio-read"><strong>Portfolio lens:</strong> Rates affect equity duration, valuation multiples, REITs, utilities, and FX translation risk.</p>
+                  <div class="source-line">SOURCES /
+                    <a href="https://www.bis.org/review/r260813d.htm">Bank for International Settlements</a> &middot; <a href="https://fred.stlouisfed.org/series/DFF">FRED</a>
+                  </div>
+                </div>
+
+                <div class="article-row">
+                  <div class="article-kicker">Inflation</div>
+                  <h3>European shares snap 4-week rally as higher oil prices temper strong earnings Reuters</h3>
+                  <p><strong>Market read:</strong> Inflation data changes rate-cut timing, real yields, and margin expectations. Latest data: 332.81.</p>
+                  <p class="portfolio-read"><strong>Portfolio lens:</strong> Inflation affects policy rates, real yields, airlines, utilities, and margin pressure.</p>
+                  <div class="source-line">SOURCES /
+                    <a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxPa3JRTDJxWjQ5cXhiMXUwMkJSb2FrXzg0S3FvMkV0Z1VYRFV1a0dKcHEwaG9yWG1hb0RyWF9qQzFlek0zT2hXOGl0b2pSTHVTZ1lhclRuY1FsUm00alVhUkYzVEtVN1BTRUVzdmZHVXdVX2g5emE2NGRWN1ZyMXFMTnFVdmhvbVhVclFHajE5LUtGU0VnS2hJTVJTZGJHWDgzMDNhcmlWNHhtVm5MWXZz?oc=5">Reuters</a> &middot; <a href="https://fred.stlouisfed.org/series/CPIAUCSL">FRED</a>
+                  </div>
+                </div>
+
+                <div class="article-row">
+                  <div class="article-kicker">Labour market</div>
+                  <h3>Consumer Price Index (CPI): +0.1% in Jul 2026 News Release Historical Data Unemployment Rate: 4.1% in Jul 2026 News Release Historical Data Payroll Employment: -23,000(p) in Jul 2026 News Release Historical Dat</h3>
+                  <p><strong>Market read:</strong> Labour data affects recession risk, consumption, and central-bank reaction functions. Latest data: 4.10%.</p>
+                  <p class="portfolio-read"><strong>Portfolio lens:</strong> Labour cooling changes Fed reaction-function risk and demand sensitivity.</p>
+                  <div class="source-line">SOURCES /
+                    <a href="https://www.bls.gov/bls/">U.S. Bureau of Labor Statistics</a> &middot; <a href="https://fred.stlouisfed.org/series/UNRATE">FRED</a>
+                  </div>
+                </div>
+
+                <div class="article-row">
+                  <div class="article-kicker">Credit conditions</div>
+                  <h3>Remarks by Lesetja Kganyago, Governor of the South African Reserve Bank, at the annual dinner for the Heads of Foreign Missions accredited in South Africa, South African Reserve Bank, Pretoria, 9 July 2026.</h3>
+                  <p><strong>Market read:</strong> Credit conditions influence risk appetite, funding costs, and private-market liquidity. Latest data: 4.68%.</p>
+                  <p class="portfolio-read"><strong>Portfolio lens:</strong> Credit conditions affect private-market exits, refinancing risk, and risk appetite.</p>
+                  <div class="source-line">SOURCES /
+                    <a href="https://www.bis.org/review/r260813i.htm">Bank for International Settlements</a> &middot; <a href="https://fred.stlouisfed.org/series/DGS10">FRED</a>
+                  </div>
+                </div>
+
+                <div class="article-row">
+                  <div class="article-kicker">Europe growth and ECB path</div>
+                  <h3>Dinner speech by Philip R. Lane, Member of the Executive Board of the European Central Bank, at the closing conference of the European System of Central Banks Research Network on Challenges for Monetary Policy </h3>
+                  <p><strong>Market read:</strong> European macro data frames earnings risk and rate expectations.</p>
+                  <p class="portfolio-read"><strong>Portfolio lens:</strong> European growth affects BMW, Munich Re, BASF, RWE, Sanofi, and Meta Wolf AG.</p>
+                  <div class="source-line">SOURCES /
+                    <a href="https://www.bis.org/review/r260813c.htm">Bank for International Settlements</a>
+                  </div>
+                </div>
+
+                <div class="article-row">
+                  <div class="article-kicker">China / APAC growth</div>
+                  <h3>Firms avoid new equity investments as Beijing tightens scrutiny of foreign capital in sensitive sectors</h3>
+                  <p><strong>Market read:</strong> APAC data affects China-linked demand, Singapore exposures, and regional FX.</p>
+                  <p class="portfolio-read"><strong>Portfolio lens:</strong> APAC growth affects Alibaba, SATS, Singapore Airlines, Sembcorp, CapitaLand, and SGD exposure.</p>
+                  <div class="source-line">SOURCES /
+                    <a href="https://www.ft.com/content/55cb2786-c7ef-438e-8830-c3dc2c1452ce?syn-25a6b1a6=1">Financial Times Markets</a>
+                  </div>
+                </div>
+
+
+              </td>
+            </tr>
+
+
+
+
+
+            <tr>
+              <td class="paper-section" id="portfolio-intelligence">
+                <div class="section-meta">Capital &amp; Holdings</div>
+                <h2 class="section-title">Private markets and portfolio intelligence</h2>
+
+                <div class="region-heading">Private markets</div>
+
+                <div class="compact-story">
+                  <div class="article-kicker">Valuation gaps</div>
+                  <h3>Massive AI spending has helped push earnings and valuations for semiconductor industry leaders to record levels, prompting the sector's giants to invest record sums in artificial intelligence and robotics start</h3>
+                  <p>Pricing gaps can keep deal volumes muted and delay exits.</p>
+                  <div class="source-line">SOURCE / <a href="https://news.crunchbase.com/venture/semiconductor-giants-nvda-intc-backing-ai-robotics-starups-2026/">Crunchbase News</a></div>
+                </div>
+
+                <div class="compact-story">
+                  <div class="article-kicker">LP liquidity and secondaries</div>
+                  <h3>Our second in a series of articles about non-tech founders getting venture funding features Sarah Buchner, a "blue-collar worker by background" who set out to find a way to help construction companies manage th</h3>
+                  <p>Secondary-market activity reveals pressure points in institutional portfolios.</p>
+                  <div class="source-line">SOURCE / <a href="https://news.crunchbase.com/venture/carpenter-founder-ai-construction-startup-trunk-tools-buchner/">Crunchbase News</a></div>
+                </div>
+
+                <div class="compact-story">
+                  <div class="article-kicker">Asia deal activity</div>
+                  <h3>Austin-based ClearJet, an AI-enabled logistics technology startup connects shippers with unused cargo capacity on commercial flights, has raised a $25 million Edison Partners-led Series B, it tells Crunchbase N</h3>
+                  <p>Regional transaction activity affects APAC allocation and growth exposure.</p>
+                  <div class="source-line">SOURCE / <a href="https://news.crunchbase.com/transportation/clearjet-raises-25m-logistics-ai-seriesb/">Crunchbase News</a></div>
+                </div>
+
+
+
+
+
+                <div class="region-heading">Portfolio-Linked News</div>
+
+                <div class="linked-row">
+                  <div class="linked-meta">Singapore Airlines Ltd / APAC / Equity</div>
+                  <h3>Air travel and transport</h3>
+                  <p>Oil prices, regional travel demand, and capacity affect transportation exposure.</p>
+                  <div class="source-line">SOURCE / <a href="https://www.cnbc.com/2026/08/18/american-airlines-seatback-screens.html">CNBC</a></div>
+                </div>
+
+                <div class="linked-row">
+                  <div class="linked-meta">Sembcorp Industries Ltd / APAC / Equity</div>
+                  <h3>Utilities and power prices</h3>
+                  <p>Rates, power prices, and energy-transition policy affect utility cash-flow expectations.</p>
+                  <div class="source-line">SOURCE / <a href="https://www.cnbc.com/2026/08/18/ai-tech-rally-correction-economists.html">CNBC</a></div>
+                </div>
+
+                <div class="linked-row">
+                  <div class="linked-meta">Alibaba Group Holding Ltd / APAC / Equity</div>
+                  <h3>Consumer Discretionary Distribution</h3>
+                  <p>Potential exposure-specific relevance for the equity portfolio.</p>
+                  <div class="source-line">SOURCE / <a href="https://www.marketwatch.com/story/alibaba-stock-climbs-on-report-of-vendor-service-fee-increase-db9d1854?mod=mw_rss_marketpulse">MarketWatch</a></div>
+                </div>
+
+                <div class="linked-row">
+                  <div class="linked-meta">Global portfolio exposure / Global / Equity / Macro</div>
+                  <h3>Global cross-asset risk</h3>
+                  <p>Relevant for portfolio beta, commodities, FX, and funding conditions.</p>
+                  <div class="source-line">SOURCE / <a href="https://www.bis.org/review/r260813d.htm">Bank for International Settlements</a></div>
+                </div>
+
+                <div class="linked-row">
+                  <div class="linked-meta">Global portfolio exposure / Global / Equity / Macro</div>
+                  <h3>Global cross-asset risk</h3>
+                  <p>Relevant for portfolio beta, commodities, FX, and funding conditions.</p>
+                  <div class="source-line">SOURCE / <a href="https://www.bis.org/review/r260813c.htm">Bank for International Settlements</a></div>
+                </div>
+
+                <div class="linked-row">
+                  <div class="linked-meta">Global portfolio exposure / Global / Equity / Macro</div>
+                  <h3>Global cross-asset risk</h3>
+                  <p>Relevant for portfolio beta, commodities, FX, and funding conditions.</p>
+                  <div class="source-line">SOURCE / <a href="https://www.bis.org/review/r260813g.htm">Bank for International Settlements</a></div>
+                </div>
+
+                <div class="linked-row">
+                  <div class="linked-meta">EU portfolio exposure / EU / Equity / Macro</div>
+                  <h3>European growth and rates</h3>
+                  <p>Relevant for BMW, Munich Re, BASF, RWE, Sanofi, and EUR exposure.</p>
+                  <div class="source-line">SOURCE / <a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxPa3JRTDJxWjQ5cXhiMXUwMkJSb2FrXzg0S3FvMkV0Z1VYRFV1a0dKcHEwaG9yWG1hb0RyWF9qQzFlek0zT2hXOGl0b2pSTHVTZ1lhclRuY1FsUm00alVhUkYzVEtVN1BTRUVzdmZHVXdVX2g5emE2NGRWN1ZyMXFMTnFVdmhvbVhVclFHajE5LUtGU0VnS2hJTVJTZGJHWDgzMDNhcmlWNHhtVm5MWXZz?oc=5">Reuters</a></div>
+                </div>
+
+                <div class="linked-row">
+                  <div class="linked-meta">EU portfolio exposure / EU / Equity / Macro</div>
+                  <h3>European growth and rates</h3>
+                  <p>Relevant for BMW, Munich Re, BASF, RWE, Sanofi, and EUR exposure.</p>
+                  <div class="source-line">SOURCE / <a href="https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260817~1f9f7149c9.en.pdf">European Central Bank</a></div>
+                </div>
+
+
+
+              </td>
+            </tr>
+
+
+
+
+            <tr>
+              <td class="white-section" id="regional-headlines">
+                <div class="section-meta">Foreign Desks</div>
+                <h2 class="section-title">Regional Headlines</h2>
+                <p class="section-deck">A compact dispatch across the six coverage regions.</p>
+                <table role="presentation" class="region-grid" width="100%">
+
+                  <tr>
+
+
+                    <td class="region-cell">
+                      <div class="region-label">US</div>
+
+                      <div class="headline-item">
+                        <div class="headline-meta">Macro / Federal Reserve</div>
+                        <a href="https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260702a.htm">Federal Reserve Board issues enforcement action with Small Business Bank and announces termination enforcement actions with BNP Paribas S.A., BNP Paribas USA, Inc., BNP Paribas Securities Corp., and Community Bankshares, Inc.</a>
+                        <p>Monitor for cross-asset risk appetite and portfolio relevance.</p>
+                      </div>
+
+                      <div class="headline-item">
+                        <div class="headline-meta">Macro / Wall Street Journal</div>
+                        <a href="https://www.wsj.com/business/north-koreans-use-stolen-ids-ai-to-land-u-s-jobsand-funnel-millions-to-kims-regime-1385adf7?mod=rss_worldnews">North Koreans Use Stolen IDs, AI to Land U.S. Jobs—and Funnel Millions to Kim’s Regime</a>
+                        <p>Monitor for cross-asset risk appetite and portfolio relevance.</p>
+                      </div>
+
+                      <div class="headline-item">
+                        <div class="headline-meta">Equities / Yahoo Finance</div>
+                        <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE9LTjRUdGRsSWZ3aGViNlhoVFU5LVZSSzVlRTRhamxFOFhQR3FfbTZjZXVCRjRRVHhGa0pnMHJkSjFGQzIxUExSM0U2ZWZNRk5NRFJOTFYyc2NLQVUyOEN0Q3l1T19XWDdBYTRWY2xaQ3ByaHNfcU05MWdpYkloam8?oc=5">Oil prices rally, US data dents chances of Fed rate hike - Yahoo Finance</a>
+                        <p>Monitor for cross-asset risk appetite and portfolio relevance.</p>
+                      </div>
+
+
+                    </td>
+
+
+
+                    <td class="region-cell">
+                      <div class="region-label">EU</div>
+
+                      <div class="headline-item">
+                        <div class="headline-meta">Equities / Reuters</div>
+                        <a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxPa3JRTDJxWjQ5cXhiMXUwMkJSb2FrXzg0S3FvMkV0Z1VYRFV1a0dKcHEwaG9yWG1hb0RyWF9qQzFlek0zT2hXOGl0b2pSTHVTZ1lhclRuY1FsUm00alVhUkYzVEtVN1BTRUVzdmZHVXdVX2g5emE2NGRWN1ZyMXFMTnFVdmhvbVhVclFHajE5LUtGU0VnS2hJTVJTZGJHWDgzMDNhcmlWNHhtVm5MWXZz?oc=5">European shares snap 4-week rally as higher oil prices temper strong earnings - Reuters</a>
+                        <p>Monitor for cross-asset risk appetite and portfolio relevance.</p>
+                      </div>
+
+                      <div class="headline-item">
+                        <div class="headline-meta">Macro / European Central Bank</div>
+                        <a href="https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260817~1f9f7149c9.en.pdf">Philip R. Lane: The rise in defence spending and the euro area economy</a>
+                        <p>Monitor for cross-asset risk appetite and portfolio relevance.</p>
+                      </div>
+
+                      <div class="headline-item">
+                        <div class="headline-meta">Equities / CNBC</div>
+                        <a href="https://www.cnbc.com/2026/08/18/ai-tech-rally-correction-economists.html">'Worrisome': AI is driving a looming market correction, European central bank economists warn</a>
+                        <p>Monitor for cross-asset risk appetite and portfolio relevance.</p>
+                      </div>
+
+
+                    </td>
+
+
+                  </tr>
+
+                  <tr>
+
+
+                    <td class="region-cell">
+                      <div class="region-label">UK</div>
+
+                      <div class="headline-item">
+                        <div class="headline-meta">Macro / Wall Street Journal</div>
+                        <a href="https://www.wsj.com/world/uk/boe-seen-on-hold-through-2027-despite-inflation-spike-b8ab6815?mod=rss_worldnews">BOE Seen on Hold Through 2027 Despite Inflation Spike</a>
+                        <p>Monitor for cross-asset risk appetite and portfolio relevance.</p>
+                      </div>
+
+
+                    </td>
+
+
+
+                    <td class="region-cell">
+                      <div class="region-label">APAC</div>
+
+                      <div class="headline-item">
+                        <div class="headline-meta">Equities / Financial Times Markets</div>
+                        <a href="https://www.ft.com/content/55cb2786-c7ef-438e-8830-c3dc2c1452ce?syn-25a6b1a6=1">‘Not worth the squeeze’: global private equity makes zero deals in China</a>
+                        <p>Monitor for cross-asset risk appetite and portfolio relevance.</p>
+                      </div>
+
+                      <div class="headline-item">
+                        <div class="headline-meta">Equities / Reuters</div>
+                        <a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxNaElWSGNqOVg3WUk4T1pwTm5OM053R1psN1BldFZEWEZfZ2lwQmZOX215LWMxaUZiTThQbUs2SEstRjMxR3lBUkVLQ0JlY0dKYmtYN1VkbVdyWVhkWjBUVVMyV3ZJZFA1RVdMWDY1WXZiRUppcEl2bmRVcjQxQUM3WWNlV1J4WkMxYWVyWWpZQXBzbnJaMWxvU3JjN185YW9SV3c?oc=5">China's central bank pledges timely new policy rollout - Reuters</a>
+                        <p>Monitor for cross-asset risk appetite and portfolio relevance.</p>
+                      </div>
+
+                      <div class="headline-item">
+                        <div class="headline-meta">Equities / Yahoo Finance Singapore</div>
+                        <a href="https://news.google.com/rss/articles/CBMigwFBVV95cUxNaTlFd1l0dS1wYXozN1JCZm5zY1RETVR6dHVxcWcyZ0M3cG5PLXRfd0diOFNGbFdLLUVWbWprOXJnbjVWWWkwT3ZLNU1JSDFHTk9wRzJVWmRDTEp0MFd0RFBLaTNwdWZ1LWRiN3ZMU0dsRFNpSmZjQ2l2UHZpRFFhemQ0WQ?oc=5">US stocks mostly up after data shows slightly lower inflation in July - Yahoo Finance Singapore</a>
+                        <p>Monitor for cross-asset risk appetite and portfolio relevance.</p>
+                      </div>
+
+
+                    </td>
+
+
+                  </tr>
+
+                  <tr>
+
+
+                    <td class="region-cell">
+                      <div class="region-label">EMEA</div>
+
+                      <div class="headline-item">
+                        <div class="headline-meta">Macro / Wall Street Journal</div>
+                        <a href="https://www.wsj.com/opinion/trumps-iran-war-gordian-knot-da889c3d?mod=rss_worldnews">Opinion | Trump’s Iran War Gordian Knot</a>
+                        <p>Monitor for cross-asset risk appetite and portfolio relevance.</p>
+                      </div>
+
+                      <div class="headline-item">
+                        <div class="headline-meta">Equities / Financial Times Markets</div>
+                        <a href="https://www.ft.com/content/71541304-d965-415d-82a3-387775cdb773?syn-25a6b1a6=1">Libya seeks up to $40bn to develop oil resources</a>
+                        <p>Monitor for cross-asset risk appetite and portfolio relevance.</p>
+                      </div>
+
+                      <div class="headline-item">
+                        <div class="headline-meta">Equities / Wall Street Journal</div>
+                        <a href="https://www.wsj.com/finance/stocks/oil-rises-bond-yields-climb-on-iran-tensions-ba2bb60b?mod=rss_markets_main">Oil Rises, Bond Yields Climb on Iran Tensions</a>
+                        <p>Monitor for cross-asset risk appetite and portfolio relevance.</p>
+                      </div>
+
+
+                    </td>
+
+
+
+                    <td class="region-cell">
+                      <div class="region-label">Global</div>
+
+                      <div class="headline-item">
+                        <div class="headline-meta">Macro / Bank for International Settlements</div>
+                        <a href="https://www.bis.org/review/r260813c.htm">Philip R Lane: AI and monetary policy</a>
+                        <p>Monitor for cross-asset risk appetite and portfolio relevance.</p>
+                      </div>
+
+                      <div class="headline-item">
+                        <div class="headline-meta">Private Markets / Crunchbase News</div>
+                        <a href="https://news.crunchbase.com/venture/physical-ai-funding-startups-robotics-aerospace-h1-2026/">VCs Pour Billions Into Physical AI As The Next Wave Of AI Investing Takes Shape</a>
+                        <p>Credit conditions can affect funding windows and private-market exits.</p>
+                      </div>
+
+                      <div class="headline-item">
+                        <div class="headline-meta">Macro / Wall Street Journal</div>
+                        <a href="https://www.wsj.com/world/europe/see-how-europes-rivers-are-drying-up-and-threatening-its-economy-8447228a?mod=rss_worldnews">See How Europe’s Rivers Are Drying Up and Threatening Its Economy</a>
+                        <p>Monitor for cross-asset risk appetite and portfolio relevance.</p>
+                      </div>
+
+
+                    </td>
+
+
+                  </tr>
+
+                </table>
+              </td>
+            </tr>
+
+
+
+
+            <tr>
+              <td class="paper-section" id="outlook">
+                <div class="section-meta">Outlook</div>
+                <h2 class="section-title">What to Watch This Week</h2>
+
+                <table role="presentation" class="watch-row" width="100%">
+                  <tr>
+                    <td class="watch-when"><strong>US</strong><span>This week</span></td>
+                    <td class="watch-copy"><h3>Inflation and Fed communication</h3><p>Impacts USD, duration, and growth-style equity valuation</p><div class="source-line">AFFECTED / FX, rates, equities</div></td>
+                  </tr>
+                </table>
+
+                <table role="presentation" class="watch-row" width="100%">
+                  <tr>
+                    <td class="watch-when"><strong>EU</strong><span>This week</span></td>
+                    <td class="watch-copy"><h3>ECB / European growth data</h3><p>Relevant for BMW, Munich Re, SAA Software, RWE AG, Sanofi SA, and BASF SE, plus EUR exposure</p><div class="source-line">AFFECTED / Equities, credit</div></td>
+                  </tr>
+                </table>
+
+                <table role="presentation" class="watch-row" width="100%">
+                  <tr>
+                    <td class="watch-when"><strong>APAC</strong><span>This week</span></td>
+                    <td class="watch-copy"><h3>China activity and Singapore macro</h3><p>Relevant for Softtech Engineers Ltd, Singapore Airlines Ltd, Ping An, CapitaLand Ascendas REIT, CapitaLand Investment, and SATS Ltd, plus regional FX exposure</p><div class="source-line">AFFECTED / Equities, FX</div></td>
+                  </tr>
+                </table>
+
+                <table role="presentation" class="watch-row" width="100%">
+                  <tr>
+                    <td class="watch-when"><strong>Global</strong><span>This week</span></td>
+                    <td class="watch-copy"><h3>Oil and LNG supply headlines</h3><p>Relevant for inflation, airlines, utilities, and commodities exposure</p><div class="source-line">AFFECTED / Commodities, rates</div></td>
+                  </tr>
+                </table>
+
+                <table role="presentation" class="watch-row" width="100%">
+                  <tr>
+                    <td class="watch-when"><strong>EMEA</strong><span>This week</span></td>
+                    <td class="watch-copy"><h3>Credit spread and geopolitical risk</h3><p>Relevant for risk sentiment, oil prices, and funding conditions</p><div class="source-line">AFFECTED / Credit, FX</div></td>
+                  </tr>
+                </table>
+
+              </td>
+            </tr>
+
+
+            <tr>
+              <td class="footer">
+                <div class="footer-brand">Wolf Research</div>
+                <div class="footer-title">Weekly Market Brief</div>
+                <p><strong>Generated:</strong> 2026-08-18T21:55:23.174466+08:00 &nbsp;&middot;&nbsp; Asia/Singapore</p>
+                <p>Sources may include Gmail MCP newsletter digests, official institutional feeds, Marketaux, FRED, Alpha Vantage, and source-linked public reporting. Gmail content is normalized as untrusted input before analysis.</p>
+                <p>Internal distribution only. Educational market commentary, not investment advice. Source limitations, stale data, fallback use, and manual pricing exceptions are retained in the audit log.</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

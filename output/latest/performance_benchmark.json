@@ -1,0 +1,74 @@
+{
+  "mode": "mocked",
+  "paid_api_calls": 0,
+  "sequential_no_cache": {
+    "total_runtime_seconds": 0.8321,
+    "api_calls": 5
+  },
+  "cold_async": {
+    "total_runtime_seconds": 0.2264,
+    "provider_fetch_time_seconds": 0.8516,
+    "provider_status": {
+      "fred": "ok",
+      "alpha_vantage": "ok",
+      "marketaux": "ok",
+      "rss": "ok",
+      "external_charts": "ok"
+    },
+    "cache_status": {
+      "fred": "miss",
+      "alpha_vantage": "miss",
+      "marketaux": "miss",
+      "rss": "miss",
+      "external_charts": "miss"
+    },
+    "api_calls_by_provider": {
+      "fred": 1,
+      "alpha_vantage": 1,
+      "marketaux": 1,
+      "rss": 1,
+      "external_charts": 1
+    }
+  },
+  "warm_cache": {
+    "total_runtime_seconds": 0.0809,
+    "provider_fetch_time_seconds": 0,
+    "provider_status": {
+      "fred": "ok",
+      "alpha_vantage": "ok",
+      "marketaux": "ok",
+      "rss": "ok",
+      "external_charts": "ok"
+    },
+    "cache_status": {
+      "fred": "hit",
+      "alpha_vantage": "hit",
+      "marketaux": "hit",
+      "rss": "hit",
+      "external_charts": "hit"
+    },
+    "api_calls_by_provider": {}
+  },
+  "processing_time_seconds": 0.076274,
+  "rendering_time_seconds": 0.0117,
+  "output_writing_time_seconds": 0.010937,
+  "cache_hit_rate": 0.5,
+  "cache_metrics": {
+    "cache_hits": 5,
+    "cache_misses": 5,
+    "cache_expired": 0,
+    "cache_writes": 5,
+    "cache_disabled_providers": []
+  },
+  "memory": {
+    "memory_before_mb": 0.0,
+    "memory_after_mb": 0.423,
+    "peak_memory_mb": 0.637
+  },
+  "memory_compaction": {
+    "article_rows": 500,
+    "article_fields_removed": 500
+  },
+  "cold_speedup_vs_sequential": 3.68,
+  "warm_speedup_vs_sequential": 10.29
+}

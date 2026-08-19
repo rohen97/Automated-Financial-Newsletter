@@ -2,7 +2,7 @@ from pathlib import Path
 
 from src.llm.schemas import Newsletter
 from src.render.assemble_newsletter import render_newsletter_html
-from src.render.review_v2 import _global_scan, render_review_v2_html
+from src.render.review_v2 import _global_scan, _story_view, render_review_v2_html
 
 
 def test_review_v2_is_a_shorter_separate_editorial_variant():
@@ -16,6 +16,9 @@ def test_review_v2_is_a_shorter_separate_editorial_variant():
     assert review_html.count('class="signal-index"') == 3
     assert "MARKET IMPACT /" in review_html
     assert "Markets at a glance" in review_html
+    assert "What Changed This Week" in review_html
+    assert "Dislocation Watch" in review_html
+    assert "Narrative Monitor" not in review_html
     assert "Sector leadership" in review_html
     assert "Portfolio impact" in review_html
     assert "Week ahead" in review_html
@@ -102,3 +105,23 @@ def test_global_scan_keeps_material_headlines_and_rejects_administrative_notices
     assert scan["EU"]["url"] == "https://example.test/ecb"
     assert scan["EMEA"]["url"] == "https://example.test/libya"
     assert scan["Global"]["url"] == "https://example.test/bis"
+
+
+def test_story_view_does_not_attach_an_unrelated_first_watch_item():
+    story = {
+        "title": "The cooperative spirit at the heart of the digital euro",
+        "narrative": "An ECB lecture on the digital euro project.",
+        "implications": ["The digital euro matters for European payments infrastructure."],
+        "sources": [],
+    }
+    rows = [
+        {
+            "event": "Inflation and Fed communication",
+            "portfolio_relevance": "Impacts USD, duration, and US growth equities",
+        }
+    ]
+
+    view = _story_view(story, rows)
+
+    assert view["watch"].startswith("Further ECB digital-euro guidance")
+    assert "Fed communication" not in view["watch"]

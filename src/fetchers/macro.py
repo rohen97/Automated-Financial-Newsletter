@@ -19,12 +19,46 @@ SERIES = [
 
 
 def _format_value(series_id: str, value: float) -> str:
-    if series_id in {"DFF", "DGS10", "UNRATE", "NFCI"}:
+    if series_id in {"DFF", "DGS10", "UNRATE"}:
         return f"{value:.2f}%"
     return f"{value:.2f}"
 
 
-def _fetch_latest_fred(series_id: str, api_key: str) -> tuple[str, str]:
+def _observation_snapshot(series_id: str, observations: list[dict]) -> dict:
+    usable = []
+    for item in observations:
+        raw_value = item.get("value")
+        observed_at = item.get("date")
+        if raw_value in {None, "."} or not observed_at:
+            continue
+        usable.append(
+            {
+                "date": date.fromisoformat(observed_at),
+                "date_display": observed_at,
+                "value": float(raw_value),
+            }
+        )
+    if not usable:
+        raise ValueError(f"No usable FRED observation for {series_id}")
+
+    usable.sort(key=lambda item: item["date"], reverse=True)
+    latest = usable[0]
+    reference_date = latest["date"] - timedelta(days=7)
+    reference = next(
+        (item for item in usable[1:] if item["date"] <= reference_date),
+        usable[-1] if len(usable) > 1 else latest,
+    )
+    return {
+        "value": _format_value(series_id, latest["value"]),
+        "value_numeric": latest["value"],
+        "observed_at": latest["date_display"],
+        "reference_value_numeric": reference["value"],
+        "reference_observed_at": reference["date_display"],
+        "weekly_change": round(latest["value"] - reference["value"], 6),
+    }
+
+
+def _fetch_latest_fred(series_id: str, api_key: str) -> dict:
     start = (date.today() - timedelta(days=120)).isoformat()
     response = requests.get(
         FRED_OBSERVATIONS_URL,
@@ -39,13 +73,7 @@ def _fetch_latest_fred(series_id: str, api_key: str) -> tuple[str, str]:
         timeout=15,
     )
     response.raise_for_status()
-    observations = response.json().get("observations", [])
-    for item in observations:
-        raw_value = item.get("value")
-        if raw_value in {None, "."}:
-            continue
-        return _format_value(series_id, float(raw_value)), item.get("date", "")
-    raise ValueError(f"No usable FRED observation for {series_id}")
+    return _observation_snapshot(series_id, response.json().get("observations", []))
 
 
 def fetch_macro_data() -> list[dict]:
@@ -54,13 +82,14 @@ def fetch_macro_data() -> list[dict]:
     for series_id, label, comment in SERIES:
         if fred_key:
             try:
-                value, observed_at = _fetch_latest_fred(series_id, fred_key)
+                observation = _fetch_latest_fred(series_id, fred_key)
                 record_fred_series(series_id)
                 rows.append(
                     {
+                        "series_id": series_id,
                         "indicator": label,
-                        "value": value,
-                        "comment": f"{comment} Latest FRED observation: {observed_at}.",
+                        **observation,
+                        "comment": f"{comment} Latest FRED observation: {observation['observed_at']}.",
                         "source": {"name": "FRED", "url": f"https://fred.stlouisfed.org/series/{series_id}"},
                     }
                 )
@@ -70,6 +99,7 @@ def fetch_macro_data() -> list[dict]:
         record_fallback()
         rows.append(
             {
+                "series_id": series_id,
                 "indicator": label,
                 "value": "fallback",
                 "comment": comment,

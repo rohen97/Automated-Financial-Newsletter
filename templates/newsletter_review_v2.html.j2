@@ -13,7 +13,7 @@
     <!--[if mso]>
     <style>
       body, table, td, div, p, a { font-family: Arial, Helvetica, sans-serif !important; }
-      .container, .masthead, .intro-section, .chart-section, .markets-section,
+      .container, .masthead, .intro-section, .chart-section, .delta-section, .markets-section,
       .portfolio-section, .outlook-section, .scan-section {
         background-color: #ffffff !important;
         color: #17202b !important;
@@ -117,50 +117,60 @@
             {% endif %}
 
             <tr>
-              <td class="section narrative-section" bgcolor="#ffffff" style="padding:28px 32px 30px;background-color:#ffffff;">
-                <div class="kicker" style="color:#8a5516;font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:bold;line-height:14px;text-transform:uppercase;">Narrative intelligence / {{ view.narrative.document_count }} articles / {{ view.narrative.source_count }} sources</div>
-                <h2 class="section-title">Narrative Monitor</h2>
-                {% if view.narrative.is_baseline %}
-                <p class="section-deck" style="color:#4d5861;">This edition establishes the coverage baseline. Momentum signals begin after the next completed edition.</p>
-                {% else %}
-                <p class="section-deck" style="color:#4d5861;">Coverage momentum across the aggregated news flow, filtered for cross-source repetition.</p>
-                {% endif %}
-                {% if view.narrative.rows %}
-                {% if view.narrative.is_baseline %}
-                <table class="narrative-table compact-table" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;table-layout:fixed;">
+              <td id="weekly-delta" class="section delta-section" bgcolor="#ffffff" style="padding:28px 32px 30px;background-color:#ffffff;">
+                <div class="kicker" style="color:#8a5516;font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:bold;line-height:14px;text-transform:uppercase;">Weekly delta / {{ view.weekly_delta.rows|length }} verified signals / {{ view.weekly_delta.source_count }} sources</div>
+                <h2 class="section-title">What Changed This Week</h2>
+                <p class="section-deck" style="color:#4d5861;">The observable shifts that changed the cross-asset backdrop.</p>
+                {% if view.weekly_delta.rows %}
+                <table class="delta-table" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;table-layout:fixed;">
                   <tr>
-                    <th width="68%" style="width:68%;padding:9px 12px;text-align:left;color:#59636c;">Baseline narrative</th>
-                    <th width="32%" style="width:32%;padding:9px 12px;text-align:left;color:#59636c;">Coverage</th>
+                    <th width="8%" style="width:8%;padding:8px 8px 8px 0;text-align:left;color:#59636c;">&nbsp;</th>
+                    <th width="52%" style="width:52%;padding:8px 12px 8px 0;text-align:left;color:#59636c;">Signal</th>
+                    <th width="20%" style="width:20%;padding:8px 12px;text-align:right;color:#59636c;">Latest</th>
+                    <th width="20%" style="width:20%;padding:8px 0 8px 12px;text-align:right;color:#59636c;">1W</th>
                   </tr>
-                  {% for row in view.narrative.rows %}
+                  {% for row in view.weekly_delta.rows %}
                   <tr>
-                    <td style="padding:11px 12px;border-bottom:1px solid #e2e4e1;color:#202a34;vertical-align:top;"><strong>{{ row.phrase }}</strong></td>
-                    <td style="padding:11px 12px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;color:#35404a;vertical-align:top;">{{ row.coverage_display }}</td>
-                  </tr>
-                  {% endfor %}
-                </table>
-                {% else %}
-                <table class="narrative-table compact-table" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;table-layout:fixed;">
-                  <tr>
-                    <th width="43%" style="width:43%;padding:9px 12px;text-align:left;color:#59636c;">Narrative</th>
-                    <th width="19%" style="width:19%;padding:9px 12px;text-align:left;color:#59636c;">Status</th>
-                    <th width="16%" style="width:16%;padding:9px 12px;text-align:right;color:#59636c;">Momentum</th>
-                    <th width="22%" style="width:22%;padding:9px 12px;text-align:left;color:#59636c;">Coverage</th>
-                  </tr>
-                  {% for row in view.narrative.rows %}
-                  <tr>
-                    <td style="padding:11px 12px;border-bottom:1px solid #e2e4e1;color:#202a34;vertical-align:top;"><strong>{{ row.phrase }}</strong><span class="narrative-note" style="display:block;margin-top:4px;color:#5f6971;font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:14px;">{{ row.trend_note }}</span></td>
-                    <td style="padding:11px 12px;border-bottom:1px solid #e2e4e1;color:#202a34;vertical-align:top;"><span class="narrative-status status-{{ row.status|lower }}">{{ row.status }}</span></td>
-                    <td class="number" style="padding:11px 12px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;vertical-align:top;">{{ row.momentum_display }}</td>
-                    <td style="padding:11px 12px;border-bottom:1px solid #e2e4e1;color:#35404a;vertical-align:top;">{{ row.coverage_display }}</td>
+                    <td class="delta-index" style="padding:13px 8px 13px 0;border-bottom:1px solid #e2e4e1;color:#a46b1c;font-family:'Courier New',Courier,monospace;font-size:10px;line-height:15px;vertical-align:top;">{{ row.index_display }}</td>
+                    <td class="delta-copy" style="padding:12px 12px 13px 0;border-bottom:1px solid #e2e4e1;color:#202a34;vertical-align:top;">
+                      <strong class="delta-signal" style="display:block;color:#17202b;font-family:Georgia,'Times New Roman',serif;font-size:15px;line-height:20px;">{{ row.signal }}</strong>
+                      <span class="delta-state state-{{ row.tone }}" style="display:block;margin-top:2px;color:{% if row.tone == 'positive' %}#167451{% elif row.tone == 'negative' %}#a23b36{% else %}#68727a{% endif %};font-family:Arial,Helvetica,sans-serif;font-size:8px;font-weight:bold;line-height:12px;text-transform:uppercase;">{{ row.state }}</span>
+                      <span class="delta-interpretation" style="display:block;margin-top:5px;color:#5f6971;font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:15px;">{{ row.interpretation }}</span>
+                      {% if row.source.name %}<span class="delta-source" style="display:block;margin-top:4px;color:#7b848b;font-family:Arial,Helvetica,sans-serif;font-size:8px;line-height:11px;text-transform:uppercase;">Source / {{ row.source.name }}</span>{% endif %}
+                    </td>
+                    <td class="delta-metric" style="padding:12px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:#25303a;font-family:'Courier New',Courier,monospace;font-size:12px;line-height:17px;vertical-align:top;">{{ row.current_display }}</td>
+                    <td class="delta-metric state-{{ row.tone }}" style="padding:12px 0 12px 12px;border-bottom:1px solid #e2e4e1;border-left:1px solid #e7e9e6;text-align:right;white-space:nowrap;color:{% if row.tone == 'positive' %}#167451{% elif row.tone == 'negative' %}#a23b36{% else %}#59636c{% endif %};font-family:'Courier New',Courier,monospace;font-size:12px;font-weight:bold;line-height:17px;vertical-align:top;">{{ row.weekly_change_display }}</td>
                   </tr>
                   {% endfor %}
                 </table>
-                {% endif %}
                 {% else %}
-                <div class="data-note">{{ view.narrative.empty_message }}</div>
+                <div class="data-note">{{ view.weekly_delta.empty_message }}</div>
                 {% endif %}
-                <div class="source-line">METHOD / N-GRAM DOCUMENT FREQUENCY{% if view.narrative.baseline_periods %} &nbsp;&middot;&nbsp; {{ view.narrative.baseline_periods }} PRIOR PERIODS{% endif %}<br>{{ view.narrative.note }}</div>
+
+                <div class="subsection-rule"></div>
+                <div class="kicker" style="color:#8a5516;font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:bold;line-height:14px;text-transform:uppercase;">Cross-asset exceptions</div>
+                <h3 class="subsection-title">Dislocation Watch</h3>
+                <p class="section-deck" style="color:#4d5861;">Relationships that moved against their usual directional pattern.</p>
+                {% if view.dislocations["items"] %}
+                {% for item in view.dislocations["items"] %}
+                <table role="presentation" class="dislocation-row" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;table-layout:fixed;">
+                  <tr>
+                    <td width="74%" style="width:74%;padding:12px 14px;border-bottom:1px solid #e2e4e1;border-left:3px solid #c4892f;vertical-align:top;">
+                      <span class="dislocation-label" style="display:block;color:#8a5516;font-family:Arial,Helvetica,sans-serif;font-size:8px;font-weight:bold;line-height:11px;text-transform:uppercase;">{{ item.label }}</span>
+                      <strong class="dislocation-title" style="display:block;margin-top:3px;color:#17202b;font-family:Georgia,'Times New Roman',serif;font-size:14px;line-height:19px;">{{ item.title }}</strong>
+                      <span class="dislocation-copy" style="display:block;margin-top:5px;color:#4f5a63;font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:15px;">{{ item.observation }} {{ item.why_it_matters }}</span>
+                    </td>
+                    <td width="26%" style="width:26%;padding:12px;border-bottom:1px solid #e2e4e1;vertical-align:top;">
+                      <span class="mini-label" style="display:block;color:#68727a;font-family:Arial,Helvetica,sans-serif;font-size:8px;font-weight:bold;line-height:11px;text-transform:uppercase;">Affected</span>
+                      <span class="dislocation-assets" style="display:block;margin-top:4px;color:#25303a;font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:15px;">{{ item.affected_assets }}</span>
+                    </td>
+                  </tr>
+                </table>
+                {% endfor %}
+                {% else %}
+                <div class="data-note">{{ view.dislocations.empty_message }}</div>
+                {% endif %}
+                <div class="source-line">METHOD / VERIFIED WEEKLY DELTAS &amp; THRESHOLD-BASED DIVERGENCES<br>{{ view.weekly_delta.note }}</div>
               </td>
             </tr>
 

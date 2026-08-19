@@ -1,0 +1,239 @@
+{
+  "title": "Narrative Monitor",
+  "subtitle": "Themes gaining or losing attention across the aggregated news corpus.",
+  "takeaway": null,
+  "source": null,
+  "source_name": null,
+  "source_type": null,
+  "published_at": null,
+  "original_url": null,
+  "image_url": null,
+  "local_image_path": null,
+  "image_src": null,
+  "email_image_src": null,
+  "preview_image_src": null,
+  "summary": null,
+  "portfolio_relevance": null,
+  "extraction_method": null,
+  "copyright_note": null,
+  "compliance_approved": null,
+  "embedded_image": null,
+  "fallback_mode": null,
+  "generated_at": "2026-08-18T13:54:34.780956+00:00",
+  "rotation_week_number": null,
+  "rotation_selected_source": null,
+  "source_attempts": [],
+  "chart_id": null,
+  "series_used": [],
+  "transformation_used": null,
+  "latest_values": {},
+  "unit_label": null,
+  "lookback": null,
+  "market_signal_reason": null,
+  "selection_score": null,
+  "fred_chart_scores": [],
+  "chart_selection_history_updated": null,
+  "rows": [
+    {
+      "phrase": "Federal Reserve",
+      "status": "Establishing",
+      "momentum_score": 0.0,
+      "momentum_display": "Baseline",
+      "article_count": 18,
+      "source_count": 3,
+      "coverage_display": "18 articles / 3 sources",
+      "current_share_pct": 6.3,
+      "baseline_share_pct": 0.0,
+      "regions": [
+        "US",
+        "Global"
+      ],
+      "categories": [
+        "Macro"
+      ],
+      "portfolio_relevant": false,
+      "trend_note": "18 articles across 3 sources; the rolling baseline is being established.",
+      "examples": [
+        "Federal Reserve Board requests comment on a proposal to modernize its rule governing the extension of credit to bank \"insiders\"—bank executives, board members and major shareholders who could potentially influence a bank's lending decisions",
+        "Federal Reserve Board announces approval of the application by Coastal Bend Bancshares, Inc.",
+        "Federal Reserve Board requests comment on a proposal to amend its requirements for banks to maintain anti-money laundering programs"
+      ]
+    },
+    {
+      "phrase": "Central Bank",
+      "status": "Establishing",
+      "momentum_score": 0.0,
+      "momentum_display": "Baseline",
+      "article_count": 6,
+      "source_count": 5,
+      "coverage_display": "6 articles / 5 sources",
+      "current_share_pct": 2.1,
+      "baseline_share_pct": 0.0,
+      "regions": [
+        "Global",
+        "EU",
+        "APAC"
+      ],
+      "categories": [
+        "Macro",
+        "Equities"
+      ],
+      "portfolio_relevant": false,
+      "trend_note": "6 articles across 5 sources; the rolling baseline is being established.",
+      "examples": [
+        "Piero Cipollone: The cooperative spirit at the heart of the digital euro",
+        "Philip R Lane: AI and monetary policy",
+        "'Worrisome': AI is driving a looming market correction, European central bank economists warn"
+      ]
+    },
+    {
+      "phrase": "Bond Yield",
+      "status": "Establishing",
+      "momentum_score": 0.0,
+      "momentum_display": "Baseline",
+      "article_count": 5,
+      "source_count": 3,
+      "coverage_display": "5 articles / 3 sources",
+      "current_share_pct": 1.8,
+      "baseline_share_pct": 0.0,
+      "regions": [
+        "APAC",
+        "EMEA",
+        "Global"
+      ],
+      "categories": [
+        "Equities"
+      ],
+      "portfolio_relevant": false,
+      "trend_note": "5 articles across 3 sources; the rolling baseline is being established.",
+      "examples": [
+        "Oil Rises, Bond Yields Climb on Iran Tensions",
+        "Big Oil’s Liabilities Are Shrinking. What’s Next?",
+        "China’s 10-year bond yield falls to 13-month low"
+      ]
+    },
+    {
+      "phrase": "Oil Price",
+      "status": "Establishing",
+      "momentum_score": 0.0,
+      "momentum_display": "Baseline",
+      "article_count": 4,
+      "source_count": 4,
+      "coverage_display": "4 articles / 4 sources",
+      "current_share_pct": 1.4,
+      "baseline_share_pct": 0.0,
+      "regions": [
+        "US",
+        "EU",
+        "Global"
+      ],
+      "categories": [
+        "Equities"
+      ],
+      "portfolio_relevant": false,
+      "trend_note": "4 articles across 4 sources; the rolling baseline is being established.",
+      "examples": [
+        "European shares snap 4-week rally as higher oil prices temper strong earnings",
+        "Oil Prices, Treasury Yields Rise With Mideast Concerns",
+        "Oil prices rally, US data dents chances of Fed rate hike"
+      ]
+    },
+    {
+      "phrase": "Interest Rate",
+      "status": "Establishing",
+      "momentum_score": 0.0,
+      "momentum_display": "Baseline",
+      "article_count": 4,
+      "source_count": 4,
+      "coverage_display": "4 articles / 4 sources",
+      "current_share_pct": 1.4,
+      "baseline_share_pct": 0.0,
+      "regions": [
+        "Global",
+        "UK",
+        "US"
+      ],
+      "categories": [
+        "Equities",
+        "Macro"
+      ],
+      "portfolio_relevant": false,
+      "trend_note": "4 articles across 4 sources; the rolling baseline is being established.",
+      "examples": [
+        "Fund managers have rarely been this bullish about stocks, says a Bank of America survey",
+        "BOE Seen on Hold Through 2027 Despite Inflation Spike",
+        "Page 125 | Latest Interest Rates News - Increases & Decreases"
+      ]
+    },
+    {
+      "phrase": "Middle East",
+      "status": "Establishing",
+      "momentum_score": 0.0,
+      "momentum_display": "Baseline",
+      "article_count": 4,
+      "source_count": 3,
+      "coverage_display": "4 articles / 3 sources",
+      "current_share_pct": 1.4,
+      "baseline_share_pct": 0.0,
+      "regions": [
+        "US",
+        "Global"
+      ],
+      "categories": [
+        "Equities",
+        "Macro"
+      ],
+      "portfolio_relevant": false,
+      "trend_note": "4 articles across 3 sources; the rolling baseline is being established.",
+      "examples": [
+        "U.S. Stocks Slip as Oil Impasse Weighs on Sentiment",
+        "Atlanta Fed's Venable: Inflation too high, with prospect of easing dependent on events in Middle East",
+        "Tech Stocks Slide as Global Bond Rout Deepens"
+      ]
+    }
+  ],
+  "items": [],
+  "regions": [],
+  "kpis": [],
+  "top_holdings": [],
+  "top_contributors": [],
+  "top_detractors": [],
+  "sector_exposure": [],
+  "currency_exposure": [],
+  "region_exposure": [],
+  "maturity_exposure": [],
+  "flags": [],
+  "note": "Coverage momentum measures changes in news attention, not market direction or a trading signal.",
+  "empty_message": "Not enough cross-source repetition was found to identify a reliable narrative this week.",
+  "interpretation": null,
+  "mode": null,
+  "issuer_count": null,
+  "position_count": null,
+  "holdings_count": null,
+  "usable_equity_pricing_count": null,
+  "manual_pricing_count": null,
+  "missing_pricing_count": null,
+  "total_equity_portfolio_value_usd": null,
+  "total_ytd_equity_pnl_usd": null,
+  "best_contributor": null,
+  "worst_contributor": null,
+  "largest_sector_exposure": null,
+  "largest_currency_exposure": null,
+  "total_market_value_usd": null,
+  "total_market_value_display": null,
+  "total_gain_loss_usd": null,
+  "total_gain_loss_display": null,
+  "invalid_or_manual_holdings": [],
+  "missing_bond_fields": [],
+  "provider_used": null,
+  "missing_proxies": [],
+  "stale_prices": [],
+  "document_count": 284,
+  "source_count": 19,
+  "baseline_periods": 0,
+  "status_counts": {
+    "Establishing": 6
+  },
+  "history_updated": true,
+  "model_version": "ngram-v2"
+}

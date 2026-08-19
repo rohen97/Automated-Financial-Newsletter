@@ -28,7 +28,21 @@ Copy-Item .env.example .env
 python -m src.main
 ```
 
-Outputs are written to `output/latest/` and `output/archive/YYYY-MM-DD/`.
+Outputs are written atomically to `output/latest/` and
+`output/archive/YYYY-MM-DD/`. `output/latest/manifest.json` records checksums,
+file sizes, provider status, validation status, and run duration for the edition.
+
+The bounded-concurrency DAG, cache policy, memory model, and remaining trade-offs
+are documented in
+[`docs/architecture_performance_review.md`](docs/architecture_performance_review.md).
+The complete content-to-email and GitHub Pages render flow is documented in
+[`docs/design_pipeline.md`](docs/design_pipeline.md). Both documents include
+GitHub-rendered Mermaid diagrams for review and handover.
+Run the quota-safe mocked performance check with:
+
+```powershell
+python scripts/benchmark_pipeline.py
+```
 
 ## Dry Run
 
@@ -109,12 +123,16 @@ References: [Reuters RSS delivery](https://liaison.thomsonreuters.com/page/rss-f
 [Yahoo Finance data terms](https://help.yahoo.com/kb/finance/exchanges-data-providers-yahoo-finance-sln2310.html), and
 [Morningstar RSS overview](https://my.morningstar.com/my/feeds/rssintro.aspx).
 
-## Narrative Monitor
+## Editorial Narrative Signal
 
-The Narrative Monitor runs after article normalization, deduplication, ranking, and portfolio enrichment. It measures
+The narrative model runs after article normalization, deduplication, ranking, and portfolio enrichment. It measures
 bigram and trigram document frequency across distinct publishers, then compares the current news corpus with up to eight
 prior weekly snapshots. Signals are labelled `Emerging`, `Accelerating`, `Persistent`, `Fading`, or `Establishing`.
 They describe changes in coverage intensity, not market direction or a trading recommendation.
+
+This model is an internal story-selection signal rather than a reader-facing
+newsletter section. Reader-facing change detection appears through What Changed
+This Week and Dislocation Watch.
 
 Settings live in `config/narrative_monitor.yaml`. Local aggregate history is stored in the gitignored
 `data/trends/ngram_history.json`; GitHub Actions restores that file through a small workflow cache so the Monday run can

@@ -2,6 +2,9 @@ from __future__ import annotations
 
 import re
 from collections import defaultdict
+from copy import deepcopy
+from functools import wraps
+from threading import RLock
 from typing import Any
 
 
@@ -21,8 +24,19 @@ _AUDIT: dict[str, Any] = {
     "fallback_source_count": 0,
     "errors": [],
 }
+_AUDIT_LOCK = RLock()
 
 
+def _synchronized(function):
+    @wraps(function)
+    def wrapper(*args, **kwargs):
+        with _AUDIT_LOCK:
+            return function(*args, **kwargs)
+
+    return wrapper
+
+
+@_synchronized
 def reset_provider_audit() -> None:
     _AUDIT["providers_used"] = set()
     _AUDIT["fred_series_fetched"] = []
@@ -40,28 +54,33 @@ def reset_provider_audit() -> None:
     _AUDIT["errors"] = []
 
 
+@_synchronized
 def record_provider(provider: str) -> None:
     _AUDIT["providers_used"].add(provider)
 
 
+@_synchronized
 def record_fred_series(series_id: str) -> None:
     if series_id not in _AUDIT["fred_series_fetched"]:
         _AUDIT["fred_series_fetched"].append(series_id)
     record_provider("fred")
 
 
+@_synchronized
 def record_alpha_symbol(symbol: str) -> None:
     if symbol not in _AUDIT["alpha_vantage_symbols_fetched"]:
         _AUDIT["alpha_vantage_symbols_fetched"].append(symbol)
     record_provider("alpha_vantage")
 
 
+@_synchronized
 def record_marketaux_query(query: str) -> None:
     if query not in _AUDIT["marketaux_queries_run"]:
         _AUDIT["marketaux_queries_run"].append(query)
     record_provider("marketaux")
 
 
+@_synchronized
 def record_ft_query(query: str, article_count: int = 0) -> None:
     if query not in _AUDIT["ft_queries_run"]:
         _AUDIT["ft_queries_run"].append(query)
@@ -69,6 +88,7 @@ def record_ft_query(query: str, article_count: int = 0) -> None:
     record_provider("financial_times")
 
 
+@_synchronized
 def record_tiingo_request(request_name: str, article_count: int = 0) -> None:
     if request_name not in _AUDIT["tiingo_requests_run"]:
         _AUDIT["tiingo_requests_run"].append(request_name)
@@ -77,22 +97,26 @@ def record_tiingo_request(request_name: str, article_count: int = 0) -> None:
     record_provider("tiingo")
 
 
+@_synchronized
 def record_tiingo_status(status: str) -> None:
     _AUDIT["tiingo_status"] = status
 
 
+@_synchronized
 def record_google_news_query(query: str) -> None:
     if query not in _AUDIT["google_news_queries_run"]:
         _AUDIT["google_news_queries_run"].append(query)
     record_provider("google_news")
 
 
+@_synchronized
 def record_rss_source(source: str) -> None:
     if source not in _AUDIT["rss_sources_fetched"]:
         _AUDIT["rss_sources_fetched"].append(source)
     record_provider("rss")
 
 
+@_synchronized
 def record_gmail_messages(count: int) -> None:
     if count <= 0:
         return
@@ -100,14 +124,17 @@ def record_gmail_messages(count: int) -> None:
     record_provider("gmail_mcp")
 
 
+@_synchronized
 def record_openai_used() -> None:
     record_provider("openai")
 
 
+@_synchronized
 def record_fallback(count: int = 1) -> None:
     _AUDIT["fallback_source_count"] += count
 
 
+@_synchronized
 def record_error(provider: str, message: str) -> None:
     _AUDIT["errors"].append({"provider": provider, "message": _sanitize_message(message)[:240]})
 
@@ -125,8 +152,9 @@ def _sanitize_message(message: str) -> str:
     return text
 
 
+@_synchronized
 def provider_audit_snapshot() -> dict[str, Any]:
-    snapshot = dict(_AUDIT)
+    snapshot = deepcopy(_AUDIT)
     snapshot["providers_used"] = sorted(snapshot["providers_used"])
     return snapshot
 

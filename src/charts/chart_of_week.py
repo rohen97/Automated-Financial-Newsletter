@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import os
 from datetime import date
+from pathlib import Path
 
 from src.charts.chart_renderer import chart_metadata_path, render_fred_chart
 from src.charts.fred_chart_selector import select_fred_chart, update_selection_history
@@ -13,6 +14,9 @@ def build_chart_of_the_week(
     config: dict | None = None,
     articles: list[dict] | None = None,
     equity_monitor: dict | None = None,
+    output_directory: Path | None = None,
+    archive: bool | None = None,
+    persist_history: bool | None = None,
 ) -> dict:
     chart_config = config or load_yaml("config/charts.yaml")
     if not chart_config.get("include_chart_of_the_week", True):
@@ -28,10 +32,20 @@ def build_chart_of_the_week(
 
     selected = selection["selected"]
     candidate = selected["candidate"]
-    local_path = render_fred_chart(selected, filename)
+    local_path = render_fred_chart(
+        selected,
+        filename,
+        output_directory=output_directory,
+        archive=archive,
+    )
     selection_score = selected["selection_score"]
     selection_reason = selection["reason"]
-    if not os.getenv("PYTEST_CURRENT_TEST"):
+    should_persist_history = (
+        not bool(os.getenv("PYTEST_CURRENT_TEST"))
+        if persist_history is None
+        else persist_history
+    )
+    if should_persist_history:
         update_selection_history(candidate["id"], selection_score, selection_reason)
 
     latest_values = _latest_values(selected["rows_by_series"])
@@ -67,7 +81,7 @@ def build_chart_of_the_week(
         "copyright_note": "Generated internally from FRED observations.",
         "compliance_approved": True,
         "embedded_image": True,
-        "chart_selection_history_updated": True,
+        "chart_selection_history_updated": should_persist_history,
     }
 
 

@@ -22,6 +22,8 @@ def newsletter_to_markdown(newsletter: Newsletter) -> str:
     data = newsletter.model_dump(mode="json")
     lines = [f"# {data['title']}", "", f"Generated: {data['generated_at']}", ""]
     for key, section in data["sections"].items():
+        if key == "narrative_monitor":
+            continue
         lines.extend([f"## {section_title(key)}", ""])
         if isinstance(section, dict) and "bullets" in section:
             lines.extend(f"- {bullet}" for bullet in section.get("bullets", []))
@@ -48,7 +50,15 @@ def newsletter_to_markdown(newsletter: Newsletter) -> str:
                     f"{holding['current_value_display']} | {holding['ytd_pnl_display']} | {holding['ytd_pct_display']} |"
                 )
         elif isinstance(section, dict) and "items" in section:
-            if key in {"macro_news", "private_markets"}:
+            if key == "dislocation_watch":
+                for item in section.get("items", []):
+                    lines.append(
+                        f"- **{item.get('title', '')}**: {item.get('observation', '')} "
+                        f"{item.get('why_it_matters', '')} Affected: {item.get('affected_assets', '')}."
+                    )
+                if not section.get("items"):
+                    lines.append(section.get("empty_message", "No material dislocation detected."))
+            elif key in {"macro_news", "private_markets"}:
                 for item in section.get("items", []):
                     lines.append(
                         f"- **{item.get('theme', '')}**: {item.get('summary', '')} "
@@ -73,19 +83,6 @@ def newsletter_to_markdown(newsletter: Newsletter) -> str:
             lines.append(section.get("summary") or section.get("takeaway") or "")
             if section.get("original_url"):
                 lines.append(f"Source: {section.get('source_name', 'Source')} - {section['original_url']}")
-        elif key == "narrative_monitor" and isinstance(section, dict):
-            if section.get("rows"):
-                lines.append("| Narrative | Status | Momentum | Coverage |")
-                lines.append("|---|---|---:|---| ")
-                for row in section["rows"]:
-                    lines.append(
-                        f"| {row.get('phrase', '')} | {row.get('status', '')} | "
-                        f"{row.get('momentum_display', '')} | {row.get('coverage_display', '')} |"
-                    )
-            else:
-                lines.append(section.get("empty_message", "No reliable narrative trend identified."))
-            if section.get("note"):
-                lines.append(f"Note: {section['note']}")
         elif isinstance(section, dict) and "top_holdings" in section:
             lines.append("| Holding | Asset Class | Region | Currency | Weight |")
             lines.append("|---|---|---|---|---:|")
@@ -98,7 +95,16 @@ def newsletter_to_markdown(newsletter: Newsletter) -> str:
                 lines.append(f"- {flag}")
         elif isinstance(section, dict) and "rows" in section:
             first = section["rows"][0] if section["rows"] else {}
-            if key == "chart_of_the_week":
+            if key == "weekly_delta":
+                lines.append("| Signal | Latest | 1W | State | Interpretation |")
+                lines.append("|---|---:|---:|---|---|")
+                for row in section.get("rows", []):
+                    lines.append(
+                        f"| {row.get('signal', '')} | {row.get('current_display', '')} | "
+                        f"{row.get('weekly_change_display', '')} | {row.get('state', '')} | "
+                        f"{row.get('interpretation', '')} |"
+                    )
+            elif key == "chart_of_the_week":
                 lines.append(section.get("summary") or section.get("takeaway") or "")
                 if section.get("original_url"):
                     lines.append(f"Source: {section.get('source_name', 'Source')} - {section['original_url']}")
@@ -411,13 +417,16 @@ def newsletter_to_basic_html(newsletter: Newsletter) -> str:
         parts.append(_chart_card(chart))
         parts.append("</td></tr>")
 
-    narrative = sections.get("narrative_monitor")
-    if narrative:
+    weekly_delta = sections.get("weekly_delta")
+    if weekly_delta:
         parts.append(
-            "<tr><td class='section-tight'><div class='kicker'>Narrative Intelligence</div>"
-            "<h2 class='section-title'>Narrative Monitor</h2>"
+            "<tr><td class='section-tight'><div class='kicker'>Weekly Delta</div>"
+            "<h2 class='section-title'>What Changed This Week</h2>"
         )
-        parts.append(_narrative_table(narrative))
+        parts.append(_weekly_delta_table(weekly_delta))
+        dislocations = sections.get("dislocation_watch", {})
+        parts.append("<h3 class='subhead'>Dislocation Watch</h3>")
+        parts.append(_dislocation_watch(dislocations))
         parts.append("</td></tr>")
 
     for key in ("fx_markets", "commodities", "sector_scoreboard"):
@@ -550,27 +559,44 @@ def _chart_card(chart: dict) -> str:
     return "".join(html)
 
 
-def _narrative_table(section: dict) -> str:
+def _weekly_delta_table(section: dict) -> str:
     rows = section.get("rows", [])
     if not rows:
-        return f"<div class='section-note'>{escape(str(section.get('empty_message', 'No reliable narrative trend identified.')))}</div>"
+        return f"<div class='section-note'>{escape(str(section.get('empty_message', 'No verified weekly changes were available.')))}</div>"
     html = [
-        "<table class='data-table narrative-table' width='100%'>",
-        "<tr><th>Narrative</th><th>Status</th><th>Momentum</th><th>Coverage</th></tr>",
+        "<table class='data-table delta-table' width='100%'>",
+        "<tr><th>Signal</th><th>Latest</th><th>1W</th><th>State</th><th>Interpretation</th></tr>",
     ]
     for row in rows:
+        tone = str(row.get("tone", "neutral"))
         html.append(
             "<tr>"
-            f"<td><strong>{escape(str(row.get('phrase', '')))}</strong><br>"
-            f"<span class='source'>{escape(str(row.get('trend_note', '')))}</span></td>"
-            f"<td>{escape(str(row.get('status', '')))}</td>"
-            f"<td class='number'>{escape(str(row.get('momentum_display', '')))}</td>"
-            f"<td>{escape(str(row.get('coverage_display', '')))}</td>"
+            f"<td><strong>{escape(str(row.get('signal', '')))}</strong></td>"
+            f"<td class='number'>{escape(str(row.get('current_display', '')))}</td>"
+            f"<td class='number state-{escape(tone)}'>{escape(str(row.get('weekly_change_display', '')))}</td>"
+            f"<td class='state-{escape(tone)}'>{escape(str(row.get('state', '')))}</td>"
+            f"<td>{escape(str(row.get('interpretation', '')))}</td>"
             "</tr>"
         )
     html.append("</table>")
     if section.get("note"):
         html.append(f"<div class='section-note'>{escape(str(section['note']))}</div>")
+    return "".join(html)
+
+
+def _dislocation_watch(section: dict) -> str:
+    items = section.get("items", [])[:2]
+    if not items:
+        return f"<div class='section-note'>{escape(str(section.get('empty_message', 'No material cross-asset dislocation detected.')))}</div>"
+    html = []
+    for item in items:
+        html.append(
+            "<div class='callout'>"
+            f"<strong>{escape(str(item.get('title', '')))}</strong><br>"
+            f"{escape(str(item.get('observation', '')))} {escape(str(item.get('why_it_matters', '')))}<br>"
+            f"<span class='source'>Affected: {escape(str(item.get('affected_assets', '')))}</span>"
+            "</div>"
+        )
     return "".join(html)
 
 
@@ -696,7 +722,8 @@ def section_title(key: str) -> str:
         "portfolio_snapshot": "Portfolio Snapshot",
         "equity_holdings_monitor": "Equity Holdings Monitor",
         "chart_of_the_week": "Chart of the Week",
-        "narrative_monitor": "Narrative Monitor",
+        "weekly_delta": "What Changed This Week",
+        "dislocation_watch": "Dislocation Watch",
         "portfolio_linked_news": "Portfolio-Linked News",
         "portfolio_watchlist": "What to Watch This Week",
     }

@@ -1,0 +1,83 @@
+performance:
+  async_io_enabled: true
+  max_total_io_concurrency: 12
+  max_cpu_workers: auto
+  enable_process_pool_for_charts: false
+  enable_cache: true
+  cache_ttl_hours:
+    fred: 24
+    alpha_vantage: 6
+    yahoo_finance: 6
+    marketaux: 2
+    financial_times: 2
+    tiingo: 2
+    rss: 2
+    google_news: 2
+    external_charts: 24
+  dataframe_memory_optimization: true
+  atomic_writes: true
+  collect_stage_timings: true
+  collect_memory_metrics: true
+  max_cache_entries_per_provider: 64
+
+provider_limits:
+  fred:
+    max_concurrency: 4
+    timeout_seconds: 20
+    retries: 3
+    max_response_bytes: 5000000
+  alpha_vantage:
+    max_concurrency: 2
+    timeout_seconds: 25
+    retries: 2
+    max_response_bytes: 8000000
+  yahoo_finance:
+    max_concurrency: 4
+    timeout_seconds: 20
+    retries: 2
+    max_response_bytes: 8000000
+  marketaux:
+    max_concurrency: 4
+    timeout_seconds: 25
+    retries: 3
+    max_response_bytes: 5000000
+  financial_times:
+    max_concurrency: 2
+    timeout_seconds: 25
+    retries: 2
+    max_response_bytes: 5000000
+  tiingo:
+    max_concurrency: 2
+    timeout_seconds: 25
+    retries: 2
+    max_response_bytes: 8000000
+  google_news:
+    max_concurrency: 4
+    timeout_seconds: 20
+    retries: 2
+    max_response_bytes: 5000000
+  rss:
+    max_concurrency: 6
+    timeout_seconds: 20
+    retries: 2
+    max_response_bytes: 5000000
+  external_charts:
+    max_concurrency: 2
+    timeout_seconds: 30
+    retries: 2
+    max_response_bytes: 15000000
+  gmail:
+    max_concurrency: 1
+    timeout_seconds: 30
+    retries: 1
+    max_response_bytes: 8000000
+  openai:
+    max_concurrency: 2
+    timeout_seconds: 60
+    retries: 2
+    max_response_bytes: 5000000
+  bloomberg:
+    max_concurrency: 1
+    timeout_seconds: 30
+    retries: 1
+    max_response_bytes: 5000000

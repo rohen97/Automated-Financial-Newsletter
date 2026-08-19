@@ -47,6 +47,7 @@ def test_first_run_establishes_baseline_and_persists_history(tmp_path):
     history = json.loads(history_path.read_text(encoding="utf-8"))
     assert len(history["snapshots"]) == 1
 
+
 def test_subsequent_run_classifies_accelerating_emerging_and_fading(tmp_path):
     history_path = tmp_path / "history.json"
     baseline = [
@@ -116,3 +117,30 @@ def test_same_period_rerun_replaces_history_snapshot(tmp_path):
 
     history = json.loads(history_path.read_text(encoding="utf-8"))
     assert len(history["snapshots"]) == 1
+
+
+def test_publisher_names_are_filtered_from_narratives(tmp_path):
+    history_path = tmp_path / "history.json"
+    articles = [
+        _article("Oil prices retreat after inflation data - Yahoo Finance", "Yahoo Finance"),
+        _article("Oil prices rise as supply tightens - Reuters", "Reuters"),
+        _article("Oil price volatility reaches Europe - Financial Times", "Financial Times"),
+        _article("Wall Street watches oil prices", "MarketWatch"),
+        _article("Wall Street weighs rate outlook", "Morningstar"),
+    ]
+
+    section = build_narrative_monitor(
+        articles,
+        _config(),
+        now=datetime(2026, 8, 10, tzinfo=timezone.utc),
+        history_path=history_path,
+    )
+
+    phrases = {row["phrase"] for row in section["rows"]}
+    assert "Oil Price" in phrases
+    assert "Yahoo Finance" not in phrases
+    assert "Wall Street" not in phrases
+    history = json.loads(history_path.read_text(encoding="utf-8"))
+    stored_phrases = history["snapshots"][0]["phrase_counts"]
+    assert all("yahoo finance" not in phrase for phrase in stored_phrases)
+    assert all("wall street" not in phrase for phrase in stored_phrases)

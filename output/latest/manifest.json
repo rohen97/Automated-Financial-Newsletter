@@ -1,0 +1,127 @@
+{
+  "generated_at": "2026-08-19T15:32:12.996499+08:00",
+  "files_written": [
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/latest/newsletter.json",
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/archive/2026-08-19/newsletter.json",
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/latest/newsletter.md",
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/archive/2026-08-19/newsletter.md",
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/latest/newsletter.html",
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/archive/2026-08-19/newsletter.html",
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/latest/source_audit.json",
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/archive/2026-08-19/source_audit.json",
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/latest/audit_log.json",
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/archive/2026-08-19/audit_log.json",
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/latest/narrative_trends.json",
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/archive/2026-08-19/narrative_trends.json",
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/latest/chart_of_the_week.png",
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/archive/2026-08-19/chart_of_the_week.png"
+  ],
+  "file_sizes": {
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/latest/newsletter.json": 163087,
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/archive/2026-08-19/newsletter.json": 163087,
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/latest/newsletter.md": 8630,
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/archive/2026-08-19/newsletter.md": 8630,
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/latest/newsletter.html": 102376,
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/archive/2026-08-19/newsletter.html": 102376,
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/latest/source_audit.json": 16311,
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/archive/2026-08-19/source_audit.json": 16311,
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/latest/audit_log.json": 16311,
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/archive/2026-08-19/audit_log.json": 16311,
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/latest/narrative_trends.json": 8370,
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/archive/2026-08-19/narrative_trends.json": 8370,
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/latest/chart_of_the_week.png": 105776,
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/archive/2026-08-19/chart_of_the_week.png": 105776
+  },
+  "checksums": {
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/latest/newsletter.json": "fc53244b92a5c0c9eb162b97cb784c0255c05ecbd1d9a5be7103ecfa936e5b13",
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/archive/2026-08-19/newsletter.json": "fc53244b92a5c0c9eb162b97cb784c0255c05ecbd1d9a5be7103ecfa936e5b13",
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/latest/newsletter.md": "b85feeba7e0a5f68aa720754ad2636e4c03a8201ced1e5ed2ae4f9cd113e3e0b",
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/archive/2026-08-19/newsletter.md": "b85feeba7e0a5f68aa720754ad2636e4c03a8201ced1e5ed2ae4f9cd113e3e0b",
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/latest/newsletter.html": "54b7a9aff5d6ff4af088601e71a288cdd47ce98503ebfc20650da833c7c698a0",
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/archive/2026-08-19/newsletter.html": "54b7a9aff5d6ff4af088601e71a288cdd47ce98503ebfc20650da833c7c698a0",
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/latest/source_audit.json": "a47fefe1844e159d273051ec6c4710aac8b72084774c8b92b5b64a8b456605cb",
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/archive/2026-08-19/source_audit.json": "a47fefe1844e159d273051ec6c4710aac8b72084774c8b92b5b64a8b456605cb",
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/latest/audit_log.json": "a47fefe1844e159d273051ec6c4710aac8b72084774c8b92b5b64a8b456605cb",
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/archive/2026-08-19/audit_log.json": "a47fefe1844e159d273051ec6c4710aac8b72084774c8b92b5b64a8b456605cb",
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/latest/narrative_trends.json": "e530a39f0afe7ef364117ae3ba786b85a50a4d447ffa32b21c6ecb6498c85b98",
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/archive/2026-08-19/narrative_trends.json": "e530a39f0afe7ef364117ae3ba786b85a50a4d447ffa32b21c6ecb6498c85b98",
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/latest/chart_of_the_week.png": "3bcaf631642e589122a13b684a82e5ab9a5d25b3df370b3f1265496fe94e59d5",
+    "C:/Users/Rohen/OneDrive/Coding/Two Quant/wolf-research/output/archive/2026-08-19/chart_of_the_week.png": "3bcaf631642e589122a13b684a82e5ab9a5d25b3df370b3f1265496fe94e59d5"
+  },
+  "provider_status": {
+    "news": {
+      "provider": "marketaux",
+      "status": "ok",
+      "cache": "miss",
+      "duration_seconds": 15.6177
+    },
+    "private_news": {
+      "provider": "marketaux",
+      "status": "ok",
+      "cache": "hit",
+      "duration_seconds": 0.0
+    },
+    "macro": {
+      "provider": "fred",
+      "status": "ok",
+      "cache": "hit",
+      "duration_seconds": 0.0
+    },
+    "fx": {
+      "provider": "alpha_vantage",
+      "status": "ok",
+      "cache": "hit",
+      "duration_seconds": 0.0
+    },
+    "commodities": {
+      "provider": "yahoo_finance",
+      "status": "ok",
+      "cache": "hit",
+      "duration_seconds": 0.0
+    },
+    "sectors": {
+      "provider": "alpha_vantage",
+      "status": "ok",
+      "cache": "hit",
+      "duration_seconds": 0.0
+    },
+    "alpha_vantage": {
+      "provider": "alpha_vantage",
+      "status": "ok",
+      "error_count": 0
+    },
+    "fred": {
+      "provider": "fred",
+      "status": "ok",
+      "error_count": 0
+    },
+    "google_news": {
+      "provider": "google_news",
+      "status": "ok",
+      "error_count": 0
+    },
+    "marketaux": {
+      "provider": "marketaux",
+      "status": "degraded",
+      "error_count": 2
+    },
+    "openai": {
+      "provider": "openai",
+      "status": "ok",
+      "error_count": 0
+    },
+    "rss": {
+      "provider": "rss",
+      "status": "degraded",
+      "error_count": 1
+    },
+    "yahoo_finance": {
+      "provider": "yahoo_finance",
+      "status": "ok",
+      "error_count": 0
+    }
+  },
+  "validation_status": "ok",
+  "send_blocked": true,
+  "run_duration_seconds": 32.6737
+}

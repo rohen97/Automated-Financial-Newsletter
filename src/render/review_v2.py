@@ -56,10 +56,6 @@ def _build_review_view(newsletter: dict[str, Any]) -> dict[str, Any]:
     equity = sections.get("equity_holdings_monitor", {})
 
     signals = _select_signals(executive.get("signals", []))
-    macro_signal = next((item for item in signals if str(item.get("label", "")).lower() == "macro"), None)
-    if macro_signal and story.get("narrative"):
-        macro_signal["detail"] = _first_sentences(str(story["narrative"]), 2, 260)
-
     portfolio_signal = next(
         (item for item in signals if str(item.get("label", "")).lower() == "portfolio"), None
     )
@@ -75,7 +71,8 @@ def _build_review_view(newsletter: dict[str, Any]) -> dict[str, Any]:
         "signals": signals,
         "story": _story_view(story, watchlist.get("rows", [])),
         "chart": _chart_view(sections.get("chart_of_the_week", {})),
-        "narrative": _narrative_view(sections.get("narrative_monitor", {})),
+        "weekly_delta": _weekly_delta_view(sections.get("weekly_delta", {})),
+        "dislocations": _dislocation_view(sections.get("dislocation_watch", {})),
         "fx_rows": _preferred_market_rows(sections.get("fx_markets", {}).get("rows", []), PREFERRED_FX),
         "commodity_rows": _preferred_market_rows(
             sections.get("commodities", {}).get("rows", []), PREFERRED_COMMODITIES
@@ -125,16 +122,44 @@ def _select_signals(signals: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
 def _story_view(story: dict[str, Any], watch_rows: list[dict[str, Any]]) -> dict[str, Any]:
     implications = story.get("implications", [])
-    first_watch = watch_rows[0] if watch_rows else {}
-    watch_text = ""
-    if first_watch:
-        watch_text = f"{first_watch.get('event', '')}: {first_watch.get('portfolio_relevance', '')}".strip(": ")
+    watch_text = _matching_watch_text(story, watch_rows)
     return {
         "title": story.get("title", "No material feature selected"),
         "view": story.get("narrative", "No material feature narrative available."),
         "why": implications[0] if implications else "Monitor cross-asset transmission and portfolio relevance.",
-        "watch": watch_text or "Watch incoming macro data and changes in market pricing.",
+        "watch": watch_text,
         "sources": _real_sources(story.get("sources", [])),
+    }
+
+
+def _matching_watch_text(story: dict[str, Any], watch_rows: list[dict[str, Any]]) -> str:
+    story_text = f"{story.get('title', '')} {story.get('narrative', '')}"
+    story_terms = _editorial_terms(story_text)
+    scored = []
+    for row in watch_rows:
+        row_text = f"{row.get('event', '')} {row.get('portfolio_relevance', '')}"
+        score = len(story_terms & _editorial_terms(row_text))
+        scored.append((score, row))
+    if scored:
+        score, row = max(scored, key=lambda item: item[0])
+        if score >= 2:
+            return f"{row.get('event', '')}: {row.get('portfolio_relevance', '')}".strip(": ")
+
+    lowered = story_text.casefold()
+    if "digital euro" in lowered or "cbdc" in lowered:
+        return "Further ECB digital-euro guidance: Monitor changes to the policy and implementation path."
+    if any(term in lowered for term in ("brent", "crude", "oil price", "natural gas", "lng")):
+        return "Supply, demand, and inventory updates: Watch whether subsequent evidence confirms the price signal."
+    if any(term in lowered for term in ("federal reserve", "central bank", "monetary policy", "yield")):
+        return "Incoming policy guidance and market pricing: Watch whether the rate signal strengthens or reverses."
+    return "Follow-up reporting and market confirmation: Watch whether new evidence reinforces or reverses the feature thesis."
+
+
+def _editorial_terms(value: str) -> set[str]:
+    return {
+        token
+        for token in re.findall(r"[a-z0-9]+", value.casefold())
+        if len(token) >= 4 and token not in {"about", "after", "from", "into", "that", "their", "this", "with"}
     }
 
 
@@ -351,16 +376,26 @@ def _chart_view(chart: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def _narrative_view(section: dict[str, Any]) -> dict[str, Any]:
-    baseline_periods = section.get("baseline_periods", 0)
+def _weekly_delta_view(section: dict[str, Any]) -> dict[str, Any]:
+    rows = [dict(row) for row in section.get("rows", [])[:5]]
+    for index, row in enumerate(rows, start=1):
+        row["index_display"] = f"{index:02d}"
     return {
-        "rows": section.get("rows", [])[:5],
-        "document_count": section.get("document_count", 0),
+        "rows": rows,
         "source_count": section.get("source_count", 0),
-        "baseline_periods": baseline_periods,
-        "is_baseline": baseline_periods < 1,
         "note": section.get("note", ""),
-        "empty_message": section.get("empty_message", "No reliable narrative trend identified."),
+        "empty_message": section.get("empty_message", "No verified weekly changes were available."),
+    }
+
+
+def _dislocation_view(section: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "items": section.get("items", [])[:2],
+        "note": section.get("note", ""),
+        "empty_message": section.get(
+            "empty_message",
+            "No material cross-asset dislocation met the configured thresholds this week.",
+        ),
     }
 
 

@@ -1,10 +1,11 @@
 from __future__ import annotations
 
-import json
 from pathlib import Path
 from typing import Any
 
 import yaml
+
+from src.io.serialization import write_json_atomic, write_text_atomic
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -23,13 +24,8 @@ def load_yaml(path: str | Path) -> dict[str, Any]:
 
 
 def write_json(path: str | Path, data: Any) -> None:
-    target = Path(path)
-    target.parent.mkdir(parents=True, exist_ok=True)
-    with target.open("w", encoding="utf-8") as handle:
-        json.dump(data, handle, indent=2, ensure_ascii=False, default=str)
+    write_json_atomic(path, data, pretty=True)
 
 
 def write_text(path: str | Path, content: str) -> None:
-    target = Path(path)
-    target.parent.mkdir(parents=True, exist_ok=True)
-    target.write_text(content, encoding="utf-8")
+    write_text_atomic(path, content)

@@ -1,30 +1,18 @@
 from __future__ import annotations
 
 import os
+from pathlib import Path
+import time
 
-from src.analysis.ngram_trends import build_narrative_monitor
-from src.charts.chart_of_week import build_chart_of_the_week
 from src.emailer.send_email import send_email
-from src.fetchers.commodities import fetch_commodities_data
-from src.fetchers.fx import fetch_fx_data
-from src.fetchers.macro import fetch_macro_data
-from src.fetchers.news import fetch_news
-from src.fetchers.provider_audit import provider_audit_snapshot, reset_provider_audit, source_counts
-from src.fetchers.private_markets import fetch_private_markets_news
-from src.fetchers.sectors import fetch_sector_scoreboard
-from src.llm.generate_sections import generate_sections
-from src.portfolio.equity import equity_monitor, load_equity_holdings
-from src.portfolio.exposure import concentration_flags, portfolio_summary
-from src.portfolio.load import load_portfolio
-from src.portfolio.portfolio_news import portfolio_linked_news, portfolio_watchlist, regional_headlines
-from src.portfolio.relevance import enrich_articles_with_portfolio_relevance
-from src.processing.dedupe import dedupe_articles
-from src.processing.rank import rank_articles
-from src.processing.validate import collect_source_urls, run_quality_checks
+from src.fetchers.provider_audit import source_counts
+from src.io.serialization import compact_json_dumps
+from src.pipeline.orchestrator import build_newsletter_sync
+from src.pipeline.output_writer import OutputWriter, bytes_artifact, text_artifact
+from src.processing.validate import collect_source_urls
 from src.render.assemble_newsletter import assemble_newsletter, render_newsletter_html, newsletter_to_markdown
 from src.utils.dates import archive_date
-from src.utils.env import load_local_env
-from src.utils.io import load_yaml, project_path, write_json, write_text
+from src.utils.io import load_yaml, project_path
 from src.utils.logging import get_logger
 from src.markets.driver_explainer import BANNED_GENERIC_PHRASES, comments_are_valid
 
@@ -32,90 +20,23 @@ LOGGER = get_logger(__name__)
 
 
 def build_newsletter() -> dict:
-    load_local_env()
-    reset_provider_audit()
-    newsletter_config = load_yaml("config/newsletter.yaml")
-    sources_config = load_yaml("config/sources.yaml")
-    tickers_config = load_yaml("config/tickers.yaml")
-    portfolio_config = load_yaml("config/portfolio.yaml")
-    chart_config = load_yaml("config/charts.yaml")
-    narrative_config = load_yaml("config/narrative_monitor.yaml")
-    lookback_days = int(newsletter_config.get("lookback_days", 7))
-    holdings = load_portfolio(portfolio_config.get("input_path", "")) if portfolio_config.get("enabled", True) else []
-    portfolio_data_config = load_yaml("data/portfolio/portfolio_config.yaml")
-    equity_holdings = load_equity_holdings(portfolio_data_config.get("equity_holdings_path", "data/portfolio/equity_holdings.csv"))
-
-    news = fetch_news(sources_config, lookback_days)
-    private_news = fetch_private_markets_news(sources_config, lookback_days)
-    raw_article_count = len(news) + len(private_news)
-    all_articles = dedupe_articles(news + private_news)
-    deduped_article_count = len(all_articles)
-    ranked_articles = rank_articles(all_articles, sources_config.get("source_quality", {}))
-    ranked_articles = enrich_articles_with_portfolio_relevance(ranked_articles, holdings)
-    summary = portfolio_summary(holdings) if holdings else {}
-    flags = (
-        concentration_flags(
-            summary,
-            high_threshold=float(portfolio_config.get("risk_flags", {}).get("high_weight_threshold", 0.20)),
-            medium_threshold=float(portfolio_config.get("risk_flags", {}).get("medium_weight_threshold", 0.10)),
-        )
-        if summary
-        else []
-    )
-    equity_data = equity_monitor(equity_holdings)
-    linked_news = portfolio_linked_news(equity_holdings, [], ranked_articles)
-    regional_news = regional_headlines(ranked_articles)
-    watchlist = portfolio_watchlist(equity_holdings)
-    narrative_monitor = build_narrative_monitor(
-        ranked_articles,
-        narrative_config,
-        persist_history=not bool(os.getenv("PYTEST_CURRENT_TEST")),
-    )
-
-    data = {
-        "macro": fetch_macro_data(),
-        "fx": fetch_fx_data(tickers_config),
-        "commodities": fetch_commodities_data(tickers_config),
-        "sectors": fetch_sector_scoreboard(tickers_config),
-        "chart_of_the_week": build_chart_of_the_week(chart_config, articles=ranked_articles, equity_monitor=equity_data),
-        "narrative_monitor": narrative_monitor,
-        "private_markets": private_news,
-        "ranked_articles": ranked_articles,
-        "portfolio_summary": summary,
-        "portfolio_flags": flags,
-        "equity_monitor": equity_data,
-        "portfolio_linked_news": linked_news,
-        "regional_headlines": regional_news,
-        "portfolio_watchlist": watchlist,
-    }
-    sections = generate_sections(data)
-    draft = {
-        "title": newsletter_config["title"],
-        "sections": sections,
-    }
-    warnings = run_quality_checks(draft, newsletter_config["required_sections"])
-    newsletter = assemble_newsletter(newsletter_config["title"], newsletter_config["timezone"], sections, warnings)
-    newsletter_dict = newsletter.model_dump(mode="json")
-    newsletter_dict["_runtime_audit"] = {
-        "api_keys_detected": {
-            "OPENAI_API_KEY": bool(os.getenv("OPENAI_API_KEY")),
-            "FRED_API_KEY": bool(os.getenv("FRED_API_KEY")),
-            "ALPHA_VANTAGE_API_KEY": bool(os.getenv("ALPHA_VANTAGE_API_KEY")),
-            "MARKETAUX_API_KEY": bool(os.getenv("MARKETAUX_API_KEY")),
-            "FT_API_KEY": bool(os.getenv("FT_API_KEY")),
-            "TIINGO_API_KEY": bool(os.getenv("TIINGO_API_KEY")),
-        },
-        "tiingo_license_mode": os.getenv("TIINGO_LICENSE_MODE", "internal"),
-        "tiingo_persistence_allowed": os.getenv("TIINGO_ALLOW_PERSISTENCE", "false").lower() == "true",
-        "article_count_raw": raw_article_count,
-        "article_count_deduped": deduped_article_count,
-        **provider_audit_snapshot(),
-    }
-    return newsletter_dict
+    return build_newsletter_sync()
 
 
 def save_outputs(newsletter_dict: dict) -> dict:
+    save_started = time.perf_counter()
     runtime_audit = newsletter_dict.get("_runtime_audit", {})
+    pipeline_runtime = newsletter_dict.get("_pipeline_runtime", {})
+    latest_dir = project_path("output", "latest")
+    raw_chart_section = newsletter_dict.get("sections", {}).get("chart_of_the_week", {})
+    chart_source_path = _optional_path(raw_chart_section.get("local_image_path"))
+    chart_metadata_source_path = _optional_path(raw_chart_section.get("render_metadata_path"))
+    if raw_chart_section:
+        raw_chart_section["local_image_path"] = str(latest_dir / "chart_of_the_week.png")
+        raw_chart_section["render_metadata_path"] = str(
+            latest_dir / "chart_of_the_week.meta.json"
+        )
+    render_started = time.perf_counter()
     newsletter = assemble_newsletter(
         newsletter_dict["title"],
         newsletter_dict["timezone"],
@@ -124,6 +45,7 @@ def save_outputs(newsletter_dict: dict) -> dict:
     )
     markdown = newsletter_to_markdown(newsletter)
     html = render_newsletter_html(newsletter)
+    render_duration = time.perf_counter() - render_started
     archive = archive_date(newsletter.timezone)
     audit = {
         "title": newsletter.title,
@@ -141,6 +63,9 @@ def save_outputs(newsletter_dict: dict) -> dict:
     fx_section = sections.get("fx_markets", {})
     commodities_section = sections.get("commodities", {})
     narrative_section = sections.get("narrative_monitor", {})
+    weekly_delta_section = sections.get("weekly_delta", {})
+    dislocation_section = sections.get("dislocation_watch", {})
+    story_section = sections.get("story_of_the_week", {})
     audit.update(
         {
             "api_keys_detected": runtime_audit.get("api_keys_detected", {}),
@@ -192,6 +117,12 @@ def save_outputs(newsletter_dict: dict) -> dict:
             "narrative_rows_count": len(narrative_section.get("rows", [])),
             "narrative_status_counts": narrative_section.get("status_counts", {}),
             "narrative_history_updated": narrative_section.get("history_updated", False),
+            "narrative_reader_visible": False,
+            "narrative_used_for_story_selection": bool(story_section.get("selection_signal")),
+            "story_selection_signal": story_section.get("selection_signal", {}),
+            "weekly_delta_rows_count": len(weekly_delta_section.get("rows", [])),
+            "weekly_delta_source_count": weekly_delta_section.get("source_count", 0),
+            "dislocation_watch_items_count": len(dislocation_section.get("items", [])),
             "fixed_income_section_enabled": False,
             "manual_pricing_count": equity_section.get("manual_pricing_count", 0),
             "missing_pricing_count": equity_section.get("missing_pricing_count", 0),
@@ -240,21 +171,82 @@ def save_outputs(newsletter_dict: dict) -> dict:
         }
     )
 
-    latest_dir = project_path("output", "latest")
     archive_dir = project_path("output", "archive", archive)
-    write_json(latest_dir / "newsletter.json", newsletter.model_dump(mode="json"))
-    write_text(latest_dir / "newsletter.md", markdown)
-    write_text(latest_dir / "newsletter.html", html)
-    write_json(latest_dir / "source_audit.json", audit)
-    write_json(latest_dir / "audit_log.json", audit)
-    write_json(latest_dir / "narrative_trends.json", narrative_section)
-    write_json(archive_dir / "newsletter.json", newsletter.model_dump(mode="json"))
-    write_text(archive_dir / "newsletter.md", markdown)
-    write_text(archive_dir / "newsletter.html", html)
-    write_json(archive_dir / "source_audit.json", audit)
-    write_json(archive_dir / "audit_log.json", audit)
-    write_json(archive_dir / "narrative_trends.json", narrative_section)
-    return {"markdown": markdown, "html": html, "archive": archive, "audit": audit}
+    audit.update(pipeline_runtime)
+    stage_timings = dict(audit.get("stage_timings", {}))
+    stage_timings["rendering.artifacts"] = round(render_duration, 4)
+    audit["stage_timings"] = dict(sorted(stage_timings.items()))
+    audit["rendering_duration_seconds"] = round(render_duration, 4)
+    audit["send_blocked"] = bool(audit["send_block_reason"])
+    audit["artifact_preparation_seconds"] = round(time.perf_counter() - save_started, 4)
+    audit["pipeline_duration_seconds"] = round(
+        float(pipeline_runtime.get("pipeline_duration_seconds", 0.0))
+        + audit["artifact_preparation_seconds"],
+        4,
+    )
+
+    newsletter_payload = newsletter.model_dump(mode="json")
+    artifacts = [
+        text_artifact(
+            "newsletter.json",
+            compact_json_dumps(newsletter_payload, pretty=True),
+            "application/json",
+        ),
+        text_artifact("newsletter.md", markdown, "text/markdown"),
+        text_artifact("newsletter.html", html, "text/html"),
+        text_artifact(
+            "source_audit.json",
+            compact_json_dumps(audit, pretty=True),
+            "application/json",
+        ),
+        text_artifact(
+            "audit_log.json",
+            compact_json_dumps(audit, pretty=True),
+            "application/json",
+        ),
+        text_artifact(
+            "narrative_trends.json",
+            compact_json_dumps(narrative_section, pretty=True),
+            "application/json",
+        ),
+    ]
+    if chart_source_path and chart_source_path.exists():
+        artifacts.append(
+            bytes_artifact(
+                "chart_of_the_week.png",
+                chart_source_path.read_bytes(),
+                "image/png",
+            )
+        )
+    if chart_metadata_source_path and chart_metadata_source_path.exists():
+        artifacts.append(
+            bytes_artifact(
+                "chart_of_the_week.meta.json",
+                chart_metadata_source_path.read_bytes(),
+                "application/json",
+            )
+        )
+
+    manifest = OutputWriter(latest_dir, archive_dir).write(
+        artifacts,
+        provider_status=pipeline_runtime.get("provider_status", {}),
+        validation_status=audit["validation_status"],
+        send_blocked=audit["send_blocked"],
+        run_duration_seconds=audit["pipeline_duration_seconds"],
+        generated_at=newsletter.generated_at.isoformat(),
+        cleanup_directory=_optional_path(newsletter_dict.get("_pipeline_run_directory")),
+    )
+    return {
+        "markdown": markdown,
+        "html": html,
+        "archive": archive,
+        "audit": audit,
+        "manifest": manifest.as_dict(),
+    }
+
+
+def _optional_path(value: object) -> Path | None:
+    return Path(str(value)) if value else None
 
 
 def _send_block_reason(newsletter: dict, counts: dict, runtime_audit: dict) -> str:
